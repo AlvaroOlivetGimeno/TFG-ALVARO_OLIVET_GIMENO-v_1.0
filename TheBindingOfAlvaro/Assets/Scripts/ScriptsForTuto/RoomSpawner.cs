@@ -11,6 +11,8 @@ public class RoomSpawner : MonoBehaviour
 
     private GameObject room;
 
+    public bool dontSpawn = false;
+
     private bool spawned = false;
     
     void Start()
@@ -33,41 +35,85 @@ public class RoomSpawner : MonoBehaviour
         {
             if(openingDirection == 1)
             {
-                rand = Random.Range(0,rBrain.GetComponent<RoomTemplates>().downRooms.Length);
-                //Debug.Log("IT IS SPAWNED?" + spawned + "  WHATS THE INDEX YO DECIDE:"+rand);
-                Instantiate(rBrain.GetComponent<RoomTemplates>().downRooms[rand], this.gameObject.transform.position, Quaternion.identity);
-                room = rBrain.GetComponent<RoomTemplates>().downRooms[rand];
-                Debug.Log(room);
+                if(!dontSpawn)
+                {
+                    rand = Random.Range(0,rBrain.GetComponent<RoomTemplates>().downRooms.Length);
+                    //Debug.Log("IT IS SPAWNED?" + spawned + "  WHATS THE INDEX YO DECIDE:"+rand);
+                    Instantiate(rBrain.GetComponent<RoomTemplates>().downRooms[rand], this.gameObject.transform.position, Quaternion.identity);
+                    room = rBrain.GetComponent<RoomTemplates>().downRooms[rand];
+                    
+                }
+                else
+                {
+                    Debug.Log("TA OCUPAO BRO:(");
+                    Destroy(this.gameObject);
+                }
+               
             }
+            
             else if (openingDirection == 2)
             {
-                rand = Random.Range(0,rBrain.GetComponent<RoomTemplates>().upRooms.Length);
-                Instantiate(rBrain.GetComponent<RoomTemplates>().upRooms[rand], transform.position, Quaternion.identity);
-                room = rBrain.GetComponent<RoomTemplates>().upRooms[rand];
-            }
-             
+                if(!dontSpawn)
+                {
+                    rand = Random.Range(0,rBrain.GetComponent<RoomTemplates>().upRooms.Length);
+                    Instantiate(rBrain.GetComponent<RoomTemplates>().upRooms[rand], transform.position, Quaternion.identity);
+                    room = rBrain.GetComponent<RoomTemplates>().upRooms[rand];    
+                }
+                else
+                {
+                    Debug.Log("TA OCUPAO BRO:(");
+                    Destroy(this.gameObject);
+                }  
+            }  
+            
+            
             else if (openingDirection == 3)
             {
-                rand = Random.Range(0,rBrain.GetComponent<RoomTemplates>().rightRooms.Length);
-                Instantiate(rBrain.GetComponent<RoomTemplates>().rightRooms[rand], transform.position, Quaternion.identity);
-                room = rBrain.GetComponent<RoomTemplates>().rightRooms[rand];
+                if(!dontSpawn)
+                {
+                    rand = Random.Range(0,rBrain.GetComponent<RoomTemplates>().rightRooms.Length);
+                    Instantiate(rBrain.GetComponent<RoomTemplates>().rightRooms[rand], transform.position, Quaternion.identity);
+                    room = rBrain.GetComponent<RoomTemplates>().rightRooms[rand];   
+                }
+                else
+                {
+                    Debug.Log("TA OCUPAO BRO:(");
+                    Destroy(this.gameObject);
+                }  
             }
+            
             else if (openingDirection == 4)
             {
-                rand = Random.Range(0,rBrain.GetComponent<RoomTemplates>().leftRooms.Length);
-                Instantiate(rBrain.GetComponent<RoomTemplates>().leftRooms[rand], transform.position, Quaternion.identity);
-                room = rBrain.GetComponent<RoomTemplates>().leftRooms[rand];
+                if(!dontSpawn)
+                {
+                    rand = Random.Range(0,rBrain.GetComponent<RoomTemplates>().leftRooms.Length);
+                    Instantiate(rBrain.GetComponent<RoomTemplates>().leftRooms[rand], transform.position, Quaternion.identity);
+                    room = rBrain.GetComponent<RoomTemplates>().leftRooms[rand];
+                    
+                }
+                else
+                {
+                    Debug.Log("TA OCUPAO BRO:(");
+                    Destroy(this.gameObject);
+                }  
             } 
-            
             spawned = true;  
         }
 
     }
     void OnTriggerEnter2D(Collider2D other) 
         {
-            if(other.CompareTag("SpawnPoint") && other.GetComponent<RoomSpawner>().spawned == true)
+            if(other.CompareTag("Room") /*&& other.GetComponent<RoomSpawner>().spawned == true*/)
             {
-               
+                Debug.Log("CON LA IGLESIA NOS HEMOS TOPADO");
+                dontSpawn = true;
             }
+            
+            if(other.CompareTag("SpawnPoint") )
+            {
+                Destroy(this.gameObject);
+            }
+            
+            
         }
 }

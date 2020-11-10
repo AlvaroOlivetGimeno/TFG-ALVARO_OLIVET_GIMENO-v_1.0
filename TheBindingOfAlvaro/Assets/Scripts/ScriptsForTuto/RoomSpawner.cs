@@ -14,16 +14,28 @@ public class RoomSpawner : MonoBehaviour
     public bool dontSpawn = false;
 
     private bool spawned = false;
+
+    double timeRuning;
+
+    bool stopSpawning;
+
+    
     
     void Start()
     {
         rBrain = GameObject.FindGameObjectWithTag("RoomBrain");
-        Invoke("roomSpawner", 3f);
+        Invoke("roomSpawner", 0.1f);
     }
 
     
     void Update()
     {
+        timeRuning = 0.1 + Time.deltaTime;
+        Debug.Log("TIME:" + timeRuning);
+        if(rBrain.GetComponent<RoomTemplates>().timeActive>= timeRuning)
+        {
+            stopSpawning = true;
+        }
         //roomSpawner();
     }
 
@@ -31,6 +43,8 @@ public class RoomSpawner : MonoBehaviour
 
     public void roomSpawner()
     {
+        if(stopSpawning)
+        {
         if(spawned== false)
         {
             if(openingDirection == 1)
@@ -45,7 +59,7 @@ public class RoomSpawner : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("TA OCUPAO BRO:(");
+                    //Debug.Log("TA OCUPAO BRO:(");
                     Destroy(this.gameObject);
                 }
                
@@ -61,7 +75,7 @@ public class RoomSpawner : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("TA OCUPAO BRO:(");
+                    //Debug.Log("TA OCUPAO BRO:(");
                     Destroy(this.gameObject);
                 }  
             }  
@@ -77,7 +91,7 @@ public class RoomSpawner : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("TA OCUPAO BRO:(");
+                    //Debug.Log("TA OCUPAO BRO:(");
                     Destroy(this.gameObject);
                 }  
             }
@@ -93,11 +107,12 @@ public class RoomSpawner : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("TA OCUPAO BRO:(");
+                    //Debug.Log("TA OCUPAO BRO:(");
                     Destroy(this.gameObject);
                 }  
             } 
             spawned = true;  
+        }
         }
 
     }
@@ -108,12 +123,16 @@ public class RoomSpawner : MonoBehaviour
                 Debug.Log("CON LA IGLESIA NOS HEMOS TOPADO");
                 dontSpawn = true;
             }
-            
             if(other.CompareTag("SpawnPoint") )
             {
-                Destroy(this.gameObject);
-            }
-            
-            
+                if(other.gameObject.GetComponent<RoomSpawner>().openingDirection> openingDirection)
+                {
+                    Destroy(other.gameObject);
+                }
+                else
+                {
+                    Destroy(this.gameObject);
+                } 
+            }   
         }
 }

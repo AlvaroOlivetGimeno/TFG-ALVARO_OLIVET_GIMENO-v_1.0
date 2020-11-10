@@ -10,6 +10,7 @@ public class RoomTemplates : MonoBehaviour
     
     public GameObject[] rightRooms;
     public GameObject superRooms;
+    public double timeActive;
     void Start()
     {
         

@@ -30,12 +30,8 @@ public class RoomSpawner : MonoBehaviour
     
     void Update()
     {
-        timeRuning = 0.1 + Time.deltaTime;
-        Debug.Log("TIME:" + timeRuning);
-        if(rBrain.GetComponent<RoomTemplates>().timeActive>= timeRuning)
-        {
-            stopSpawning = true;
-        }
+        
+       
         //roomSpawner();
     }
 
@@ -43,8 +39,7 @@ public class RoomSpawner : MonoBehaviour
 
     public void roomSpawner()
     {
-        if(stopSpawning)
-        {
+        
         if(spawned== false)
         {
             if(openingDirection == 1)
@@ -113,7 +108,7 @@ public class RoomSpawner : MonoBehaviour
             } 
             spawned = true;  
         }
-        }
+        
 
     }
     void OnTriggerEnter2D(Collider2D other) 

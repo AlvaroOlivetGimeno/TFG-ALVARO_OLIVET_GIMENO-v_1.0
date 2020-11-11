@@ -45,6 +45,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\ScriptsForTuto\HacksForTheGame.cs" />
+     <Compile Include="Assets\Scripts\ScriptsForTuto\RoomScript.cs" />
      <Compile Include="Assets\Scripts\ScriptsForTuto\RoomSpawner.cs" />
      <Compile Include="Assets\Scripts\ScriptsForTuto\RoomTemplates.cs" />
  <Reference Include="Unity.Timeline.Editor">

@@ -113,7 +113,7 @@ public class RoomSpawner : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other) 
         {
-            if(other.CompareTag("Room") /*&& other.GetComponent<RoomSpawner>().spawned == true*/)
+            if(other.CompareTag("Room"))
             {
                 Debug.Log("CON LA IGLESIA NOS HEMOS TOPADO");
                 dontSpawn = true;

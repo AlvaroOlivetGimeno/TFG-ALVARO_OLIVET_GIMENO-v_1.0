@@ -10,7 +10,15 @@ public class RoomTemplates : MonoBehaviour
     
     public GameObject[] rightRooms;
     public GameObject superRooms;
-    public double timeActive;
+    public float waiteTime;
+
+    public List<GameObject> rooms;
+
+    public GameObject stairs;
+
+    private bool spawnStairs = false;
+
+
     void Start()
     {
         
@@ -19,6 +27,30 @@ public class RoomTemplates : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        InstantateStairs();
     }
+
+    public void AddToList(GameObject x)
+    {
+        rooms.Add(x);
+    }
+    public void InstantateStairs()
+    {
+        if(waiteTime <= 0 && spawnStairs == false)
+        {
+            Debug.Log("INSTANCIANDO ESCALERAS");
+            Instantiate(stairs, rooms[rooms.Count-1].transform.position, Quaternion.identity);
+            spawnStairs = true;
+        }
+        else
+        {
+            if(spawnStairs == false)
+            {
+                waiteTime -= Time.deltaTime;
+            }
+            
+        }
+    }
+
+
 }

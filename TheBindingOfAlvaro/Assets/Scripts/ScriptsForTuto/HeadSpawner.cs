@@ -23,6 +23,12 @@ public class HeadSpawner : MonoBehaviour
 
     public void RestartCreation()
     {
-        
+        for(int i = 0; i < this.transform.childCount; i++)
+        {
+            this.transform.GetChild(i).gameObject.SetActive(true);
+            this.transform.GetChild(i).GetComponent<RoomSpawner>().spawned = false;
+            this.transform.GetChild(i).GetComponent<RoomSpawner>().dontSpawn = false;
+            
+        }
     }
 }

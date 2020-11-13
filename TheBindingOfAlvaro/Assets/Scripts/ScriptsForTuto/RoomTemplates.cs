@@ -18,15 +18,16 @@ public class RoomTemplates : MonoBehaviour
 
     private bool spawnStairs = false;
 
-    float numOfObjectsInList;
 
     public float NumMaxOfRooms;
 
-    public bool deleteYourself;
+
+
+    private GameObject headSpawner;
 
     void Start()
     {
-        
+        headSpawner = GameObject.FindGameObjectWithTag("HeadSpawner");
     }
 
     // Update is called once per frame
@@ -43,32 +44,27 @@ public class RoomTemplates : MonoBehaviour
     }
     public void InstantateStairs()
     {
-        if(waiteTime <= 0 && spawnStairs == false && MapIsReady() == true)
+        if(waiteTime <= 0 && spawnStairs == false)
         {
             Debug.Log("INSTANCIANDO ESCALERAS");
             Instantiate(stairs, rooms[rooms.Count-1].transform.position, Quaternion.identity);
             spawnStairs = true;
-        }
-        else if(waiteTime <= 0 && spawnStairs == false && MapIsReady() == false)
-        {
-            deleteYourself = true;
-            rooms.RemoveRange(0, rooms.Count);
-            waiteTime = 15;
         }
         else
         {
             if(spawnStairs == false)
             {
                 waiteTime -= Time.deltaTime;
-            }
-            
+            }  
         }
+        
     }
 
     public bool MapIsReady()
     {
-       if(waiteTime <= 0 && rooms.Count  <= NumMaxOfRooms)
+       if(rooms.Count >= NumMaxOfRooms)
        {
+           waiteTime = 0;
            return true;
        }
        else

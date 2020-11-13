@@ -20,13 +20,13 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
+  m_AmbientSkyColor: {r: 0.67244333, g: 0.67244333, b: 0.67244333, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 15302, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -204,33 +204,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &329432579 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4272685512523364078, guid: 7dbfb0b2ff984234aa1b4466b95ba6b1,
-    type: 3}
-  m_PrefabInstance: {fileID: 1356193422}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &329432580
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 329432579}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &758484920
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,13 +265,12 @@ MonoBehaviour:
   - {fileID: 7672290188452674423, guid: 6c695eb634c77574a8dffd73e1777e0b, type: 3}
   - {fileID: 3429974398664542913, guid: be3cd2c96aeed384e99572732e1893ff, type: 3}
   - {fileID: 4892845347889895810, guid: 31931ef508cf9764abba8859d1ff7f96, type: 3}
-  superRooms: {fileID: 4272685512523364078, guid: 7dbfb0b2ff984234aa1b4466b95ba6b1,
+  superRooms: {fileID: 4203632749212054555, guid: 234c4bea0e42e484ca3c4a90c186475f,
     type: 3}
   waiteTime: 15
   rooms: []
   stairs: {fileID: 3293436359059200110, guid: b15adf45f413cf9418d7720715cc7b82, type: 3}
   NumMaxOfRooms: 50
-  deleteYourself: 0
 --- !u!4 &758484922
 Transform:
   m_ObjectHideFlags: 0

@@ -36,7 +36,7 @@ public class RoomTemplates : MonoBehaviour
 
     //ACCESO A OTROS SCRIPTS o OBJETOS
 
-    public GameObject entryRoom;
+    GameObject entryRoom;
 
     GameObject camara;
 

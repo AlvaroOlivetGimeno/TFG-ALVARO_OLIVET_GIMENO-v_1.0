@@ -265,11 +265,13 @@ MonoBehaviour:
   - {fileID: 7672290188452674423, guid: 6c695eb634c77574a8dffd73e1777e0b, type: 3}
   - {fileID: 3429974398664542913, guid: be3cd2c96aeed384e99572732e1893ff, type: 3}
   - {fileID: 4892845347889895810, guid: 31931ef508cf9764abba8859d1ff7f96, type: 3}
-  superRooms: {fileID: 4272685512523364078, guid: 7dbfb0b2ff984234aa1b4466b95ba6b1,
+  superRooms: {fileID: 6766221672697240179, guid: 86c72eac400d71c41b48a6c46443e4d5,
     type: 3}
-  waiteTime: 15
   rooms: []
   stairs: {fileID: 3293436359059200110, guid: b15adf45f413cf9418d7720715cc7b82, type: 3}
+  MaxNumOfRooms: 50
+  MinNumOfRooms: 0
+  waiteTime: 15
 --- !u!4 &758484922
 Transform:
   m_ObjectHideFlags: 0

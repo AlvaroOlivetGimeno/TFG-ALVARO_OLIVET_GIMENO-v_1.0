@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class RoomSpawner : MonoBehaviour
 {
+    [Header("TYPE OF SPAWNER (From 1 to 4):")]
     public int openingDirection;
     //1 == UP    2 == DOWN     3 == LEFT     4 == RIGHT
+    [Header("DONT SPAWN A ROOM IF THATS TRUE!")]
+    public bool dontSpawn = false;
+    private bool spawned = false;
+
+    //REFERENCIES A ALTRES SRIPTS
     GameObject rBrain;
+
+    //VARIABLE RANDOM
     private int rand;
+
+    //INSTANCIA DE LA ROOM QUE CREA EL SPAWNER:
 
     private GameObject room;
 
-    public bool dontSpawn = false;
-
-    private bool spawned = false;
-
-    double timeRuning;
-
-    bool stopSpawning;
 
     
     
@@ -39,8 +42,7 @@ public class RoomSpawner : MonoBehaviour
 
     public void roomSpawner()
     {
-        
-        if(spawned== false)
+        if(spawned== false && rBrain.GetComponent<RoomTemplates>().MapIsReady() == false)
         {
             if(openingDirection == 1)
             {
@@ -107,6 +109,15 @@ public class RoomSpawner : MonoBehaviour
                 }  
             } 
             spawned = true;  
+        }
+        else
+        {
+            if(!dontSpawn)
+            {
+                Instantiate(rBrain.GetComponent<RoomTemplates>().superRooms, transform.position, Quaternion.identity);
+                spawned = true; 
+            }
+           
         }
         
 

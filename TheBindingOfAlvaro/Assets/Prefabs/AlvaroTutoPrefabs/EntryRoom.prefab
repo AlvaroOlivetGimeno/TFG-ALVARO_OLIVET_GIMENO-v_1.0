@@ -94,7 +94,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openingDirection: 3
   dontSpawn: 0
-  spawned: 0
 --- !u!1 &4272685512523364078
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,8 +103,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4272685512523364073}
-  - component: {fileID: 1841543850991934728}
-  - component: {fileID: 6463558872958969661}
+  - component: {fileID: 5571342450041896311}
+  - component: {fileID: 161838660285896000}
   m_Layer: 0
   m_Name: EntryRoom
   m_TagString: Room
@@ -129,23 +128,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &1841543850991934728
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4272685512523364078}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1
---- !u!50 &6463558872958969661
+--- !u!50 &5571342450041896311
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -166,6 +149,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &161838660285896000
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4272685512523364078}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2
 --- !u!1 &4272685512531401708
 GameObject:
   m_ObjectHideFlags: 0
@@ -4634,7 +4633,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openingDirection: 2
   dontSpawn: 0
-  spawned: 0
 --- !u!1 &6047209700787938156
 GameObject:
   m_ObjectHideFlags: 0
@@ -4729,7 +4727,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openingDirection: 4
   dontSpawn: 0
-  spawned: 0
 --- !u!1 &7028968754877068589
 GameObject:
   m_ObjectHideFlags: 0
@@ -4908,7 +4905,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openingDirection: 1
   dontSpawn: 0
-  spawned: 0
 --- !u!1 &7542924006503656651
 GameObject:
   m_ObjectHideFlags: 0

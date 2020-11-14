@@ -13,7 +13,7 @@ public class RoomSpawner : MonoBehaviour
 
     public bool dontSpawn = false;
 
-    public bool spawned = false;
+    private bool spawned = false;
 
     double timeRuning;
 
@@ -40,7 +40,7 @@ public class RoomSpawner : MonoBehaviour
     public void roomSpawner()
     {
         
-        if(spawned== false && rBrain.GetComponent<RoomTemplates>().MapIsReady() == false)
+        if(spawned== false)
         {
             if(openingDirection == 1)
             {
@@ -76,6 +76,8 @@ public class RoomSpawner : MonoBehaviour
                     this.gameObject.SetActive(false);
                 }  
             }  
+            
+            
             else if (openingDirection == 3)
             {
                 if(!dontSpawn)
@@ -109,13 +111,6 @@ public class RoomSpawner : MonoBehaviour
                 }  
             } 
             spawned = true;  
-        }
-        else
-        {
-            if(dontSpawn == false)
-            {
-                Instantiate(rBrain.GetComponent<RoomTemplates>().superRooms, transform.position, Quaternion.identity);
-            }
         }
         
 

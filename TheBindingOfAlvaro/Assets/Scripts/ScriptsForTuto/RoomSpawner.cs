@@ -9,7 +9,9 @@ public class RoomSpawner : MonoBehaviour
     //1 == UP    2 == DOWN     3 == LEFT     4 == RIGHT
     [Header("DONT SPAWN A ROOM IF THATS TRUE!")]
     public bool dontSpawn = false;
-    private bool spawned = false;
+
+    [Header("HAVE YOU SPAWN A ROOM?")]
+    public bool spawned = false;
 
     //REFERENCIES A ALTRES SRIPTS
     GameObject rBrain;
@@ -126,7 +128,7 @@ public class RoomSpawner : MonoBehaviour
         {
             if(other.CompareTag("Room"))
             {
-                Debug.Log("CON LA IGLESIA NOS HEMOS TOPADO");
+                //Debug.Log("CON LA IGLESIA NOS HEMOS TOPADO");
                 dontSpawn = true;
             }
             if(other.CompareTag("SpawnPoint") )

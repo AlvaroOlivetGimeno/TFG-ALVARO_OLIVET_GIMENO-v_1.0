@@ -94,6 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openingDirection: 3
   dontSpawn: 0
+  spawned: 0
 --- !u!1 &4272685512523364078
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +106,7 @@ GameObject:
   - component: {fileID: 4272685512523364073}
   m_Layer: 0
   m_Name: EntryRoom
-  m_TagString: Untagged
+  m_TagString: EntryRooms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4594,6 +4595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openingDirection: 2
   dontSpawn: 0
+  spawned: 0
 --- !u!1 &6047209700787938156
 GameObject:
   m_ObjectHideFlags: 0
@@ -4688,6 +4690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openingDirection: 4
   dontSpawn: 0
+  spawned: 0
 --- !u!1 &7028968754877068589
 GameObject:
   m_ObjectHideFlags: 0
@@ -4866,6 +4869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openingDirection: 1
   dontSpawn: 0
+  spawned: 0
 --- !u!1 &7542924006503656651
 GameObject:
   m_ObjectHideFlags: 0

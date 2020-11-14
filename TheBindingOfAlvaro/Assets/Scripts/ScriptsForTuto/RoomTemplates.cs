@@ -10,9 +10,12 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] leftRooms;
     public GameObject[] rightRooms;
     public GameObject superRooms;
+    public GameObject startRoom;
     
     [Header("LIST OF ROOMS IN SCENE:")]
     public List<GameObject> rooms;
+
+    public float sizeOfList;
 
     [Header("STAIRS PREFAB:")]
     public GameObject stairs;
@@ -24,19 +27,58 @@ public class RoomTemplates : MonoBehaviour
 
     public float MinNumOfRooms;
 
+    public bool MapIsFinished = false;
+
     [Header("DECREASING TIMER:")]
     public float waiteTime;
+
+    float waitTimeReserva;
+
+    //ACCESO A OTROS SCRIPTS o OBJETOS
+
+    public GameObject entryRoom;
+
+    GameObject camara;
+
+    Transform initialPos;
+
+    //RESTART THINGS
+    public bool restartIsDone;
 
 
     void Start()
     {
+        entryRoom = GameObject.FindGameObjectWithTag("EntryRooms");
+        camara = GameObject.FindGameObjectWithTag("MainCamera");
+        initialPos = camara.transform;
+        waitTimeReserva = waiteTime;
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        //----------------PER SABER QUANS ELEMENTS TINC A LA LLISTA SENSE OBRIR LA LLISTA--------------------------------
+        sizeOfList = rooms.Count;
+        
+        //------------------------------------------INSTANCIAR ESCALERAS--------------------------------------------------
         InstantateStairs();
+
+        //------------------------------------------------RESTART MAP------------------------------------------------------
+        if(MapIsFinished && rooms.Count < MinNumOfRooms && restartIsDone == false)
+        {
+            RestartMap();
+        }
+
+        //-------------------------------------RESETEAR VARIABLE restartIsDone--------------------------------------------
+        if(waiteTime> 0)
+        {
+            restartIsDone = false;
+        }
+        if(entryRoom == null && restartIsDone == false)
+        {
+            entryRoom = GameObject.FindGameObjectWithTag("EntryRooms");     
+        }
     }
 
     public void AddToList(GameObject x)
@@ -48,13 +90,19 @@ public class RoomTemplates : MonoBehaviour
         if(waiteTime <= 0 && spawnStairs == false)
         {
             Debug.Log("INSTANCIANDO ESCALERAS");
-            Instantiate(stairs, rooms[rooms.Count-1].transform.position, Quaternion.identity);
+            MapIsFinished = true;
             spawnStairs = true;
+            if(rooms.Count >= MinNumOfRooms)
+            {
+                Instantiate(stairs, rooms[rooms.Count-1].transform.position, Quaternion.identity);
+            }
+            
         }
         else if(spawnStairs == false && MapIsReady())
         {
             Debug.Log("INSTANCIANDO ESCALERAS");
             Instantiate(stairs, rooms[rooms.Count-1].transform.position, Quaternion.identity);
+            MapIsFinished = true;
             spawnStairs = true;
         }
         else
@@ -78,6 +126,35 @@ public class RoomTemplates : MonoBehaviour
             return false;
         }
     }
+    public void RestartMap()
+    {
+        if(entryRoom != null )
+        {
+            if(rooms.Count>= 0)
+            {
+                foreach(GameObject x in rooms)
+                {
+                    rooms.Remove(x);
+                    Destroy(x);
+                }
+            }
+            Destroy(entryRoom.gameObject);
+        }
+        else
+        {
+            Debug.Log("TIME TO RESTART");
+            Instantiate(startRoom, initialPos.position, Quaternion.identity);
+            waiteTime = waitTimeReserva;
+            MapIsFinished = false;
+            spawnStairs = false;
+            restartIsDone = true;
 
+        }
+        
+
+    }
+     
+    
+    
 
 }

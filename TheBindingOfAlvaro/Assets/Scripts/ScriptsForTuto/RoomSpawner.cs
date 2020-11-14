@@ -55,8 +55,7 @@ public class RoomSpawner : MonoBehaviour
                 else
                 {
                     //Debug.Log("TA OCUPAO BRO:(");
-                    //Destroy(this.gameObject);
-                    this.gameObject.SetActive(false);
+                    Destroy(this.gameObject);
                 }
                
             }
@@ -72,8 +71,7 @@ public class RoomSpawner : MonoBehaviour
                 else
                 {
                     //Debug.Log("TA OCUPAO BRO:(");
-                    //Destroy(this.gameObject);
-                    this.gameObject.SetActive(false);
+                    Destroy(this.gameObject);
                 }  
             }  
             
@@ -89,8 +87,7 @@ public class RoomSpawner : MonoBehaviour
                 else
                 {
                     //Debug.Log("TA OCUPAO BRO:(");
-                    //Destroy(this.gameObject);
-                    this.gameObject.SetActive(false);
+                    Destroy(this.gameObject);
                 }  
             }
             
@@ -106,8 +103,7 @@ public class RoomSpawner : MonoBehaviour
                 else
                 {
                     //Debug.Log("TA OCUPAO BRO:(");
-                    //Destroy(this.gameObject);
-                    this.gameObject.SetActive(false);
+                    Destroy(this.gameObject);
                 }  
             } 
             spawned = true;  
@@ -119,20 +115,18 @@ public class RoomSpawner : MonoBehaviour
         {
             if(other.CompareTag("Room"))
             {
-                //Debug.Log("CON LA IGLESIA NOS HEMOS TOPADO");
+                Debug.Log("CON LA IGLESIA NOS HEMOS TOPADO");
                 dontSpawn = true;
             }
             if(other.CompareTag("SpawnPoint") )
             {
                 if(other.gameObject.GetComponent<RoomSpawner>().openingDirection> openingDirection)
                 {
-                    //Destroy(other.gameObject);
-                    this.gameObject.SetActive(false);
+                    Destroy(other.gameObject);
                 }
                 else
                 {
-                    //Destroy(this.gameObject);
-                    this.gameObject.SetActive(false);
+                    Destroy(this.gameObject);
                 } 
             }   
         }

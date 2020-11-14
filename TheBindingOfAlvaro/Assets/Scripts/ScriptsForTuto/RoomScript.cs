@@ -15,14 +15,6 @@ public class RoomScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DeleteMyself();
-    }
-
-    public void DeleteMyself()
-    {
-        if(rBrain.GetComponent<RoomTemplates>().deleteYourself == true)
-        {
-            Destroy(this.gameObject);
-        }
+        
     }
 }

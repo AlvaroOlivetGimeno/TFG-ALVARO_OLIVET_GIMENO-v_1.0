@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class RoomScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    //OTHER SCRIPTS NEEDED
     GameObject rBrain;
+
+    //OTHER VARABLES NEEDED
+
+    int rand;
     void Start()
     {
         rBrain = GameObject.FindGameObjectWithTag("RoomBrain");
@@ -16,5 +21,39 @@ public class RoomScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public int wichRoomIAm()
+    {
+        rand = Random.Range(0,10);
+
+        if(rand >= 5)
+        {
+            return 1;
+        }
+        if(rand == 6)
+        {
+            return 2;
+        }
+        if(rand == 7)
+        {
+            return 3;
+        }
+        if(rand == 8)
+        {
+            return 4;
+        }
+        if(rand == 9)
+        {
+            return 5;
+        }
+        if(rand == 10)
+        {
+            return 6;
+        }
+        else
+        {
+            return 1;
+        }
     }
 }

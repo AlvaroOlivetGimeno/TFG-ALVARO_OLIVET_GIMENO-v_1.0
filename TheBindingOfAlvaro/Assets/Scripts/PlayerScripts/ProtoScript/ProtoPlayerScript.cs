@@ -11,6 +11,8 @@ public class ProtoPlayerScript : MonoBehaviour
     GameObject mCamera;
 
     Vector2 movment;
+
+    Vector3 vPos;
     void Start()
     {
         pBlackBoardPlayer = GetComponent<ProtoBLACKBOARD_Player>();
@@ -43,7 +45,8 @@ public class ProtoPlayerScript : MonoBehaviour
        if(other.gameObject.tag == "CamaraPoint")
         {
             Debug.Log("CONTACTO CON UNA ROOM");
-            mCamera.transform.position = other.gameObject.transform.position;
+            vPos = new Vector3 (other.transform.position.x, other.transform.position.y, -10);
+            mCamera.transform.position = vPos;
         } 
     }
     

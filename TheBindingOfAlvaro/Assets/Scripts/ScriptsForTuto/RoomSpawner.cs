@@ -52,7 +52,7 @@ public class RoomSpawner : MonoBehaviour
                 {
                     rand = Random.Range(0,rBrain.GetComponent<RoomTemplates>().downRooms.Length);
                     //Debug.Log("IT IS SPAWNED?" + spawned + "  WHATS THE INDEX YO DECIDE:"+rand);
-                    Instantiate(rBrain.GetComponent<RoomTemplates>().downRooms[rand], this.gameObject.transform.position, Quaternion.identity);
+                    Instantiate(rBrain.GetComponent<RoomTemplates>().downRooms[rand],new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0), Quaternion.identity);
                     room = rBrain.GetComponent<RoomTemplates>().downRooms[rand];
                     
                 }
@@ -69,7 +69,7 @@ public class RoomSpawner : MonoBehaviour
                 if(!dontSpawn)
                 {
                     rand = Random.Range(0,rBrain.GetComponent<RoomTemplates>().upRooms.Length);
-                    Instantiate(rBrain.GetComponent<RoomTemplates>().upRooms[rand], transform.position, Quaternion.identity);
+                    Instantiate(rBrain.GetComponent<RoomTemplates>().upRooms[rand], new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0), Quaternion.identity);
                     room = rBrain.GetComponent<RoomTemplates>().upRooms[rand];    
                 }
                 else
@@ -85,7 +85,7 @@ public class RoomSpawner : MonoBehaviour
                 if(!dontSpawn)
                 {
                     rand = Random.Range(0,rBrain.GetComponent<RoomTemplates>().rightRooms.Length);
-                    Instantiate(rBrain.GetComponent<RoomTemplates>().rightRooms[rand], transform.position, Quaternion.identity);
+                    Instantiate(rBrain.GetComponent<RoomTemplates>().rightRooms[rand], new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0), Quaternion.identity);
                     room = rBrain.GetComponent<RoomTemplates>().rightRooms[rand];   
                 }
                 else
@@ -100,7 +100,7 @@ public class RoomSpawner : MonoBehaviour
                 if(!dontSpawn)
                 {
                     rand = Random.Range(0,rBrain.GetComponent<RoomTemplates>().leftRooms.Length);
-                    Instantiate(rBrain.GetComponent<RoomTemplates>().leftRooms[rand], transform.position, Quaternion.identity);
+                    Instantiate(rBrain.GetComponent<RoomTemplates>().leftRooms[rand], new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0), Quaternion.identity);
                     room = rBrain.GetComponent<RoomTemplates>().leftRooms[rand];
                     
                 }
@@ -116,7 +116,7 @@ public class RoomSpawner : MonoBehaviour
         {
             if(!dontSpawn)
             {
-                Instantiate(rBrain.GetComponent<RoomTemplates>().superRooms, transform.position, Quaternion.identity);
+                Instantiate(rBrain.GetComponent<RoomTemplates>().superRooms, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0), Quaternion.identity);
                 spawned = true; 
             }
            

@@ -17,7 +17,7 @@ public class ParryScript : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "TorretBullet")
+        if(collision.gameObject.tag == "ParryBullet")
         {
             Debug.Log("EPEPEPE");
             collision.gameObject.GetComponent<TorretBullet>().Revote();

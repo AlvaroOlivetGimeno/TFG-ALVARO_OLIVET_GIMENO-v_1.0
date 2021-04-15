@@ -6,7 +6,9 @@ public class HacksForTheGame : MonoBehaviour
 {
     //REFERENCIA A OTROS SCRIPTS u OBJETOS
 
+    public float numMaxOfHabilitys;
     GameObject rBrain;
+   public ProtoBLACKBOARD_Player bb_Player;
 
     public GameObject[] closeRoom;
 
@@ -16,7 +18,7 @@ public class HacksForTheGame : MonoBehaviour
         rBrain = GameObject.FindGameObjectWithTag("RoomBrain");
         closeRoom = GameObject.FindGameObjectsWithTag("ClosetRoom");
         stairs = GameObject.FindGameObjectWithTag("Stairs");
-
+        //bb_Player.GetComponent<ProtoBLACKBOARD_Player>();
     }
 
     // Update is called once per frame
@@ -28,14 +30,39 @@ public class HacksForTheGame : MonoBehaviour
         stairs = GameObject.FindGameObjectWithTag("Stairs");
 
         //---------------------------------------RESTART MAP-------------------------------------------------------------
+        RestartMapHack();
+
+        //-------------------------------------CHANGE HABILITY---------------------------------------
+        ChangeHabilityHack();
+
+    }
+
+    //RESTART MAP WITH R
+    void RestartMapHack()
+    {
         if (Input.GetKey(KeyCode.R))
         {
             Destroy(stairs);
-            foreach(GameObject x in closeRoom)
+            foreach (GameObject x in closeRoom)
             {
                 Destroy(x);
             }
             rBrain.GetComponent<RoomTemplates>().RestartMap();
         }
     }
+
+    //CHANGE HABILITY
+    void ChangeHabilityHack()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            bb_Player.habilityType = bb_Player.habilityType +1;
+            
+            if(bb_Player.habilityType > numMaxOfHabilitys)
+            {
+                bb_Player.habilityType = 0;
+            }
+        }
+    }
+
 }

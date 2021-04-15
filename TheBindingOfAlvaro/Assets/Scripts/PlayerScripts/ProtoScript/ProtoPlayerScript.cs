@@ -33,9 +33,7 @@ public class ProtoPlayerScript : MonoBehaviour
     void Update()
     {
         //-------------------------------------------------MOVMENT---------------------------------------------------
-        movment.x = Input.GetAxisRaw("Horizontal");
-        movment.y = Input.GetAxisRaw("Vertical");
-        rb2d.MovePosition(rb2d.position + movment * BlackBoardPlayer.characterSpeed * Time.fixedDeltaTime);
+        Movment();
 
         //-----------------------------------------------
 
@@ -48,9 +46,16 @@ public class ProtoPlayerScript : MonoBehaviour
         //------------------------------------------------PARRY------------------------------------------------------
 
     }
+    //MOVMENT
+    void Movment()
+    {
+        movment.x = Input.GetAxisRaw("Horizontal");
+        movment.y = Input.GetAxisRaw("Vertical");
+        rb2d.MovePosition(rb2d.position + movment * BlackBoardPlayer.characterSpeed * Time.fixedDeltaTime);
+    }
 
     //SPAWN THE BASIC BULLET
-    void Shoot(bool shootInXAxe, bool isVelocityPositive)
+    void BasicShoot(bool shootInXAxe, bool isVelocityPositive, GameObject typeOfBullet)
     {
         s_timer = s_timer +1 * Time.deltaTime;
 
@@ -60,22 +65,22 @@ public class ProtoPlayerScript : MonoBehaviour
             {
                 if (isVelocityPositive)
                 {
-                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Up.transform.position, Quaternion.identity);
+                    Instantiate(typeOfBullet, BlackBoardPlayer.Up.transform.position, Quaternion.identity);
                 }
                 else
                 {
-                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Down.transform.position, Quaternion.identity);
+                    Instantiate(typeOfBullet, BlackBoardPlayer.Down.transform.position, Quaternion.identity);
                 }
             }
             else
             {
                 if (isVelocityPositive)
                 {
-                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Right.transform.position, Quaternion.identity);
+                    Instantiate(typeOfBullet, BlackBoardPlayer.Right.transform.position, Quaternion.identity);
                 }
                 else
                 {
-                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Left.transform.position, Quaternion.identity);
+                    Instantiate(typeOfBullet, BlackBoardPlayer.Left.transform.position, Quaternion.identity);
                 }
             }
             s_timer = 0;
@@ -83,29 +88,132 @@ public class ProtoPlayerScript : MonoBehaviour
 
     }
 
+    //DOBLE SHOOT
+    void DobleShoot(bool shootInXAxe,bool isVelocityPositive)
+    {
+        s_timer = s_timer + 1 * Time.deltaTime;
+
+        if (s_timer >= BlackBoardPlayer.delayTimeToShoot)
+        {
+            if (shootInXAxe)
+            {
+                if (isVelocityPositive)
+                {
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Up1.transform.position, Quaternion.identity);
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Up2.transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Down1.transform.position, Quaternion.identity);
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Down2.transform.position, Quaternion.identity);
+                }
+            }
+            else
+            {
+                if (isVelocityPositive)
+                {
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Right1.transform.position, Quaternion.identity);
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Right2.transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Left1.transform.position, Quaternion.identity);
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Left2.transform.position, Quaternion.identity);
+                }
+            }
+            s_timer = 0;
+        }
+    }
+
+    //SIMULTANEOUS SHOOT
+    void SimultaneousShoot(bool shootInXAxe, bool isVelocityPositive)
+    {
+        s_timer = s_timer + 1 * Time.deltaTime;
+
+        if (s_timer >= BlackBoardPlayer.delayTimeToShoot)
+        {
+            if (shootInXAxe)
+            {
+                if (isVelocityPositive)
+                {
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Up.transform.position, Quaternion.identity);
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Down.transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Down.transform.position, Quaternion.identity);
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Up.transform.position, Quaternion.identity);
+                }
+            }
+            else
+            {
+                if (isVelocityPositive)
+                {
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Right.transform.position, Quaternion.identity);
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Left.transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Left.transform.position, Quaternion.identity);
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Right.transform.position, Quaternion.identity);
+                }
+            }
+            s_timer = 0;
+        }
+    }
+
+
     //CONTROLS OF SHOOTING
     void ShootController()
     {
-
         if (Input.GetKey(KeyCode.UpArrow) )
         {
-            Shoot(true, true);
+            switch (BlackBoardPlayer.habilityType)
+            {
+                case 0: BasicShoot(true, true, BlackBoardPlayer.Bullet); break;
+                case 1: DobleShoot(true, true); break;
+                case 2: SimultaneousShoot(true, true); break;
+                case 3: BasicShoot(true, true, BlackBoardPlayer.superiorBullet); break;
+                case 4: BasicShoot(true, true, BlackBoardPlayer.freezeBullet); break;
+                //...
+            }
         }
         else if (Input.GetKey(KeyCode.DownArrow) )
         {
-            Shoot(true, false);  
+            switch (BlackBoardPlayer.habilityType)
+            {
+                case 0: BasicShoot(true, false, BlackBoardPlayer.Bullet); break;
+                case 1: DobleShoot(true, false); break;
+                case 2: SimultaneousShoot(true, false); break;
+                case 3: BasicShoot(true, false, BlackBoardPlayer.superiorBullet); break;
+                case 4: BasicShoot(true, false, BlackBoardPlayer.freezeBullet); break;
+                //...
+            }
         }
         else if (Input.GetKey(KeyCode.RightArrow) )
         {
-            Shoot(false, true);
+            switch (BlackBoardPlayer.habilityType)
+            {
+                case 0: BasicShoot(false, true, BlackBoardPlayer.Bullet); break;
+                case 1: DobleShoot(false, true); break;
+                case 2: SimultaneousShoot(false, true); break;
+                case 3: BasicShoot(false, true, BlackBoardPlayer.superiorBullet); break;
+                case 4: BasicShoot(false, true, BlackBoardPlayer.freezeBullet); break;
+                //...
+            }
         }
         else if (Input.GetKey(KeyCode.LeftArrow) )
         {
-            Shoot(false, false);
+            switch (BlackBoardPlayer.habilityType)
+            {
+                case 0: BasicShoot(false, false, BlackBoardPlayer.Bullet); break;
+                case 1: DobleShoot(false, false); break;
+                case 2: SimultaneousShoot(false, false); break;
+                case 3: BasicShoot(false, false, BlackBoardPlayer.superiorBullet); break;
+                case 4: BasicShoot(false, false, BlackBoardPlayer.freezeBullet); break;
+               //...
+            }
         }
-
-       
-       
     }
     
     //CONTROLS OF PARRY
@@ -137,6 +245,7 @@ public class ProtoPlayerScript : MonoBehaviour
         }
         
     }
+
     //COLLISIONS
     void OnTriggerEnter2D(Collider2D other)
     {

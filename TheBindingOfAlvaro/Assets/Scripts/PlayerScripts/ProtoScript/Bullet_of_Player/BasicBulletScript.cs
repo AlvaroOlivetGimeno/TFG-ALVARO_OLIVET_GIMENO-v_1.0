@@ -6,9 +6,14 @@ public class BasicBulletScript : MonoBehaviour
 {
     Rigidbody2D rb2d;
     Vector2 movment;
+    int direction = 0;
+
+    [Header("BULLET SPEED:")]
     public float speed;
 
-    public int direction;
+    [Header("BULLEY DAMAGE:")]
+    public float damage;
+
 
     void Start()
     {
@@ -26,6 +31,7 @@ public class BasicBulletScript : MonoBehaviour
 
     }
 
+    //MOVE
     public void Move() //1.UP 2.Down 3.Right 4.Left
     {
 
@@ -48,6 +54,14 @@ public class BasicBulletScript : MonoBehaviour
        
         
     }
+
+    //DESTROY FUNCTION
+    public void DestroyMe()
+    {
+        Destroy(this.gameObject);
+    }
+
+    //COLLISIONS
     void OnTriggerEnter2D(Collider2D other)
     {
         //-------------------------COLLISION FOR BEING SHOOTED---------------------------------

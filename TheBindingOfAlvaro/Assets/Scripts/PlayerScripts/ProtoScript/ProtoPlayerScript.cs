@@ -9,17 +9,24 @@ public class ProtoPlayerScript : MonoBehaviour
     Rigidbody2D rb2d;
 
    
-
+    //VARIABLE PEL MOVIMENT
     Vector2 movment;
 
+    //VARIABLE PER LA POSICIÓ DE LA CAMARA
     Vector3 vPos;
-    public int timer = 0;
-    public  bool shootting;
+
+    //TIMERS
+    int s_timer = 100;
+    int p_timer = 0;
+    
     void Start()
     {
         BlackBoardPlayer = GetComponent<ProtoBLACKBOARD_Player>();
         rb2d = GetComponent<Rigidbody2D>();
-        
+
+        //Desactivar el Parry
+        BlackBoardPlayer.p_Collider.gameObject.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -29,41 +36,34 @@ public class ProtoPlayerScript : MonoBehaviour
         movment.x = Input.GetAxisRaw("Horizontal");
         movment.y = Input.GetAxisRaw("Vertical");
         rb2d.MovePosition(rb2d.position + movment * BlackBoardPlayer.characterSpeed * Time.fixedDeltaTime);
+
         //-----------------------------------------------
 
         //------------------------------------------------SHOOT------------------------------------------------------
         ShootController();
 
         //------------------------------------------------
+        ParryController();
+
+        //------------------------------------------------PARRY------------------------------------------------------
+
     }
 
-    void OnTriggerEnter2D(Collider2D other) 
-    {
-       if(other.gameObject.tag == "CamaraPoint")
-       {
-            //Debug.Log("CONTACTO CON UNA ROOM");
-            vPos = new Vector3 (other.transform.position.x, other.transform.position.y, -10);
-            BlackBoardPlayer.mCamera.transform.position = vPos;
-
-        } 
-    }
+    //SPAWN THE BASIC BULLET
     void Shoot(bool shootInXAxe, bool isVelocityPositive)
     {
-        timer++;
+        s_timer++;
 
-        if(timer >= BlackBoardPlayer.delayTimeToShoot)
+        if(s_timer >= BlackBoardPlayer.delayTimeToShoot)
         {
             if (shootInXAxe)
             {
                 if (isVelocityPositive)
                 {
-                    //
-                    
                     Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Up.transform.position, Quaternion.identity);
                 }
                 else
                 {
-                    //BlackBoardPlayer.b_Bullet.direction = 2;
                     Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Down.transform.position, Quaternion.identity);
                 }
             }
@@ -71,53 +71,81 @@ public class ProtoPlayerScript : MonoBehaviour
             {
                 if (isVelocityPositive)
                 {
-                    //BlackBoardPlayer.b_Bullet.direction = 3;
                     Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Right.transform.position, Quaternion.identity);
                 }
                 else
                 {
-                    //BlackBoardPlayer.b_Bullet.direction = 4;
                     Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Left.transform.position, Quaternion.identity);
                 }
             }
-            timer = 0;
+            s_timer = 0;
         }
 
     }
 
-
-
+    //CONTROLS OF SHOOTING
     void ShootController()
     {
 
         if (Input.GetKey(KeyCode.UpArrow) )
         {
-            //Debug.Log("UP");
             Shoot(true, true);
-            
-
         }
         else if (Input.GetKey(KeyCode.DownArrow) )
         {
-            //Debug.Log("DOWN");
-            Shoot(true, false);
-            
+            Shoot(true, false);  
         }
         else if (Input.GetKey(KeyCode.RightArrow) )
         {
-            //Debug.Log("Right");
             Shoot(false, true);
-            shootting = true;
         }
         else if (Input.GetKey(KeyCode.LeftArrow) )
         {
-            //Debug.Log("LEft");
             Shoot(false, false);
-            shootting = true;
         }
 
        
        
     }
+    
+    //CONTROLS OF PARRY
+    void ParryController()
+    {
+      if(Input.GetKey(KeyCode.Space))
+      {
+            Parry();
+      }
+      if (Input.GetKeyUp(KeyCode.Space))
+      {
+           
+            p_timer = 0;
+      }
+    }
 
+    //PARRY
+    void Parry()
+    {
+        p_timer++;
+
+        if(p_timer<= BlackBoardPlayer.timeOfParry)
+        {
+            BlackBoardPlayer.p_Collider.gameObject.SetActive(true);
+        }
+        else
+        {
+            BlackBoardPlayer.p_Collider.gameObject.SetActive(false);
+        }
+        
+    }
+    //COLLISIONS
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "CamaraPoint")
+        {
+            //Debug.Log("CONTACTO CON UNA ROOM");
+            vPos = new Vector3(other.transform.position.x, other.transform.position.y, -10);
+            BlackBoardPlayer.mCamera.transform.position = vPos;
+
+        }
+    }
 }

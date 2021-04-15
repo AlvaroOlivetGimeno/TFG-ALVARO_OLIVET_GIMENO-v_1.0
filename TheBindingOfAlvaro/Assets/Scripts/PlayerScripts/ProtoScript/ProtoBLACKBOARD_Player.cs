@@ -8,6 +8,7 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
 
     public float characterSpeed;
     public float delayTimeToShoot;
+    public float timeOfParry;
 
     [Header("CHARACTER BASIC BULLET:")]
 
@@ -20,15 +21,19 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public GameObject Right;
     public GameObject Left;
 
+    [Header("PARRY COLLIDER:")]
+
+    public GameObject p_Collider;
+
     [Header("AUTOMATIC OBJECTS:")]
     public GameObject mCamera;
 
-    public BasicBulletScript b_Bullet;
+  
 
     void Start()
     {
         mCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        b_Bullet = GetComponent<BasicBulletScript>();
+       
     }
 
     // Update is called once per frame

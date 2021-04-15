@@ -13,7 +13,8 @@ public class ProtoPlayerScript : MonoBehaviour
     Vector2 movment;
 
     Vector3 vPos;
-
+    public int timer = 0;
+    public  bool shootting;
     void Start()
     {
         BlackBoardPlayer = GetComponent<ProtoBLACKBOARD_Player>();
@@ -29,27 +30,94 @@ public class ProtoPlayerScript : MonoBehaviour
         movment.y = Input.GetAxisRaw("Vertical");
         rb2d.MovePosition(rb2d.position + movment * BlackBoardPlayer.characterSpeed * Time.fixedDeltaTime);
         //-----------------------------------------------
+
+        //------------------------------------------------SHOOT------------------------------------------------------
+        ShootController();
+
+        //------------------------------------------------
     }
 
     void OnTriggerEnter2D(Collider2D other) 
     {
        if(other.gameObject.tag == "CamaraPoint")
        {
-            Debug.Log("CONTACTO CON UNA ROOM");
+            //Debug.Log("CONTACTO CON UNA ROOM");
             vPos = new Vector3 (other.transform.position.x, other.transform.position.y, -10);
             BlackBoardPlayer.mCamera.transform.position = vPos;
 
         } 
     }
-
-
-
-    void Shoot(float direction)
+    void Shoot(bool shootInXAxe, bool isVelocityPositive)
     {
-        
-        /*
-        
-        */
+        timer++;
+
+        if(timer >= BlackBoardPlayer.delayTimeToShoot)
+        {
+            if (shootInXAxe)
+            {
+                if (isVelocityPositive)
+                {
+                    //
+                    
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Up.transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    //BlackBoardPlayer.b_Bullet.direction = 2;
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Down.transform.position, Quaternion.identity);
+                }
+            }
+            else
+            {
+                if (isVelocityPositive)
+                {
+                    //BlackBoardPlayer.b_Bullet.direction = 3;
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Right.transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    //BlackBoardPlayer.b_Bullet.direction = 4;
+                    Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Left.transform.position, Quaternion.identity);
+                }
+            }
+            timer = 0;
+        }
+
+    }
+
+
+
+    void ShootController()
+    {
+
+        if (Input.GetKey(KeyCode.UpArrow) )
+        {
+            //Debug.Log("UP");
+            Shoot(true, true);
+            
+
+        }
+        else if (Input.GetKey(KeyCode.DownArrow) )
+        {
+            //Debug.Log("DOWN");
+            Shoot(true, false);
+            
+        }
+        else if (Input.GetKey(KeyCode.RightArrow) )
+        {
+            //Debug.Log("Right");
+            Shoot(false, true);
+            shootting = true;
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow) )
+        {
+            //Debug.Log("LEft");
+            Shoot(false, false);
+            shootting = true;
+        }
+
+       
+       
     }
 
 }

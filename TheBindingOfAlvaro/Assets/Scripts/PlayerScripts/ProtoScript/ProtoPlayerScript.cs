@@ -16,8 +16,8 @@ public class ProtoPlayerScript : MonoBehaviour
     Vector3 vPos;
 
     //TIMERS
-    int s_timer = 100;
-    int p_timer = 0;
+    float s_timer = 100;
+    float p_timer = 0;
     
     void Start()
     {
@@ -52,7 +52,7 @@ public class ProtoPlayerScript : MonoBehaviour
     //SPAWN THE BASIC BULLET
     void Shoot(bool shootInXAxe, bool isVelocityPositive)
     {
-        s_timer++;
+        s_timer = s_timer +1 * Time.deltaTime;
 
         if(s_timer >= BlackBoardPlayer.delayTimeToShoot)
         {
@@ -117,7 +117,7 @@ public class ProtoPlayerScript : MonoBehaviour
       }
       if (Input.GetKeyUp(KeyCode.Space))
       {
-           
+            BlackBoardPlayer.p_Collider.gameObject.SetActive(false);
             p_timer = 0;
       }
     }
@@ -125,7 +125,7 @@ public class ProtoPlayerScript : MonoBehaviour
     //PARRY
     void Parry()
     {
-        p_timer++;
+        p_timer = p_timer +1 * Time.deltaTime;
 
         if(p_timer<= BlackBoardPlayer.timeOfParry)
         {

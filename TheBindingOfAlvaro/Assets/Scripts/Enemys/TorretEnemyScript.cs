@@ -73,7 +73,7 @@ public class TorretEnemyScript : MonoBehaviour
     //LIFE LOGIC
     void LifeController()
     {
-        if(life == 0)
+        if(life <= 0)
         {
             Destroy(this.gameObject);
         }

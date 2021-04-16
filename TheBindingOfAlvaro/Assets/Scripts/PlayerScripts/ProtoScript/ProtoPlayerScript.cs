@@ -11,6 +11,8 @@ public class ProtoPlayerScript : MonoBehaviour
    
     //VARIABLE PEL MOVIMENT
     Vector2 movment;
+    float speed;
+    float delayShoot;
 
     //VARIABLE PER LA POSICIÓ DE LA CAMARA
     Vector3 vPos;
@@ -27,6 +29,11 @@ public class ProtoPlayerScript : MonoBehaviour
         //Desactivar el Parry
         BlackBoardPlayer.p_Collider.gameObject.SetActive(false);
 
+        //Valor a la speed
+        speed = BlackBoardPlayer.characterSpeed;
+
+        //valor al delay
+        delayShoot = BlackBoardPlayer.delayTimeToShoot;
     }
 
     // Update is called once per frame
@@ -36,22 +43,59 @@ public class ProtoPlayerScript : MonoBehaviour
         Movment();
 
         //-----------------------------------------------
+        
+        //------------------------------------------------PARRY------------------------------------------------------
+        ParryController();
+
+        //------------------------------------------------
 
         //------------------------------------------------SHOOT------------------------------------------------------
         ShootController();
 
         //------------------------------------------------
-        ParryController();
 
-        //------------------------------------------------PARRY------------------------------------------------------
+        //-----------------------------------------------STATES----------------------------------------------------
+        StateController();
 
+        //-----------------------------------------------
+       
     }
     //MOVMENT
     void Movment()
     {
         movment.x = Input.GetAxisRaw("Horizontal");
         movment.y = Input.GetAxisRaw("Vertical");
-        rb2d.MovePosition(rb2d.position + movment * BlackBoardPlayer.characterSpeed * Time.fixedDeltaTime);
+        rb2d.MovePosition(rb2d.position + movment * speed * Time.fixedDeltaTime);
+    }
+
+    //PARRY
+    void Parry()
+    {
+        p_timer = p_timer + 1 * Time.deltaTime;
+
+        if (p_timer <= BlackBoardPlayer.timeOfParry)
+        {
+            BlackBoardPlayer.p_Collider.gameObject.SetActive(true);
+        }
+        else
+        {
+            BlackBoardPlayer.p_Collider.gameObject.SetActive(false);
+        }
+
+    }
+
+    //CONTROLS OF PARRY
+    void ParryController()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Parry();
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            BlackBoardPlayer.p_Collider.gameObject.SetActive(false);
+            p_timer = 0;
+        }
     }
 
     //SPAWN THE BASIC BULLET
@@ -59,7 +103,7 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         s_timer = s_timer +1 * Time.deltaTime;
 
-        if(s_timer >= BlackBoardPlayer.delayTimeToShoot)
+        if(s_timer >= delayShoot)
         {
             if (shootInXAxe)
             {
@@ -93,7 +137,7 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         s_timer = s_timer + 1 * Time.deltaTime;
 
-        if (s_timer >= BlackBoardPlayer.delayTimeToShoot)
+        if (s_timer >= delayShoot)
         {
             if (shootInXAxe)
             {
@@ -130,7 +174,7 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         s_timer = s_timer + 1 * Time.deltaTime;
 
-        if (s_timer >= BlackBoardPlayer.delayTimeToShoot)
+        if (s_timer >= delayShoot)
         {
             if (shootInXAxe)
             {
@@ -162,7 +206,6 @@ public class ProtoPlayerScript : MonoBehaviour
         }
     }
 
-
     //CONTROLS OF SHOOTING
     void ShootController()
     {
@@ -175,7 +218,9 @@ public class ProtoPlayerScript : MonoBehaviour
                 case 2: SimultaneousShoot(true, true); break;
                 case 3: BasicShoot(true, true, BlackBoardPlayer.superiorBullet); break;
                 case 4: BasicShoot(true, true, BlackBoardPlayer.freezeBullet); break;
-                //...
+                case 5: BasicShoot(true, true, BlackBoardPlayer.minimumBullet); break;
+                case 6: BasicShoot(true, true, BlackBoardPlayer.maximumBullet); break;
+                    //...
             }
         }
         else if (Input.GetKey(KeyCode.DownArrow) )
@@ -187,7 +232,9 @@ public class ProtoPlayerScript : MonoBehaviour
                 case 2: SimultaneousShoot(true, false); break;
                 case 3: BasicShoot(true, false, BlackBoardPlayer.superiorBullet); break;
                 case 4: BasicShoot(true, false, BlackBoardPlayer.freezeBullet); break;
-                //...
+                case 5: BasicShoot(true, false, BlackBoardPlayer.minimumBullet); break;
+                case 6: BasicShoot(true, false, BlackBoardPlayer.maximumBullet); break;
+                    //...
             }
         }
         else if (Input.GetKey(KeyCode.RightArrow) )
@@ -199,7 +246,9 @@ public class ProtoPlayerScript : MonoBehaviour
                 case 2: SimultaneousShoot(false, true); break;
                 case 3: BasicShoot(false, true, BlackBoardPlayer.superiorBullet); break;
                 case 4: BasicShoot(false, true, BlackBoardPlayer.freezeBullet); break;
-                //...
+                case 5: BasicShoot(false, true, BlackBoardPlayer.minimumBullet); break;
+                case 6: BasicShoot(false, true, BlackBoardPlayer.maximumBullet); break;
+                    //...
             }
         }
         else if (Input.GetKey(KeyCode.LeftArrow) )
@@ -211,40 +260,73 @@ public class ProtoPlayerScript : MonoBehaviour
                 case 2: SimultaneousShoot(false, false); break;
                 case 3: BasicShoot(false, false, BlackBoardPlayer.superiorBullet); break;
                 case 4: BasicShoot(false, false, BlackBoardPlayer.freezeBullet); break;
-               //...
+                case 5: BasicShoot(false, false, BlackBoardPlayer.minimumBullet); break;
+                case 6: BasicShoot(false, false, BlackBoardPlayer.maximumBullet); break;
+                    //...
             }
         }
     }
     
-    //CONTROLS OF PARRY
-    void ParryController()
+    //DEFAULT STATE
+    void DefaultState()
     {
-      if(Input.GetKey(KeyCode.Space))
-      {
-            Parry();
-      }
-      if (Input.GetKeyUp(KeyCode.Space))
-      {
-            BlackBoardPlayer.p_Collider.gameObject.SetActive(false);
-            p_timer = 0;
-      }
+        this.transform.localScale = new Vector3(1, 1, 1);
+        speed = BlackBoardPlayer.characterSpeed;
+        delayShoot = BlackBoardPlayer.delayTimeToShoot;
     }
 
-    //PARRY
-    void Parry()
+    //MMINIMUM STATE
+    void MinimumState()
     {
-        p_timer = p_timer +1 * Time.deltaTime;
+        this.transform.localScale = BlackBoardPlayer.minimumScale;
+        //speed = BlackBoardPlayer.minimumSpeed;
+        //delayShoot = BlackBoardPlayer.minimumDelayTimeToShoot;
 
-        if(p_timer<= BlackBoardPlayer.timeOfParry)
+        if(speed >= BlackBoardPlayer.characterSpeed || speed == BlackBoardPlayer.maximumSpeed)
         {
-            BlackBoardPlayer.p_Collider.gameObject.SetActive(true);
+            speed = BlackBoardPlayer.minimumSpeed;
         }
-        else
+        
+        if (delayShoot == BlackBoardPlayer.delayTimeToShoot || delayShoot == BlackBoardPlayer.maximumSpeed)
         {
-            BlackBoardPlayer.p_Collider.gameObject.SetActive(false);
+            delayShoot = BlackBoardPlayer.minimumDelayTimeToShoot;
         }
         
     }
+
+    //MAXIMUM STATE
+    void MaximumState()
+    {
+        this.transform.localScale = BlackBoardPlayer.maximumScale;
+        delayShoot = BlackBoardPlayer.maximumDelayTimeToShoot;
+        //speed = BlackBoardPlayer.maximumSpeed;
+       
+        if(speed == BlackBoardPlayer.characterSpeed || speed == BlackBoardPlayer.minimumSpeed)
+        {
+            speed = BlackBoardPlayer.maximumSpeed;
+        }
+       
+       if (delayShoot == BlackBoardPlayer.delayTimeToShoot || delayShoot == BlackBoardPlayer.minimumDelayTimeToShoot)
+       {
+           delayShoot = BlackBoardPlayer.maximumDelayTimeToShoot;
+       }
+       
+       
+
+    }
+
+
+    //CONTROL OF THE DIFERENT STATES OF  PLAYER
+    void StateController()
+    {
+        switch (BlackBoardPlayer.stateType)
+        {
+            case 0: DefaultState(); break;
+            case 1: MinimumState(); break;
+            case 2: MaximumState(); break;
+        }
+    }
+
 
     //COLLISIONS
     void OnTriggerEnter2D(Collider2D other)

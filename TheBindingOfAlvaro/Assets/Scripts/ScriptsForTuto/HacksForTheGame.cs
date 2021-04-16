@@ -58,11 +58,27 @@ public class HacksForTheGame : MonoBehaviour
         {
             bb_Player.habilityType = bb_Player.habilityType +1;
             
+            if(bb_Player.habilityType == 5)
+            {
+                bb_Player.stateType = 1;
+            }
+            else if(bb_Player.habilityType ==6 )
+            {
+                bb_Player.stateType = 2;
+            }
+            else
+            {
+                bb_Player.stateType = 0;
+            }
+
             if(bb_Player.habilityType > numMaxOfHabilitys)
             {
                 bb_Player.habilityType = 0;
+                bb_Player.stateType = 0;
             }
         }
     }
+
+    
 
 }

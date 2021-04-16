@@ -4,19 +4,34 @@ using UnityEngine;
 
 public class ProtoBLACKBOARD_Player : MonoBehaviour
 {
-    [Header("CHARACTER VARIABLES:")]
+    [Header("CHARACTER GENERAL VARIABLES:")]
 
     public float characterSpeed;
     public float delayTimeToShoot;
     public float timeOfParry;
     public float habilityType = 0; //0.NADA  1.DOBLE TIR  2.TIR SIMULTANI 3.TIR SUPERIOR  4.TIR CONGELANT   5.SUPER TIR  6.MINIMUM  7.MAXIMUM
-                               
+    public float stateType = 0; //0.Nada  1.Minimum    2.Maximum                           
+
+    [Header("CHARACTER MINIMUM-STATE VARIABLES:")]
+
+    public float minimumSpeed;
+    public Vector3 minimumScale;
+    public float minimumDelayTimeToShoot;
+
+    [Header("CHARACTER MAXIMUM-STATE VARIABLES:")]
+
+    public float maximumSpeed;
+    public Vector3 maximumScale;
+    public float maximumDelayTimeToShoot;
 
     [Header("CHARACTER BASIC BULLET:")]
 
     public GameObject Bullet;
     public GameObject superiorBullet;
     public GameObject freezeBullet;
+    public GameObject minimumBullet;
+    public GameObject maximumBullet;
+    
 
     [Header("POINTS OF BULLETS FOR SHOOTING:")]
 

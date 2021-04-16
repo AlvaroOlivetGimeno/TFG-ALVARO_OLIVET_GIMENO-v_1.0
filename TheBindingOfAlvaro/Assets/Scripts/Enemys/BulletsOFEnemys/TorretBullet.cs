@@ -11,6 +11,8 @@ public class TorretBullet : MonoBehaviour
     [Header("BULLET SPEED:")]
     public float damage;
 
+   
+
     Rigidbody2D rb2d;
     ProtoPlayerScript target;
     Vector2 moveDirection;

@@ -8,11 +8,14 @@ public class BasicBulletScript : MonoBehaviour
     Vector2 movment;
     int direction = 0;
 
+
     [Header("BULLET SPEED:")]
     public float speed;
 
     [Header("BULLEY DAMAGE:")]
     public float damage;
+
+
 
 
     void Start()
@@ -24,8 +27,10 @@ public class BasicBulletScript : MonoBehaviour
    
     void Update()
     {
+
         //-------------------------MOVE------------------------------------
         Move();
+       
         //-----------
 
 
@@ -34,26 +39,26 @@ public class BasicBulletScript : MonoBehaviour
     //MOVE
     public void Move() //1.UP 2.Down 3.Right 4.Left
     {
-
-        if (direction == 1)
-        {
-            rb2d.velocity = transform.up * speed;
-        }
-        else if (direction == 2)
-        {
-            rb2d.velocity = transform.up * -speed;
-        }
-        else if (direction == 3)
-        {
-           rb2d.velocity = transform.right * speed;
-        }
-        else if (direction == 4)
-        {
-           rb2d.velocity = transform.right * -speed;
-        }
-       
-        
+            if (direction == 1)
+            {
+                rb2d.velocity = transform.up * speed;
+            }
+            else if (direction == 2)
+            {
+                rb2d.velocity = transform.up * -speed;
+            }
+            else if (direction == 3)
+            {
+                rb2d.velocity = transform.right * speed;
+            }
+            else if (direction == 4)
+            {
+                rb2d.velocity = transform.right * -speed;
+            }
     }
+
+    //SUPER BULLET CONTROLER
+    
 
     //DESTROY FUNCTION
     public void DestroyMe()

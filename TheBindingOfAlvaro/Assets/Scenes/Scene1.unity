@@ -209,10 +209,21 @@ MonoBehaviour:
   delayTimeToShoot: 0.5
   timeOfParry: 0.1
   habilityType: 0
+  stateType: 0
+  minimumSpeed: 6
+  minimumScale: {x: 0.5, y: 0.5, z: 0.5}
+  minimumDelayTimeToShoot: 0.2
+  maximumSpeed: 3
+  maximumScale: {x: 1.3, y: 1.3, z: 1.3}
+  maximumDelayTimeToShoot: 0.8
   Bullet: {fileID: 1693177405859411495, guid: 4969163066c97134c9265271bd4a88db, type: 3}
   superiorBullet: {fileID: 3891284112490976708, guid: f4f4a1eb3f84f4f47bbf9abc7bc478b8,
     type: 3}
   freezeBullet: {fileID: 897490627138220915, guid: 382e0f463742dc74282a6e2340c49c8a,
+    type: 3}
+  minimumBullet: {fileID: 376351495758461509, guid: 6030a122a4e64d6489654cfda0242ea5,
+    type: 3}
+  maximumBullet: {fileID: 2333047118695632805, guid: e690fd0cd01b8f5419f64cc52b5d59cf,
     type: 3}
   Up: {fileID: 408098671}
   Up1: {fileID: 780851788}
@@ -980,7 +991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c70addddcb8b2e44083b858ff7e8d5bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numMaxOfHabilitys: 4
+  numMaxOfHabilitys: 6
   bb_Player: {fileID: 217317354}
   closeRoom: []
   stairs: {fileID: 0}

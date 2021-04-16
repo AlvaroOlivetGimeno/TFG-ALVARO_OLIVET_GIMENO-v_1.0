@@ -19,7 +19,6 @@ public class ParryScript : MonoBehaviour
     {
         if(collision.gameObject.tag == "ParryBullet")
         {
-            Debug.Log("EPEPEPE");
             collision.gameObject.GetComponent<TorretBullet>().Revote();
         }
     }

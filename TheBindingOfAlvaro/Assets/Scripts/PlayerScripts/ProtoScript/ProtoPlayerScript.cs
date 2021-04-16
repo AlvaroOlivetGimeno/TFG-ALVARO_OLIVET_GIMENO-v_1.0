@@ -20,6 +20,14 @@ public class ProtoPlayerScript : MonoBehaviour
     //TIMERS
     float s_timer = 100;
     float p_timer = 0;
+
+    //VARIABLES PER HABILITATS
+    float speedSum = 0;
+    float delaySum = 0;
+    float damageSum = 0;
+    bool loadingHability = false;
+    float loadingHabilityTimer;
+
     
     void Start()
     {
@@ -58,7 +66,13 @@ public class ProtoPlayerScript : MonoBehaviour
         StateController();
 
         //-----------------------------------------------
-       
+
+        //------------------------------------------------STADISTICS------------------------------------------------
+        StadisticsController();
+        Debug.Log("DELAYSUM:" + delaySum + "    DELAY:" + delayShoot);
+        //-----------------------------------------------
+
+
     }
     //MOVMENT
     void Movment()
@@ -279,19 +293,8 @@ public class ProtoPlayerScript : MonoBehaviour
     void MinimumState()
     {
         this.transform.localScale = BlackBoardPlayer.minimumScale;
-        //speed = BlackBoardPlayer.minimumSpeed;
-        //delayShoot = BlackBoardPlayer.minimumDelayTimeToShoot;
-
-        if(speed >= BlackBoardPlayer.characterSpeed || speed == BlackBoardPlayer.maximumSpeed)
-        {
-            speed = BlackBoardPlayer.minimumSpeed;
-        }
-        
-        if (delayShoot == BlackBoardPlayer.delayTimeToShoot || delayShoot == BlackBoardPlayer.maximumSpeed)
-        {
-            delayShoot = BlackBoardPlayer.minimumDelayTimeToShoot;
-        }
-        
+        speed = BlackBoardPlayer.minimumSpeed;
+        delayShoot = BlackBoardPlayer.minimumDelayTimeToShoot;
     }
 
     //MAXIMUM STATE
@@ -299,19 +302,7 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         this.transform.localScale = BlackBoardPlayer.maximumScale;
         delayShoot = BlackBoardPlayer.maximumDelayTimeToShoot;
-        //speed = BlackBoardPlayer.maximumSpeed;
-       
-        if(speed == BlackBoardPlayer.characterSpeed || speed == BlackBoardPlayer.minimumSpeed)
-        {
-            speed = BlackBoardPlayer.maximumSpeed;
-        }
-       
-       if (delayShoot == BlackBoardPlayer.delayTimeToShoot || delayShoot == BlackBoardPlayer.minimumDelayTimeToShoot)
-       {
-           delayShoot = BlackBoardPlayer.maximumDelayTimeToShoot;
-       }
-       
-       
+        speed = BlackBoardPlayer.maximumSpeed;
 
     }
 
@@ -327,16 +318,68 @@ public class ProtoPlayerScript : MonoBehaviour
         }
     }
 
+    void StadisticsController()
+    {
+        //VELOCIDAD
+        speed = speed + speedSum;
+
+        //DELAY
+        delayShoot = delayShoot + delaySum;
+
+        if(loadingHability)
+        {
+            loadingHabilityTimer += 1 * Time.deltaTime;
+
+            if(loadingHabilityTimer >= 2)
+            {
+                loadingHability = false;
+
+            }
+        }
+
+    }
 
     //COLLISIONS
     void OnTriggerEnter2D(Collider2D other)
     {
+        //-------------------------------------------PER LA CAMARA-----------------------------------------------------
         if (other.gameObject.tag == "CamaraPoint")
         {
             //Debug.Log("CONTACTO CON UNA ROOM");
             vPos = new Vector3(other.transform.position.x, other.transform.position.y, -10);
             BlackBoardPlayer.mCamera.transform.position = vPos;
+        }
+        //--------------------------------------------------------------------------------------------------------------
+        
+        //--------------------------------------------HABILITATS--------------------------------------------------------
 
+        //ACTIVES
+        if (other.gameObject.tag == "ActiveHability")
+        {
+            BlackBoardPlayer.habilityType = other.GetComponent<ActiveHabilityScript>().habilityType;
+            BlackBoardPlayer.stateType = other.GetComponent<ActiveHabilityScript>().stateType;
+
+
+            Destroy(other.gameObject);
+        }
+
+        //PASIVES
+        //1.Velocitat 2.Delay 3.Armadura 4.Dolor Inflingit
+        if (other.gameObject.tag == "PassiveHability")
+        {
+            if(!loadingHability)
+            {
+                switch (other.GetComponent<PassiveHabilityScript>().estadisticType)
+                {
+                    case 1: speedSum = speedSum + 0.3f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
+                    case 2: delaySum = delaySum - 0.05f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
+                    case 3: BlackBoardPlayer.characterLife = BlackBoardPlayer.characterLife + 1f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
+                    case 4: damageSum = damageSum + 0.3f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
+                }
+            }
+            
+            
         }
     }
+   
 }

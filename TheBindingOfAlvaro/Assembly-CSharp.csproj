@@ -68,6 +68,9 @@
     <Compile Include="Assets\Scripts\Enemys\TorretEnemyScript.cs" />
     <Compile Include="Assets\Scripts\ScriptsForTuto\RoomScripts\PointBrain.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ParryScript.cs" />
+    <Compile Include="Assets\Scripts\PicableObjects\Habilitys\ActiveH\ActiveHabilityScript.cs" />
+    <Compile Include="Assets\Scripts\PicableObjects\Habilitys\PassiveH\PassiveHabilityScript.cs" />
+    <Compile Include="Assets\Scripts\PicableObjects\Habilitys\SpecialH\SpecialHabilityScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

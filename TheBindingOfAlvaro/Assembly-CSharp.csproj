@@ -59,18 +59,19 @@
     <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ProtoBLACKBOARD_Player.cs" />
     <Compile Include="Assets\Scripts\ScriptsForTuto\RoomSpawner.cs" />
     <Compile Include="Assets\Scripts\ScriptsForTuto\RoomScripts\PointRandomGenerator.cs" />
+    <Compile Include="Assets\Scripts\PicableObjects\Habilitys\SpecialH\SpecialHabilityScript.cs" />
+    <Compile Include="Assets\Scripts\PicableObjects\Habilitys\PassiveH\PassiveHabilityScript.cs" />
     <Compile Include="Assets\Scripts\ScriptsForTuto\RoomScript.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ProtoPlayerScript.cs" />
     <Compile Include="Assets\Scripts\ScriptsForTuto\HacksForTheGame.cs" />
     <Compile Include="Assets\Scripts\Enemys\BulletsOFEnemys\TorretBullet.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\Bullet_of_Player\BasicBulletScript.cs" />
     <Compile Include="Assets\Scripts\ScriptsForTuto\RoomTemplates.cs" />
+    <Compile Include="Assets\Scripts\PicableObjects\Habilitys\ActiveH\ActiveHabilityScript.cs" />
     <Compile Include="Assets\Scripts\Enemys\TorretEnemyScript.cs" />
     <Compile Include="Assets\Scripts\ScriptsForTuto\RoomScripts\PointBrain.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ParryScript.cs" />
-    <Compile Include="Assets\Scripts\PicableObjects\Habilitys\ActiveH\ActiveHabilityScript.cs" />
-    <Compile Include="Assets\Scripts\PicableObjects\Habilitys\PassiveH\PassiveHabilityScript.cs" />
-    <Compile Include="Assets\Scripts\PicableObjects\Habilitys\SpecialH\SpecialHabilityScript.cs" />
+    <Compile Include="Assets\Scripts\HUD\LifeManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

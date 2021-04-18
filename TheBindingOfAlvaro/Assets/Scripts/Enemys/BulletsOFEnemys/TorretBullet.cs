@@ -11,9 +11,12 @@ public class TorretBullet : MonoBehaviour
     [Header("BULLET SPEED:")]
     public float damage;
 
-   
+    [Header("NO TOCAR:")]
+
+    public bool impact = false;
 
     Rigidbody2D rb2d;
+    
     ProtoPlayerScript target;
     Vector2 moveDirection;
 
@@ -35,9 +38,13 @@ public class TorretBullet : MonoBehaviour
     //REBOTE DE PARRY
     public void Revote()
     {
-        target = GameObject.FindObjectOfType<ProtoPlayerScript>();
-        moveDirection = (this.transform.position - target.transform.position).normalized * speed;
-        rb2d.velocity = new Vector2(moveDirection.x, moveDirection.y);
+        if(!impact)
+        {
+            target = GameObject.FindObjectOfType<ProtoPlayerScript>();
+            moveDirection = (this.transform.position - target.transform.position).normalized * speed;
+            rb2d.velocity = new Vector2(moveDirection.x, moveDirection.y);
+        }
+        
     }
 
     //DESTROY ME

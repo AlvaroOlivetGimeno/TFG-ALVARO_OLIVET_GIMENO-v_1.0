@@ -79,6 +79,11 @@ public class HacksForTheGame : MonoBehaviour
         }
     }
 
+    void UpgradeStatistics()
+    {
+
+    }
+
     
 
 }

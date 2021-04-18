@@ -27,7 +27,10 @@ public class ProtoPlayerScript : MonoBehaviour
     float damageSum = 0;
     bool loadingHability = false;
     float loadingHabilityTimer;
-
+    float specialHabilityTimer;
+    bool invencible = false;
+    bool superParry = false;
+    bool quadShoot = false;
     
     void Start()
     {
@@ -69,7 +72,7 @@ public class ProtoPlayerScript : MonoBehaviour
 
         //------------------------------------------------STADISTICS------------------------------------------------
         StadisticsController();
-        Debug.Log("DELAYSUM:" + delaySum + "    DELAY:" + delayShoot);
+        //Debug.Log("DELAYSUM:" + delaySum + "    DELAY:" + delayShoot);
         //-----------------------------------------------
 
 
@@ -223,7 +226,7 @@ public class ProtoPlayerScript : MonoBehaviour
     //CONTROLS OF SHOOTING
     void ShootController()
     {
-        if (Input.GetKey(KeyCode.UpArrow) )
+        if (Input.GetKey(KeyCode.UpArrow) && !quadShoot)
         {
             switch (BlackBoardPlayer.habilityType)
             {
@@ -237,7 +240,7 @@ public class ProtoPlayerScript : MonoBehaviour
                     //...
             }
         }
-        else if (Input.GetKey(KeyCode.DownArrow) )
+        else if (Input.GetKey(KeyCode.DownArrow) && !quadShoot)
         {
             switch (BlackBoardPlayer.habilityType)
             {
@@ -251,7 +254,7 @@ public class ProtoPlayerScript : MonoBehaviour
                     //...
             }
         }
-        else if (Input.GetKey(KeyCode.RightArrow) )
+        else if (Input.GetKey(KeyCode.RightArrow) && !quadShoot)
         {
             switch (BlackBoardPlayer.habilityType)
             {
@@ -265,7 +268,7 @@ public class ProtoPlayerScript : MonoBehaviour
                     //...
             }
         }
-        else if (Input.GetKey(KeyCode.LeftArrow) )
+        else if (Input.GetKey(KeyCode.LeftArrow) && !quadShoot)
         {
             switch (BlackBoardPlayer.habilityType)
             {
@@ -276,6 +279,7 @@ public class ProtoPlayerScript : MonoBehaviour
                 case 4: BasicShoot(false, false, BlackBoardPlayer.freezeBullet); break;
                 case 5: BasicShoot(false, false, BlackBoardPlayer.minimumBullet); break;
                 case 6: BasicShoot(false, false, BlackBoardPlayer.maximumBullet); break;
+                case 7: QuadShoot(); break;
                     //...
             }
         }
@@ -306,6 +310,56 @@ public class ProtoPlayerScript : MonoBehaviour
 
     }
 
+    //DEFAULT FOR SPECIAL
+    void WaitingForNextSpecialHability()
+    {
+        specialHabilityTimer = 0;
+    }
+
+    //INVULNERABILITAT SPECIAL STATE
+    void InvencibleState()
+    {
+        specialHabilityTimer += 1 * Time.deltaTime;
+        invencible = true;
+
+        if( specialHabilityTimer >= BlackBoardPlayer.timeSpecialHability)
+        {
+            invencible = false;
+            BlackBoardPlayer.specialStateType = 0;
+        }
+    }
+
+    //SUPER PARRY SPECIAL STATE
+    void SuperParry()
+    {
+        specialHabilityTimer += 1 * Time.deltaTime;
+        superParry = true;
+
+        if (specialHabilityTimer >= BlackBoardPlayer.timeSpecialHability)
+        {
+            superParry = false;
+            BlackBoardPlayer.specialStateType = 0;
+        }
+    }
+
+    //QUADRUPLE TIR
+    void QuadShoot()
+    {
+        specialHabilityTimer += 1 * Time.deltaTime;
+        quadShoot = true;
+
+        Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Up.transform.position, Quaternion.identity);
+        Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Down.transform.position, Quaternion.identity);
+        Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Right.transform.position, Quaternion.identity);
+        Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Left.transform.position, Quaternion.identity);
+
+        if (specialHabilityTimer >= (BlackBoardPlayer.timeSpecialHability/2))
+        {
+            quadShoot = false;
+            BlackBoardPlayer.specialStateType = 0;
+        }
+
+    }
 
     //CONTROL OF THE DIFERENT STATES OF  PLAYER
     void StateController()
@@ -316,17 +370,37 @@ public class ProtoPlayerScript : MonoBehaviour
             case 1: MinimumState(); break;
             case 2: MaximumState(); break;
         }
+
+        switch(BlackBoardPlayer.specialStateType)
+        {
+            case 0: WaitingForNextSpecialHability(); break;
+            case 1: InvencibleState(); break;
+            case 2: SuperParry(); break;
+            case 3: QuadShoot(); break;
+            case 4: MaximumState(); break;
+        }
+        
     }
 
+    //STATISTICS CONTROLLER
     void StadisticsController()
     {
         //VELOCIDAD
         speed = speed + speedSum;
+        if (speed >= BlackBoardPlayer.MAXSpeed)
+        {
+            speed = BlackBoardPlayer.MAXSpeed;
+        }
 
         //DELAY
         delayShoot = delayShoot + delaySum;
+        if (delayShoot <= BlackBoardPlayer.MINIMDelay)
+        {
+            delayShoot = BlackBoardPlayer.MINIMDelay;
+        }
 
-        if(loadingHability)
+        //LOADING TIME BETWEEN HABILITIES
+        if (loadingHability)
         {
             loadingHabilityTimer += 1 * Time.deltaTime;
 
@@ -336,6 +410,15 @@ public class ProtoPlayerScript : MonoBehaviour
 
             }
         }
+
+        //LIFE
+        if(BlackBoardPlayer.characterLife >= BlackBoardPlayer.MAXLife)
+        {
+            BlackBoardPlayer.characterLife = BlackBoardPlayer.MAXLife;
+        }
+
+        
+        
 
     }
 
@@ -376,10 +459,56 @@ public class ProtoPlayerScript : MonoBehaviour
                     case 3: BlackBoardPlayer.characterLife = BlackBoardPlayer.characterLife + 1f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
                     case 4: damageSum = damageSum + 0.3f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
                 }
-            }
-            
-            
+            } 
         }
+
+        //SPECIAL
+        //1.inbulnerabilitat 2.Tir Quadruple 3.TotalParry 4.Depredador 5.SuperKill
+        if (other.gameObject.tag == "SpecialHability")
+        {
+            BlackBoardPlayer.specialStateType = other.GetComponent<SpecialHabilityScript>().speciaStateType;
+            Destroy(other.gameObject);
+        }
+
+        //------------------------------------------------------------------------------------------------------------------------------
+
+        //----------------------------------------------ENEMYS-------------------------------------------------------------------------
+
+        //ENEMY BULLETS
+        if(!invencible)
+        {
+            //TORRETA
+            if (other.gameObject.tag == "TorretBullet")
+            {
+                if(!superParry)
+                {
+                    BlackBoardPlayer.characterLife -= 1;
+                    Destroy(other.gameObject);
+                }
+                else
+                {
+                    other.GetComponent<TorretBullet>().Revote();
+                }
+                
+            }
+
+            //PARRY
+            if (other.gameObject.tag == "ParryBullet")
+            {
+                if (!superParry)
+                {
+                    other.GetComponent<TorretBullet>().impact = true;
+                    BlackBoardPlayer.characterLife -= 1;
+                    Destroy(other.gameObject);  
+                }
+                else
+                {
+                    other.GetComponent<TorretBullet>().Revote();
+                }
+            }
+        }
+        
+
     }
    
 }

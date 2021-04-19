@@ -61,6 +61,10 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
 
     public GameObject p_Collider;
 
+    [Header("SUPER KILL COLLIDER:")]
+
+    public GameObject sK_Collider;
+
 
     [Header("AUTOMATIC OBJECTS:")]
     public GameObject mCamera;
@@ -70,7 +74,8 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     void Start()
     {
         mCamera = GameObject.FindGameObjectWithTag("MainCamera");
-       
+
+        sK_Collider.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

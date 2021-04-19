@@ -388,6 +388,32 @@ public class ProtoPlayerScript : MonoBehaviour
         } 
     }
 
+    //SUPER KILL
+    void SuperKill()
+    {
+        
+        specialHabilityTimer += 1 * Time.deltaTime;
+        if(BlackBoardPlayer.characterLife >= 3)
+        {
+            BlackBoardPlayer.sK_Collider.transform.position = this.gameObject.transform.position;
+            BlackBoardPlayer.sK_Collider.gameObject.SetActive(true);
+            
+        }
+
+        if (!oneTime)
+        {
+            BlackBoardPlayer.characterLife -= 2;
+            oneTime = true;
+        }
+
+        if (specialHabilityTimer >= 1)
+        {      
+          BlackBoardPlayer.sK_Collider.gameObject.SetActive(false);
+          BlackBoardPlayer.specialStateType = 0;
+        }
+         
+    }
+
     //CONTROL OF THE DIFERENT STATES OF  PLAYER
     void StateController()
     {
@@ -405,7 +431,7 @@ public class ProtoPlayerScript : MonoBehaviour
             case 2: SuperParry(); break;
             case 3: QuadShoot(); break;
             case 4: HunterState(); break;
-            case 5: MaximumState(); break;
+            case 5: SuperKill(); break;
         }
         
     }

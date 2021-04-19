@@ -67,12 +67,14 @@
     <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\SuperKillScript.cs" />
     <Compile Include="Assets\Scripts\Enemys\BulletsOFEnemys\TorretBullet.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\Bullet_of_Player\BasicBulletScript.cs" />
+    <Compile Include="Assets\Scripts\HUD\HUD_MANAGER.cs" />
     <Compile Include="Assets\Scripts\ScriptsForTuto\RoomTemplates.cs" />
     <Compile Include="Assets\Scripts\PicableObjects\Habilitys\ActiveH\ActiveHabilityScript.cs" />
-    <Compile Include="Assets\Scripts\Enemys\TorretEnemyScript.cs" />
     <Compile Include="Assets\Scripts\ScriptsForTuto\RoomScripts\PointBrain.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ParryScript.cs" />
-    <Compile Include="Assets\Scripts\HUD\HUD_MANAGER.cs" />
+    <Compile Include="Assets\Scripts\Enemys\BLACKBOARD_ENEMYS.cs" />
+    <Compile Include="Assets\Scripts\Enemys\EnemyShootersScript.cs" />
+    <Compile Include="Assets\Scripts\Enemys\ShooterThings\CheckWallPosition.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

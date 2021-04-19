@@ -14,6 +14,7 @@ public class TorretBullet : MonoBehaviour
     [Header("NO TOCAR:")]
 
     public bool impact = false;
+    public bool rebote = false;
 
     Rigidbody2D rb2d;
     
@@ -23,6 +24,7 @@ public class TorretBullet : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+
         target = GameObject.FindObjectOfType<ProtoPlayerScript>();
         moveDirection = (target.transform.position - this.transform.position).normalized * speed;
         rb2d.velocity = new Vector2(moveDirection.x, moveDirection.y);
@@ -43,6 +45,7 @@ public class TorretBullet : MonoBehaviour
             target = GameObject.FindObjectOfType<ProtoPlayerScript>();
             moveDirection = (this.transform.position - target.transform.position).normalized * speed;
             rb2d.velocity = new Vector2(moveDirection.x, moveDirection.y);
+            rebote = true;
         }
         
     }

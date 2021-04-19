@@ -395,9 +395,9 @@ public class ProtoPlayerScript : MonoBehaviour
         specialHabilityTimer += 1 * Time.deltaTime;
         if(BlackBoardPlayer.characterLife >= 3)
         {
+            Debug.Log("oye LOKO");
             BlackBoardPlayer.sK_Collider.transform.position = this.gameObject.transform.position;
-            BlackBoardPlayer.sK_Collider.gameObject.SetActive(true);
-            
+            BlackBoardPlayer.sK_Collider.gameObject.SetActive(true);  
         }
 
         if (!oneTime)
@@ -408,8 +408,8 @@ public class ProtoPlayerScript : MonoBehaviour
 
         if (specialHabilityTimer >= 1)
         {      
-          BlackBoardPlayer.sK_Collider.gameObject.SetActive(false);
-          BlackBoardPlayer.specialStateType = 0;
+            BlackBoardPlayer.sK_Collider.gameObject.SetActive(false);
+            BlackBoardPlayer.specialStateType = 0;
         }
          
     }
@@ -587,7 +587,7 @@ public class ProtoPlayerScript : MonoBehaviour
             }
             else
             {
-                other.gameObject.GetComponent<TorretEnemyScript>().life = 0;
+                other.gameObject.GetComponent<EnemyShootersScript>().life = 0;
             }
         }
     }

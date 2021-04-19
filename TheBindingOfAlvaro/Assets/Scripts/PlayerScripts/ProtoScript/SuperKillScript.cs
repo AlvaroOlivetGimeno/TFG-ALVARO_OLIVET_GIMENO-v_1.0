@@ -34,7 +34,7 @@ public class SuperKillScript : MonoBehaviour
     {
         foreach(GameObject enemy in enemysAroundMe)
         {
-            enemy.GetComponent<TorretEnemyScript>().life = 0;
+            enemy.GetComponent<EnemyShootersScript>().life = 0;
         }
     }
     void OnTriggerEnter2D(Collider2D other)

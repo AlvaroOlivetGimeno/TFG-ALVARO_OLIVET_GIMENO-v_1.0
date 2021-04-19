@@ -28,9 +28,12 @@ public class ProtoPlayerScript : MonoBehaviour
     bool loadingHability = false;
     float loadingHabilityTimer;
     float specialHabilityTimer;
+    bool oneTime;
     bool invencible = false;
     bool superParry = false;
     bool quadShoot = false;
+    bool hunterState = false;
+
     
     void Start()
     {
@@ -67,6 +70,7 @@ public class ProtoPlayerScript : MonoBehaviour
 
         //-----------------------------------------------STATES----------------------------------------------------
         StateController();
+        SpecialHabilityControls();
 
         //-----------------------------------------------
 
@@ -314,6 +318,7 @@ public class ProtoPlayerScript : MonoBehaviour
     void WaitingForNextSpecialHability()
     {
         specialHabilityTimer = 0;
+        oneTime = false;
     }
 
     //INVULNERABILITAT SPECIAL STATE
@@ -361,6 +366,28 @@ public class ProtoPlayerScript : MonoBehaviour
 
     }
 
+    //DEPREDADOR
+    void HunterState()
+    {
+        if(BlackBoardPlayer.characterLife >= 2)
+        {
+            specialHabilityTimer += 1 * Time.deltaTime;
+            hunterState = true;
+
+            if(!oneTime)
+            {
+                BlackBoardPlayer.characterLife -= 1;
+                oneTime = true;
+            }
+
+            if (specialHabilityTimer >= (BlackBoardPlayer.timeSpecialHability))
+            {
+                hunterState = false;
+                BlackBoardPlayer.specialStateType = 0;
+            }
+        } 
+    }
+
     //CONTROL OF THE DIFERENT STATES OF  PLAYER
     void StateController()
     {
@@ -377,7 +404,8 @@ public class ProtoPlayerScript : MonoBehaviour
             case 1: InvencibleState(); break;
             case 2: SuperParry(); break;
             case 3: QuadShoot(); break;
-            case 4: MaximumState(); break;
+            case 4: HunterState(); break;
+            case 5: MaximumState(); break;
         }
         
     }
@@ -422,7 +450,16 @@ public class ProtoPlayerScript : MonoBehaviour
 
     }
 
-    //COLLISIONS
+    //SPECIAL HABILITY CONTROLS
+    void SpecialHabilityControls()
+    {
+        if (Input.GetKey(KeyCode.E))
+        {
+            BlackBoardPlayer.specialStateType = BlackBoardPlayer.specialHabilityCatcth;
+        }
+    }
+
+    //COLLISIONS TRIGGER
     void OnTriggerEnter2D(Collider2D other)
     {
         //-------------------------------------------PER LA CAMARA-----------------------------------------------------
@@ -466,7 +503,8 @@ public class ProtoPlayerScript : MonoBehaviour
         //1.inbulnerabilitat 2.Tir Quadruple 3.TotalParry 4.Depredador 5.SuperKill
         if (other.gameObject.tag == "SpecialHability")
         {
-            BlackBoardPlayer.specialStateType = other.GetComponent<SpecialHabilityScript>().speciaStateType;
+            //BlackBoardPlayer.specialStateType = other.GetComponent<SpecialHabilityScript>().speciaStateType;
+            BlackBoardPlayer.specialHabilityCatcth = other.GetComponent<SpecialHabilityScript>().speciaStateType;
             Destroy(other.gameObject);
         }
 
@@ -510,5 +548,21 @@ public class ProtoPlayerScript : MonoBehaviour
         
 
     }
-   
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        
+        //--------------------------------------ENEMYS-----------------------------------------------
+        if(other.gameObject.tag == "Enemy")
+        {
+            if (!hunterState) 
+            {
+                BlackBoardPlayer.characterLife -= 1;
+            }
+            else
+            {
+                other.gameObject.GetComponent<TorretEnemyScript>().life = 0;
+            }
+        }
+    }
 }

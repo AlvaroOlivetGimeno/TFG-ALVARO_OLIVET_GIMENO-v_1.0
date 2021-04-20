@@ -8,6 +8,8 @@ public class TorretBullet : MonoBehaviour
     [Header("BULLET TYPE:")]
     public float bulletType = 0;
     float direction;
+    float numOfBounces;
+    bool oneTime;
 
     [Header("BULLET SPEED:")]
     public float speed;
@@ -39,6 +41,7 @@ public class TorretBullet : MonoBehaviour
     void Update()
     {
         ShottingController();
+        Debug.Log(numOfBounces);
     }
 
     //Basic Shoot
@@ -66,11 +69,14 @@ public class TorretBullet : MonoBehaviour
         }
     }
 
-
+    //BonuceShoot
+    void BounceShoot()
+    {
+        rb2d.velocity = new Vector2(moveDirection.x, moveDirection.y);
+    }
     //IntelligentShoot
     void IntelligentShoot()
     {
-       
         rb2d.velocity = new Vector2(moveDirection.x, moveDirection.y);
     }
 
@@ -81,7 +87,8 @@ public class TorretBullet : MonoBehaviour
         switch(bulletType)
         {
             case 1: BasicShoot(); break;
-            case 2: IntelligentShoot(); break;
+            case 2: BounceShoot();  break;
+            case 3: IntelligentShoot(); break;
         }
     }
 
@@ -109,7 +116,18 @@ public class TorretBullet : MonoBehaviour
     {
         if(collision.gameObject.tag == "Wall")
         {
-            Destroy(this.gameObject);
+            if(bulletType == 2 && numOfBounces <= 5 && !rebote)
+            {
+                
+                moveDirection = (target.transform.position - this.transform.position).normalized * speed;
+                numOfBounces += 1;
+               
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
+            
         }
         if(collision.gameObject.tag == "WallCheck")
         {

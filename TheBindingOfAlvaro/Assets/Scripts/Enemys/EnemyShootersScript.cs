@@ -17,6 +17,8 @@ public class EnemyShootersScript : MonoBehaviour
     GameObject parryBullet;
     GameObject intelligentBullet;
     GameObject intelligentParryBullet;
+    GameObject bounceBullet;
+    GameObject bounceParryBullet;
 
     public GameObject BlackBoardEnemy;
     GameObject _enemyBlackBoard;
@@ -37,14 +39,8 @@ public class EnemyShootersScript : MonoBehaviour
         BlackBoardEnemy = GameObject.FindGameObjectWithTag("EnemyBrain");
 
         //START VARIABLES
-        life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_Life;
-        timeToShoot = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShoot;
-        timeFreezed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeFreezed;
-        parryPct = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryPct;
-        normalBullet = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_BasicBullet;
-        parryBullet = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryBullet;
-        intelligentBullet = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_IntelligentBullet;
-        intelligentParryBullet = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_IntelligentParryBullet;
+        StartMetod();
+       
         
 
         //--------------
@@ -83,6 +79,7 @@ public class EnemyShootersScript : MonoBehaviour
         
     }
 
+    //SHOOT FUNCTION
     void Shoot(GameObject pBullet, GameObject bullet)
     {
         if (!IAmFreeze)
@@ -167,10 +164,14 @@ public class EnemyShootersScript : MonoBehaviour
     //Basic SHoot
     void BasicShoot()
     {
-        timeToShoot = 2;
         Shoot(parryBullet, normalBullet);
     }
     
+    //Bounce SHoot
+    void BounceShoot()
+    {
+        Shoot(bounceParryBullet, bounceBullet);
+    }
    
 
     //TYPE SELECTOR
@@ -180,12 +181,37 @@ public class EnemyShootersScript : MonoBehaviour
         {
             case 0: Debug.LogError("L'ENEMIC HA DE TENIR UN TIPUS! ( 1.Static Torret   2.Shy Torret   3.Intelligent Torret )"); break;
             case 1: Invoke("BasicShoot", rndVarDelay); break;
-            case 2: break;
+            case 2: Invoke("BounceShoot", rndVarDelay);  break;
             case 3: Invoke("InteligentShoot", rndVarDelay); break;
         }
     }
 
 
+    //START FUNCTION
+    void StartMetod()
+    {
+        switch(enemyType)
+        {
+            case 1: life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_LifeBasic;
+                timeToShoot = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBasic; break;
+            case 2:
+                life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_LifeBounce;
+                timeToShoot = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBounce; break;
+            case 3:
+                life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_LifeIntelligent;
+                timeToShoot = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootIntelligent; break;
+        }
+        timeFreezed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeFreezed;
+        parryPct = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryPct;
+        normalBullet = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_BasicBullet;
+        parryBullet = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryBullet;
+        intelligentBullet = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_IntelligentBullet;
+        intelligentParryBullet = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_IntelligentParryBullet;
+        bounceBullet = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_BounceBullet;
+        bounceParryBullet = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_BounceParryBullet;
+
+    }
+    
     //LIFE LOGIC
     void LifeController()
     {

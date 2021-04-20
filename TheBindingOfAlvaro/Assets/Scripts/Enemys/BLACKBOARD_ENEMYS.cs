@@ -5,8 +5,12 @@ using UnityEngine;
 public class BLACKBOARD_ENEMYS : MonoBehaviour
 {
     [Header("ENEMY's -SHOOTERS- CONSTANTS:")]
-    public float sh_Life;
-    public float sh_TimeToShoot;
+    public float sh_LifeBasic;
+    public float sh_LifeIntelligent;
+    public float sh_LifeBounce;
+    public float sh_TimeToShootIntelligent;
+    public float sh_TimeToShootBasic;
+    public float sh_TimeToShootBounce;
     public float sh_ParryPct;
     public float sh_TimeFreezed;
     [Header("ENEMY's -SHOOTERS- BULLETS:")]
@@ -14,7 +18,9 @@ public class BLACKBOARD_ENEMYS : MonoBehaviour
     public GameObject sh_IntelligentParryBullet;
     public GameObject sh_BasicBullet;
     public GameObject sh_ParryBullet;
- 
+    public GameObject sh_BounceParryBullet;
+    public GameObject sh_BounceBullet;
+
 
 
 

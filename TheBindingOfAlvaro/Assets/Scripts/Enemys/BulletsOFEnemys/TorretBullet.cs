@@ -41,7 +41,7 @@ public class TorretBullet : MonoBehaviour
     void Update()
     {
         ShottingController();
-        Debug.Log(numOfBounces);
+
     }
 
     //Basic Shoot

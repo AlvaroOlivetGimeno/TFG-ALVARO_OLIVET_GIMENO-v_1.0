@@ -41,18 +41,12 @@ public class EnemyShootersScript : MonoBehaviour
         //START VARIABLES
         StartMetod();
        
-        
-
         //--------------
 
         //RANDOM
         rndVarDelay =  Random.Range(0.0f, 2.0f);
 
-        //FOR SHOOTING FAST THE FIRST SHOOT
-        timer = 5;
 
-        //FOR CHILDS
-       
        
     }
 
@@ -193,13 +187,22 @@ public class EnemyShootersScript : MonoBehaviour
         switch(enemyType)
         {
             case 1: life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_LifeBasic;
-                timeToShoot = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBasic; break;
+                timeToShoot = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBasic;
+                //timer
+                //timer = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBasic;
+                break;
             case 2:
                 life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_LifeBounce;
-                timeToShoot = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBounce; break;
+                timeToShoot = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBounce;  
+                //timer
+                //timer = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBasic; 
+                break;
             case 3:
                 life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_LifeIntelligent;
-                timeToShoot = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootIntelligent; break;
+                timeToShoot = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootIntelligent;  
+                //timer
+                //timer = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBasic; 
+                break;
         }
         timeFreezed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeFreezed;
         parryPct = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryPct;
@@ -209,6 +212,8 @@ public class EnemyShootersScript : MonoBehaviour
         intelligentParryBullet = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_IntelligentParryBullet;
         bounceBullet = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_BounceBullet;
         bounceParryBullet = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_BounceParryBullet;
+
+        
 
     }
     

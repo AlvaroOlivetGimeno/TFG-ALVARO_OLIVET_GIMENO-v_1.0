@@ -79,7 +79,7 @@ public class ProtoPlayerScript : MonoBehaviour
         //Debug.Log("DELAYSUM:" + delaySum + "    DELAY:" + delayShoot);
         //-----------------------------------------------
 
-
+        Debug.Log(BlackBoardPlayer.characterLife);
     }
     //MOVMENT
     void Movment()
@@ -395,7 +395,7 @@ public class ProtoPlayerScript : MonoBehaviour
         specialHabilityTimer += 1 * Time.deltaTime;
         if(BlackBoardPlayer.characterLife >= 3)
         {
-            Debug.Log("oye LOKO");
+            
             BlackBoardPlayer.sK_Collider.transform.position = this.gameObject.transform.position;
             BlackBoardPlayer.sK_Collider.gameObject.SetActive(true);  
         }
@@ -546,6 +546,7 @@ public class ProtoPlayerScript : MonoBehaviour
             {
                 if(!superParry)
                 {
+                    Debug.Log("HIT");
                     BlackBoardPlayer.characterLife -= 1;
                     Destroy(other.gameObject);
                 }
@@ -561,8 +562,9 @@ public class ProtoPlayerScript : MonoBehaviour
             {
                 if (!superParry)
                 {
+                    Debug.Log("HIT");
                     other.GetComponent<TorretBullet>().impact = true;
-                    BlackBoardPlayer.characterLife -= 1;
+                    BlackBoardPlayer.characterLife -= 1; 
                     Destroy(other.gameObject);  
                 }
                 else

@@ -22,6 +22,12 @@ public class BLACKBOARD_ENEMYS : MonoBehaviour
     public GameObject sh_BounceBullet;
 
 
+    [Header("ENEMY's -FOLLOWERS- CONSTANTS:")]
+    public float fl_LifeBasic;
+
+    public float fl_BasicSpeed;
+
+    public float fl_TimeFreezed;
 
 
 

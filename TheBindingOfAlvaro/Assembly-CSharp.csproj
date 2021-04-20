@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\ScriptsForTuto\RoomSpawner.cs" />
     <Compile Include="Assets\Scripts\ScriptsForTuto\RoomScripts\PointRandomGenerator.cs" />
     <Compile Include="Assets\Scripts\Enemys\ShooterThings\CheckWallPosition.cs" />
+    <Compile Include="Assets\Scripts\Enemys\ShooterThings\TorretInstantiators.cs" />
     <Compile Include="Assets\Scripts\PicableObjects\Habilitys\SpecialH\SpecialHabilityScript.cs" />
     <Compile Include="Assets\Scripts\PicableObjects\Habilitys\PassiveH\PassiveHabilityScript.cs" />
     <Compile Include="Assets\Scripts\ScriptsForTuto\RoomScript.cs" />
@@ -75,7 +76,7 @@
     <Compile Include="Assets\Scripts\PicableObjects\Habilitys\ActiveH\ActiveHabilityScript.cs" />
     <Compile Include="Assets\Scripts\ScriptsForTuto\RoomScripts\PointBrain.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ParryScript.cs" />
-    <Compile Include="Assets\Scripts\Enemys\ShooterThings\TorretInstantiators.cs" />
+    <Compile Include="Assets\Scripts\Enemys\EnemyFollowersScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

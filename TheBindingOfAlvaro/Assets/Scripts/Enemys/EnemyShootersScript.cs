@@ -15,6 +15,8 @@ public class EnemyShootersScript : MonoBehaviour
      public float timeFreezed;
     GameObject normalBullet;
     GameObject parryBullet;
+    GameObject intelligentBullet;
+    GameObject intelligentParryBullet;
 
     public GameObject BlackBoardEnemy;
     GameObject _enemyBlackBoard;
@@ -26,14 +28,10 @@ public class EnemyShootersScript : MonoBehaviour
     float freezeCnt; //for know how many shoots I recived
     float freezeTimer; //timer for freeze state
 
-    public List<GameObject> childs = new List<GameObject>();
-    
+    public List<GameObject> wallChekers = new List<GameObject>();
 
-    public GameObject chechUp;
-    public GameObject chechDown;
-    public GameObject chechRight;
-    public GameObject chechLeft;
-
+    Vector3 spawnPos; //for instantiate normal bullet
+    bool oneTime;
     void Start()
     {
         BlackBoardEnemy = GameObject.FindGameObjectWithTag("EnemyBrain");
@@ -45,6 +43,10 @@ public class EnemyShootersScript : MonoBehaviour
         parryPct = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryPct;
         normalBullet = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_BasicBullet;
         parryBullet = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryBullet;
+        intelligentBullet = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_IntelligentBullet;
+        intelligentParryBullet = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_IntelligentParryBullet;
+        
+
         //--------------
 
         //RANDOM
@@ -54,25 +56,34 @@ public class EnemyShootersScript : MonoBehaviour
         timer = 5;
 
         //FOR CHILDS
-        CheckChildsCheck();
+       
+       
     }
 
     // Update is called once per frame
     void Update()
     {
+        //----------------------------SHOOT-----------------------------
+        if(!oneTime)
+        {
+            PositionChecker();
+            oneTime = true;
+        }
+        
+        SottingController();
+       
 
-        SottingController(); //----------------------------SHOOT-----------------------------
+        //------------------LIFE LOGIC------------------------
+        LifeController();
 
-        LifeController(); //------------------LIFE LOGIC------------------------
+        //--------------------------FREEZE----------------------------
+        Freeze(); 
 
-        Freeze(); //--------------------------FREEZE----------------------------
-
-        Debug.Log(this.transform.GetChild(2).gameObject);
+       // Debug.Log(this.transform.GetChild(2).gameObject);
         
     }
 
-    //SHOOTING
-    void InteligentShoot()
+    void Shoot(GameObject pBullet, GameObject bullet)
     {
         if (!IAmFreeze)
         {
@@ -85,12 +96,12 @@ public class EnemyShootersScript : MonoBehaviour
 
                 if (rndVar <= BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryPct)
                 {
-                    Instantiate(parryBullet, this.transform.position, Quaternion.identity);
+                    Instantiate(pBullet, this.transform.position, Quaternion.identity);
                     timer = 0;
                 }
                 else
                 {
-                    Instantiate(normalBullet, this.transform.position, Quaternion.identity);
+                    Instantiate(bullet, this.transform.position, Quaternion.identity);
                     timer = 0;
                 }
 
@@ -98,6 +109,69 @@ public class EnemyShootersScript : MonoBehaviour
         }
     }
 
+    //SHOOTING
+    void InteligentShoot()
+    {
+        Shoot(intelligentParryBullet, intelligentBullet);
+    }
+
+  
+    //GIVE ME A RNDM VARIABLE (int)
+    int RndVariable(int min, int max)
+    {
+        int rndInt;
+
+        rndInt = Random.Range(min, max);
+
+        return rndInt;
+
+    }
+    
+    
+    //CheckPosition
+    void PositionChecker()
+    {
+        foreach(GameObject check in wallChekers)
+        {
+            if(check.gameObject.GetComponent<CheckWallPosition>().wallContact)
+            {
+                wallChekers.Remove(check.gameObject);
+                Destroy(check.gameObject);
+            }
+        }
+        
+        foreach(GameObject c in wallChekers)
+        {
+            if(wallChekers.Count != 1)
+            {
+                if(c.gameObject.GetComponent<CheckWallPosition>().relativePos == 4)
+                {
+                    wallChekers.Remove(c.gameObject);
+                    Destroy(c.gameObject);
+                }
+                else if (c.gameObject.GetComponent<CheckWallPosition>().relativePos == 3)
+                {
+                    wallChekers.Remove(c.gameObject);
+                    Destroy(c.gameObject);
+                }
+                else if (c.gameObject.GetComponent<CheckWallPosition>().relativePos == 2)
+                {
+                    wallChekers.Remove(c.gameObject);
+                    Destroy(c.gameObject);
+                }
+            }
+        }
+    }
+
+
+    //Basic SHoot
+    void BasicShoot()
+    {
+        timeToShoot = 2;
+        Shoot(parryBullet, normalBullet);
+    }
+    
+   
 
     //TYPE SELECTOR
     void SottingController()
@@ -105,7 +179,7 @@ public class EnemyShootersScript : MonoBehaviour
         switch(enemyType)
         {
             case 0: Debug.LogError("L'ENEMIC HA DE TENIR UN TIPUS! ( 1.Static Torret   2.Shy Torret   3.Intelligent Torret )"); break;
-            case 1: break;
+            case 1: Invoke("BasicShoot", rndVarDelay); break;
             case 2: break;
             case 3: Invoke("InteligentShoot", rndVarDelay); break;
         }
@@ -137,17 +211,13 @@ public class EnemyShootersScript : MonoBehaviour
         }
     }
 
-    void CheckChildsCheck()
-    {
-        for(int i = 1; i >= this.transform.childCount; i++)
-        {
-            childs.Add(this.transform.GetChild(i).gameObject);
-        }
-    }
+   
 
     //COLLISIONS
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //-----------------------------COLLISION BETWEEN BULLETS---------------------------------------
+
         if (collision.gameObject.tag == "PlayerBullet")
         {
             life -= collision.gameObject.GetComponent<BasicBulletScript>().damage;
@@ -169,5 +239,19 @@ public class EnemyShootersScript : MonoBehaviour
             life -= (collision.gameObject.GetComponent<TorretBullet>().damage);
             collision.gameObject.GetComponent<TorretBullet>().DestroyMe();
         }
+
+        //---------------------------------------------------------------------------------------------------------------
+
+        //-----------------------------------------WALL CHECKERS---------------------------------------------------------
+        if (collision.gameObject.tag == "WallCheck")
+        {
+            if(!collision.gameObject.GetComponent<CheckWallPosition>().addedToFathersList)
+            {
+                wallChekers.Add(collision.gameObject);
+                collision.gameObject.GetComponent<CheckWallPosition>().addedToFathersList = true;
+            }
+           
+        }
+
     }
 }

@@ -9,11 +9,12 @@ public class BLACKBOARD_ENEMYS : MonoBehaviour
     public float sh_TimeToShoot;
     public float sh_ParryPct;
     public float sh_TimeFreezed;
-
+    [Header("ENEMY's -SHOOTERS- BULLETS:")]
+    public GameObject sh_IntelligentBullet;
+    public GameObject sh_IntelligentParryBullet;
     public GameObject sh_BasicBullet;
     public GameObject sh_ParryBullet;
-
-
+ 
 
 
 

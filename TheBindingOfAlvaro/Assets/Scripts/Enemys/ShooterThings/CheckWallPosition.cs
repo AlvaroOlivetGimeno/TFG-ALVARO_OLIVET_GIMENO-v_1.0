@@ -11,6 +11,9 @@ public class CheckWallPosition : MonoBehaviour
     [Header("WHAT POS. I AM??")]
     public float relativePos; //1.Up  2.Down  3.Right  4.Left
 
+    [Header("IM ON TE LIST?")]
+    public bool addedToFathersList;
+
     void Start()
     {
         
@@ -20,6 +23,13 @@ public class CheckWallPosition : MonoBehaviour
     void Update()
     {
         
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Wall")
+        {
+            wallContact = true;
+        }
     }
     void OnCollisionEnter2D(Collision2D other)
     {

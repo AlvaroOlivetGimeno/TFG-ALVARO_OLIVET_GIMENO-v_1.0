@@ -39,7 +39,7 @@ public class EnemyFollowersScript : MonoBehaviour
         target = GameObject.FindObjectOfType<ProtoPlayerScript>();
 
         //initialPos = this.transform.position;
-        //realState = enemyType;
+        realState = enemyType;
 
         //START METOD FOR VARIABLES
         StartMetod();

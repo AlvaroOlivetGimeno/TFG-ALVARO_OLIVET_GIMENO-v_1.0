@@ -79,7 +79,7 @@ public class ProtoPlayerScript : MonoBehaviour
         //Debug.Log("DELAYSUM:" + delaySum + "    DELAY:" + delayShoot);
         //-----------------------------------------------
 
-        Debug.Log(BlackBoardPlayer.characterLife);
+
     }
     //MOVMENT
     void Movment()

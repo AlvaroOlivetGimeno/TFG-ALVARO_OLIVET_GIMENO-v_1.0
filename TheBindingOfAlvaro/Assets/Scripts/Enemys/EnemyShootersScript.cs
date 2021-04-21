@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyShootersScript : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class EnemyShootersScript : MonoBehaviour
     float freezeCnt; //for know how many shoots I recived
     float freezeTimer; //timer for freeze state
 
+    Rigidbody2D rb2d;
+    
     public List<GameObject> wallChekers = new List<GameObject>();
 
     Vector3 spawnPos; //for instantiate normal bullet
@@ -37,6 +40,8 @@ public class EnemyShootersScript : MonoBehaviour
     void Start()
     {
         BlackBoardEnemy = GameObject.FindGameObjectWithTag("EnemyBrain");
+        rb2d = GetComponent<Rigidbody2D>();
+       
 
         //START VARIABLES
         StartMetod();
@@ -145,7 +150,7 @@ public class EnemyShootersScript : MonoBehaviour
                     wallChekers.Remove(c.gameObject);
                     Destroy(c.gameObject);
                 }
-                else if (c.gameObject.GetComponent<CheckWallPosition>().relativePos == 2)
+                else if (c.gameObject.GetComponent<CheckWallPosition>().relativePos == 1)
                 {
                     wallChekers.Remove(c.gameObject);
                     Destroy(c.gameObject);
@@ -283,6 +288,9 @@ public class EnemyShootersScript : MonoBehaviour
             }
            
         }
+       
 
     }
+
+   
 }

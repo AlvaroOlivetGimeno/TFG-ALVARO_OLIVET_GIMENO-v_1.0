@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
+
 
 public class EnemyFollowersScript : MonoBehaviour
 {
@@ -18,8 +18,11 @@ public class EnemyFollowersScript : MonoBehaviour
     Rigidbody2D rb2d;
     ProtoPlayerScript target;
     Vector2 moveDirection;
+    
 
     float rndVarDelay; //first delay for shooting
+    float rndVarStop; //for stopping enemy
+    float stopTimer; //for stop the player
     bool IAmFreeze; //For Know if I'm Freeze
     float freezeCnt; //for know how many shoots I recived
     float freezeTimer; //timer for freeze state
@@ -28,6 +31,7 @@ public class EnemyFollowersScript : MonoBehaviour
     {
         BlackBoardEnemy = GameObject.FindGameObjectWithTag("EnemyBrain");
         rb2d = GetComponent<Rigidbody2D>();
+        
         target = GameObject.FindObjectOfType<ProtoPlayerScript>();
        
         //START METOD FOR VARIABLES
@@ -46,13 +50,15 @@ public class EnemyFollowersScript : MonoBehaviour
 
         //--------------------------FREEZE----------------------------
         Freeze();
+
+
     }
 
     //Follow basic function
     void Follow(GameObject x)
     {
         moveDirection = (x.transform.position - this.transform.position).normalized * speed;
-        rb2d.velocity = new Vector2(moveDirection.x, moveDirection.y);
+        rb2d.velocity = new Vector2(moveDirection.x, moveDirection.y); 
     }
 
     //Follow controller
@@ -60,8 +66,9 @@ public class EnemyFollowersScript : MonoBehaviour
     {
         switch(enemyType)
         {
-            case 0: Debug.LogError("REMEMBER TO HAVE A ENEMY TYPE!!"); break;
+            case 0: StopEnemyFewSeconds(); break;
             case 1: Follow(target.gameObject); break;
+            
         }
     }
 
@@ -94,6 +101,22 @@ public class EnemyFollowersScript : MonoBehaviour
         }
     }
 
+    //Stop Enemy
+    void StopEnemyFewSeconds()
+    {
+        //rb2d.velocity = new Vector2 (0,0);
+        speed = 20;
+        rb2d.velocity = new Vector2(-moveDirection.x, -moveDirection.y);
+        stopTimer += 1f * Time.deltaTime;
+
+        if(stopTimer>= rndVarStop)
+        {
+            speed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_BasicSpeed;
+            stopTimer = 0;
+            enemyType = 1;
+        }
+    }
+
     //LIFE LOGIC
     void LifeController()
     {
@@ -110,6 +133,7 @@ public class EnemyFollowersScript : MonoBehaviour
 
         if (collision.gameObject.tag == "PlayerBullet")
         {
+            
             life -= collision.gameObject.GetComponent<BasicBulletScript>().damage;
             collision.gameObject.GetComponent<BasicBulletScript>().DestroyMe();
         }
@@ -132,7 +156,28 @@ public class EnemyFollowersScript : MonoBehaviour
 
         //---------------------------------------------------------------------------------------------------------------
 
-        
+        if (collision.gameObject.tag == "FollowerCollider")
+        {
+            Debug.Log("ENEMY COLL");
+            rndVarStop = Random.Range(0.2f, 0.3f);
+            enemyType = 0;
+        }
+        if (collision.gameObject.tag == "Wall")
+        {
+            Debug.Log("Wall COLL");
+            rndVarStop = Random.Range(0.2f, 0.3f);
+            enemyType = 0;
+        }
+
+    }
+   void OnCollisionEnter2D(Collision2D collision)
+   {
+        if (collision.gameObject.tag == "Wall")
+        {
+            Debug.Log("Wall COLL");
+            rndVarStop = Random.Range(0.2f, 0.3f);
+            enemyType = 0;
+        }
 
     }
 }

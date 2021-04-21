@@ -18,6 +18,7 @@ public class EnemyFollowersScript : MonoBehaviour
     Rigidbody2D rb2d;
     ProtoPlayerScript target;
     Vector2 moveDirection;
+    Vector2 initialPos;
     
 
     float rndVarDelay; //first delay for shooting
@@ -26,6 +27,9 @@ public class EnemyFollowersScript : MonoBehaviour
     bool IAmFreeze; //For Know if I'm Freeze
     float freezeCnt; //for know how many shoots I recived
     float freezeTimer; //timer for freeze state
+    float realState;
+
+    bool playerOnRoom; //For check if player is on room
 
     void Start()
     {
@@ -33,7 +37,10 @@ public class EnemyFollowersScript : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         
         target = GameObject.FindObjectOfType<ProtoPlayerScript>();
-       
+
+        //initialPos = this.transform.position;
+        //realState = enemyType;
+
         //START METOD FOR VARIABLES
         StartMetod();
     }
@@ -51,6 +58,7 @@ public class EnemyFollowersScript : MonoBehaviour
         //--------------------------FREEZE----------------------------
         Freeze();
 
+        
 
     }
 
@@ -68,6 +76,7 @@ public class EnemyFollowersScript : MonoBehaviour
         {
             case 0: StopEnemyFewSeconds(); break;
             case 1: Follow(target.gameObject); break;
+           // case 5: PlayerHasGone(); break;
             
         }
     }
@@ -113,10 +122,27 @@ public class EnemyFollowersScript : MonoBehaviour
         {
             speed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_BasicSpeed;
             stopTimer = 0;
-            enemyType = 1;
+            enemyType = realState;
         }
     }
-
+    /*
+    //Enemy Isn't On room
+    public void PlayerHasGone()
+    {
+        playerOnRoom = false;
+        rb2d.velocity = new Vector2(0,0);
+        this.transform.position = initialPos;
+    }
+    //Enemy HAs Return
+    public void PlayerHasReturn()
+    {
+        if(!playerOnRoom)
+        {
+            enemyType = realState;
+            playerOnRoom = true;
+        }
+    }
+    */
     //LIFE LOGIC
     void LifeController()
     {
@@ -158,26 +184,30 @@ public class EnemyFollowersScript : MonoBehaviour
 
         if (collision.gameObject.tag == "FollowerCollider")
         {
-            Debug.Log("ENEMY COLL");
             rndVarStop = Random.Range(0.2f, 0.3f);
             enemyType = 0;
         }
         if (collision.gameObject.tag == "Wall")
         {
-            Debug.Log("Wall COLL");
+            
             rndVarStop = Random.Range(0.2f, 0.3f);
             enemyType = 0;
+        }
+        if (collision.gameObject.tag == "CamaraPoint")
+        {
+
+           
+           
         }
 
     }
-   void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        
+    }
+    void OnCollisionEnter2D(Collision2D collision)
    {
-        if (collision.gameObject.tag == "Wall")
-        {
-            Debug.Log("Wall COLL");
-            rndVarStop = Random.Range(0.2f, 0.3f);
-            enemyType = 0;
-        }
+        
 
     }
 }

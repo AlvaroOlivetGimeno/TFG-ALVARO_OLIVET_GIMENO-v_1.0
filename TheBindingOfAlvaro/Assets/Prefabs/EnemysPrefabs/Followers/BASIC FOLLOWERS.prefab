@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 734035783705664195}
   - component: {fileID: 734035783705664194}
   - component: {fileID: 734035783705664192}
+  - component: {fileID: 2245938011144621119}
   m_Layer: 0
   m_Name: BASIC FOLLOWERS
   m_TagString: Enemy
@@ -293,3 +294,17 @@ MonoBehaviour:
   speed: 0
   timeFreezed: 0
   BlackBoardEnemy: {fileID: 0}
+--- !u!114 &2245938011144621119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734035783705664199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f00b3e7ded7d44fb741f9a4090eb11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 2
+  enemyFollowScript: {fileID: 0}

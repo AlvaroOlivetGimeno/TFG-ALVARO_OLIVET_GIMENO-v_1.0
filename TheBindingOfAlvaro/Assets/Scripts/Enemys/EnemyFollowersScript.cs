@@ -38,7 +38,7 @@ public class EnemyFollowersScript : MonoBehaviour
         
         target = GameObject.FindObjectOfType<ProtoPlayerScript>();
 
-        //initialPos = this.transform.position;
+        initialPos = this.transform.position;
         realState = enemyType;
 
         //START METOD FOR VARIABLES
@@ -125,7 +125,7 @@ public class EnemyFollowersScript : MonoBehaviour
             enemyType = realState;
         }
     }
-    /*
+    
     //Enemy Isn't On room
     public void PlayerHasGone()
     {
@@ -142,7 +142,7 @@ public class EnemyFollowersScript : MonoBehaviour
             playerOnRoom = true;
         }
     }
-    */
+    
     //LIFE LOGIC
     void LifeController()
     {

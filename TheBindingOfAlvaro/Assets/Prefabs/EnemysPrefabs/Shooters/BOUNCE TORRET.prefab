@@ -199,6 +199,7 @@ GameObject:
   - component: {fileID: 4706982069600407289}
   - component: {fileID: 4706982069600407174}
   - component: {fileID: 3725086050694515390}
+  - component: {fileID: 8805396251755825384}
   m_Layer: 0
   m_Name: BOUNCE TORRET
   m_TagString: Enemy
@@ -330,6 +331,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &8805396251755825384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4706982069600407172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f00b3e7ded7d44fb741f9a4090eb11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 1
+  enemyFollowScript: {fileID: 0}
 --- !u!1 &5288050168102451919
 GameObject:
   m_ObjectHideFlags: 0

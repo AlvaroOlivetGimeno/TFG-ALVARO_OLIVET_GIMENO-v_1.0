@@ -546,7 +546,6 @@ public class ProtoPlayerScript : MonoBehaviour
             {
                 if(!superParry)
                 {
-                    Debug.Log("HIT");
                     BlackBoardPlayer.characterLife -= 1;
                     Destroy(other.gameObject);
                 }

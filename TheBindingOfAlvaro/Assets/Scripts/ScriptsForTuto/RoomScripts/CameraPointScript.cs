@@ -19,26 +19,29 @@ public class CameraPointScript : MonoBehaviour
     void Update()
     {
         PlayerHasGone();
+
+        
     }
 
     void PlayerHasGone()
     {
         if(!isPlayerHere)
         {
-            Debug.Log("EOEOEOEO");
             foreach(GameObject enemy in enemysOnRoom)
             {
-                //enemy.gameObject.GetComponent<EnemyFollowersScript>().enemyType = 5;
+                enemy.gameObject.GetComponent<PlayerIsOnRoom>().DesactiveEnemy();
             }
         }
         else
         {
             foreach (GameObject enemy in enemysOnRoom)
             {
-                //enemy.gameObject.GetComponent<EnemyFollowersScript>().PlayerHasReturn();
+                enemy.gameObject.GetComponent<PlayerIsOnRoom>().ActiveEnemy();
             }
         }
     }
+
+    
     
    void OnTriggerEnter2D(Collider2D collision)
     {
@@ -49,7 +52,12 @@ public class CameraPointScript : MonoBehaviour
         }
         if (collision.gameObject.tag == "Enemy")
         {
-            enemysOnRoom.Add(collision.gameObject);
+            if(collision.GetComponent<PlayerIsOnRoom>().enemyType == 2)
+            {
+                enemysOnRoom.Add(collision.gameObject);
+            }
+           
+            
         }
     }
     void OnTriggerExit2D(Collider2D collision)
@@ -58,6 +66,11 @@ public class CameraPointScript : MonoBehaviour
         {
 
             isPlayerHere = false;
+        }
+        if (collision.gameObject.tag == "Enemy")
+        {
+            enemysOnRoom.Remove(collision.gameObject);
+
         }
     }
 

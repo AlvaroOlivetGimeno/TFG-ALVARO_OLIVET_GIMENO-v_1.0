@@ -47,7 +47,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 6.5
+  m_Radius: 5.5
 --- !u!50 &5521833930029216649
 Rigidbody2D:
   serializedVersion: 4
@@ -182,7 +182,7 @@ Transform:
   m_GameObject: {fileID: 734035783705664199}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.7, y: 2.84, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.08, y: 0.08, z: 1}
   m_Children:
   - {fileID: 734035782673661997}
   - {fileID: 8557857309619361098}
@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 1
+  sizeType: 0
   life: 0
   speed: 0
   timeFreezed: 0

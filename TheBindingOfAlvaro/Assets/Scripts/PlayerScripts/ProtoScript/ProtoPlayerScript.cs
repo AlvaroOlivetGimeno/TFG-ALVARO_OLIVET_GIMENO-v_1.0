@@ -76,9 +76,13 @@ public class ProtoPlayerScript : MonoBehaviour
 
         //------------------------------------------------STADISTICS------------------------------------------------
         StadisticsController();
-        //Debug.Log("DELAYSUM:" + delaySum + "    DELAY:" + delayShoot);
+
         //-----------------------------------------------
 
+        //-----------------------------------------------LIFE CONTROLLER---------------------------------------------
+        //LifeController();
+        
+        //-----------------------------------------------
 
     }
     //MOVMENT
@@ -482,6 +486,15 @@ public class ProtoPlayerScript : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
         {
             BlackBoardPlayer.specialStateType = BlackBoardPlayer.specialHabilityCatcth;
+        }
+    }
+
+    //LifeController
+    void LifeController()
+    {
+        if(BlackBoardPlayer.characterLife <= 0)
+        {
+            this.gameObject.SetActive(false);
         }
     }
 

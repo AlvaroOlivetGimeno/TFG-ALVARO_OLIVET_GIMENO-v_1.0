@@ -24,12 +24,20 @@ public class BLACKBOARD_ENEMYS : MonoBehaviour
 
     [Header("ENEMY's -FOLLOWERS- CONSTANTS:")]
     public float fl_LifeBasic;
-
     public float fl_BasicSpeed;
+    public float fl_LifeUnity;
+    public float fl_UnityBigSpeed;
+    public float fl_UnityMedSpeed;
+    public float fl_UnitySmallSpeed;
+    public float fl_LifeSprinter;
+    public float fl_SprinterSpeed;
 
     public float fl_TimeFreezed;
 
+    [Header("ENEMY's -FOLLOWERS- CHILDRENS:")]
 
+    public GameObject mediumUnityEnemy;
+    public GameObject smallUnityEnemy;
 
 
 

@@ -6,9 +6,9 @@ public class PlayerIsOnRoom : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    [Header("LISTA ENEMIGOS:")]
+    [Header("TIPO DE ENEMIGO (1 = SHOOTER, 2 = FOLLOWERS, 3 = SPECIAL)")]
     public float enemyType; //1. Shooters 2.Followers 3.Specials
-
+    [Header("LISTA ENEMIGOS:")]
     public EnemyFollowersScript enemyFollowScript;
 
     void Start()

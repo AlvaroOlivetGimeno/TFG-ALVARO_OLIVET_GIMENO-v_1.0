@@ -6,8 +6,9 @@ using UnityEngine;
 public class EnemyFollowersScript : MonoBehaviour
 {
     [Header("CHOOSE TYPE OF ENEMY:")]
-    public float enemyType = 0;
-
+    public float enemyType = 0; //1.Basic  2.Unity
+    [Header("CHOOSE SIZE (ONLY IF ITS TYPE 2):")]
+    public float sizeType = 0; //1.Big 2.Medium 3.Small
 
     [Header("AUTOMATIC VARIABLES:")]
     public float life;
@@ -27,7 +28,13 @@ public class EnemyFollowersScript : MonoBehaviour
     bool IAmFreeze; //For Know if I'm Freeze
     float freezeCnt; //for know how many shoots I recived
     float freezeTimer; //timer for freeze state
-    float realState;
+    float realState; //for save the real state (remember that i change it when it colides with another enemy) :))
+
+    float timeChill; //rnd Variable 
+    float timeSprint; //rnd Variable 
+    float timerForSprints; //timer for sprint
+    float timerForChillTime; //timer for chill times
+    bool chilling; // estado de pitipausa
 
     bool playerOnRoom; //For check if player is on room
 
@@ -59,7 +66,7 @@ public class EnemyFollowersScript : MonoBehaviour
         Freeze();
 
         
-
+        
     }
 
     //Follow basic function
@@ -76,8 +83,9 @@ public class EnemyFollowersScript : MonoBehaviour
         {
             case 0: StopEnemyFewSeconds(); break;
             case 1: Follow(target.gameObject); break;
-           // case 5: PlayerHasGone(); break;
-            
+            case 2: Follow(target.gameObject); break;
+            case 3: SprintState(); break;
+
         }
     }
 
@@ -88,6 +96,21 @@ public class EnemyFollowersScript : MonoBehaviour
         {
             case 1: life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_LifeBasic;
                     speed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_BasicSpeed;
+                break;
+            case 2:
+                life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_LifeUnity;
+                switch(sizeType)
+                {
+                    case 1: speed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_UnityBigSpeed; break;
+                    case 2: speed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_UnityMedSpeed; break;
+                    case 3: speed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_UnitySmallSpeed; break;
+                } 
+                break;
+            case 3:
+                life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_LifeSprinter;
+                speed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_SprinterSpeed;
+                timeChill = Random.Range(3f, 5f);
+                timeSprint = Random.Range(1f, 2f);
                 break;
         }
         timeFreezed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_TimeFreezed;
@@ -112,15 +135,12 @@ public class EnemyFollowersScript : MonoBehaviour
 
     //Stop Enemy
     void StopEnemyFewSeconds()
-    {
-        //rb2d.velocity = new Vector2 (0,0);
-        speed = 20;
+    {  
         rb2d.velocity = new Vector2(-moveDirection.x, -moveDirection.y);
         stopTimer += 1f * Time.deltaTime;
 
         if(stopTimer>= rndVarStop)
         {
-            speed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_BasicSpeed;
             stopTimer = 0;
             enemyType = realState;
         }
@@ -133,6 +153,7 @@ public class EnemyFollowersScript : MonoBehaviour
         rb2d.velocity = new Vector2(0,0);
         this.transform.position = initialPos;
     }
+
     //Enemy HAs Return
     public void PlayerHasReturn()
     {
@@ -143,12 +164,67 @@ public class EnemyFollowersScript : MonoBehaviour
         }
     }
     
+    //Spawn BROTHERS
+    void SpawnBrothers()
+    {
+        if(sizeType == 1)
+        {
+            Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().mediumUnityEnemy, new Vector2(this.transform.position.x + 0.5f, this.transform.position.y), Quaternion.identity);
+            Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().mediumUnityEnemy, new Vector2(this.transform.position.x - 0.5f, this.transform.position.y), Quaternion.identity);
+            Destroy(this.gameObject);
+        }
+        if (sizeType == 2)
+        {
+            Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().smallUnityEnemy, new Vector2(this.transform.position.x + 0.5f, this.transform.position.y), Quaternion.identity);
+            Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().smallUnityEnemy, new Vector2(this.transform.position.x - 0.5f, this.transform.position.y), Quaternion.identity);
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
+    }
+
+    //SPRINTER STATE
+    void SprintState()
+    {
+        if(!chilling)
+        {
+            timerForSprints += 1 * Time.deltaTime;
+
+            moveDirection = (target.transform.position - this.transform.position).normalized * speed;
+            rb2d.velocity = new Vector2(moveDirection.x, moveDirection.y);
+
+            if(timerForSprints >= timeSprint)
+            {
+                timerForChillTime = 0;
+                chilling = true;
+            }
+        }
+        else
+        {
+            timerForChillTime += 1 * Time.deltaTime;
+            rb2d.velocity = new Vector2(0, 0);
+
+            if (timerForChillTime >= timeChill)
+            {
+                timerForSprints = 0;
+                chilling = false;
+            }
+        }
+    }
+
     //LIFE LOGIC
     void LifeController()
     {
-        if (life <= 0)
+        if (life <= 0 && enemyType != 2)
         {
             Destroy(this.gameObject);
+        }
+        else if (life <= 0 && enemyType == 2)
+        {
+            SpawnBrothers();
         }
     }
 
@@ -184,30 +260,16 @@ public class EnemyFollowersScript : MonoBehaviour
 
         if (collision.gameObject.tag == "FollowerCollider")
         {
-            rndVarStop = Random.Range(0.2f, 0.3f);
+            rndVarStop = Random.Range(0.15f, 0.2f);
             enemyType = 0;
         }
         if (collision.gameObject.tag == "Wall")
         {
             
-            rndVarStop = Random.Range(0.2f, 0.3f);
+            rndVarStop = Random.Range(0.15f, 0.2f);
             enemyType = 0;
         }
-        if (collision.gameObject.tag == "CamaraPoint")
-        {
-
-           
-           
-        }
-
-    }
-    void OnTriggerExit2D(Collider2D collision)
-    {
         
     }
-    void OnCollisionEnter2D(Collision2D collision)
-   {
-        
-
-    }
+   
 }

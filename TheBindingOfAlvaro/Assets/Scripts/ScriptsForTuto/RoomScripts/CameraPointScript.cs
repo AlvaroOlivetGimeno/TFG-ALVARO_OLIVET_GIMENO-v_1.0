@@ -52,7 +52,7 @@ public class CameraPointScript : MonoBehaviour
         }
         if (collision.gameObject.tag == "Enemy")
         {
-            if(collision.GetComponent<PlayerIsOnRoom>().enemyType == 2)
+            if(collision.GetComponent<PlayerIsOnRoom>().enemyType == 2 || collision.GetComponent<PlayerIsOnRoom>().enemyType == 4)
             {
                 enemysOnRoom.Add(collision.gameObject);
             }

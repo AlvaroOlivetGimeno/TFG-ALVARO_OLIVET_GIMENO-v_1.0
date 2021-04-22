@@ -33,6 +33,7 @@ public class PlayerIsOnRoom : MonoBehaviour
         {
             enemyFollowScript.PlayerHasReturn();
         }
+        
 
 
     }
@@ -43,6 +44,10 @@ public class PlayerIsOnRoom : MonoBehaviour
         {
             enemyFollowScript.PlayerHasGone();
            
+        }
+        if (enemyType == 4)
+        {
+            Destroy(this.gameObject);
         }
 
     }

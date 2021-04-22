@@ -19,7 +19,8 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public float MAXDamage;
     public float MAXLife;
     public float timeSpecialHability;
-
+    public float timeEffectSpecialEnemysInvert;
+    public float timeEffectSpecialEnemysSquid;
 
     [Header("CHARACTER MINIMUM-STATE VARIABLES:")]
 
@@ -69,7 +70,10 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     [Header("AUTOMATIC OBJECTS:")]
     public GameObject mCamera;
 
-  
+    [Header("AUTOMATIC BOOLS:")]
+    public bool invertControls;
+    public bool blackScreen;
+
 
     void Start()
     {

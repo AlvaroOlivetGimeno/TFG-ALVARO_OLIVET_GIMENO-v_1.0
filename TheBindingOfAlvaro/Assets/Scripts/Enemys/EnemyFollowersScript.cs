@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyFollowersScript : MonoBehaviour
 {
     [Header("CHOOSE TYPE OF ENEMY:")]
-    public float enemyType = 0; //1.Basic  2.Unity
+    public float enemyType = 0; //1.Basic  2.Unity  3.Spawner
     [Header("CHOOSE SIZE (ONLY IF ITS TYPE 2):")]
     public float sizeType = 0; //1.Big 2.Medium 3.Small
 
@@ -41,6 +41,8 @@ public class EnemyFollowersScript : MonoBehaviour
     bool oneTime = false;
     bool playerOnRoom; //For check if player is on room
 
+    
+
     void Start()
     {
         BlackBoardEnemy = GameObject.FindGameObjectWithTag("EnemyBrain");
@@ -48,7 +50,7 @@ public class EnemyFollowersScript : MonoBehaviour
         
         target = GameObject.FindObjectOfType<ProtoPlayerScript>();
 
-        initialPos = this.transform.position;
+        
         realState = enemyType;
 
         //START METOD FOR VARIABLES
@@ -69,7 +71,7 @@ public class EnemyFollowersScript : MonoBehaviour
         Freeze();
 
 
-        Debug.Log(randomEnemy);
+
         
         
     }
@@ -86,7 +88,6 @@ public class EnemyFollowersScript : MonoBehaviour
    {
         if(randomEnemy == 0)
         {
-
             enemyTorret = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_TorretEnemy1;
         }
         else
@@ -104,7 +105,6 @@ public class EnemyFollowersScript : MonoBehaviour
 
     }
   
-   
 
     //Follow controller
     void FollowController()
@@ -115,7 +115,8 @@ public class EnemyFollowersScript : MonoBehaviour
             case 1: Follow(target.gameObject); break;
             case 2: Follow(target.gameObject); break;
             case 3: Follow(target.gameObject); break;
-         
+            case 4: Follow(target.gameObject); break;
+
             case 5: break;
 
         }
@@ -128,6 +129,7 @@ public class EnemyFollowersScript : MonoBehaviour
         {
             case 1: life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_LifeBasic;
                     speed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_BasicSpeed;
+                initialPos = this.transform.position;
                 break;
             case 2:
                 life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_LifeUnity;
@@ -136,15 +138,20 @@ public class EnemyFollowersScript : MonoBehaviour
                     case 1: speed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_UnityBigSpeed; break;
                     case 2: speed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_UnityMedSpeed; break;
                     case 3: speed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_UnitySmallSpeed; break;
-                } 
+                }
+                initialPos = this.transform.position;
                 break;
             case 3:
                 life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_LifeSpawner;
                 speed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_SpeedSpawner;
                 randomEnemy = Random.Range(0, 2);
-               
+                initialPos = this.transform.position;
                 break;
-           
+            case 4:
+                life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sp_MotherChildLife;
+                speed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sp_MotherChildSpeed;
+                break;
+
         }
         timeFreezed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_TimeFreezed;
     }
@@ -264,6 +271,8 @@ public class EnemyFollowersScript : MonoBehaviour
             Explosion();
         }
     }
+
+   
 
     //COLLISIONS
     private void OnTriggerEnter2D(Collider2D collision)

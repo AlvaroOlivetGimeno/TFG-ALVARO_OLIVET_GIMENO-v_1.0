@@ -78,8 +78,11 @@
     <Compile Include="Assets\Scripts\Enemys\PlayerIsOnRoom.cs" />
     <Compile Include="Assets\Scripts\ScriptsForTuto\RoomScripts\PointBrain.cs" />
     <Compile Include="Assets\Scripts\Enemys\EnemyFollowersScript.cs" />
-    <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ParryScript.cs" />
     <Compile Include="Assets\Scripts\Enemys\followersThings\CheckDirection.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ParryScript.cs" />
+    <Compile Include="Assets\Scripts\Enemys\EnemySpecialScript.cs" />
+    <Compile Include="Assets\Scripts\Enemys\SpecialThings\SpecialColliderScript.cs" />
+    <Compile Include="Assets\Scripts\ForDestroy\DestroyMe.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

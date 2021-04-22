@@ -22,6 +22,9 @@ public class HUD_MANAGER : MonoBehaviour
     public GameObject sh5;
     public GameObject sh0;
 
+    [Header("LIFE's GAME OBJECTS (HUD)")]
+
+    public GameObject BlackScreen;
 
     ProtoBLACKBOARD_Player BlackBoardPlayer;
     //ProtoPlayerScript protoPlayerScript;

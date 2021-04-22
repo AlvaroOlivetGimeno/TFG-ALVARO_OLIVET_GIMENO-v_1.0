@@ -6,6 +6,7 @@ public class ProtoPlayerScript : MonoBehaviour
 {
     //COMPONENTES QUE NECESITA PLAYER
     ProtoBLACKBOARD_Player BlackBoardPlayer;
+    HUD_MANAGER hudManager;
     Rigidbody2D rb2d;
 
    
@@ -34,10 +35,15 @@ public class ProtoPlayerScript : MonoBehaviour
     bool quadShoot = false;
     bool hunterState = false;
 
-    
+    //VARIABLES PER MOLESTAR (SPECIAL ENEMYS)
+    float invertTimer;
+    bool oneTimeInvert;
+    float screenTimer;
+
     void Start()
     {
         BlackBoardPlayer = GetComponent<ProtoBLACKBOARD_Player>();
+        hudManager = GetComponent<HUD_MANAGER>();
         rb2d = GetComponent<Rigidbody2D>();
 
         //Desactivar el Parry
@@ -81,8 +87,13 @@ public class ProtoPlayerScript : MonoBehaviour
 
         //-----------------------------------------------LIFE CONTROLLER---------------------------------------------
         //LifeController();
-        
+
         //-----------------------------------------------
+
+        //------------------------------------------ANNOYING EFFECTS FROM ENEMYS--------------------------------------
+        AnnoyingStatesController();
+
+        //---------------------------------------------
 
     }
     //MOVMENT
@@ -498,6 +509,63 @@ public class ProtoPlayerScript : MonoBehaviour
         }
     }
 
+    //Invert Controls
+    void InvertControls()
+    {
+        if(BlackBoardPlayer.invertControls)
+        {
+            if(!oneTimeInvert)
+            {
+                BlackBoardPlayer.characterSpeed *= -1;
+                oneTimeInvert = true;
+            }
+            
+            invertTimer += 1 * Time.deltaTime;
+
+            if(invertTimer>= BlackBoardPlayer.timeEffectSpecialEnemysInvert)
+            {
+                BlackBoardPlayer.characterSpeed *= -1;
+                invertTimer = 0;
+                oneTimeInvert = false;
+                BlackBoardPlayer.invertControls = false;
+                
+            }
+        }
+    }
+
+    //BLACK SCREEN
+    void BlackScreen()
+    {
+        if (BlackBoardPlayer.blackScreen)
+        {
+            hudManager.BlackScreen.gameObject.SetActive(true);
+
+            screenTimer += 1 * Time.deltaTime;
+
+            if (screenTimer >= BlackBoardPlayer.timeEffectSpecialEnemysSquid)
+            {
+                hudManager.BlackScreen.gameObject.SetActive(false);
+                screenTimer = 0;
+                BlackBoardPlayer.blackScreen = false;
+
+            }
+        }
+    }
+
+    //ANNOYING STATES
+    void AnnoyingStatesController()
+    {
+        //INVERT CONTROLS-------
+        InvertControls();
+
+        //----------------------
+
+        //BLACK SCREEN-------
+        BlackScreen();
+
+        //----------------------
+    }
+
     //COLLISIONS TRIGGER
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -574,7 +642,6 @@ public class ProtoPlayerScript : MonoBehaviour
             {
                 if (!superParry)
                 {
-                    Debug.Log("HIT");
                     other.GetComponent<TorretBullet>().impact = true;
                     BlackBoardPlayer.characterLife -= 1; 
                     Destroy(other.gameObject);  
@@ -584,6 +651,13 @@ public class ProtoPlayerScript : MonoBehaviour
                     other.GetComponent<TorretBullet>().Revote();
                 }
             }
+
+            //SPECIAL ENEMYS
+            if (other.gameObject.tag == "SpecialCollider")
+            {
+                //invertControls = true;
+            }
+
         }
         
 

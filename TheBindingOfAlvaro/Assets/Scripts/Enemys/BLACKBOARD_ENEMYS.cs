@@ -42,7 +42,20 @@ public class BLACKBOARD_ENEMYS : MonoBehaviour
     public GameObject mediumUnityEnemy;
     public GameObject smallUnityEnemy;
 
+    [Header("ENEMY's -SPECIAL- CONSTANTS:")]
+    public float sp_InverterLife;
+    public float sp_SquidLife;
+    public float sp_MotherLife;
+    public float sp_MotherTimeSpawn;
+    public float sp_MotherChildSpeed;
+    public float sp_MotherChildLife;
 
+    [Header("ENEMY's -SPECIAL- PARTICLES:")]
+    public GameObject sp_ParticlesInverter;
+    public GameObject sp_ParticlesSquid;
+    public GameObject sp_ParticlesMother;
+    [Header("ENEMY's -SPECIAL- ENEMY's:")]
+    public GameObject sp_LittleMother;
 
     void Start()
     {

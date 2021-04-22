@@ -296,7 +296,7 @@ public class ProtoPlayerScript : MonoBehaviour
     //DEFAULT STATE
     void DefaultState()
     {
-        this.transform.localScale = new Vector3(1, 1, 1);
+        this.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
         speed = BlackBoardPlayer.characterSpeed;
         delayShoot = BlackBoardPlayer.delayTimeToShoot;
     }

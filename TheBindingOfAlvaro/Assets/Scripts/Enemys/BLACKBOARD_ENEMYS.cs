@@ -9,7 +9,7 @@ public class BLACKBOARD_ENEMYS : MonoBehaviour
     public float sh_LifeIntelligent;
     public float sh_LifeBounce;
     public float sh_TimeToShootIntelligent;
-    public float sh_TimeToShootBasic;
+    //public float sh_TimeToShootBasic;
     public float sh_TimeToShootBounce;
     public float sh_ParryPct;
     public float sh_TimeFreezed;
@@ -29,13 +29,16 @@ public class BLACKBOARD_ENEMYS : MonoBehaviour
     public float fl_UnityBigSpeed;
     public float fl_UnityMedSpeed;
     public float fl_UnitySmallSpeed;
-    public float fl_LifeSprinter;
-    public float fl_SprinterSpeed;
-
+    public float fl_LifeSpawner;
+    public float fl_SpeedSpawner;
     public float fl_TimeFreezed;
+    public float fl_ParryPct;
+
+    [Header("ENEMY's -FOLLOWERS- ENEMY:")]
+    public GameObject fl_TorretEnemy1;
+    public GameObject fl_TorretEnemy2;
 
     [Header("ENEMY's -FOLLOWERS- CHILDRENS:")]
-
     public GameObject mediumUnityEnemy;
     public GameObject smallUnityEnemy;
 

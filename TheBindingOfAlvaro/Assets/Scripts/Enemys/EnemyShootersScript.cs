@@ -192,7 +192,7 @@ public class EnemyShootersScript : MonoBehaviour
         switch(enemyType)
         {
             case 1: life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_LifeBasic;
-                timeToShoot = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBasic;
+                timeToShoot = Random.Range(0.5f, 1f);
                 //timer
                 //timer = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBasic;
                 break;
@@ -200,13 +200,13 @@ public class EnemyShootersScript : MonoBehaviour
                 life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_LifeBounce;
                 timeToShoot = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBounce;  
                 //timer
-                //timer = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBasic; 
+                timer = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBounce; 
                 break;
             case 3:
                 life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_LifeIntelligent;
                 timeToShoot = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootIntelligent;  
                 //timer
-                //timer = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBasic; 
+                timer = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootIntelligent; 
                 break;
         }
         timeFreezed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeFreezed;

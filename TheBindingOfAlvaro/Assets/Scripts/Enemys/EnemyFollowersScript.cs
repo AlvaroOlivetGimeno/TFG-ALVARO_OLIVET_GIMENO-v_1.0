@@ -20,7 +20,7 @@ public class EnemyFollowersScript : MonoBehaviour
     ProtoPlayerScript target;
     Vector2 moveDirection;
     Vector2 initialPos;
-    
+ 
 
     float rndVarDelay; //first delay for shooting
     float rndVarStop; //for stopping enemy
@@ -35,7 +35,10 @@ public class EnemyFollowersScript : MonoBehaviour
     float timerForSprints; //timer for sprint
     float timerForChillTime; //timer for chill times
     bool chilling; // estado de pitipausa
-
+    GameObject enemyTorret; //donde se guarda el enemigo
+    float randomEnemy; //random enemy
+    float timerdelay = 0; //For death in state 3
+    bool oneTime = false;
     bool playerOnRoom; //For check if player is on room
 
     void Start()
@@ -65,6 +68,8 @@ public class EnemyFollowersScript : MonoBehaviour
         //--------------------------FREEZE----------------------------
         Freeze();
 
+
+        Debug.Log(randomEnemy);
         
         
     }
@@ -76,6 +81,31 @@ public class EnemyFollowersScript : MonoBehaviour
         rb2d.velocity = new Vector2(moveDirection.x, moveDirection.y); 
     }
 
+   //CHOOSE ENEMY
+   GameObject ChooseEnemy()
+   {
+        if(randomEnemy == 0)
+        {
+
+            enemyTorret = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_TorretEnemy1;
+        }
+        else
+        {
+            enemyTorret = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_TorretEnemy2;
+        }
+        return enemyTorret;
+   }
+
+   //GAME OVER BRO
+    void Explosion()
+    {
+        Instantiate(ChooseEnemy(), this.transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
+
+    }
+  
+   
+
     //Follow controller
     void FollowController()
     {
@@ -84,7 +114,9 @@ public class EnemyFollowersScript : MonoBehaviour
             case 0: StopEnemyFewSeconds(); break;
             case 1: Follow(target.gameObject); break;
             case 2: Follow(target.gameObject); break;
-            case 3: SprintState(); break;
+            case 3: Follow(target.gameObject); break;
+         
+            case 5: break;
 
         }
     }
@@ -107,11 +139,12 @@ public class EnemyFollowersScript : MonoBehaviour
                 } 
                 break;
             case 3:
-                life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_LifeSprinter;
-                speed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_SprinterSpeed;
-                timeChill = Random.Range(3f, 5f);
-                timeSprint = Random.Range(1f, 2f);
+                life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_LifeSpawner;
+                speed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_SpeedSpawner;
+                randomEnemy = Random.Range(0, 2);
+               
                 break;
+           
         }
         timeFreezed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_TimeFreezed;
     }
@@ -218,13 +251,17 @@ public class EnemyFollowersScript : MonoBehaviour
     //LIFE LOGIC
     void LifeController()
     {
-        if (life <= 0 && enemyType != 2)
+        if (life <= 0 && enemyType != 2 && enemyType != 3)
         {
             Destroy(this.gameObject);
         }
         else if (life <= 0 && enemyType == 2)
         {
             SpawnBrothers();
+        }
+        else if (life <= 0 && enemyType == 3)
+        {
+            Explosion();
         }
     }
 
@@ -265,11 +302,12 @@ public class EnemyFollowersScript : MonoBehaviour
         }
         if (collision.gameObject.tag == "Wall")
         {
-            
+            Debug.Log("OLA");
             rndVarStop = Random.Range(0.15f, 0.2f);
             enemyType = 0;
         }
         
+
     }
    
 }

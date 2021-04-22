@@ -17,10 +17,15 @@ public class TorretBullet : MonoBehaviour
     [Header("BULLET SPEED:")]
     public float damage;
 
+    [Header("THIS BULLET FREEZE?")]
+    public bool freeze;
+
     [Header("NO TOCAR:")]
 
     public bool impact = false;
     public bool rebote = false;
+
+    
 
     Rigidbody2D rb2d;
     
@@ -133,6 +138,10 @@ public class TorretBullet : MonoBehaviour
         {
             
             direction = collision.gameObject.GetComponent<CheckWallPosition>().relativePos;
+        }
+        if (collision.gameObject.tag == "DeadPoint")
+        {
+           direction = collision.gameObject.GetComponent<CheckDirection>().direction;
         }
     }
 }

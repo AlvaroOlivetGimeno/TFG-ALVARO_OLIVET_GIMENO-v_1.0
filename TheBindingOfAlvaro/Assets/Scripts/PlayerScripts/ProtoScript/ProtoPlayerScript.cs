@@ -9,10 +9,11 @@ public class ProtoPlayerScript : MonoBehaviour
     HUD_MANAGER hudManager;
     Rigidbody2D rb2d;
     
-    [Header("AUTOMATIC VARIABLES:")]
+   
    
     //VARIABLE PEL MOVIMENT
     Vector2 movment;
+     [Header("AUTOMATIC VARIABLES:")]
     public float speed;
     public float delayShoot;
 
@@ -106,6 +107,8 @@ public class ProtoPlayerScript : MonoBehaviour
         PauseControlls();
 
         //---------------------------------------------
+
+        //Debug.Log(BlackBoardPlayer.totalEnemysKilled);
     }
     //MOVMENT
     void Movment()
@@ -605,6 +608,13 @@ public class ProtoPlayerScript : MonoBehaviour
         }
     }
 
+    //SUM ROOMS I WATCHED
+    public void NewRoomSeen()
+    {
+        //ESTA A CAMARA POINT!
+
+        BlackBoardPlayer.numOfRoomsSeenInTheLevel += 1;
+    }
 
     //COLLISIONS TRIGGER
     void OnTriggerEnter2D(Collider2D other)
@@ -689,6 +699,7 @@ public class ProtoPlayerScript : MonoBehaviour
                 else
                 {
                     other.GetComponent<TorretBullet>().Revote();
+                   
                 }
             }
 

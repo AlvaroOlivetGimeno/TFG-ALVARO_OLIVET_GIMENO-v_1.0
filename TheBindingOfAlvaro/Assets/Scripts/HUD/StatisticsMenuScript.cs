@@ -12,7 +12,7 @@ public class StatisticsMenuScript : MonoBehaviour
     [Header("TYPE OF TEXT:")]
     public float textType; //1.Life  2.Speed  3.Shoot Speed  4.Money
 
-    public GameObject blackBoardPlayer;
+    GameObject blackBoardPlayer;
 
     void Start()
     {
@@ -35,6 +35,7 @@ public class StatisticsMenuScript : MonoBehaviour
             case 1: text.text = blackBoardPlayer.GetComponent<ProtoBLACKBOARD_Player>().characterLife.ToString(); break;
             case 2: text.text = blackBoardPlayer.GetComponent<ProtoPlayerScript>().speed.ToString(); break;
             case 3: text.text = blackBoardPlayer.GetComponent<ProtoPlayerScript>().delayShoot.ToString(); break;
+            case 4: text.text = blackBoardPlayer.GetComponent<ProtoBLACKBOARD_Player>().characterMoney.ToString(); break;
         }
     }
 }

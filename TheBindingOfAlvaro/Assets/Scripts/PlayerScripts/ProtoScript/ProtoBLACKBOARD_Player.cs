@@ -8,6 +8,7 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
 
     public float characterSpeed;
     public float delayTimeToShoot;
+    public float characterMoney;
     public float timeOfParry;
     public float habilityType = 0; //0.NADA  1.DOBLE TIR  2.TIR SIMULTANI 3.TIR SUPERIOR  4.TIR CONGELANT   5.SUPER TIR  6.MINIMUM  7.MAXIMUM
     public float stateType = 0; //0.Nada  1.Minimum    2.Maximum    
@@ -75,6 +76,23 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public bool blackScreen;
 
 
+    [Header("CHARACTER VARIABLES FOR MISSIONS OR INDICATORS:")]
+    public float numOfRoomsSeenInTheLevel; //ES CALCULA A CAMERA POINT
+    public int numOfParrysDone;  //ES CALCULA A ENEMY TORRET, A REVOTE();
+
+    public int totalEnemysKilled;
+
+    public int basicTorretKilled;
+    public int bounceTorretKilled;
+    public int intelligentTorretKilled;
+    public int basicFollowerKilled;
+    public int unityFollowerKilled;
+    public int spawnerFollowerKilled;
+    public int inverterKilled;
+    public int squidKilled;
+    public int mothersKilled;
+
+
     void Start()
     {
         mCamera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -85,6 +103,9 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
+        //calculos que hacer
+        totalEnemysKilled = basicTorretKilled + bounceTorretKilled + intelligentTorretKilled +
+                            basicFollowerKilled + unityFollowerKilled + spawnerFollowerKilled +
+                            inverterKilled + squidKilled + mothersKilled;
     }
 }

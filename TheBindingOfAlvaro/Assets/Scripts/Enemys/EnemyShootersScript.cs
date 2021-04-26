@@ -37,11 +37,14 @@ public class EnemyShootersScript : MonoBehaviour
 
     Vector3 spawnPos; //for instantiate normal bullet
     bool oneTime;
+
+    GameObject player;
+    bool sumOneKill;
     void Start()
     {
         BlackBoardEnemy = GameObject.FindGameObjectWithTag("EnemyBrain");
         rb2d = GetComponent<Rigidbody2D>();
-       
+        player = GameObject.FindGameObjectWithTag("Player");
 
         //START VARIABLES
         StartMetod();
@@ -227,6 +230,23 @@ public class EnemyShootersScript : MonoBehaviour
     {
         if (life <= 0)
         {
+            if(!sumOneKill)
+            {
+                if(enemyType == 1)
+                {
+                    player.GetComponent<ProtoBLACKBOARD_Player>().basicTorretKilled += 1;
+                }
+                else if(enemyType == 2)
+                {
+                     player.GetComponent<ProtoBLACKBOARD_Player>().bounceTorretKilled += 1;
+                }
+                else if(enemyType == 3)
+                {
+                     player.GetComponent<ProtoBLACKBOARD_Player>().intelligentTorretKilled += 1;
+                }
+                      
+                sumOneKill = true;
+            }
             Destroy(this.gameObject);
         }
     }

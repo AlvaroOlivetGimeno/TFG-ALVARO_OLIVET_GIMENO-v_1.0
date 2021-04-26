@@ -5239,6 +5239,7 @@ GameObject:
   - component: {fileID: 4115733063256590554}
   - component: {fileID: 9126555110396836765}
   - component: {fileID: 8919042498319262175}
+  - component: {fileID: 871943881897894211}
   m_Layer: 0
   m_Name: CamaraPoint
   m_TagString: CamaraPoint
@@ -5307,6 +5308,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &871943881897894211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238245459445127983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33cdf328593278546a9d7e272e385252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerHere: 0
+  firstTime: 0
+  enemysOnRoom: []
 --- !u!1 &5254687568520707789
 GameObject:
   m_ObjectHideFlags: 0

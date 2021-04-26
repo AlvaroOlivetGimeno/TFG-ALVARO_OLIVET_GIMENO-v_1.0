@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyFollowersScript : MonoBehaviour
 {
     [Header("CHOOSE TYPE OF ENEMY:")]
-    public float enemyType = 0; //1.Basic  2.Unity  3.Spawner
+    public float enemyType = 0; //1.Basic  2.Unity  3.Spawner //4.HIJO DE MADRE
     [Header("CHOOSE SIZE (ONLY IF ITS TYPE 2):")]
     public float sizeType = 0; //1.Big 2.Medium 3.Small
 
@@ -41,13 +41,15 @@ public class EnemyFollowersScript : MonoBehaviour
     bool oneTime = false;
     bool playerOnRoom; //For check if player is on room
 
+    GameObject player;
+    bool sumOneKill; //for sum kills
     
 
     void Start()
     {
         BlackBoardEnemy = GameObject.FindGameObjectWithTag("EnemyBrain");
         rb2d = GetComponent<Rigidbody2D>();
-        
+        player = GameObject.FindGameObjectWithTag("Player");
         target = GameObject.FindObjectOfType<ProtoPlayerScript>();
 
         
@@ -221,6 +223,11 @@ public class EnemyFollowersScript : MonoBehaviour
         }
         else
         {
+            if(!sumOneKill)
+            {
+                player.GetComponent<ProtoBLACKBOARD_Player>().basicFollowerKilled += 1;    
+                sumOneKill = true;
+            }
             Destroy(this.gameObject);
         }
 
@@ -258,17 +265,38 @@ public class EnemyFollowersScript : MonoBehaviour
     //LIFE LOGIC
     void LifeController()
     {
-        if (life <= 0 && enemyType != 2 && enemyType != 3)
+        if (life <= 0 && enemyType != 2 && enemyType != 3 && enemyType != 4)
         {
+            if(!sumOneKill)
+            {
+                player.GetComponent<ProtoBLACKBOARD_Player>().basicFollowerKilled += 1;    
+                sumOneKill = true;
+            }
+            
             Destroy(this.gameObject);
+
         }
         else if (life <= 0 && enemyType == 2)
         {
+            if(!sumOneKill)
+            {
+                player.GetComponent<ProtoBLACKBOARD_Player>().unityFollowerKilled += 1;    
+                sumOneKill = true;
+            }
             SpawnBrothers();
         }
         else if (life <= 0 && enemyType == 3)
         {
+            if(!sumOneKill)
+            {
+                player.GetComponent<ProtoBLACKBOARD_Player>().spawnerFollowerKilled += 1;    
+                sumOneKill = true;
+            }
             Explosion();
+        }
+        else if(life <= 0 && enemyType == 4)
+        {
+            Destroy(this.gameObject);
         }
     }
 

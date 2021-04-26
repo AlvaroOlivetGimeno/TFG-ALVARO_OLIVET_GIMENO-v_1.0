@@ -33,10 +33,14 @@ public class TorretBullet : MonoBehaviour
     Vector2 moveDirection;
     bool shooted;
 
+    GameObject player;
+
+    bool sumOne;
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-
+        player = GameObject.FindGameObjectWithTag("Player");
         target = GameObject.FindObjectOfType<ProtoPlayerScript>();
         moveDirection = (target.transform.position - this.transform.position).normalized * speed;
         
@@ -105,6 +109,13 @@ public class TorretBullet : MonoBehaviour
             target = GameObject.FindObjectOfType<ProtoPlayerScript>();
             moveDirection = (this.transform.position - target.transform.position).normalized * speed;
             rb2d.velocity = new Vector2(moveDirection.x, moveDirection.y);
+
+            if(!sumOne)
+            {
+                player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDone += 1;
+                sumOne = true;
+            }
+
             rebote = true;
         }
         

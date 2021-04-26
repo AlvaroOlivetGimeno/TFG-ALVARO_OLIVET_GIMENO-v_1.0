@@ -21,10 +21,14 @@ public class EnemySpecialScript : MonoBehaviour
     GameObject particleSystem;
     float spawnTimer;
 
+    GameObject player;
+    bool sumOneKill;
+
     void Start()
     {
         BlackBoardEnemy = GameObject.FindGameObjectWithTag("EnemyBrain");
         rb2d = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
 
         StartMetod();
     }
@@ -74,7 +78,8 @@ public class EnemySpecialScript : MonoBehaviour
             }
             else
             {
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
+                life = 0;
             }
             
         }
@@ -117,6 +122,22 @@ public class EnemySpecialScript : MonoBehaviour
     {
         if(life <= 0)
         {
+            if(!sumOneKill)
+            {
+                if(enemyType == 1)
+                {
+                    player.GetComponent<ProtoBLACKBOARD_Player>().inverterKilled += 1;
+                }
+                else if( enemyType == 2)
+                {
+                    player.GetComponent<ProtoBLACKBOARD_Player>().squidKilled += 1;
+                }
+                else if(enemyType == 3)
+                {
+                    player.GetComponent<ProtoBLACKBOARD_Player>().mothersKilled += 1;
+                }
+                sumOneKill = true;
+            }
             Destroy(this.gameObject);
         }
     }

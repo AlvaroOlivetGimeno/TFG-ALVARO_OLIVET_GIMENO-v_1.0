@@ -8,12 +8,13 @@ public class ProtoPlayerScript : MonoBehaviour
     ProtoBLACKBOARD_Player BlackBoardPlayer;
     HUD_MANAGER hudManager;
     Rigidbody2D rb2d;
-
+    
+    [Header("AUTOMATIC VARIABLES:")]
    
     //VARIABLE PEL MOVIMENT
     Vector2 movment;
-    float speed;
-    float delayShoot;
+    public float speed;
+    public float delayShoot;
 
     //VARIABLE PER LA POSICIÓ DE LA CAMARA
     Vector3 vPos;
@@ -40,6 +41,9 @@ public class ProtoPlayerScript : MonoBehaviour
     bool oneTimeInvert;
     float screenTimer;
 
+    //PAUSE BOOL
+    bool activePause = false;
+
     void Start()
     {
         BlackBoardPlayer = GetComponent<ProtoBLACKBOARD_Player>();
@@ -54,6 +58,9 @@ public class ProtoPlayerScript : MonoBehaviour
 
         //valor al delay
         delayShoot = BlackBoardPlayer.delayTimeToShoot;
+
+        //DesactivatePause
+        hudManager.pauseMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -95,6 +102,10 @@ public class ProtoPlayerScript : MonoBehaviour
 
         //---------------------------------------------
 
+        //-------------------------------------------------PAUSE MENU LOGIC-------------------------------------------
+        PauseControlls();
+
+        //---------------------------------------------
     }
     //MOVMENT
     void Movment()
@@ -565,6 +576,35 @@ public class ProtoPlayerScript : MonoBehaviour
 
         //----------------------
     }
+    
+    //PAUSE
+    void Pause()
+    {
+        if(!activePause)
+        {
+            Time.timeScale = 0f;
+            activePause = true;
+            hudManager.pauseMenu.gameObject.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            activePause = false;
+            hudManager.pauseMenu.gameObject.SetActive(false);
+        }
+    }
+    
+
+    //PAUSE LOGIC
+    void PauseControlls()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause();
+
+        }
+    }
+
 
     //COLLISIONS TRIGGER
     void OnTriggerEnter2D(Collider2D other)

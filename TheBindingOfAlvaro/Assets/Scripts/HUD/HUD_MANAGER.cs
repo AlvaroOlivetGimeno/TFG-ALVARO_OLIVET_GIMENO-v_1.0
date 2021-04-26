@@ -21,6 +21,10 @@ public class HUD_MANAGER : MonoBehaviour
     public GameObject sh4;
     public GameObject sh5;
     public GameObject sh0;
+    
+    [Header("LIFE's GAME OBJECTS (HUD)")]
+
+    public GameObject pauseMenu;
 
     [Header("LIFE's GAME OBJECTS (HUD)")]
 

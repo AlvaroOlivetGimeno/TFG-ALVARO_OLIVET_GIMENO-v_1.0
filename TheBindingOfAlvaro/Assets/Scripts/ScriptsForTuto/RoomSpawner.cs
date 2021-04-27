@@ -44,21 +44,19 @@ public class RoomSpawner : MonoBehaviour
 
     public void roomSpawner()
     {
-        if(spawned== false && rBrain.GetComponent<RoomTemplates>().MapIsReady() == false)
+        if(spawned == false && rBrain.GetComponent<RoomTemplates>().MapIsReady() == false)
         {
             if(openingDirection == 1)
             {
                 if(!dontSpawn)
                 {
                     rand = Random.Range(0,rBrain.GetComponent<RoomTemplates>().downRooms.Length);
-                    //Debug.Log("IT IS SPAWNED?" + spawned + "  WHATS THE INDEX YO DECIDE:"+rand);
                     Instantiate(rBrain.GetComponent<RoomTemplates>().downRooms[rand],new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0), Quaternion.identity);
-                    room = rBrain.GetComponent<RoomTemplates>().downRooms[rand];
+                    //room = rBrain.GetComponent<RoomTemplates>().downRooms[rand];
                     
                 }
                 else
                 {
-                    //Debug.Log("TA OCUPAO BRO:(");
                     Destroy(this.gameObject);
                 }
                
@@ -70,11 +68,10 @@ public class RoomSpawner : MonoBehaviour
                 {
                     rand = Random.Range(0,rBrain.GetComponent<RoomTemplates>().upRooms.Length);
                     Instantiate(rBrain.GetComponent<RoomTemplates>().upRooms[rand], new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0), Quaternion.identity);
-                    room = rBrain.GetComponent<RoomTemplates>().upRooms[rand];    
+                    //room = rBrain.GetComponent<RoomTemplates>().upRooms[rand];    
                 }
                 else
                 {
-                    //Debug.Log("TA OCUPAO BRO:(");
                     Destroy(this.gameObject);
                 }  
             }  
@@ -86,11 +83,10 @@ public class RoomSpawner : MonoBehaviour
                 {
                     rand = Random.Range(0,rBrain.GetComponent<RoomTemplates>().rightRooms.Length);
                     Instantiate(rBrain.GetComponent<RoomTemplates>().rightRooms[rand], new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0), Quaternion.identity);
-                    room = rBrain.GetComponent<RoomTemplates>().rightRooms[rand];   
+                    //room = rBrain.GetComponent<RoomTemplates>().rightRooms[rand];   
                 }
                 else
                 {
-                    //Debug.Log("TA OCUPAO BRO:(");
                     Destroy(this.gameObject);
                 }  
             }
@@ -101,16 +97,16 @@ public class RoomSpawner : MonoBehaviour
                 {
                     rand = Random.Range(0,rBrain.GetComponent<RoomTemplates>().leftRooms.Length);
                     Instantiate(rBrain.GetComponent<RoomTemplates>().leftRooms[rand], new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0), Quaternion.identity);
-                    room = rBrain.GetComponent<RoomTemplates>().leftRooms[rand];
+                    //room = rBrain.GetComponent<RoomTemplates>().leftRooms[rand];
                     
                 }
                 else
                 {
-                    //Debug.Log("TA OCUPAO BRO:(");
                     Destroy(this.gameObject);
                 }  
             } 
-            spawned = true;  
+            spawned = true;
+            Destroy(this.gameObject);  
         }
         else
         {
@@ -119,7 +115,6 @@ public class RoomSpawner : MonoBehaviour
                 Instantiate(rBrain.GetComponent<RoomTemplates>().superRooms, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0), Quaternion.identity);
                 spawned = true; 
             }
-           
         }
         
 

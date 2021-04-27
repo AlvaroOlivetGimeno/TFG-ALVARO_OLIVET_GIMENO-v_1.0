@@ -89,7 +89,7 @@ public class RoomTemplates : MonoBehaviour
     {
         if(waiteTime <= 0 && spawnStairs == false)
         {
-            Debug.Log("INSTANCIANDO ESCALERAS");
+            //Debug.Log("INSTANCIANDO ESCALERAS");
             MapIsFinished = true;
             spawnStairs = true;
             if(rooms.Count >= MinNumOfRooms)
@@ -100,7 +100,7 @@ public class RoomTemplates : MonoBehaviour
         }
         else if(spawnStairs == false && MapIsReady())
         {
-            Debug.Log("INSTANCIANDO ESCALERAS");
+            //Debug.Log("INSTANCIANDO ESCALERAS");
             Instantiate(stairs, rooms[rooms.Count-1].transform.position, Quaternion.identity);
             MapIsFinished = true;
             spawnStairs = true;

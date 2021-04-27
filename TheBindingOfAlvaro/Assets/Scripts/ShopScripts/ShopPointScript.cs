@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof (CircleCollider2D))]
 public class ShopPointScript : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -38,7 +39,7 @@ public class ShopPointScript : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        circleCollider.GetComponent<CircleCollider2D>();
+        circleCollider = circleCollider.GetComponent<CircleCollider2D>();
 
         //START METOD
         StartMetod();

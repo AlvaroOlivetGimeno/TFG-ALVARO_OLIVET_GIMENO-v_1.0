@@ -15,6 +15,7 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public float specialStateType = 0; //1.inbulnerabilitat 2.Tir Quadruple 3.TotalParry 4.Depredador 5.SuperKill
     public float specialHabilityCatcth = 0;
     public float characterLife;
+    public float characterSpaceLife;
     public float MINIMDelay;
     public float MAXSpeed;
     public float MAXDamage;
@@ -22,6 +23,7 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public float timeSpecialHability;
     public float timeEffectSpecialEnemysInvert;
     public float timeEffectSpecialEnemysSquid;
+    public bool activePause = false;
 
     [Header("CHARACTER MINIMUM-STATE VARIABLES:")]
 

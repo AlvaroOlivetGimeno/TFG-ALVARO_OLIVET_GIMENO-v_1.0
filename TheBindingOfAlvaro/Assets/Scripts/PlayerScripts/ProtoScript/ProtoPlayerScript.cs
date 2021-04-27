@@ -43,7 +43,7 @@ public class ProtoPlayerScript : MonoBehaviour
     float screenTimer;
 
     //PAUSE BOOL
-    bool activePause = false;
+    public bool activePause = false;
 
     void Start()
     {
@@ -583,16 +583,16 @@ public class ProtoPlayerScript : MonoBehaviour
     //PAUSE
     void Pause()
     {
-        if(!activePause)
+        if(!BlackBoardPlayer.activePause)
         {
             Time.timeScale = 0f;
-            activePause = true;
+            BlackBoardPlayer.activePause = true;
             hudManager.pauseMenu.gameObject.SetActive(true);
         }
         else
         {
             Time.timeScale = 1f;
-            activePause = false;
+            BlackBoardPlayer.activePause = false;
             hudManager.pauseMenu.gameObject.SetActive(false);
         }
     }
@@ -650,7 +650,9 @@ public class ProtoPlayerScript : MonoBehaviour
                 {
                     case 1: speedSum = speedSum + 0.3f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
                     case 2: delaySum = delaySum - 0.05f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
-                    case 3: BlackBoardPlayer.characterLife = BlackBoardPlayer.characterLife + 1f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
+                    case 3: BlackBoardPlayer.characterLife = BlackBoardPlayer.characterLife + 1f; 
+                            BlackBoardPlayer.characterSpaceLife = BlackBoardPlayer.characterSpaceLife + 1f; 
+                            loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
                     case 4: damageSum = damageSum + 0.3f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
                 }
             } 
@@ -708,7 +710,19 @@ public class ProtoPlayerScript : MonoBehaviour
             {
                 //invertControls = true;
             }
+            
+            //--------------------------------------------------------------------------------------------
 
+            //--------------------------------LIFE--------------------------------------------------------
+
+            if(other.gameObject.tag =="Life")
+            {
+                if(BlackBoardPlayer.characterLife < BlackBoardPlayer.characterSpaceLife)
+                {
+                    BlackBoardPlayer.characterLife++;
+                    Destroy(other.gameObject);
+                }
+            }
         }
         
 

@@ -13,6 +13,14 @@ public class HUD_MANAGER : MonoBehaviour
     public GameObject l4;
     public GameObject l5;
 
+    [Header("LIFE's SPACE GAME OBJECTS (HUD)")]
+
+    public GameObject ls1;
+    public GameObject ls2;
+    public GameObject ls3;
+    public GameObject ls4;
+    public GameObject ls5;
+
     [Header("SPECIAL HABILITY's GAME OBJECTS (HUD)")]
 
     public GameObject sh1;
@@ -45,7 +53,8 @@ public class HUD_MANAGER : MonoBehaviour
     {
         //------------------------LIFE-------------------------
         lifeController();
-
+        lifeSpaceController();
+        
         //------------------
 
         //-------------------HABILITYS-------------------------
@@ -65,6 +74,19 @@ public class HUD_MANAGER : MonoBehaviour
             case 3: l1.gameObject.SetActive(true); l2.gameObject.SetActive(true); l3.gameObject.SetActive(true); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); break;
             case 4: l1.gameObject.SetActive(true); l2.gameObject.SetActive(true); l3.gameObject.SetActive(true); l4.gameObject.SetActive(true); l5.gameObject.SetActive(false); break;
             case 5: l1.gameObject.SetActive(true); l2.gameObject.SetActive(true); l3.gameObject.SetActive(true); l4.gameObject.SetActive(true); l5.gameObject.SetActive(true); break;
+        }
+    }
+
+    void lifeSpaceController()
+    {
+        switch (BlackBoardPlayer.characterSpaceLife)
+        {
+            case 0: ls1.gameObject.SetActive(false); ls2.gameObject.SetActive(false); ls3.gameObject.SetActive(false); ls4.gameObject.SetActive(false); ls5.gameObject.SetActive(false); break;
+            case 1: ls1.gameObject.SetActive(true); ls2.gameObject.SetActive(false); ls3.gameObject.SetActive(false); ls4.gameObject.SetActive(false); ls5.gameObject.SetActive(false); break;
+            case 2: ls1.gameObject.SetActive(true); ls2.gameObject.SetActive(true); ls3.gameObject.SetActive(false); ls4.gameObject.SetActive(false); ls5.gameObject.SetActive(false); break;
+            case 3: ls1.gameObject.SetActive(true); ls2.gameObject.SetActive(true); ls3.gameObject.SetActive(true); ls4.gameObject.SetActive(false); ls5.gameObject.SetActive(false); break;
+            case 4: ls1.gameObject.SetActive(true); ls2.gameObject.SetActive(true); ls3.gameObject.SetActive(true); ls4.gameObject.SetActive(true); ls5.gameObject.SetActive(false); break;
+            case 5: ls1.gameObject.SetActive(true); ls2.gameObject.SetActive(true); ls3.gameObject.SetActive(true); ls4.gameObject.SetActive(true); ls5.gameObject.SetActive(true); break;
         }
     }
 

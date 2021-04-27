@@ -12,6 +12,8 @@ public class CameraPointScript : MonoBehaviour
     [Header("LISTA ENEMIGOS:")]
     public List<GameObject> enemysOnRoom = new List<GameObject>();
 
+    
+
     void Start()
     {
         

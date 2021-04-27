@@ -34,6 +34,14 @@ public class RoomTemplates : MonoBehaviour
 
     float waitTimeReserva;
 
+    [Header("SHOP THINGS")]
+
+    public GameObject shop;
+
+    public bool shopSpawned;
+
+    public int roomChoosed;
+
     //ACCESO A OTROS SCRIPTS o OBJETOS
 
     GameObject entryRoom;
@@ -63,6 +71,10 @@ public class RoomTemplates : MonoBehaviour
         
         //------------------------------------------INSTANCIAR ESCALERAS--------------------------------------------------
         InstantateStairs();
+
+        //------------------------------------------INSTANCIAR SHOP--------------------------------------------------
+        InstantateShop();
+
 
         //------------------------------------------------RESTART MAP------------------------------------------------------
         if(MapIsFinished && rooms.Count < MinNumOfRooms && restartIsDone == false)
@@ -111,6 +123,24 @@ public class RoomTemplates : MonoBehaviour
             {
                 waiteTime -= Time.deltaTime;
             }
+            
+        }
+    }
+
+     public void InstantateShop()
+    {
+        
+
+       
+        if(shopSpawned == false && MapIsReady())
+        {
+            roomChoosed = Random.Range(5,rooms.Count-5);
+            Instantiate(shop, rooms[roomChoosed].transform.position, Quaternion.identity);
+            shopSpawned = true;
+        }
+        else
+        {
+           
             
         }
     }

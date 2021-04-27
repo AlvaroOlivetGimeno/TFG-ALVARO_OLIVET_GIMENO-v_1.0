@@ -6,98 +6,98 @@ public class MissionManager : MonoBehaviour
 {
    
     [Header("NUM. OF MISSIONS IN TOTAL:")]
-    public float numTotalMissions;
-
-    [Header("MISSIONS TEXT's PREFAB's:")]
-    public GameObject txt1;
-    public GameObject txt2;
-    public GameObject txt3;
-
-    [Header("POINTS OF PAUSE HUD:")]
-
-    public GameObject[] pointsOfPauseHUD;
+    public float numTotalMissionsActive;
 
     [Header("MISSION's")]
 
     public GameObject[] missions;
 
+    int rndVar;
+
+    int missionsActive;
+
+    [Header("MISSION's COMPLETED")]  
+    public int missionsDone;
+    public bool stopMissions;
     
 
 
 
     void Start()
     {
-        pointsOfPauseHUD = GameObject.FindGameObjectsWithTag("PauseMissionPoint");
+        
         missions = GameObject.FindGameObjectsWithTag("Mission");
     }
 
     // Update is called once per frame
     void Update()
     {
-        MissionController();
+        //--------------------------CHOOSE RANDOM MISSION----------------------------  
+        ChooseRandomMision();
+
+        //------------------
+
+        //---------------------------CHECK IF ITS COMPLETED---------------------------
+        CheckIfItsCompleted();
+
+        //---------------------
+
     }
 
-    //IS ANY POINT FREE
-    public bool IsThereAPointFree()
+    //Choose Mision Randomly
+    void ChooseRandomMision()
     {
-        foreach(GameObject point in pointsOfPauseHUD)
+        if(missionsDone != missions.Length)
         {
-            if(!point.GetComponent<PointForMission>().empty)
+            if(numTotalMissionsActive > missions.Length)
             {
-                return true;
+                Debug.LogWarning("CUIDADO! NO TIENES TANTAS MISIONES!");
             }
             else
             {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    //CHOOSE MISION
-    GameObject ChooseMission()
-    {
-        foreach(GameObject mis in missions)
-        {
-            if(!mis.GetComponent<MissionCommonScript>().completed && !mis.GetComponent<MissionCommonScript>().active)
-            {
-                return mis.gameObject;
-            }
-        }
-
-        return null;
-        
-    }
-
-
-
-    //MISION CONTROLLER
-    void MissionController()
-    {
-        if(IsThereAPointFree())
-        {
-            foreach(GameObject point in pointsOfPauseHUD)
-            {
-                if(!point.GetComponent<PointForMission>().empty)
+                if(missionsActive < numTotalMissionsActive)
                 {
-                    switch(ChooseMission().GetComponent<MissionCommonScript>().missionType)
+                    rndVar = Random.Range(0,missions.Length);
+
+                    if(!missions[rndVar].GetComponent<MissionCommonScript>().missionActive && !missions[rndVar].GetComponent<MissionCommonScript>().completed)
                     {
-                        case 1: Instantiate(txt1, point.transform.position, Quaternion.identity);
-                                point.GetComponent<PointForMission>().empty = true;
-                                ChooseMission().GetComponent<MissionCommonScript>().active = true;
-                        break;
-                        case 2: Instantiate(txt1, point.transform.position, Quaternion.identity);
-                                point.GetComponent<PointForMission>().empty = true;
-                                ChooseMission().GetComponent<MissionCommonScript>().active = true;
-                        break;
-                        case 3: Instantiate(txt1, point.transform.position, Quaternion.identity);
-                                point.GetComponent<PointForMission>().empty = true;
-                                ChooseMission().GetComponent<MissionCommonScript>().active = true;
-                        break;
+                        missions[rndVar].GetComponent<MissionCommonScript>().missionActive = true;
+                        missionsActive++;
                     }
-                   
+                    else
+                    {
+                        ChooseRandomMision();
+                    }
+                }
+                else
+                {
+                    //Debug.Log("SE ACABO");
                 }
             }
         }
+        else
+        {
+            stopMissions = true;
+            Debug.Log("MISSIONS TOTES FETES");          
+        }
+        
+        
     }
+
+    //Check if its active and complete
+    void CheckIfItsCompleted()
+    {
+        foreach(GameObject mis in missions)
+        {
+            if(mis.GetComponent<MissionCommonScript>().completed && mis.GetComponent<MissionCommonScript>().missionActive && !mis.GetComponent<MissionCommonScript>().motherKnow)
+            {
+                missionsActive = missionsActive -1;
+                missionsDone += 1;
+                //Destroy(mis.gameObject);
+                mis.GetComponent<MissionCommonScript>().motherKnow = true;
+            }
+        }
+    }
+    
+    
 }

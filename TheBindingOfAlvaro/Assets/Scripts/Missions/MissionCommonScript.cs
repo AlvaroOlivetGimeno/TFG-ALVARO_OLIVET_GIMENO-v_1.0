@@ -12,13 +12,16 @@ public class MissionCommonScript : MonoBehaviour
 
 
     [Header("IS THIS MISION ACTIVE?")]
-    public bool active;
+    public bool missionActive;
 
     [Header("RECICLABLE MISSION??")]
     public bool recicle;
     
     [Header("MISSION COMPLETED?")]
     public bool completed = false;
+
+    [Header("DOES YOUR MOTHER KNOW THAT YOUR OUT?")]
+    public bool motherKnow = false;
 
     [Header("AUTOMATIC VARIABLES (MIISON 2):")]
 
@@ -59,13 +62,15 @@ public class MissionCommonScript : MonoBehaviour
     {
         //--------------------------MISSION CONTROLLER-----------------------
         MissionChooser();
-
+        
         //--------------
 
         //--------------------------MISSION COMPLETED-----------------------
         MissionCompleted();
 
         //-------------
+
+        
     }
 
     //START METODH
@@ -114,14 +119,14 @@ public class MissionCommonScript : MonoBehaviour
     void Mission1()
     {
         //INVESTIGA TOTES LES SALES DE UN PIS.
-        if(active)
+        if(missionActive)
         {
             if(roomBrain.GetComponent<RoomTemplates>().MapIsFinished)
             {
-            if(player.GetComponent<ProtoBLACKBOARD_Player>().numOfRoomsSeenInTheLevel  == (roomBrain.GetComponent<RoomTemplates>().sizeOfList +1))
-            {
-                completed = true;
-            }
+                if(player.GetComponent<ProtoBLACKBOARD_Player>().numOfRoomsSeenInTheLevel  == (roomBrain.GetComponent<RoomTemplates>().sizeOfList +1))
+                {
+                    completed = true;
+                }
             }
         }
         
@@ -130,11 +135,13 @@ public class MissionCommonScript : MonoBehaviour
 
     void Mission2()
     {
-        if(active)
+        
+        if(missionActive)
         {
             //REBOTA 'x' cops una bala amb parry
             if(player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDone >= parrysToDo)
             {
+                
                 completed = true;
             }
         }
@@ -144,7 +151,7 @@ public class MissionCommonScript : MonoBehaviour
 
     void Mission3()
     {
-        if(active)
+        if(missionActive)
         {
             //MATAR 'x' ENEMICS EN UN PIS
 

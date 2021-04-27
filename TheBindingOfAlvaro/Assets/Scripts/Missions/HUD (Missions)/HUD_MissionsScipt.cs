@@ -30,15 +30,16 @@ public class HUD_MissionsScipt : MonoBehaviour
 
     //OTRAS
 
-    public int numOfXYouHaveToDo;
-    public int numOfXYouHaveDone;
+    public string numOfXYouHaveToDo;
+    public string numOfXYouHaveDone;
     GameObject player;
+    GameObject roomBrain;
     void Start()
     {
         text = GetComponent<Text>();
         player = GameObject.FindGameObjectWithTag("Player");
         mission = GameObject.FindGameObjectsWithTag("Mission");
-
+        roomBrain = GameObject.FindGameObjectWithTag("RoomBrain");
         
     }
 
@@ -61,7 +62,15 @@ public class HUD_MissionsScipt : MonoBehaviour
     {
         switch(textType)
         {
-            case 1: break;
+            case 1: 
+            switch(missionNum)
+            {
+                case 1: numOfXYouHaveToDo = (roomBrain.GetComponent<RoomTemplates>().sizeOfList +1).ToString();
+                        numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().numOfRoomsSeenInTheLevel.ToString();
+                break;
+            }
+
+            break;
             case 2:
 
                 switch(missionNum)
@@ -71,10 +80,10 @@ public class HUD_MissionsScipt : MonoBehaviour
                     {
                         if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
                         {
-                            numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().parrysToDo;
+                            numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().parrysToDo.ToString();
                         }   
                     }
-                    numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDone;
+                    numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDone.ToString();
 
                     break;
 
@@ -83,10 +92,10 @@ public class HUD_MissionsScipt : MonoBehaviour
                         {
                             if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
                             {
-                                numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().enemysToKill;
+                                numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().enemysToKill.ToString();
                             }   
                         }
-                    numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilled;
+                    numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilled.ToString();
             break;
                 }
                 
@@ -102,9 +111,9 @@ public class HUD_MissionsScipt : MonoBehaviour
     {
         switch(textType)
         {
-            case 1: text.text = txt; break;
-            case 2: text.text = txt1 + " " + numOfXYouHaveToDo.ToString() + " " + txt2 +" (" + 
-                    numOfXYouHaveDone.ToString() + "/" + numOfXYouHaveToDo.ToString() + ")"; break;
+            case 1: text.text = txt + " ("+ numOfXYouHaveDone +"/"+ numOfXYouHaveToDo +")"; break;
+            case 2: text.text = txt1 + " " + numOfXYouHaveToDo + " " + txt2 +" (" + 
+                    numOfXYouHaveDone + "/" + numOfXYouHaveToDo + ")"; break;
             case 3: break;
         }
     }

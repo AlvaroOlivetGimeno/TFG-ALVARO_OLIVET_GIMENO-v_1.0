@@ -54,8 +54,14 @@ public class BLACKBOARD_ENEMYS : MonoBehaviour
     public GameObject sp_ParticlesInverter;
     public GameObject sp_ParticlesSquid;
     public GameObject sp_ParticlesMother;
+
     [Header("ENEMY's -SPECIAL- ENEMY's:")]
     public GameObject sp_LittleMother;
+
+
+    [Header("ENEMY's ROOM VARIABLES:")]
+
+    public float closeDoorsPct;
 
     void Start()
     {

@@ -12,21 +12,46 @@ public class CameraPointScript : MonoBehaviour
     [Header("LISTA ENEMIGOS:")]
     public List<GameObject> enemysOnRoom = new List<GameObject>();
 
+    [Header("ENEMY ROOM:")]
+
+    public bool isTheEntryRoom;
+
+    public bool isAnEnemyRoom;
+
+    public float enemyRoomPct;
+
+    public GameObject enemyRoom;
+
+    public float rndVar;
+
+
+    //OTHER VARIABLES
+
+    bool OneTime;
+
     
 
     void Start()
     {
-        
+        rndVar = Random.Range(0,100);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //--------------------CHECK PLAYER----------------------
         PlayerHasGone();
 
+        //--------------
+
+        //--------------------ENEMY ROOM------------------------
+        EnemyRoomController();
+
+        //-----------------
         
     }
 
+    //CHECK IF PLAYER IS ON ROOM
     void PlayerHasGone()
     {
         if(!isPlayerHere)
@@ -44,7 +69,24 @@ public class CameraPointScript : MonoBehaviour
             }
         }
     }
-
+    
+    //ENEMY ROOM
+    void EnemyRoomController()
+    {
+        if(!isTheEntryRoom)
+        {
+            if(rndVar <= enemyRoomPct)
+            {
+                if(!OneTime)
+                {
+                    Instantiate(enemyRoom, this.transform.position, Quaternion.identity);
+                    OneTime = true;
+                }
+                
+            }
+        }
+        
+    }
     
     
    void OnTriggerEnter2D(Collider2D collision)

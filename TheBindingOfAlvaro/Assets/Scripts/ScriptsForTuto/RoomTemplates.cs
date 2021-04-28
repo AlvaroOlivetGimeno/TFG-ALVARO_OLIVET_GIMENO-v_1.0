@@ -129,9 +129,6 @@ public class RoomTemplates : MonoBehaviour
 
      public void InstantateShop()
     {
-        
-
-       
         if(shopSpawned == false && MapIsReady())
         {
             roomChoosed = Random.Range(5,rooms.Count-5);

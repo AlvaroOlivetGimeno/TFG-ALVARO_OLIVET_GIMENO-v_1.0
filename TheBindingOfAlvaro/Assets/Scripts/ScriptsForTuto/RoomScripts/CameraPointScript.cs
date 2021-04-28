@@ -15,10 +15,9 @@ public class CameraPointScript : MonoBehaviour
     [Header("ENEMY ROOM:")]
 
     public bool isTheEntryRoom;
+     public float enemyRoomPct;
 
     public bool isAnEnemyRoom;
-
-    public float enemyRoomPct;
 
     public GameObject enemyRoom;
 
@@ -29,10 +28,15 @@ public class CameraPointScript : MonoBehaviour
 
     bool OneTime;
 
+   
+
     
 
     void Start()
     {
+       
+
+
         rndVar = Random.Range(0,100);
     }
 

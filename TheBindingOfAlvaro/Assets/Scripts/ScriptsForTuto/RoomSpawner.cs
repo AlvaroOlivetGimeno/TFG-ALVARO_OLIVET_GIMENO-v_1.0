@@ -57,7 +57,7 @@ public class RoomSpawner : MonoBehaviour
                 }
                 else
                 {
-                    Destroy(this.gameObject);
+                   // Destroy(this.gameObject);
                 }
                
             }
@@ -72,7 +72,7 @@ public class RoomSpawner : MonoBehaviour
                 }
                 else
                 {
-                    Destroy(this.gameObject);
+                   // Destroy(this.gameObject);
                 }  
             }  
             
@@ -87,7 +87,7 @@ public class RoomSpawner : MonoBehaviour
                 }
                 else
                 {
-                    Destroy(this.gameObject);
+                   // Destroy(this.gameObject);
                 }  
             }
             
@@ -102,11 +102,11 @@ public class RoomSpawner : MonoBehaviour
                 }
                 else
                 {
-                    Destroy(this.gameObject);
+                   // Destroy(this.gameObject);
                 }  
             } 
             spawned = true;
-            Destroy(this.gameObject);  
+            //Destroy(this.gameObject);  
         }
         else
         {
@@ -130,10 +130,12 @@ public class RoomSpawner : MonoBehaviour
             {
                 if(other.gameObject.GetComponent<RoomSpawner>().openingDirection> openingDirection)
                 {
+                   
                     Destroy(other.gameObject);
                 }
                 else
                 {
+                    
                     Destroy(this.gameObject);
                 } 
             }   

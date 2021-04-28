@@ -61,6 +61,7 @@ public class BLACKBOARD_ENEMYS : MonoBehaviour
 
     [Header("ENEMY's ROOM VARIABLES:")]
 
+    public float enemyRoomPct;
     public float closeDoorsPct;
 
     void Start()

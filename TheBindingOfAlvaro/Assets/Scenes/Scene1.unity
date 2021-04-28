@@ -8510,7 +8510,8 @@ MonoBehaviour:
     type: 3}
   sp_LittleMother: {fileID: 4840138584631415013, guid: fb502dc0b779f0047962681036835f34,
     type: 3}
-  closeDoorsPct: 40
+  enemyRoomPct: 40
+  closeDoorsPct: 0
 --- !u!4 &1567202886
 Transform:
   m_ObjectHideFlags: 0
@@ -11454,6 +11455,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ENEMY ROOM
+      objectReference: {fileID: 0}
+    - target: {fileID: 2189922940884546064, guid: e448be5d3c10c394ab588f23b782c2ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2189922940884546067, guid: e448be5d3c10c394ab588f23b782c2ba,
         type: 3}

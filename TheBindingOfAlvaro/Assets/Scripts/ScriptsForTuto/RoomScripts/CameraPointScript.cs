@@ -28,13 +28,14 @@ public class CameraPointScript : MonoBehaviour
 
     bool OneTime;
 
+    GameObject enemyBrain;
    
 
     
 
     void Start()
     {
-       
+       enemyBrain = GameObject.FindGameObjectWithTag("EnemyBrain");
 
 
         rndVar = Random.Range(0,100);
@@ -79,7 +80,7 @@ public class CameraPointScript : MonoBehaviour
     {
         if(!isTheEntryRoom)
         {
-            if(rndVar <= enemyRoomPct)
+            if(rndVar <= enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().enemyRoomPct)
             {
                 if(!OneTime)
                 {

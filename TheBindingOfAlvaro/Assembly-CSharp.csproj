@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\Enemys\EnemySpecialScript.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\Bullet_of_Player\BasicBulletScript.cs" />
      <Compile Include="Assets\Scripts\ForDestroy\DestroyMe.cs" />
+     <Compile Include="Assets\Scripts\Enemys\EnemyRoom\DoorEnemyRoom.cs" />
      <Compile Include="Assets\Scripts\ScriptsForTuto\RoomScripts\CameraPointScript.cs" />
      <Compile Include="Assets\Scripts\Enemys\BLACKBOARD_ENEMYS.cs" />
      <Compile Include="Assets\Scripts\HUD\HUD_MANAGER.cs" />
@@ -67,14 +68,14 @@
      <Compile Include="Assets\Scripts\Missions\MissionManager.cs" />
      <Compile Include="Assets\Scripts\PicableObjects\Habilitys\ActiveH\ActiveHabilityScript.cs" />
      <Compile Include="Assets\Scripts\Missions\HUD (Missions)\PointForMission.cs" />
+     <Compile Include="Assets\Scripts\Enemys\EnemyRoom\EnemyRoomManager.cs" />
      <Compile Include="Assets\Scripts\Enemys\PlayerIsOnRoom.cs" />
      <Compile Include="Assets\Scripts\ScriptsForTuto\RoomScripts\PointBrain.cs" />
      <Compile Include="Assets\Scripts\Enemys\EnemyFollowersScript.cs" />
+     <Compile Include="Assets\Scripts\Enemys\EnemyRoom\EnemyRoomChildScript.cs" />
      <Compile Include="Assets\Scripts\Enemys\followersThings\CheckDirection.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ParryScript.cs" />
-     <Compile Include="Assets\Scripts\Enemys\EnemyRoom\EnemyRoomManager.cs" />
-     <Compile Include="Assets\Scripts\Enemys\EnemyRoom\EnemyRoomChildScript.cs" />
-     <Compile Include="Assets\Scripts\Enemys\EnemyRoom\DoorEnemyRoom.cs" />
+     <Compile Include="Assets\Scripts\Enemys\EnemyRoom\EnemyPoint.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

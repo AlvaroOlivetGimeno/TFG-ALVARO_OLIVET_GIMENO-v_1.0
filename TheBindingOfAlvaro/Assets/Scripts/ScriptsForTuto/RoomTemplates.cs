@@ -42,6 +42,22 @@ public class RoomTemplates : MonoBehaviour
 
     public int roomChoosed;
 
+    [Header("THINGS FOR DESTROY:")]
+
+    public GameObject[] shopOnMap;
+    public GameObject[] enemysOnMap;
+
+    public GameObject[] enemyRoomsOnMap;
+
+    public GameObject[] passiveHabilitysOnMap;
+
+    public GameObject[] activeHabilitysOnMap;
+
+    public GameObject[] specialHabilitysOnMap;
+
+    public GameObject[] heartsOnMap;
+
+
     //ACCESO A OTROS SCRIPTS o OBJETOS
 
     GameObject entryRoom;
@@ -58,6 +74,8 @@ public class RoomTemplates : MonoBehaviour
     {
         entryRoom = GameObject.FindGameObjectWithTag("EntryRooms");
         camara = GameObject.FindGameObjectWithTag("MainCamera");
+        
+
         initialPos = camara.transform;
         waitTimeReserva = waiteTime;
         
@@ -77,6 +95,17 @@ public class RoomTemplates : MonoBehaviour
 
 
         //------------------------------------------------RESTART MAP------------------------------------------------------
+
+        //----------Elements en arrays--------
+        enemysOnMap = GameObject.FindGameObjectsWithTag("Enemy");
+        shopOnMap = GameObject.FindGameObjectsWithTag("Shop");
+        enemyRoomsOnMap = GameObject.FindGameObjectsWithTag("EnemyRoom");
+        passiveHabilitysOnMap = GameObject.FindGameObjectsWithTag("PassiveHability"); 
+        activeHabilitysOnMap = GameObject.FindGameObjectsWithTag("ActiveHability");
+        specialHabilitysOnMap = GameObject.FindGameObjectsWithTag("SpecialHability");
+        heartsOnMap = GameObject.FindGameObjectsWithTag("Life");
+
+        //---------Funcio Restart
         if(MapIsFinished && rooms.Count < MinNumOfRooms && restartIsDone == false)
         {
             RestartMap();
@@ -135,11 +164,7 @@ public class RoomTemplates : MonoBehaviour
             Instantiate(shop, rooms[roomChoosed].transform.position, Quaternion.identity);
             shopSpawned = true;
         }
-        else
-        {
-           
-            
-        }
+       
     }
 
     public bool MapIsReady()
@@ -153,12 +178,87 @@ public class RoomTemplates : MonoBehaviour
             return false;
         }
     }
+
+    //DESTROY ENEMYS
+    void DestroyEnemys()
+    {
+        foreach(GameObject x in enemysOnMap)
+        {
+            Destroy(x);
+        }
+    }
+     //DESTROY ENEMYROOMS
+    void DestroyEnemyRooms()
+    {
+        foreach(GameObject x in enemyRoomsOnMap)
+        {
+            Destroy(x);
+        }
+    }
+     //DESTROY Shop
+    void DestroyShop()
+    {
+        foreach(GameObject x in shopOnMap)
+        {
+            Destroy(x);
+            shopSpawned = false;
+        }
+    }
+
+     //DESTROY PASSIVE HABILITYS
+    void DestroyPassiveHabilitys()
+    {
+        foreach(GameObject x in passiveHabilitysOnMap)
+        {
+            Destroy(x);
+        }
+    }
+
+     //DESTROY ACTIVE HABILITYS
+    void DestroyActiveHabilitys()
+    {
+        foreach(GameObject x in activeHabilitysOnMap)
+        {
+            Destroy(x);
+        }
+    }
+
+     //DESTROY SPECIAL HABILITYS
+    void DestroySpecialHabilitys()
+    {
+        foreach(GameObject x in specialHabilitysOnMap)
+        {
+            Destroy(x);
+        }
+    }
+
+     //DESTROY HEARTS
+    void DestroyHearts()
+    {
+        foreach(GameObject x in heartsOnMap)
+        {
+            Destroy(x);
+        }
+    }
+
+    
+
+
+    //RESTART MAP
     public void RestartMap()
     {
         if(entryRoom != null )
         {
             if(rooms.Count>= 0)
             {
+                DestroyEnemyRooms();
+                DestroyEnemys();
+                DestroyShop();
+                DestroyActiveHabilitys();
+                DestroyPassiveHabilitys();
+                DestroySpecialHabilitys();
+                DestroyHearts();
+
                 foreach(GameObject x in rooms)
                 {
                     rooms.Remove(x);

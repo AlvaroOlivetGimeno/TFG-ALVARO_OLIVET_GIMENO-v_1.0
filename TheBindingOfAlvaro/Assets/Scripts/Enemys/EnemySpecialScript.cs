@@ -69,20 +69,24 @@ public class EnemySpecialScript : MonoBehaviour
     //WAITING DEATH
     void WaitingDead()
     {
-        if(specialCol.GetComponent<SpecialColliderScript>().contact)
+        if(specialCol != null)//PER EVITAR GILIPOLLADAS
         {
-            if(!oneTime)
+            if(specialCol.GetComponent<SpecialColliderScript>().contact)
             {
-                Instantiate(particleSystem, this.transform.position, Quaternion.identity);
-                oneTime = true;
-            }
-            else
-            {
-                //Destroy(this.gameObject);
-                life = 0;
-            }
+                if(!oneTime)
+                {
+                    Instantiate(particleSystem, this.transform.position, Quaternion.identity);
+                    oneTime = true;
+                }
+                else
+                {
+                    //Destroy(this.gameObject);
+                    life = 0;
+                }
             
+            }
         }
+        
     }
      
     //SPAWN CHILDRENS

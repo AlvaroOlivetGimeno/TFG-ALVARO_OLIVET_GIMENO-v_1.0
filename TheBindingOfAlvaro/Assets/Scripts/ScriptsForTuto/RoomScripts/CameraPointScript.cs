@@ -29,9 +29,6 @@ public class CameraPointScript : MonoBehaviour
     bool OneTime;
 
     GameObject enemyBrain;
-   
-
-    
 
     void Start()
     {
@@ -53,6 +50,8 @@ public class CameraPointScript : MonoBehaviour
         EnemyRoomController();
 
         //-----------------
+
+       
         
     }
 
@@ -63,14 +62,21 @@ public class CameraPointScript : MonoBehaviour
         {
             foreach(GameObject enemy in enemysOnRoom)
             {
-                enemy.gameObject.GetComponent<PlayerIsOnRoom>().DesactiveEnemy();
+                if(enemy.GetComponent<PlayerIsOnRoom>().enemyType != 2 || enemy.GetComponent<PlayerIsOnRoom>().enemyType != 4)
+                {
+                    enemy.gameObject.GetComponent<PlayerIsOnRoom>().DesactiveEnemy();
+                }
+    
             }
         }
         else
         {
             foreach (GameObject enemy in enemysOnRoom)
             {
-                enemy.gameObject.GetComponent<PlayerIsOnRoom>().ActiveEnemy();
+                if(enemy.GetComponent<PlayerIsOnRoom>().enemyType != 2 || enemy.GetComponent<PlayerIsOnRoom>().enemyType != 4)
+                {
+                    enemy.gameObject.GetComponent<PlayerIsOnRoom>().ActiveEnemy();
+                }
             }
         }
     }
@@ -93,7 +99,20 @@ public class CameraPointScript : MonoBehaviour
         
     }
     
-    
+    //CHECK IF THERES ENEMYS INSIDE ME
+    public bool TheresAnyEnemy()
+    {
+        if(enemysOnRoom.Count > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    //COLLISIONS
    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -109,13 +128,11 @@ public class CameraPointScript : MonoBehaviour
         }
         if (collision.gameObject.tag == "Enemy")
         {
-            if(collision.GetComponent<PlayerIsOnRoom>().enemyType == 2 || collision.GetComponent<PlayerIsOnRoom>().enemyType == 4)
-            {
-                enemysOnRoom.Add(collision.gameObject);
-            }
-           
             
+            enemysOnRoom.Add(collision.gameObject);
+
         }
+      
     }
     void OnTriggerExit2D(Collider2D collision)
     {

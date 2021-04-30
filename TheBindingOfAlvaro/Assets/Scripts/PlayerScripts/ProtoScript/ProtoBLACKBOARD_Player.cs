@@ -6,6 +6,7 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
 {
     [Header("CHARACTER GENERAL VARIABLES:")]
 
+    public float actualLevel = 1;
     public float characterSpeed;
     public float delayTimeToShoot;
     public float characterMoney;

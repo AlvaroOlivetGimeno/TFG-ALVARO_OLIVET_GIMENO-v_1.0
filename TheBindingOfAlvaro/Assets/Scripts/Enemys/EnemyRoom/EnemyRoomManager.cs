@@ -25,10 +25,7 @@ public class EnemyRoomManager : MonoBehaviour
 
     GameObject camaraPoint;
 
-   
-
-    public bool ShowMeDebug;
-    
+ 
 
 
     void Start()
@@ -47,11 +44,7 @@ public class EnemyRoomManager : MonoBehaviour
         DoorsController();
 
         //----------------
-      
-        if(ShowMeDebug)
-        {
-            //Debug.Log(camaraPoint.GetComponent<CameraPointScript>().enemysOnRoom.Count + "  " + camaraPoint.GetComponent<CameraPointScript>().firstTime );
-        }
+    
     }
 
 
@@ -118,6 +111,10 @@ public class EnemyRoomManager : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) 
     {
         if(other.gameObject.tag == "Shop")
+        {
+            Destroy(this.gameObject);
+        }
+         if(other.gameObject.tag == "SpecialRoom")
         {
             Destroy(this.gameObject);
         }

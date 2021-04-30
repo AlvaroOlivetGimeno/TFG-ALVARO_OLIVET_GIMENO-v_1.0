@@ -1031,6 +1031,7 @@ MonoBehaviour:
   characterSpeed: 4
   delayTimeToShoot: 0.4
   characterMoney: 29
+  characterCristals: 0
   timeOfParry: 0.1
   habilityType: 0
   stateType: 0
@@ -3528,12 +3529,15 @@ MonoBehaviour:
   sizeOfList: 0
   stairs: {fileID: 3293436359059200110, guid: b15adf45f413cf9418d7720715cc7b82, type: 3}
   MaxNumOfRooms: 30
-  MinNumOfRooms: 10
+  MinNumOfRooms: 29
   MapIsFinished: 0
   waiteTime: 5
   shop: {fileID: 153690888237285895, guid: dd0fd0e71229a9b4aa60d8104d62ecdd, type: 3}
   shopSpawned: 0
   roomChoosed: 0
+  specialRoom: {fileID: 6243278323836491940, guid: 4036873fb260a2a4ca3533494e135aee,
+    type: 3}
+  specialRoomSpawned: 0
   shopOnMap: []
   enemysOnMap: []
   enemyRoomsOnMap: []
@@ -3541,6 +3545,7 @@ MonoBehaviour:
   activeHabilitysOnMap: []
   specialHabilitysOnMap: []
   heartsOnMap: []
+  specialRoomOnMap: []
   restartIsDone: 0
 --- !u!4 &758484922
 Transform:

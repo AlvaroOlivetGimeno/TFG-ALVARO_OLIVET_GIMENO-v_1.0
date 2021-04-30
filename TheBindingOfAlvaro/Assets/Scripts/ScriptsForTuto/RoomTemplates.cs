@@ -42,6 +42,12 @@ public class RoomTemplates : MonoBehaviour
 
     public int roomChoosed;
 
+    [Header("SPECIAL ROOM THINGS")]
+
+    public GameObject specialRoom;
+
+    public bool specialRoomSpawned;
+
     [Header("THINGS FOR DESTROY:")]
 
     public GameObject[] shopOnMap;
@@ -56,6 +62,7 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] specialHabilitysOnMap;
 
     public GameObject[] heartsOnMap;
+    public GameObject[] specialRoomOnMap;
 
 
     //ACCESO A OTROS SCRIPTS o OBJETOS
@@ -84,6 +91,16 @@ public class RoomTemplates : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //--------------------------------------------Elements en arrays---------------------------------------------------
+        enemysOnMap = GameObject.FindGameObjectsWithTag("Enemy");
+        shopOnMap = GameObject.FindGameObjectsWithTag("Shop");
+        enemyRoomsOnMap = GameObject.FindGameObjectsWithTag("EnemyRoom");
+        passiveHabilitysOnMap = GameObject.FindGameObjectsWithTag("PassiveHability"); 
+        activeHabilitysOnMap = GameObject.FindGameObjectsWithTag("ActiveHability");
+        specialHabilitysOnMap = GameObject.FindGameObjectsWithTag("SpecialHability");
+        heartsOnMap = GameObject.FindGameObjectsWithTag("Life");
+        specialRoomOnMap = GameObject.FindGameObjectsWithTag("SpecialRoom");
+
         //----------------PER SABER QUANS ELEMENTS TINC A LA LLISTA SENSE OBRIR LA LLISTA--------------------------------
         sizeOfList = rooms.Count;
         
@@ -93,17 +110,13 @@ public class RoomTemplates : MonoBehaviour
         //------------------------------------------INSTANCIAR SHOP--------------------------------------------------
         InstantateShop();
 
+        //---------------------------------------INSTANCIAR SPECIAL ROOM--------------------------------------------------
+        InstantateSpecialRoom();
+
 
         //------------------------------------------------RESTART MAP------------------------------------------------------
 
-        //----------Elements en arrays--------
-        enemysOnMap = GameObject.FindGameObjectsWithTag("Enemy");
-        shopOnMap = GameObject.FindGameObjectsWithTag("Shop");
-        enemyRoomsOnMap = GameObject.FindGameObjectsWithTag("EnemyRoom");
-        passiveHabilitysOnMap = GameObject.FindGameObjectsWithTag("PassiveHability"); 
-        activeHabilitysOnMap = GameObject.FindGameObjectsWithTag("ActiveHability");
-        specialHabilitysOnMap = GameObject.FindGameObjectsWithTag("SpecialHability");
-        heartsOnMap = GameObject.FindGameObjectsWithTag("Life");
+        
 
         //---------Funcio Restart
         if(MapIsFinished && rooms.Count < MinNumOfRooms && restartIsDone == false)
@@ -126,11 +139,12 @@ public class RoomTemplates : MonoBehaviour
     {
         rooms.Add(x);
     }
+
+    //INSTANTIATE STAIRS
     public void InstantateStairs()
     {
         if(waiteTime <= 0 && spawnStairs == false)
         {
-            //Debug.Log("INSTANCIANDO ESCALERAS");
             MapIsFinished = true;
             spawnStairs = true;
             if(rooms.Count >= MinNumOfRooms)
@@ -141,7 +155,6 @@ public class RoomTemplates : MonoBehaviour
         }
         else if(spawnStairs == false && MapIsReady())
         {
-            //Debug.Log("INSTANCIANDO ESCALERAS");
             Instantiate(stairs, rooms[rooms.Count-1].transform.position, Quaternion.identity);
             MapIsFinished = true;
             spawnStairs = true;
@@ -156,13 +169,26 @@ public class RoomTemplates : MonoBehaviour
         }
     }
 
-     public void InstantateShop()
+    //Instantiate SHOP
+    public void InstantateShop()
     {
         if(shopSpawned == false && MapIsReady())
         {
-            roomChoosed = Random.Range(5,rooms.Count-5);
+            roomChoosed = Random.Range(5,rooms.Count/2);
             Instantiate(shop, rooms[roomChoosed].transform.position, Quaternion.identity);
             shopSpawned = true;
+        }
+       
+    }
+
+    //INTANTIATE SPECIAL ROOM
+    public void InstantateSpecialRoom()
+    {
+        if(specialRoomSpawned == false && MapIsReady())
+        {
+            roomChoosed = Random.Range(rooms.Count/2,rooms.Count-2);
+            Instantiate(specialRoom, rooms[roomChoosed].transform.position, Quaternion.identity);
+            specialRoomSpawned = true;
         }
        
     }
@@ -241,6 +267,16 @@ public class RoomTemplates : MonoBehaviour
         }
     }
 
+    //DESTROY SPECIAL ROOM
+    void DestroySpecialRoom()
+    {
+        foreach(GameObject x in specialRoomOnMap)
+        {
+            specialRoomSpawned = false;
+            Destroy(x);
+        }
+    }
+
     
 
 
@@ -258,6 +294,7 @@ public class RoomTemplates : MonoBehaviour
                 DestroyPassiveHabilitys();
                 DestroySpecialHabilitys();
                 DestroyHearts();
+                DestroySpecialRoom();
 
                 foreach(GameObject x in rooms)
                 {

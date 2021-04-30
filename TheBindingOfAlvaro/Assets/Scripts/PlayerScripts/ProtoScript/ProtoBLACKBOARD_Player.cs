@@ -9,6 +9,7 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public float characterSpeed;
     public float delayTimeToShoot;
     public float characterMoney;
+    public float characterCristals;
     public float timeOfParry;
     public float habilityType = 0; //0.NADA  1.DOBLE TIR  2.TIR SIMULTANI 3.TIR SUPERIOR  4.TIR CONGELANT   5.SUPER TIR  6.MINIMUM  7.MAXIMUM
     public float stateType = 0; //0.Nada  1.Minimum    2.Maximum    

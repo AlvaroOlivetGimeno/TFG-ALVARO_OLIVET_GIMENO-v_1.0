@@ -145,6 +145,10 @@ public class TorretBullet : MonoBehaviour
             }
             
         }
+        if(collision.gameObject.tag == "ObstacleWall")
+        {
+            Destroy(this.gameObject);
+        }
         if(collision.gameObject.tag == "WallCheck")
         {
             

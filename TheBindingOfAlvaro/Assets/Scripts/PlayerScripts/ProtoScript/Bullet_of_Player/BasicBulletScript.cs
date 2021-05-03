@@ -93,6 +93,10 @@ public class BasicBulletScript : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        if (other.gameObject.tag == "ObstacleWall")
+        {
+            Destroy(this.gameObject);
+        }
         //-----------------------------------------------------------------------------------
 
 

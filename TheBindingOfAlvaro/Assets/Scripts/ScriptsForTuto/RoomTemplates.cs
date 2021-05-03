@@ -32,7 +32,6 @@ public class RoomTemplates : MonoBehaviour
     [Header("DECREASING TIMER:")]
     public float waiteTime;
 
-    float waitTimeReserva;
 
     [Header("SHOP THINGS")]
 
@@ -92,19 +91,18 @@ public class RoomTemplates : MonoBehaviour
 
     void Start()
     {
-        entryRoom = GameObject.FindGameObjectWithTag("EntryRooms");
         camara = GameObject.FindGameObjectWithTag("MainCamera");
         
 
         initialPos = camara.transform;
-        waitTimeReserva = waiteTime;
-        
+  
     }
 
     // Update is called once per frame
     void Update()
     {
         //--------------------------------------------Elements en arrays---------------------------------------------------
+        entryRoom = GameObject.FindGameObjectWithTag("EntryRooms");
         enemysOnMap = GameObject.FindGameObjectsWithTag("Enemy");
         shopOnMap = GameObject.FindGameObjectsWithTag("Shop");
         enemyRoomsOnMap = GameObject.FindGameObjectsWithTag("EnemyRoom");
@@ -132,7 +130,7 @@ public class RoomTemplates : MonoBehaviour
         //----------------------------------------MAP IS READY??--------------------------------------------------------
         MapIsReady();
         ReadyToSeTheMap();
-        Debug.Log(ReadyToSeTheMap());
+       
         //---------------------------------------------------------------------------------------------------------------
 
         //------------------------------------------------RESTART MAP------------------------------------------------------
@@ -408,13 +406,14 @@ public class RoomTemplates : MonoBehaviour
     {
         if(!entryRoomSpawned)
         {
+            waiteTime = 0;
             shopSpawned = false;
             specialRoomSpawned = false;
             MapIsFinished = false;
             spawnStairs = false;
             nextLevel = false;
             allDeleted = false;
-            waiteTime = 0;
+            MapIsFinished = false;
             Instantiate(startRoom, initialPos.position, Quaternion.identity);
             entryRoomSpawned = true;
         }

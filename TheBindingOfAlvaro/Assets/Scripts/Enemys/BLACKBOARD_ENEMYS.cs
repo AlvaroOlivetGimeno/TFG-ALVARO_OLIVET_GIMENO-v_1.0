@@ -63,6 +63,34 @@ public class BLACKBOARD_ENEMYS : MonoBehaviour
 
     public float enemyRoomPct;
     public float closeDoorsPct;
+    public float spawnEnemyPct;
+    public float spawnObstacle;
+
+    [Header("ENEMY's -SHOOTERS- PREFABS:")]
+
+    public GameObject basicShooter;
+    public GameObject inteligentShooter;
+    public GameObject bounceShooter;
+
+    [Header("ENEMY's -FOLLOWERS- PREFABS:")]
+
+    public GameObject basicFollower;
+    public GameObject unityFollower;
+    public GameObject spawnFollower;
+
+    [Header("ENEMY's -SHOOTERS- PREFABS:")]
+
+    public GameObject inverterSpecial;
+    public GameObject squidSpecial;
+    public GameObject motherSpecial;
+
+    [Header("ENEMY's -OBSTACLES- PREFABS:")]
+
+    public GameObject wallObstacle;
+    public GameObject spikeObstacle;
+    
+
+
 
     void Start()
     {

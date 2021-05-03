@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class HUD_MANAGER : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [Header("FOR DEBUG AND EDIT")]
+    public bool desactiveLoadingScreen;
+
     [Header("LIFE's GAME OBJECTS (HUD)")]
 
     public GameObject l1;
@@ -69,7 +71,11 @@ public class HUD_MANAGER : MonoBehaviour
         //-------------------
 
         //-------------------LOADING SCREEN--------------------
-        LoadingScreenController();
+        if(!desactiveLoadingScreen)
+        {
+            LoadingScreenController();
+        }
+        
 
         //---------------------
     }

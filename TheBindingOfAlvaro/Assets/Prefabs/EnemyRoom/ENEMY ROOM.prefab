@@ -211,14 +211,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7491101345527548695}
-  - component: {fileID: 594821885177312609}
   m_Layer: 0
   m_Name: EnemyPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7491101345527548695
 Transform:
   m_ObjectHideFlags: 0
@@ -233,20 +232,6 @@ Transform:
   m_Father: {fileID: 2048883721288784122}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &594821885177312609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811226628412314524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2abb04089ac9da643a59b7cb5b62f92f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 2496052841368288380, guid: 575467f67548aa9409b65abaf10f9460, type: 3}
-  oneTime: 0
 --- !u!1 &1002106311005730977
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,7 +594,6 @@ MonoBehaviour:
   closeDoors: 0
   timerForClose: 0
   playerIsHere: 0
-  ShowMeDebug: 1
 --- !u!61 &3325805106850063071
 BoxCollider2D:
   m_ObjectHideFlags: 0

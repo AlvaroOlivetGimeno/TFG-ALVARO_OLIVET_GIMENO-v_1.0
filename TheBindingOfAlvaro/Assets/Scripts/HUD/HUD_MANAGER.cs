@@ -38,12 +38,18 @@ public class HUD_MANAGER : MonoBehaviour
 
     public GameObject BlackScreen;
 
+    [Header("LOADING SCREEN (HUD)")]
+
+    public GameObject loadingScreen;
+
     ProtoBLACKBOARD_Player BlackBoardPlayer;
+    GameObject roomBrain;
     //ProtoPlayerScript protoPlayerScript;
 
     void Start()
     {
         BlackBoardPlayer = GetComponent<ProtoBLACKBOARD_Player>();
+        roomBrain = GameObject.FindGameObjectWithTag("RoomBrain");
         //protoPlayerScript = GetComponent<ProtoPlayerScript>();
 
     }
@@ -61,6 +67,11 @@ public class HUD_MANAGER : MonoBehaviour
         habilityController();
 
         //-------------------
+
+        //-------------------LOADING SCREEN--------------------
+        LoadingScreenController();
+
+        //---------------------
     }
 
 
@@ -100,6 +111,18 @@ public class HUD_MANAGER : MonoBehaviour
             case 3: sh0.SetActive(true); sh1.SetActive(false); sh2.SetActive(false); sh3.SetActive(true); sh4.SetActive(false); sh5.SetActive(false); break;
             case 4: sh0.SetActive(true); sh1.SetActive(false); sh2.SetActive(false); sh3.SetActive(false); sh4.SetActive(true); sh5.SetActive(false); break;
             case 5: sh0.SetActive(true); sh1.SetActive(false); sh2.SetActive(false); sh3.SetActive(false); sh4.SetActive(false); sh5.SetActive(true); break;
+        }
+    }
+
+    void LoadingScreenController()
+    {
+        if(roomBrain.GetComponent<RoomTemplates>().ReadyToSeTheMap())
+        {
+            loadingScreen.SetActive(false);
+        }
+        else
+        {
+            loadingScreen.SetActive(true);
         }
     }
 

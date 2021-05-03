@@ -40,7 +40,7 @@ public class HacksForTheGame : MonoBehaviour
     //RESTART MAP WITH R
     void RestartMapHack()
     {
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             Destroy(stairs);
             foreach (GameObject x in closeRoom)

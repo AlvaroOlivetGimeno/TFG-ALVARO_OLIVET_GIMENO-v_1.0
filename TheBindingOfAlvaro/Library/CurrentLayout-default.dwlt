@@ -19,9 +19,9 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Console
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 392}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 875, y: 392}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
@@ -120,10 +120,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 678, y: 342}
-  m_MaxSize: {x: 12003, y: 8042}
+  m_MinSize: {x: 677, y: 321}
+  m_MaxSize: {x: 12003, y: 8021}
   vertical: 0
-  controlID: 2226
+  controlID: 16
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -171,10 +171,10 @@ MonoBehaviour:
     y: 0
     width: 930
     height: 947
-  m_MinSize: {x: 202, y: 342}
-  m_MaxSize: {x: 4002, y: 8042}
+  m_MinSize: {x: 202, y: 321}
+  m_MaxSize: {x: 4002, y: 8021}
   vertical: 1
-  controlID: 2227
+  controlID: 17
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -222,8 +222,8 @@ MonoBehaviour:
     y: 608
     width: 930
     height: 339
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 18}
@@ -252,10 +252,10 @@ MonoBehaviour:
     y: 0
     width: 516
     height: 947
-  m_MinSize: {x: 276, y: 292}
-  m_MaxSize: {x: 4001, y: 8042}
+  m_MinSize: {x: 275, y: 271}
+  m_MaxSize: {x: 4001, y: 8021}
   vertical: 1
-  controlID: 2317
+  controlID: 83
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -303,8 +303,8 @@ MonoBehaviour:
     y: 631
     width: 516
     height: 316
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -429,23 +429,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: ec3b0000
-      m_LastClickedID: 15340
-      m_ExpandedIDs: d4f1ffffc0f2ffff4efbffff9c3c0000
+      m_SelectedIDs: ecc3eaff
+      m_LastClickedID: -1391636
+      m_ExpandedIDs: ecc3eaff6e03ebff7203ebff76baf2ff80baf2ffa2baf2ffc0baf2ffe055f7ff12b3f7ff16b3f7ffe27cfeffe67cfeff0692ffff4efbffffb43b0000a03c0000da3d0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: CHARACTER
+        m_OriginalName: CHARACTER
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 15520
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 6}
       m_SearchString: 
@@ -492,9 +492,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.017583825, y: 0.96054673, z: -15.908875}
+    m_Target: {x: 38.389805, y: -1.8381137, z: -1056.0461}
     speed: 2
-    m_Value: {x: -0.0034226496, y: 0.7182333, z: -15.879294}
+    m_Value: {x: 39.851936, y: -2.496821, z: -1055.7646}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -545,9 +545,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 6.8693895
+    m_Target: 65.358376
     speed: 2
-    m_Value: 6.5735784
+    m_Value: 62.5439
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -701,22 +701,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Stairs
+    - Assets/Scripts/HUD/LOADING SCREEN
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/Stairs
+  - Assets/Scripts/HUD/LOADING SCREEN
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\UnityOtherProjct\BIOMass Effect\TFG-ALVARO_OLIVET_GIMENO-v_1.0\TheBindingOfAlvaro
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 31}
-    m_SelectedIDs: 24b60000
-    m_LastClickedID: 46628
-    m_ExpandedIDs: 00000000d26c0000d46c0000d66c0000fc6c0000
+    scrollPos: {x: 0, y: 198}
+    m_SelectedIDs: 00c50200
+    m_LastClickedID: 181504
+    m_ExpandedIDs: 00000000f06c0000f26c0000f46c0000a06e0000a86e0000ae6e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -744,7 +744,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d26c0000d46c0000d66c0000
+    m_ExpandedIDs: 00000000f06c0000f26c0000f46c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -769,8 +769,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: ec3b0000
-    m_LastClickedInstanceID: 15340
+    m_SelectedInstanceIDs: 72c0eaff
+    m_LastClickedInstanceID: -1392526
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000c6c30000a8b400009c530000ce6d0000da6d00004c5e000068620000e467000006680000aa680000b43f000000000000
     m_RenameOverlay:
@@ -854,7 +854,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -3392
+  m_LastSelectedObjectID: 15124
 --- !u!114 &21
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -888,7 +888,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 180
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_LockTracker:
     m_IsLocked: 0

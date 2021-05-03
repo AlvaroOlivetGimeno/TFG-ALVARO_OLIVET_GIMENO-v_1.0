@@ -112,6 +112,7 @@ public class RoomSpawner : MonoBehaviour
         {
             if(!dontSpawn)
             {
+                //Debug.Log(rBrain.GetComponent<RoomTemplates>().MapIsReady());
                 Instantiate(rBrain.GetComponent<RoomTemplates>().superRooms, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0), Quaternion.identity);
                 spawned = true; 
             }

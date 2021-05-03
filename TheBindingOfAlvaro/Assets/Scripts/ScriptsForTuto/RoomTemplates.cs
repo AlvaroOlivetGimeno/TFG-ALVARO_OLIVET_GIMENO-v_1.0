@@ -50,6 +50,7 @@ public class RoomTemplates : MonoBehaviour
 
     [Header("THINGS FOR DESTROY:")]
 
+    public GameObject entryRoom;
     public GameObject[] shopOnMap;
     public GameObject[] enemysOnMap;
 
@@ -64,17 +65,29 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] heartsOnMap;
     public GameObject[] specialRoomOnMap;
 
+    public GameObject[] closedRoomsOnMap;
+
+    public GameObject stairsOnMap;
+
+
 
     //ACCESO A OTROS SCRIPTS o OBJETOS
 
-    GameObject entryRoom;
+    
 
     GameObject camara;
 
     Transform initialPos;
 
     //RESTART THINGS
+    [Header("THINGS FOR RESTART:")]
     public bool restartIsDone;
+
+    public bool nextLevel;
+
+    public bool allDeleted;
+
+    public bool entryRoomSpawned;
 
 
     void Start()
@@ -100,6 +113,8 @@ public class RoomTemplates : MonoBehaviour
         specialHabilitysOnMap = GameObject.FindGameObjectsWithTag("SpecialHability");
         heartsOnMap = GameObject.FindGameObjectsWithTag("Life");
         specialRoomOnMap = GameObject.FindGameObjectsWithTag("SpecialRoom");
+        closedRoomsOnMap = GameObject.FindGameObjectsWithTag("ClosetRoom");
+        stairsOnMap = GameObject.FindGameObjectWithTag("Stairs");
 
         //----------------PER SABER QUANS ELEMENTS TINC A LA LLISTA SENSE OBRIR LA LLISTA--------------------------------
         sizeOfList = rooms.Count;
@@ -114,25 +129,29 @@ public class RoomTemplates : MonoBehaviour
         InstantateSpecialRoom();
 
 
+        //----------------------------------------MAP IS READY??--------------------------------------------------------
+        MapIsReady();
+        ReadyToSeTheMap();
+        Debug.Log(ReadyToSeTheMap());
+        //---------------------------------------------------------------------------------------------------------------
+
         //------------------------------------------------RESTART MAP------------------------------------------------------
-
         
-
-        //---------Funcio Restart
-        if(MapIsFinished && rooms.Count < MinNumOfRooms && restartIsDone == false)
+        //---------Funcio Restart en cas de que el mapa es crei malament-------------
+        
+        if(rooms.Count < MinNumOfRooms && ReadyToSeTheMap()) 
         {
             RestartMap();
         }
 
-        //-------------------------------------RESETEAR VARIABLE restartIsDone--------------------------------------------
-        if(waiteTime> 0)
+        //--------Funcio Restart en cas que el jugador pasi per les escales
+        if(nextLevel)
         {
-            restartIsDone = false;
+            RestartMap();
         }
-        if(entryRoom == null && restartIsDone == false)
-        {
-            entryRoom = GameObject.FindGameObjectWithTag("EntryRooms");     
-        }
+
+        
+      
     }
 
     public void AddToList(GameObject x)
@@ -143,6 +162,7 @@ public class RoomTemplates : MonoBehaviour
     //INSTANTIATE STAIRS
     public void InstantateStairs()
     {
+        /*
         if(waiteTime <= 0 && spawnStairs == false)
         {
             MapIsFinished = true;
@@ -166,6 +186,12 @@ public class RoomTemplates : MonoBehaviour
                 waiteTime -= Time.deltaTime;
             }
             
+        }*/
+        if(spawnStairs == false && MapIsReady())
+        {
+            Instantiate(stairs, rooms[rooms.Count-1].transform.position, Quaternion.identity);
+            MapIsFinished = true;
+            spawnStairs = true;
         }
     }
 
@@ -195,7 +221,228 @@ public class RoomTemplates : MonoBehaviour
 
     public bool MapIsReady()
     {
-        if(rooms.Count >= MaxNumOfRooms)
+        if(rooms.Count != 0)
+        {
+            if(rooms.Count >= MaxNumOfRooms)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+
+    //DESTROY ENEMYS
+    void DestroyEnemys()
+    {
+        if(enemysOnMap.Length > 0)
+        {
+            foreach(GameObject x in enemysOnMap)
+            {
+                Destroy(x);
+            }
+        }
+        
+    }
+     //DESTROY ENEMYROOMS
+    void DestroyEnemyRooms()
+    {
+        if(enemyRoomsOnMap.Length > 0)
+        {
+            foreach(GameObject x in enemyRoomsOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+     //DESTROY Shop
+    void DestroyShop()
+    {
+        if(shopOnMap.Length > 0)
+        {
+            foreach(GameObject x in shopOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+
+     //DESTROY PASSIVE HABILITYS
+    void DestroyPassiveHabilitys()
+    {
+       if(passiveHabilitysOnMap.Length > 0)
+        {
+            foreach(GameObject x in passiveHabilitysOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+
+     //DESTROY ACTIVE HABILITYS
+    void DestroyActiveHabilitys()
+    {
+       if(activeHabilitysOnMap.Length > 0)
+        {
+            foreach(GameObject x in activeHabilitysOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+
+     //DESTROY SPECIAL HABILITYS
+    void DestroySpecialHabilitys()
+    {
+        if(specialHabilitysOnMap.Length > 0)
+        {
+            foreach(GameObject x in specialHabilitysOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+
+     //DESTROY HEARTS
+    void DestroyHearts()
+    {
+        if(heartsOnMap.Length > 0)
+        {
+            foreach(GameObject x in heartsOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+
+    //DESTROY SPECIAL ROOM
+    void DestroySpecialRoom()
+    {
+        if(specialRoomOnMap.Length > 0)
+        {
+            foreach(GameObject x in specialRoomOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+
+    //DESTROY ROOMS
+    void DestroyRooms()
+    {
+        if(rooms.Count > 0)
+        {
+            foreach(GameObject x in rooms)
+            {
+                rooms.Remove(x);
+                Destroy(x);
+            }
+        }
+    }
+
+    //DESTROY CLOSET ROOMS
+    void DestroyClosetRooms()
+    {
+        if(closedRoomsOnMap.Length > 0)
+        {
+            foreach(GameObject x in closedRoomsOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+
+    //DESTROY STAIRS
+    void DestroyStairs()
+    {
+        if(stairsOnMap != null)
+        {
+           
+            Destroy(stairsOnMap);
+            
+        }
+    }
+
+
+
+    //DESTROY ENTRY ROOM
+    void DestroyEntryRoom()
+    {
+        if(entryRoom != null)
+        {
+           entryRoomSpawned = false;
+           Destroy(entryRoom);
+        }
+    }
+    //DELETE ALL
+
+
+    //DELETE MAP
+    public void DeleteMap()
+    {
+        DestroyEnemyRooms();
+        DestroyEnemys();
+        DestroyShop();
+        DestroyActiveHabilitys();
+        DestroyPassiveHabilitys();
+        DestroySpecialHabilitys();
+        DestroyHearts();
+        DestroySpecialRoom();
+        DestroyRooms();
+        DestroyClosetRooms();
+        DestroyStairs();
+
+        DestroyEntryRoom();
+        allDeleted = true;
+    }
+
+    //CREATE MAP
+    public void CreateMap()
+    {
+        if(!entryRoomSpawned)
+        {
+            shopSpawned = false;
+            specialRoomSpawned = false;
+            MapIsFinished = false;
+            spawnStairs = false;
+            nextLevel = false;
+            allDeleted = false;
+            waiteTime = 0;
+            Instantiate(startRoom, initialPos.position, Quaternion.identity);
+            entryRoomSpawned = true;
+        }
+         
+    }
+
+
+    //RESTART MAP
+    public void RestartMap()
+    {
+        if(!allDeleted)
+        {
+            DeleteMap();
+        }
+        else
+        {
+            CreateMap();
+        }   
+
+    }
+     
+    
+    //READY TO SE THE MAP
+    public bool ReadyToSeTheMap()
+    {
+        waiteTime += 0.5f * Time.deltaTime;
+
+        if(waiteTime >= 8)
         {
             return true;
         }
@@ -204,121 +451,6 @@ public class RoomTemplates : MonoBehaviour
             return false;
         }
     }
-
-    //DESTROY ENEMYS
-    void DestroyEnemys()
-    {
-        foreach(GameObject x in enemysOnMap)
-        {
-            Destroy(x);
-        }
-    }
-     //DESTROY ENEMYROOMS
-    void DestroyEnemyRooms()
-    {
-        foreach(GameObject x in enemyRoomsOnMap)
-        {
-            Destroy(x);
-        }
-    }
-     //DESTROY Shop
-    void DestroyShop()
-    {
-        foreach(GameObject x in shopOnMap)
-        {
-            Destroy(x);
-            shopSpawned = false;
-        }
-    }
-
-     //DESTROY PASSIVE HABILITYS
-    void DestroyPassiveHabilitys()
-    {
-        foreach(GameObject x in passiveHabilitysOnMap)
-        {
-            Destroy(x);
-        }
-    }
-
-     //DESTROY ACTIVE HABILITYS
-    void DestroyActiveHabilitys()
-    {
-        foreach(GameObject x in activeHabilitysOnMap)
-        {
-            Destroy(x);
-        }
-    }
-
-     //DESTROY SPECIAL HABILITYS
-    void DestroySpecialHabilitys()
-    {
-        foreach(GameObject x in specialHabilitysOnMap)
-        {
-            Destroy(x);
-        }
-    }
-
-     //DESTROY HEARTS
-    void DestroyHearts()
-    {
-        foreach(GameObject x in heartsOnMap)
-        {
-            Destroy(x);
-        }
-    }
-
-    //DESTROY SPECIAL ROOM
-    void DestroySpecialRoom()
-    {
-        foreach(GameObject x in specialRoomOnMap)
-        {
-            specialRoomSpawned = false;
-            Destroy(x);
-        }
-    }
-
-    
-
-
-    //RESTART MAP
-    public void RestartMap()
-    {
-        if(entryRoom != null )
-        {
-            if(rooms.Count>= 0)
-            {
-                DestroyEnemyRooms();
-                DestroyEnemys();
-                DestroyShop();
-                DestroyActiveHabilitys();
-                DestroyPassiveHabilitys();
-                DestroySpecialHabilitys();
-                DestroyHearts();
-                DestroySpecialRoom();
-
-                foreach(GameObject x in rooms)
-                {
-                    rooms.Remove(x);
-                    Destroy(x);
-                }
-            }
-            Destroy(entryRoom.gameObject);
-        }
-        else
-        {
-            Debug.Log("TIME TO RESTART");
-            Instantiate(startRoom, initialPos.position, Quaternion.identity);
-            waiteTime = waitTimeReserva;
-            MapIsFinished = false;
-            spawnStairs = false;
-            restartIsDone = true;
-
-        }
-        
-
-    }
-     
-    
     
 
 }

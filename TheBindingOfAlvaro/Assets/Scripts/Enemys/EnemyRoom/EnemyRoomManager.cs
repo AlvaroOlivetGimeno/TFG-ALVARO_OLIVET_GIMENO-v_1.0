@@ -114,7 +114,12 @@ public class EnemyRoomManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-         if(other.gameObject.tag == "SpecialRoom")
+        if(other.gameObject.tag == "SpecialRoom")
+        {
+            
+            Destroy(this.gameObject);
+        }
+        if(other.gameObject.tag == "Stairs")
         {
             Destroy(this.gameObject);
         }

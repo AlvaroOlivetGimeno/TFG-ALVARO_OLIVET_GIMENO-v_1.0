@@ -102,6 +102,8 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
         mCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
         sK_Collider.gameObject.SetActive(false);
+
+        actualLevel = 1;
     }
 
     // Update is called once per frame

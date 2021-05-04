@@ -133,6 +133,13 @@ public class EnemyRoomManager : MonoBehaviour
                     oneTime = true;
                 }    
             break;
+            case 2:  
+                if(!oneTime)
+                {
+                    Instantiate(enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().followerRoom, this.transform.position, Quaternion.identity);
+                    oneTime = true;
+                }    
+            break;
         }
     }
 

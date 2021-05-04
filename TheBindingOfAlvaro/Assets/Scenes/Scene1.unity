@@ -1405,7 +1405,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   delayShoot: 0
-  activePause: 0
 --- !u!61 &217317356
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4230,6 +4229,8 @@ MonoBehaviour:
   closedRoomsOnMap: []
   stairsOnMap: {fileID: 0}
   shooterRoomOnMap: []
+  followerRoomOnMap: []
+  obstaclesOnMap: []
   restartIsDone: 0
   nextLevel: 0
   allDeleted: 0
@@ -10008,7 +10009,7 @@ MonoBehaviour:
   sh_LifeBasic: 5
   sh_LifeIntelligent: 8
   sh_LifeBounce: 5
-  sh_TimeToShootIntelligent: 3
+  sh_TimeToShootIntelligent: 2
   sh_TimeToShootBounce: 3
   sh_ParryPct: 30
   sh_TimeFreezed: 5
@@ -10024,7 +10025,7 @@ MonoBehaviour:
     type: 3}
   sh_BounceBullet: {fileID: 8512338773837551240, guid: 317fedab213ba264e994f79989d14ac9,
     type: 3}
-  fl_LifeBasic: 8
+  fl_LifeBasic: 5
   fl_BasicSpeed: 2
   fl_LifeUnity: 4
   fl_UnityBigSpeed: 0.8
@@ -10080,10 +10081,12 @@ MonoBehaviour:
     type: 3}
   wallObstacle: {fileID: 5322141921842328795, guid: 396108b659ec6cb4cbfe0361f939466d,
     type: 3}
-  spikeObstacle: {fileID: 0}
+  spikeObstacle: {fileID: 856650926220918265, guid: ac480429c93fba54abcaf14d44b73b5f,
+    type: 3}
   shooterRoom: {fileID: 9207388402134557264, guid: ae637c21c00c5ce47a6ba344c2b18b20,
     type: 3}
-  followerRoom: {fileID: 0}
+  followerRoom: {fileID: 8473801403451627449, guid: 674df362ffd8970478104349ef52be80,
+    type: 3}
   superRoom: {fileID: 0}
 --- !u!4 &1567202886
 Transform:

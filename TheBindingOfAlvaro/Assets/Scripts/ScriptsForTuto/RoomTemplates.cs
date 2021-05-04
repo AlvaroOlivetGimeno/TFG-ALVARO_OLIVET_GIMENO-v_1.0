@@ -69,8 +69,10 @@ public class RoomTemplates : MonoBehaviour
     public GameObject stairsOnMap;
 
     public GameObject[] shooterRoomOnMap;
+    public GameObject[] followerRoomOnMap;
 
     public GameObject[] obstaclesOnMap;
+    
 
 
 
@@ -118,6 +120,7 @@ public class RoomTemplates : MonoBehaviour
         closedRoomsOnMap = GameObject.FindGameObjectsWithTag("ClosetRoom");
         stairsOnMap = GameObject.FindGameObjectWithTag("Stairs");
         shooterRoomOnMap = GameObject.FindGameObjectsWithTag("ShooterRoom");
+        shooterRoomOnMap = GameObject.FindGameObjectsWithTag("FollowerRoom");
         obstaclesOnMap = GameObject.FindGameObjectsWithTag("Obstacle");
 
         //----------------PER SABER QUANS ELEMENTS TINC A LA LLISTA SENSE OBRIR LA LLISTA--------------------------------
@@ -355,6 +358,18 @@ public class RoomTemplates : MonoBehaviour
         if(shooterRoomOnMap.Length > 0)
         {
             foreach(GameObject x in shooterRoomOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+
+    //DESTROY FOLLOWER ROOMS ON MAP
+    void DestroyFollowerRooms()
+    {
+        if(followerRoomOnMap.Length > 0)
+        {
+            foreach(GameObject x in followerRoomOnMap)
             {
                 Destroy(x);
             }

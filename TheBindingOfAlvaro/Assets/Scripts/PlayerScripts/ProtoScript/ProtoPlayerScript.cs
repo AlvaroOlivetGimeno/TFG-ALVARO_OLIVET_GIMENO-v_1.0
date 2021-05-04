@@ -13,7 +13,8 @@ public class ProtoPlayerScript : MonoBehaviour
    
     //VARIABLE PEL MOVIMENT
     Vector2 movment;
-     [Header("AUTOMATIC VARIABLES:")]
+
+    [Header("AUTOMATIC VARIABLES:")]
     public float speed;
     public float delayShoot;
 
@@ -43,7 +44,7 @@ public class ProtoPlayerScript : MonoBehaviour
     float screenTimer;
 
     //PAUSE BOOL
-    public bool activePause = false;
+    //public bool activePause = false;
 
     void Start()
     {
@@ -713,7 +714,15 @@ public class ProtoPlayerScript : MonoBehaviour
             
             //--------------------------------------------------------------------------------------------
 
-            //--------------------------------LIFE--------------------------------------------------------
+            //--------------------------------SPIKE--------------------------------------------------------
+
+            if(other.gameObject.tag == "Spike")
+            {
+                BlackBoardPlayer.characterLife--;
+            }
+           
+        }
+         //--------------------------------LIFE--------------------------------------------------------
 
             if(other.gameObject.tag =="Life")
             {
@@ -723,7 +732,6 @@ public class ProtoPlayerScript : MonoBehaviour
                     Destroy(other.gameObject);
                 }
             }
-        }
         
 
     }

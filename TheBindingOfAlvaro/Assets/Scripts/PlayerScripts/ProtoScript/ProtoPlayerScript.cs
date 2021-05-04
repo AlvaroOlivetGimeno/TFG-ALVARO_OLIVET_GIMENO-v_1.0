@@ -46,6 +46,10 @@ public class ProtoPlayerScript : MonoBehaviour
     //PAUSE BOOL
     //public bool activePause = false;
 
+    //VARIABLES PER LA VIDA
+
+    float lifeTimer = 1.5f;
+
     void Start()
     {
         BlackBoardPlayer = GetComponent<ProtoBLACKBOARD_Player>();
@@ -95,7 +99,8 @@ public class ProtoPlayerScript : MonoBehaviour
         //-----------------------------------------------
 
         //-----------------------------------------------LIFE CONTROLLER---------------------------------------------
-        //LifeController();
+        LifeController();
+        lifeTimer += 1*Time.deltaTime;
 
         //-----------------------------------------------
 
@@ -617,6 +622,21 @@ public class ProtoPlayerScript : MonoBehaviour
         BlackBoardPlayer.numOfRoomsSeenInTheLevel += 1;
     }
 
+
+    //REST LIFE LOGIC
+    public void RestLife()
+    {
+        if(lifeTimer>= 2)
+        {
+            BlackBoardPlayer.characterLife -= 1;
+            lifeTimer = 0;
+        }
+    }
+
+    //Life counter
+
+
+
     //COLLISIONS TRIGGER
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -679,8 +699,8 @@ public class ProtoPlayerScript : MonoBehaviour
             if (other.gameObject.tag == "TorretBullet")
             {
                 if(!superParry)
-                {
-                    BlackBoardPlayer.characterLife -= 1;
+                {   
+                    RestLife();
                     Destroy(other.gameObject);
                 }
                 else
@@ -696,7 +716,7 @@ public class ProtoPlayerScript : MonoBehaviour
                 if (!superParry)
                 {
                     other.GetComponent<TorretBullet>().impact = true;
-                    BlackBoardPlayer.characterLife -= 1; 
+                    RestLife();
                     Destroy(other.gameObject);  
                 }
                 else
@@ -718,7 +738,7 @@ public class ProtoPlayerScript : MonoBehaviour
 
             if(other.gameObject.tag == "Spike")
             {
-                BlackBoardPlayer.characterLife--;
+                RestLife();
             }
            
         }
@@ -744,7 +764,7 @@ public class ProtoPlayerScript : MonoBehaviour
         {
             if (!hunterState) 
             {
-                BlackBoardPlayer.characterLife -= 1;
+                RestLife();
             }
             else
             {

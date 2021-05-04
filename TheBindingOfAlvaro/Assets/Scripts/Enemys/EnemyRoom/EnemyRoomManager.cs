@@ -41,7 +41,7 @@ public class EnemyRoomManager : MonoBehaviour
 
         closeDoorsRndVar = Random.Range(0,100);
 
-        enemyRoomTypeRndVar = Random.Range(1,3);
+        enemyRoomTypeRndVar = Random.Range(1,4);
     }
 
     // Update is called once per frame
@@ -137,6 +137,13 @@ public class EnemyRoomManager : MonoBehaviour
                 if(!oneTime)
                 {
                     Instantiate(enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().followerRoom, this.transform.position, Quaternion.identity);
+                    oneTime = true;
+                }    
+            break;
+             case 3:  
+                if(!oneTime)
+                {
+                    Instantiate(enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().superRoom, this.transform.position, Quaternion.identity);
                     oneTime = true;
                 }    
             break;

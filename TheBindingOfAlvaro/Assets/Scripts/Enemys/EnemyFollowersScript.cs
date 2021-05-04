@@ -339,7 +339,7 @@ public class EnemyFollowersScript : MonoBehaviour
         }
         if (collision.gameObject.tag == "Wall")
         {
-            Debug.Log("OLA");
+            
             rndVarStop = Random.Range(0.15f, 0.2f);
             enemyType = 0;
         }

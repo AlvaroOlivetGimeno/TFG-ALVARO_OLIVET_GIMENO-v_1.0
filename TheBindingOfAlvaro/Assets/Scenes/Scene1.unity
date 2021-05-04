@@ -972,12 +972,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 148783955}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.24451497, y: 0.41086617, z: 57.75844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 1601742342}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &161031638
 GameObject:
@@ -1330,7 +1330,7 @@ MonoBehaviour:
   actualLevel: 1
   characterSpeed: 4
   delayTimeToShoot: 0.4
-  characterMoney: 29
+  characterMoney: 0
   characterCristals: 0
   timeOfParry: 0.1
   habilityType: 0
@@ -1515,7 +1515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4868e8b79d8591c4bbfef2e94050a99d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desactiveLoadingScreen: 1
+  desactiveLoadingScreen: 0
   l1: {fileID: 1943307235}
   l2: {fileID: 1828441229}
   l3: {fileID: 1684450399}
@@ -4230,6 +4230,7 @@ MonoBehaviour:
   stairsOnMap: {fileID: 0}
   shooterRoomOnMap: []
   followerRoomOnMap: []
+  superRoomOnMap: []
   obstaclesOnMap: []
   restartIsDone: 0
   nextLevel: 0
@@ -4247,7 +4248,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &760703442
 GameObject:
@@ -5650,7 +5651,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &938537954 stripped
 Transform:
@@ -8483,7 +8484,7 @@ PrefabInstance:
     - target: {fileID: 4272685512523364073, guid: 7dbfb0b2ff984234aa1b4466b95ba6b1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4272685512523364073, guid: 7dbfb0b2ff984234aa1b4466b95ba6b1,
         type: 3}
@@ -10009,8 +10010,8 @@ MonoBehaviour:
   sh_LifeBasic: 5
   sh_LifeIntelligent: 8
   sh_LifeBounce: 5
-  sh_TimeToShootIntelligent: 2
-  sh_TimeToShootBounce: 3
+  sh_TimeToShootIntelligent: 2.5
+  sh_TimeToShootBounce: 4
   sh_ParryPct: 30
   sh_TimeFreezed: 5
   sh_IntelligentBullet: {fileID: 4714443209704135152, guid: 556468f8746bd9a4ea77259d98975f0f,
@@ -10087,7 +10088,8 @@ MonoBehaviour:
     type: 3}
   followerRoom: {fileID: 8473801403451627449, guid: 674df362ffd8970478104349ef52be80,
     type: 3}
-  superRoom: {fileID: 0}
+  superRoom: {fileID: 6916511879114501166, guid: e998ad6c707cf514ea40d3050279f8c3,
+    type: 3}
 --- !u!4 &1567202886
 Transform:
   m_ObjectHideFlags: 0
@@ -10100,7 +10102,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1589375090
 GameObject:
@@ -10211,8 +10213,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 683606905}
+  - {fileID: 148783958}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1612112225
 GameObject:
@@ -13077,7 +13080,7 @@ Transform:
   - {fileID: 1879673864}
   - {fileID: 83652428}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2097559994
 GameObject:

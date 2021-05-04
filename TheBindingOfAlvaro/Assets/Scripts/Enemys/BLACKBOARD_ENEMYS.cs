@@ -88,7 +88,12 @@ public class BLACKBOARD_ENEMYS : MonoBehaviour
 
     public GameObject wallObstacle;
     public GameObject spikeObstacle;
+
+    [Header("ENEMY's -TYPE ON ROOM- PREFABS:")]
     
+    public GameObject shooterRoom;
+    public GameObject followerRoom;
+    public GameObject superRoom;
 
 
 

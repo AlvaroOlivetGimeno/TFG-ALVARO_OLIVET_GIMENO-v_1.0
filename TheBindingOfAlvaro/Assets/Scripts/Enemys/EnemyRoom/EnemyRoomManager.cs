@@ -17,6 +17,12 @@ public class EnemyRoomManager : MonoBehaviour
 
     public float timerForClose;
 
+    [Header("HARD ENEMY LIST VARIABLES:")]
+
+    public float enemyRoomTypeRndVar;
+
+    public bool oneTime;
+
     [Header("IS PLAYER HERE??")]
     
     public bool playerIsHere;
@@ -34,6 +40,8 @@ public class EnemyRoomManager : MonoBehaviour
         
 
         closeDoorsRndVar = Random.Range(0,100);
+
+        enemyRoomTypeRndVar = Random.Range(1,3);
     }
 
     // Update is called once per frame
@@ -42,6 +50,11 @@ public class EnemyRoomManager : MonoBehaviour
         //-------------------CIERRE TOTAL-----------------------
         CheckIfWeHaveToClose();
         DoorsController();
+
+        //----------------
+
+        //-------------------TIPO DE SALA-----------------------
+        TypeOfEnemyRoom();
 
         //----------------
     
@@ -68,7 +81,7 @@ public class EnemyRoomManager : MonoBehaviour
         {
            timerForClose += 1 * Time.deltaTime;
            
-           if(timerForClose>= 1)
+           if(timerForClose>= 0.5)
            {
                SetActiveTrue();
            }
@@ -96,7 +109,7 @@ public class EnemyRoomManager : MonoBehaviour
         closeDoors = true;
     }
 
-    //FOR OPEN DOOS
+    //FOR OPEN DOORS
     public void SetActiveFalse()
     {
         foreach(GameObject child in childs)
@@ -105,6 +118,21 @@ public class EnemyRoomManager : MonoBehaviour
             {
                 child.gameObject.SetActive(false);
             }
+        }
+    }
+
+    //DECIDE TYPE OF ENEMY ROOM
+    void TypeOfEnemyRoom()
+    {
+        switch(enemyRoomTypeRndVar)
+        {
+            case 1:  
+                if(!oneTime)
+                {
+                    Instantiate(enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().shooterRoom, this.transform.position, Quaternion.identity);
+                    oneTime = true;
+                }    
+            break;
         }
     }
 

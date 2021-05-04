@@ -98,17 +98,6 @@ public class EnemyPoint : MonoBehaviour
             enemysForSpawn.Add(enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().motherSpecial);
         }
 
-        if(obstacle)
-        {
-            if(wall)
-            {
-                obstacle = enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().wallObstacle;
-            }
-            else if(spikes)
-            {
-                obstacle = enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().spikeObstacle;
-            }
-        }
         
     }
 
@@ -154,9 +143,18 @@ public class EnemyPoint : MonoBehaviour
                     
                     if(timerForSpawn>= 2)
                     {
+                        if(wall)
+                        {
+                            Instantiate(enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().wallObstacle, this.transform.position, Quaternion.identity);
+                            oneTime = true;
+                        }
+                        if(spikes)
+                        {
+                            Instantiate(enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().spikeObstacle, this.transform.position, Quaternion.identity);
+                            oneTime = true;
+                        }
                         
-                        Instantiate(enemysForSpawn[enemyRndVar].gameObject, this.transform.position, Quaternion.identity);
-                        oneTime = true;
+                        
                     }            
                 }
             }

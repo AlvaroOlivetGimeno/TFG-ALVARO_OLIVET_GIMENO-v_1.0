@@ -68,6 +68,10 @@ public class RoomTemplates : MonoBehaviour
 
     public GameObject stairsOnMap;
 
+    public GameObject[] shooterRoomOnMap;
+
+    public GameObject[] obstaclesOnMap;
+
 
 
     //ACCESO A OTROS SCRIPTS o OBJETOS
@@ -113,6 +117,8 @@ public class RoomTemplates : MonoBehaviour
         specialRoomOnMap = GameObject.FindGameObjectsWithTag("SpecialRoom");
         closedRoomsOnMap = GameObject.FindGameObjectsWithTag("ClosetRoom");
         stairsOnMap = GameObject.FindGameObjectWithTag("Stairs");
+        shooterRoomOnMap = GameObject.FindGameObjectsWithTag("ShooterRoom");
+        obstaclesOnMap = GameObject.FindGameObjectsWithTag("Obstacle");
 
         //----------------PER SABER QUANS ELEMENTS TINC A LA LLISTA SENSE OBRIR LA LLISTA--------------------------------
         sizeOfList = rooms.Count;
@@ -160,31 +166,6 @@ public class RoomTemplates : MonoBehaviour
     //INSTANTIATE STAIRS
     public void InstantateStairs()
     {
-        /*
-        if(waiteTime <= 0 && spawnStairs == false)
-        {
-            MapIsFinished = true;
-            spawnStairs = true;
-            if(rooms.Count >= MinNumOfRooms)
-            {
-                Instantiate(stairs, rooms[rooms.Count-1].transform.position, Quaternion.identity);
-            }
-            
-        }
-        else if(spawnStairs == false && MapIsReady())
-        {
-            Instantiate(stairs, rooms[rooms.Count-1].transform.position, Quaternion.identity);
-            MapIsFinished = true;
-            spawnStairs = true;
-        }
-        else
-        {
-            if(spawnStairs == false)
-            {
-                waiteTime -= Time.deltaTime;
-            }
-            
-        }*/
         if(spawnStairs == false && MapIsReady())
         {
             Instantiate(stairs, rooms[rooms.Count-1].transform.position, Quaternion.identity);
@@ -367,6 +348,30 @@ public class RoomTemplates : MonoBehaviour
             
         }
     }
+    
+    //DESTROY SHOOTER ROOMS ON MAP
+    void DestroyShooterRooms()
+    {
+        if(shooterRoomOnMap.Length > 0)
+        {
+            foreach(GameObject x in shooterRoomOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+
+    //DESTROY OBSTACLES
+    void DestroyObstacles()
+    {
+        if(obstaclesOnMap.Length > 0)
+        {
+            foreach(GameObject x in obstaclesOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
 
 
 
@@ -396,6 +401,8 @@ public class RoomTemplates : MonoBehaviour
         DestroyRooms();
         DestroyClosetRooms();
         DestroyStairs();
+        DestroyShooterRooms();
+        DestroyObstacles();
 
         DestroyEntryRoom();
         allDeleted = true;

@@ -8,7 +8,7 @@ public class EnemyShootersScript : MonoBehaviour
     [Header("CHOOSE TYPE OF ENEMY:")]
     public float enemyType = 0;
 
-
+    public float enemyTypePuntero;
     [Header("AUTOMATIC VARIABLES:")]
      public float life;
      public float timeToShoot;
@@ -24,7 +24,7 @@ public class EnemyShootersScript : MonoBehaviour
     public GameObject BlackBoardEnemy;
     GameObject _enemyBlackBoard;
 
-    float timer; //timer for shooting
+    public float timer; //timer for shooting
     int rndVar;//random variable for bullets
     float rndVarDelay; //first delay for shooting
     bool IAmFreeze; //For Know if I'm Freeze
@@ -48,7 +48,7 @@ public class EnemyShootersScript : MonoBehaviour
 
         //START VARIABLES
         StartMetod();
-       
+        enemyTypePuntero = enemyType;
         //--------------
 
         //RANDOM
@@ -181,7 +181,7 @@ public class EnemyShootersScript : MonoBehaviour
     {
         switch(enemyType)
         {
-            case 0: Debug.LogError("L'ENEMIC HA DE TENIR UN TIPUS! ( 1.Static Torret   2.Shy Torret   3.Intelligent Torret )"); break;
+            case 0:  break;
             case 1: Invoke("BasicShoot", rndVarDelay); break;
             case 2: Invoke("BounceShoot", rndVarDelay);  break;
             case 3: Invoke("InteligentShoot", rndVarDelay); break;
@@ -203,13 +203,13 @@ public class EnemyShootersScript : MonoBehaviour
                 life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_LifeBounce;
                 timeToShoot = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBounce;  
                 //timer
-                timer = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBounce; 
+                //timer = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBounce; 
                 break;
             case 3:
                 life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_LifeIntelligent;
                 timeToShoot = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootIntelligent;  
                 //timer
-                timer = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootIntelligent; 
+                // = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootIntelligent; 
                 break;
         }
         timeFreezed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeFreezed;

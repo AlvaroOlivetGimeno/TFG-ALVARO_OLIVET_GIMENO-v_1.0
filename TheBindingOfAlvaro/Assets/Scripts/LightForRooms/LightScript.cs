@@ -10,26 +10,33 @@ public class LightScript : MonoBehaviour
     [Header("COLOR -NORMAL-:")]
     public Color normalColorOff;
     public Color normalColorOn;
+    public GameObject normalParticles;
 
     [Header("COLOR -ENEMY ROOM-:")]
     public Color enemyColorOff;
     public Color enemyColorOn;
+    public GameObject enemyParticles;
 
     [Header("COLOR -SHOP ROOM-:")]
     public Color shopColorOff;
     public Color shopColorOn;
+    public GameObject shopParticles;
 
     [Header("COLOR -SPECIAL ROOM-:")]
     public Color specialColorOff;
     public Color specialColorOn;
+    public GameObject specialParticles;
 
     [Header("COLOR -STAIRS-:")]
     public Color stairsColorOff;
     public Color stairsColorOn;
+    public GameObject stairsParticles;
 
     [Header("SPRITE RENDERER:")]
     public SpriteRenderer spriteRenderer;
 
+
+    bool oneTime;
 
 
     void Start()
@@ -55,6 +62,11 @@ public class LightScript : MonoBehaviour
             if(this.transform.parent.GetComponent<LightRoomManager>().contact)
             {
                 spriteRenderer.color = normalColorOn;
+                if(!oneTime)
+                {
+                    Instantiate(normalParticles, this.transform.position, Quaternion.identity);
+                    oneTime = true;
+                }
             }
             else
             {
@@ -66,6 +78,11 @@ public class LightScript : MonoBehaviour
             if(this.transform.parent.GetComponent<LightRoomManager>().contact)
             {
                 spriteRenderer.color = enemyColorOn;
+                 if(!oneTime)
+                {
+                    Instantiate(enemyParticles, this.transform.position, Quaternion.identity);
+                    oneTime = true;
+                }
             }
             else
             {
@@ -77,6 +94,11 @@ public class LightScript : MonoBehaviour
             if(this.transform.parent.GetComponent<LightRoomManager>().contact)
             {
                 spriteRenderer.color = shopColorOn;
+                 if(!oneTime)
+                {
+                    Instantiate(shopParticles, this.transform.position, Quaternion.identity);
+                    oneTime = true;
+                }
             }
             else
             {
@@ -88,6 +110,11 @@ public class LightScript : MonoBehaviour
             if(this.transform.parent.GetComponent<LightRoomManager>().contact)
             {
                 spriteRenderer.color = specialColorOn;
+                if(!oneTime)
+                {
+                    Instantiate(specialParticles, this.transform.position, Quaternion.identity);
+                    oneTime = true;
+                }
             }
             else
             {
@@ -99,6 +126,11 @@ public class LightScript : MonoBehaviour
             if(this.transform.parent.GetComponent<LightRoomManager>().contact)
             {
                 spriteRenderer.color = stairsColorOn;
+                if(!oneTime)
+                {
+                    Instantiate(stairsParticles, this.transform.position, Quaternion.identity);
+                    oneTime = true;
+                }
             }
             else
             {

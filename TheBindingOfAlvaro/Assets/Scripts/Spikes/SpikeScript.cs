@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class SpikeScript : MonoBehaviour
 {
-    [Header("DIFERENT TYPES OF ROOMS:")]
+    [Header("CONTACT'S:")]
 
     public bool contact;
+
+    public bool contactWithLight;
       
     void Start()
     {
@@ -16,7 +18,7 @@ public class SpikeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!contact)
+        if(!contact || contactWithLight)
         {
             Destroy(this.gameObject);
         }
@@ -28,6 +30,11 @@ public class SpikeScript : MonoBehaviour
         if(other.gameObject.tag == "Wall")
         {
             contact = true;
-        }   
+        }
+        if(other.gameObject.tag == "LightRoom")
+        {
+            contactWithLight = true;
+        }     
     }
+   
 }

@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ProtoBLACKBOARD_Player.cs" />
+     <Compile Include="Assets\Scripts\Spikes\SpikeScript.cs" />
      <Compile Include="Assets\Scripts\ScriptsForTuto\RoomSpawner.cs" />
      <Compile Include="Assets\Scripts\ScriptsForTuto\RoomScripts\PointRandomGenerator.cs" />
      <Compile Include="Assets\Scripts\Enemys\ShooterThings\CheckWallPosition.cs" />
@@ -83,7 +84,9 @@
      <Compile Include="Assets\Scripts\Enemys\EnemyRoom\EnemyRoomChildScript.cs" />
      <Compile Include="Assets\Scripts\Enemys\followersThings\CheckDirection.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ParryScript.cs" />
-     <Compile Include="Assets\Scripts\Spikes\SpikeScript.cs" />
+     <Compile Include="Assets\Scripts\LightForRooms\LightRoomManager.cs" />
+     <Compile Include="Assets\Scripts\LightForRooms\LightRoomController.cs" />
+     <Compile Include="Assets\Scripts\LightForRooms\LightScript.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

@@ -15,13 +15,19 @@ public class CameraPointScript : MonoBehaviour
     [Header("ENEMY ROOM:")]
 
     public bool isTheEntryRoom;
-     public float enemyRoomPct;
+    public float enemyRoomPct;
 
     public bool isAnEnemyRoom;
 
     public GameObject enemyRoom;
 
     public float rndVar;
+
+    [Header("LIGHT ROOM:")]
+
+    public GameObject lightRoom;
+
+    public bool oneTimeLightRoom;
 
 
     //OTHER VARIABLES
@@ -51,6 +57,10 @@ public class CameraPointScript : MonoBehaviour
 
         //-----------------
 
+        //-------------------LIGHT ROOM--------------------------
+        LightRoomSpawner();
+
+        //-----------------
        
         
     }
@@ -118,6 +128,16 @@ public class CameraPointScript : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    //LIGHT ROOM SPAWNER
+    void LightRoomSpawner()
+    {
+        if(!oneTimeLightRoom)
+        {
+            Instantiate(lightRoom, this.transform.position, Quaternion.identity);
+            oneTimeLightRoom = true;
         }
     }
 

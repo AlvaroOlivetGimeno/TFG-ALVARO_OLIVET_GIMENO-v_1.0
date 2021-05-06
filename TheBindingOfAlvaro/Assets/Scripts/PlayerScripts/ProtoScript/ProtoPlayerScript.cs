@@ -525,7 +525,7 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         if(BlackBoardPlayer.characterLife <= 0)
         {
-            this.gameObject.SetActive(false);
+            
         }
     }
 

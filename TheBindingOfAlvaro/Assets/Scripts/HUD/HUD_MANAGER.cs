@@ -44,14 +44,21 @@ public class HUD_MANAGER : MonoBehaviour
 
     public GameObject loadingScreen;
 
+    [Header("GAME OVER SCREEN (HUD)")]
+    public GameObject gameOverScreen;
+
+
+
+    //ANTOHER VARIABLES
     ProtoBLACKBOARD_Player BlackBoardPlayer;
     GameObject roomBrain;
-    //ProtoPlayerScript protoPlayerScript;
+   
 
     void Start()
     {
         BlackBoardPlayer = GetComponent<ProtoBLACKBOARD_Player>();
         roomBrain = GameObject.FindGameObjectWithTag("RoomBrain");
+        gameOverScreen.SetActive(false);
         //protoPlayerScript = GetComponent<ProtoPlayerScript>();
 
     }
@@ -85,7 +92,9 @@ public class HUD_MANAGER : MonoBehaviour
     {
         switch (BlackBoardPlayer.characterLife)
         {
-            case 0: l1.gameObject.SetActive(false); l2.gameObject.SetActive(false); l3.gameObject.SetActive(false); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); break;
+            case 0: l1.gameObject.SetActive(false); l2.gameObject.SetActive(false); l3.gameObject.SetActive(false); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); 
+                    gameOverScreen.SetActive(true);
+            break;
             case 1: l1.gameObject.SetActive(true); l2.gameObject.SetActive(false); l3.gameObject.SetActive(false); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); break;
             case 2: l1.gameObject.SetActive(true); l2.gameObject.SetActive(true); l3.gameObject.SetActive(false); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); break;
             case 3: l1.gameObject.SetActive(true); l2.gameObject.SetActive(true); l3.gameObject.SetActive(true); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); break;

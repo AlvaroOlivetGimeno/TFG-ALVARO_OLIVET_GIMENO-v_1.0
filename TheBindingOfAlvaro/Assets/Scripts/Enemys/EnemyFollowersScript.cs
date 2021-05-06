@@ -269,7 +269,13 @@ public class EnemyFollowersScript : MonoBehaviour
         {
             if(!sumOneKill)
             {
-                player.GetComponent<ProtoBLACKBOARD_Player>().basicFollowerKilled += 1;    
+                player.GetComponent<ProtoBLACKBOARD_Player>().basicFollowerKilled += 1;
+
+                if(player.GetComponent<ProtoBLACKBOARD_Player>().killEnemysMissionActive)  
+                {
+                    player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission+=1;
+                }
+
                 sumOneKill = true;
             }
             
@@ -280,7 +286,13 @@ public class EnemyFollowersScript : MonoBehaviour
         {
             if(!sumOneKill)
             {
-                player.GetComponent<ProtoBLACKBOARD_Player>().unityFollowerKilled += 1;    
+                player.GetComponent<ProtoBLACKBOARD_Player>().unityFollowerKilled += 1;
+                
+                if(player.GetComponent<ProtoBLACKBOARD_Player>().killEnemysMissionActive)  
+                {
+                    player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission+=1;
+                }
+                    
                 sumOneKill = true;
             }
             SpawnBrothers();
@@ -289,7 +301,13 @@ public class EnemyFollowersScript : MonoBehaviour
         {
             if(!sumOneKill)
             {
-                player.GetComponent<ProtoBLACKBOARD_Player>().spawnerFollowerKilled += 1;    
+                player.GetComponent<ProtoBLACKBOARD_Player>().spawnerFollowerKilled += 1;
+                
+                if(player.GetComponent<ProtoBLACKBOARD_Player>().killEnemysMissionActive)  
+                {
+                    player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission+=1;
+                }
+                    
                 sumOneKill = true;
             }
             Explosion();

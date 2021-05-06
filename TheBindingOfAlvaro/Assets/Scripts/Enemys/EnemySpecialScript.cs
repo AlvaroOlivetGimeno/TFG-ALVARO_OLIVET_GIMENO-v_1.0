@@ -141,6 +141,12 @@ public class EnemySpecialScript : MonoBehaviour
                 {
                     player.GetComponent<ProtoBLACKBOARD_Player>().mothersKilled += 1;
                 }
+                
+                if(player.GetComponent<ProtoBLACKBOARD_Player>().killEnemysMissionActive)  
+                {
+                    player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission+=1;
+                }
+                
                 sumOneKill = true;
             }
             Destroy(this.gameObject);

@@ -1379,9 +1379,15 @@ MonoBehaviour:
   mCamera: {fileID: 0}
   invertControls: 0
   blackScreen: 0
+  numOfParrysToDoInTheMission: 10
+  numOfEnemysToKillInTheMission: 15
+  parryMissionActive: 0
   numOfRoomsSeenInTheLevel: 0
   numOfParrysDone: 0
+  numOfParrysDoneForMission: 0
+  killEnemysMissionActive: 0
   totalEnemysKilled: 0
+  totalEnemysKilledForMission: 0
   basicTorretKilled: 0
   bounceTorretKilled: 0
   intelligentTorretKilled: 0
@@ -2138,7 +2144,7 @@ PrefabInstance:
     - target: {fileID: 4247661409498637731, guid: a4df3a4dd56d5964e91442e776b7ed86,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 583.7874
+      value: 593.2204
       objectReference: {fileID: 0}
     - target: {fileID: 4247661409498637731, guid: a4df3a4dd56d5964e91442e776b7ed86,
         type: 3}
@@ -2183,7 +2189,7 @@ PrefabInstance:
     - target: {fileID: 4247661409498637731, guid: a4df3a4dd56d5964e91442e776b7ed86,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 4.7166
       objectReference: {fileID: 0}
     - target: {fileID: 4247661409498637731, guid: a4df3a4dd56d5964e91442e776b7ed86,
         type: 3}
@@ -2204,6 +2210,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247661409498637733, guid: a4df3a4dd56d5964e91442e776b7ed86,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247661409498637733, guid: a4df3a4dd56d5964e91442e776b7ed86,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4df3a4dd56d5964e91442e776b7ed86, type: 3}
@@ -9169,6 +9185,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 710344040}
     m_Modifications:
+    - target: {fileID: 1518941014623730747, guid: 81f5708692e7bcb46af94d48f2f2d554,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1518941014623730747, guid: 81f5708692e7bcb46af94d48f2f2d554,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 1518941014623730748, guid: 81f5708692e7bcb46af94d48f2f2d554,
         type: 3}
       propertyPath: m_Name
@@ -9212,7 +9238,7 @@ PrefabInstance:
     - target: {fileID: 1518941014623730749, guid: 81f5708692e7bcb46af94d48f2f2d554,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 583.7874
+      value: 593.223
       objectReference: {fileID: 0}
     - target: {fileID: 1518941014623730749, guid: 81f5708692e7bcb46af94d48f2f2d554,
         type: 3}
@@ -9257,7 +9283,7 @@ PrefabInstance:
     - target: {fileID: 1518941014623730749, guid: 81f5708692e7bcb46af94d48f2f2d554,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 4.7166
       objectReference: {fileID: 0}
     - target: {fileID: 1518941014623730749, guid: 81f5708692e7bcb46af94d48f2f2d554,
         type: 3}
@@ -13117,7 +13143,7 @@ PrefabInstance:
     - target: {fileID: 8430498275269638874, guid: a4f986aa484b709409fb3596cd3c0547,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 583.7874
+      value: 593.2204
       objectReference: {fileID: 0}
     - target: {fileID: 8430498275269638874, guid: a4f986aa484b709409fb3596cd3c0547,
         type: 3}
@@ -13162,7 +13188,7 @@ PrefabInstance:
     - target: {fileID: 8430498275269638874, guid: a4f986aa484b709409fb3596cd3c0547,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 4.7166
       objectReference: {fileID: 0}
     - target: {fileID: 8430498275269638874, guid: a4f986aa484b709409fb3596cd3c0547,
         type: 3}
@@ -13188,6 +13214,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mission2 (HUD)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430498275269638876, guid: a4f986aa484b709409fb3596cd3c0547,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430498275269638876, guid: a4f986aa484b709409fb3596cd3c0547,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4f986aa484b709409fb3596cd3c0547, type: 3}

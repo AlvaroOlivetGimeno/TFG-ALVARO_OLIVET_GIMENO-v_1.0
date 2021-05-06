@@ -79,13 +79,20 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public bool invertControls;
     public bool blackScreen;
 
+    [Header("CHARACTER VARIABLES FOR MISSIONS OR INDICATORS -NOT AUTOMATICS!-:")]
 
-    [Header("CHARACTER VARIABLES FOR MISSIONS OR INDICATORS:")]
+    public int numOfParrysToDoInTheMission;
+    public int numOfEnemysToKillInTheMission;
+
+    [Header("CHARACTER VARIABLES FOR MISSIONS OR INDICATORS -AUTOMATICS-:")]
+    
+    public bool parryMissionActive;
     public float numOfRoomsSeenInTheLevel; //ES CALCULA A CAMERA POINT
     public int numOfParrysDone;  //ES CALCULA A ENEMY TORRET, A REVOTE();
-
+    public int numOfParrysDoneForMission;
+    public bool killEnemysMissionActive;
     public int totalEnemysKilled;
-
+    public int totalEnemysKilledForMission;
     public int basicTorretKilled;
     public int bounceTorretKilled;
     public int intelligentTorretKilled;

@@ -8,6 +8,7 @@ public class EnemyPoint : MonoBehaviour
     public bool shooterPoint;
     public bool followerPoint;
     public bool specialPoint;
+    public bool specialWithOutMotherPoint;
     public bool shooterSpecialPoint;
     public bool shooterFollowerPoint;
     public bool followerSpecialPoint;
@@ -73,6 +74,11 @@ public class EnemyPoint : MonoBehaviour
             enemysForSpawn.Add(enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().inverterSpecial);
             enemysForSpawn.Add(enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().squidSpecial);
             enemysForSpawn.Add(enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().motherSpecial);
+        }
+        else if(specialWithOutMotherPoint)
+        {
+            enemysForSpawn.Add(enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().inverterSpecial);
+            enemysForSpawn.Add(enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().squidSpecial);
         }
         else if(shooterSpecialPoint)
         {

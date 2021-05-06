@@ -64,10 +64,9 @@ public class EnemyShootersScript : MonoBehaviour
     void Update()
     {
         //----------------------------SHOOT-----------------------------
-        if(!oneTime)
+        if(enemyType == 1)
         {
             PositionChecker();
-            oneTime = true;
         }
         
         SottingController();
@@ -256,7 +255,12 @@ public class EnemyShootersScript : MonoBehaviour
                 {
                      player.GetComponent<ProtoBLACKBOARD_Player>().intelligentTorretKilled += 1;
                 }
-                      
+                
+                if(player.GetComponent<ProtoBLACKBOARD_Player>().killEnemysMissionActive)  
+                {
+                    player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission+=1;
+                }
+                  
                 sumOneKill = true;
             }
             Destroy(this.gameObject);

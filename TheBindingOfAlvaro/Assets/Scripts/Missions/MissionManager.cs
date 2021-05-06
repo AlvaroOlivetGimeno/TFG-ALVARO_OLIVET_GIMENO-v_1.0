@@ -20,12 +20,12 @@ public class MissionManager : MonoBehaviour
     public int missionsDone;
     public bool stopMissions;
     
-
+    GameObject player;
 
 
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
         missions = GameObject.FindGameObjectsWithTag("Mission");
     }
 
@@ -62,6 +62,7 @@ public class MissionManager : MonoBehaviour
                     if(!missions[rndVar].GetComponent<MissionCommonScript>().missionActive && !missions[rndVar].GetComponent<MissionCommonScript>().completed)
                     {
                         missions[rndVar].GetComponent<MissionCommonScript>().missionActive = true;
+                        ActiveMissionInPlayerBlackBoard(missions[rndVar].GetComponent<MissionCommonScript>().missionType);
                         missionsActive++;
                     }
                     else
@@ -77,11 +78,20 @@ public class MissionManager : MonoBehaviour
         }
         else
         {
-            stopMissions = true;
-            Debug.Log("MISSIONS TOTES FETES");          
+            stopMissions = true;      
         }
         
         
+    }
+
+    //ACTIVE MISSION IN BLACBOARD
+    void ActiveMissionInPlayerBlackBoard(float x)
+    {
+        switch(x)
+        {
+            case 2:  player.GetComponent<ProtoBLACKBOARD_Player>().parryMissionActive = true;  break;
+            case 3:  player.GetComponent<ProtoBLACKBOARD_Player>().killEnemysMissionActive = true;  break;
+        }
     }
 
     //Check if its active and complete

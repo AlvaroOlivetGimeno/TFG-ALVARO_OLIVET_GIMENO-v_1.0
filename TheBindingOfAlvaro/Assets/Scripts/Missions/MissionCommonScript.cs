@@ -5,7 +5,7 @@ using UnityEngine;
 public class MissionCommonScript : MonoBehaviour
 {
     [Header("NUM. OF MISSION:")]
-    public float missionType;
+    public float missionType; //1.Salas  2.Parrys  2.Enemys
 
     [Header("REWARD OF THE MISSION:")]
     public float reward;
@@ -79,8 +79,8 @@ public class MissionCommonScript : MonoBehaviour
         switch(missionType)
         {
             case 1: break;
-            case 2: parrysToDo = Random.Range(3,6); break;
-            case 3: enemysToKill = Random.Range(1,3); break;
+            case 2: parrysToDo = Random.Range(8,player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysToDoInTheMission); break;
+            case 3: enemysToKill = Random.Range(15,player.GetComponent<ProtoBLACKBOARD_Player>().numOfEnemysToKillInTheMission); break;
             case 4: break;
         }
     }
@@ -139,7 +139,7 @@ public class MissionCommonScript : MonoBehaviour
         if(missionActive)
         {
             //REBOTA 'x' cops una bala amb parry
-            if(player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDone >= parrysToDo)
+            if(player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDoneForMission >= parrysToDo)
             {
                 
                 completed = true;
@@ -155,7 +155,7 @@ public class MissionCommonScript : MonoBehaviour
         {
             //MATAR 'x' ENEMICS EN UN PIS
 
-            if(enemysToKill <= player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilled)
+            if(enemysToKill <= player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission)
             {
                 completed = true;
             }

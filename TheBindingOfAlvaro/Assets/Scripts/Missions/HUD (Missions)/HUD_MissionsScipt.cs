@@ -69,8 +69,8 @@ public class HUD_MissionsScipt : MonoBehaviour
                         numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().numOfRoomsSeenInTheLevel.ToString();
                 break;
             }
-
             break;
+
             case 2:
 
                 switch(missionNum)
@@ -83,7 +83,7 @@ public class HUD_MissionsScipt : MonoBehaviour
                             numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().parrysToDo.ToString();
                         }   
                     }
-                    numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDone.ToString();
+                    numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDoneForMission.ToString();
 
                     break;
 
@@ -95,7 +95,7 @@ public class HUD_MissionsScipt : MonoBehaviour
                                 numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().enemysToKill.ToString();
                             }   
                         }
-                    numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilled.ToString();
+                    numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission.ToString();
             break;
                 }
                 

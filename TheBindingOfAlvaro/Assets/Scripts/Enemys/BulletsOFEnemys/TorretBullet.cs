@@ -113,6 +113,10 @@ public class TorretBullet : MonoBehaviour
             if(!sumOne)
             {
                 player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDone += 1;
+                if(player.GetComponent<ProtoBLACKBOARD_Player>().parryMissionActive)
+                {
+                    player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDoneForMission +=1;
+                }
                 sumOne = true;
             }
 

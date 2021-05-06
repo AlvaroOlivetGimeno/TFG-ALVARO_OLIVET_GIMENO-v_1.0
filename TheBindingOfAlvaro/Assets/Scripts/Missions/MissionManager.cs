@@ -20,6 +20,7 @@ public class MissionManager : MonoBehaviour
     public int missionsDone;
     public bool stopMissions;
     
+    
     GameObject player;
 
 
@@ -27,6 +28,7 @@ public class MissionManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         missions = GameObject.FindGameObjectsWithTag("Mission");
+        
     }
 
     // Update is called once per frame

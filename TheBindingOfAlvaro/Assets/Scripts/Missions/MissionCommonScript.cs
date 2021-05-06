@@ -41,7 +41,7 @@ public class MissionCommonScript : MonoBehaviour
     [Header("AUTOMATIC VARIABLES (OTHER OBJECTS):")]
     public GameObject player;
     public GameObject roomBrain;
-
+    public GameObject missionFeedback;
 
     //ALTRES  VARIABLES
 
@@ -53,6 +53,7 @@ public class MissionCommonScript : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         roomBrain = GameObject.FindGameObjectWithTag("RoomBrain");
+        missionFeedback = GameObject.FindGameObjectWithTag("MissionFeedbackManager");
 
         StartMetod();
     }
@@ -95,6 +96,7 @@ public class MissionCommonScript : MonoBehaviour
                 if(!oneTime)
                 {
                     player.GetComponent<ProtoBLACKBOARD_Player>().characterMoney += reward;
+                    missionFeedback.GetComponent<MissionFeedback>().MissionCompleted();
                     oneTime = true;
                 }
     

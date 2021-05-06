@@ -25,13 +25,17 @@ public class LightRoomController : MonoBehaviour
     {
         if(this.transform.childCount != lightRoomManagers.Count)
         {
-            for(int i = 0;i <= this.transform.childCount; i++)
+            for(int i = 0;i <= this.transform.childCount-1; i++)
             {
-                if(this.transform.GetChild(i).gameObject.GetComponent<LightRoomManager>().added == false)
+                if(this.transform.GetChild(i).gameObject != null)
                 {
-                    lightRoomManagers.Add(this.transform.GetChild(i).gameObject);
-                    this.transform.GetChild(i).gameObject.GetComponent<LightRoomManager>().added = true;
-                } 
+                    if(this.transform.GetChild(i).gameObject.GetComponent<LightRoomManager>().added == false)
+                    {
+                        lightRoomManagers.Add(this.transform.GetChild(i).gameObject);
+                        this.transform.GetChild(i).gameObject.GetComponent<LightRoomManager>().added = true;
+                    } 
+                }
+                
             }
         }
     }

@@ -129,9 +129,13 @@ public class EnemyPoint : MonoBehaviour
                     
                     if(timerForSpawn>= 2)
                     {
-                        enemyRndVar = Random.Range(0,enemysForSpawn.Count-1);
-                        Instantiate(enemysForSpawn[enemyRndVar].gameObject, this.transform.position, Quaternion.identity);
-                        oneTime = true;
+                        enemyRndVar = Random.Range(0,enemysForSpawn.Count);
+                        if(enemysForSpawn[enemyRndVar].gameObject != null)
+                        {
+                            Instantiate(enemysForSpawn[enemyRndVar].gameObject, this.transform.position, Quaternion.identity);
+                            oneTime = true;
+                        }
+                        
                     }            
                 }
             }

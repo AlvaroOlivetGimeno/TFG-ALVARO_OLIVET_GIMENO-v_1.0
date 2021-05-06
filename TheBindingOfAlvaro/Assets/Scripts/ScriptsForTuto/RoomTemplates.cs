@@ -74,6 +74,7 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] obstaclesOnMap;
 
     public GameObject[] lightRoomsOnMap;
+    public GameObject[] lightParticlesOnMap;
     
 
 
@@ -126,6 +127,7 @@ public class RoomTemplates : MonoBehaviour
         superRoomOnMap = GameObject.FindGameObjectsWithTag("SuperRoom");
         obstaclesOnMap = GameObject.FindGameObjectsWithTag("Obstacle");
         lightRoomsOnMap = GameObject.FindGameObjectsWithTag("LightRoomObject");
+        lightParticlesOnMap = GameObject.FindGameObjectsWithTag("LightParticles");
 
         //----------------PER SABER QUANS ELEMENTS TINC A LA LLISTA SENSE OBRIR LA LLISTA--------------------------------
         sizeOfList = rooms.Count;
@@ -416,6 +418,18 @@ public class RoomTemplates : MonoBehaviour
         }
     }
 
+    //DESTROY OBSTACLES
+    void DestroyLightParticles()
+    {
+        if(lightParticlesOnMap.Length > 0)
+        {
+            foreach(GameObject x in lightParticlesOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+
 
 
     //DESTROY ENTRY ROOM
@@ -448,6 +462,7 @@ public class RoomTemplates : MonoBehaviour
         DestroySuperRooms();
         DestroyObstacles();
         DestroyLightRooms();
+        DestroyLightParticles();
 
         DestroyEntryRoom();
         allDeleted = true;

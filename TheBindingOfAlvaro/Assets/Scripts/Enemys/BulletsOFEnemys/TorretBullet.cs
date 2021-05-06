@@ -149,6 +149,10 @@ public class TorretBullet : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        if(collision.gameObject.tag == "InvisibleDoor")
+        {
+            Destroy(this.gameObject);
+        }
         if(collision.gameObject.tag == "WallCheck")
         {
             

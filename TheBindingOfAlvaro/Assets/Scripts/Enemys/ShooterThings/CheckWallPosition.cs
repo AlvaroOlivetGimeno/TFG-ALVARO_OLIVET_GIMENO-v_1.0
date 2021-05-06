@@ -8,11 +8,19 @@ public class CheckWallPosition : MonoBehaviour
     [Header("I HAVE CONTACT WITH A WALL??")]
     public bool wallContact;
 
+    [Header("I HAVE CONTACT WITH A WALL??")]
+    public bool playerContact;
+
     [Header("WHAT POS. I AM??")]
     public float relativePos; //1.Up  2.Down  3.Right  4.Left
 
     [Header("IM ON TE LIST?")]
     public bool addedToFathersList;
+
+    [Header("EXPULSED?")]
+
+    public bool expulsed;
+
 
     void Start()
     {
@@ -22,13 +30,25 @@ public class CheckWallPosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        DestroyMe();
+    }
+
+    public void DestroyMe()
+    {
+        if(addedToFathersList && expulsed)
+        {
+            Destroy(this.gameObject);
+        }
     }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Wall")
         {
             wallContact = true;
+        }
+        if (other.gameObject.tag == "Player")
+        {
+            playerContact = true;
         }
     }
     void OnCollisionEnter2D(Collision2D other)

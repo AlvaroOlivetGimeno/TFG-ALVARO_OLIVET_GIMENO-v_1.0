@@ -24,6 +24,8 @@ public class EnemyShootersScript : MonoBehaviour
     public GameObject BlackBoardEnemy;
     GameObject _enemyBlackBoard;
 
+    bool ready; //for check if have to shoot 
+    int rndVarWallChecker; //for check wich i will destroy
     public float timer; //timer for shooting
     int rndVar;//random variable for bullets
     float rndVarDelay; //first delay for shooting
@@ -84,7 +86,7 @@ public class EnemyShootersScript : MonoBehaviour
     //SHOOT FUNCTION
     void Shoot(GameObject pBullet, GameObject bullet)
     {
-        if (!IAmFreeze)
+        if (!IAmFreeze && ready)
         {
             timer = timer + 1 * Time.deltaTime;
 
@@ -130,6 +132,7 @@ public class EnemyShootersScript : MonoBehaviour
     //CheckPosition
     void PositionChecker()
     {
+        
         foreach(GameObject check in wallChekers)
         {
             if(check.gameObject.GetComponent<CheckWallPosition>().wallContact)
@@ -138,28 +141,38 @@ public class EnemyShootersScript : MonoBehaviour
                 Destroy(check.gameObject);
             }
         }
-        
-        foreach(GameObject c in wallChekers)
+        if(wallChekers.Count == 4)
         {
-            if(wallChekers.Count != 1)
-            {
-                if(c.gameObject.GetComponent<CheckWallPosition>().relativePos == 4)
-                {
-                    wallChekers.Remove(c.gameObject);
-                    Destroy(c.gameObject);
-                }
-                else if (c.gameObject.GetComponent<CheckWallPosition>().relativePos == 3)
-                {
-                    wallChekers.Remove(c.gameObject);
-                    Destroy(c.gameObject);
-                }
-                else if (c.gameObject.GetComponent<CheckWallPosition>().relativePos == 1)
-                {
-                    wallChekers.Remove(c.gameObject);
-                    Destroy(c.gameObject);
-                }
-            }
+            rndVarWallChecker = Random.Range(0, wallChekers.Count-1);
+           wallChekers[rndVarWallChecker].gameObject.GetComponent<CheckWallPosition>().expulsed = true;
+            wallChekers.Remove(wallChekers[rndVarWallChecker].gameObject);
+            //Destroy(wallChekers[rndVarWallChecker].gameObject);
+
         }
+        if(wallChekers.Count == 3)
+        {
+            rndVarWallChecker = Random.Range(0, wallChekers.Count-1);
+           wallChekers[rndVarWallChecker].gameObject.GetComponent<CheckWallPosition>().expulsed = true;
+            wallChekers.Remove(wallChekers[rndVarWallChecker].gameObject);
+            //Destroy(wallChekers[rndVarWallChecker].gameObject);
+
+        }
+        if(wallChekers.Count == 2)
+        {
+            rndVarWallChecker = Random.Range(0, wallChekers.Count-1);
+           wallChekers[rndVarWallChecker].gameObject.GetComponent<CheckWallPosition>().expulsed = true;
+            wallChekers.Remove(wallChekers[rndVarWallChecker].gameObject);
+            //Destroy(wallChekers[rndVarWallChecker].gameObject);
+
+        }
+        
+        if(wallChekers.Count == 1)
+        {
+            ready = true;
+        }
+        
+        
+       
     }
 
 
@@ -195,21 +208,20 @@ public class EnemyShootersScript : MonoBehaviour
         switch(enemyType)
         {
             case 1: life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_LifeBasic;
-                timeToShoot = Random.Range(0.5f, 1f);
-                //timer
-                //timer = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBasic;
+                timeToShoot = Random.Range(0.5f, 0.7f);
+                ready = false;
                 break;
             case 2:
                 life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_LifeBounce;
                 timeToShoot = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBounce;  
-                //timer
-                //timer = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBounce; 
+                ready = true;
+                timer = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBounce - 0.2f; 
                 break;
             case 3:
                 life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_LifeIntelligent;
                 timeToShoot = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootIntelligent;  
-                //timer
-                // = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootIntelligent; 
+                ready = true;
+                timer= BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootIntelligent- 0.2f; 
                 break;
         }
         timeFreezed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeFreezed;

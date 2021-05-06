@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallContact: 0
+  playerContact: 0
   relativePos: 3
   addedToFathersList: 0
 --- !u!61 &6755124845148314663
@@ -199,7 +200,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.1427395, y: 0.09200889}
+  m_Offset: {x: 2.4124794, y: 0.09200889}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -210,7 +211,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 18.743782, y: 1.1840177}
+  m_Size: {x: 19.28328, y: 1.1840177}
   m_EdgeRadius: 0
 --- !u!1 &4882581039078016915
 GameObject:
@@ -279,6 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallContact: 0
+  playerContact: 0
   relativePos: 4
   addedToFathersList: 0
 --- !u!61 &4884256903227480518
@@ -294,7 +296,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.34558487, y: 0.0000017881393}
+  m_Offset: {x: -2.31116, y: 0.0000017881393}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -305,7 +307,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.371677, y: 1.3680358}
+  m_Size: {x: 23.302866, y: 1.3680358}
   m_EdgeRadius: 0
 --- !u!1 &5274268693756902850
 GameObject:
@@ -425,11 +427,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 1
+  enemyTypePuntero: 0
   life: 0
   timeToShoot: 0
   parryPct: 0
   timeFreezed: 0
   BlackBoardEnemy: {fileID: 0}
+  timer: 0
   wallChekers: []
 --- !u!50 &4310316654192327160
 Rigidbody2D:
@@ -602,6 +606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallContact: 0
+  playerContact: 0
   relativePos: 1
   addedToFathersList: 0
 --- !u!61 &1709702364937880887
@@ -617,7 +622,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.04689014, y: 2.5106502}
+  m_Offset: {x: 0.04689014, y: 2.9188051}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -628,7 +633,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.2191484, y: 18.570183}
+  m_Size: {x: 2.2191484, y: 19.386494}
   m_EdgeRadius: 0
 --- !u!1 &8073479470843634893
 GameObject:
@@ -697,6 +702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallContact: 0
+  playerContact: 0
   relativePos: 2
   addedToFathersList: 0
 --- !u!61 &3583945434306128953
@@ -712,7 +718,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.030669808, y: -4.112011}
+  m_Offset: {x: 0.030669808, y: -2.6432743}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -723,5 +729,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9200921, y: 23.2101}
+  m_Size: {x: 1.9200921, y: 20.272629}
   m_EdgeRadius: 0

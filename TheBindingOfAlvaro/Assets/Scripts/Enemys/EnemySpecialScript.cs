@@ -18,7 +18,7 @@ public class EnemySpecialScript : MonoBehaviour
 
     bool oneTime; //for do something one time
 
-    GameObject particleSystem;
+    GameObject particleSystemEnemy;
     float spawnTimer;
 
     GameObject player;
@@ -53,15 +53,16 @@ public class EnemySpecialScript : MonoBehaviour
         switch(enemyType)
         {
             case 1: life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sp_InverterLife;
-                particleSystem = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sp_ParticlesInverter;
+                particleSystemEnemy = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sp_ParticlesInverter;
                 break;
             case 2:
                 life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sp_SquidLife;
-                particleSystem = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sp_ParticlesSquid;
+                particleSystemEnemy = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sp_ParticlesSquid;
                 break;
             case 3:
                 life = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sp_MotherLife;
-                particleSystem = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sp_ParticlesMother;
+                particleSystemEnemy = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sp_ParticlesMother;
+                spawnTimer = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sp_MotherTimeSpawn -0.2f;
                 break;
         }
     }
@@ -75,7 +76,7 @@ public class EnemySpecialScript : MonoBehaviour
             {
                 if(!oneTime)
                 {
-                    Instantiate(particleSystem, this.transform.position, Quaternion.identity);
+                    Instantiate(particleSystemEnemy, this.transform.position, Quaternion.identity);
                     oneTime = true;
                 }
                 else

@@ -116,6 +116,8 @@ public class MissionManager : MonoBehaviour
     {
         foreach(GameObject mis in missions)
         {
+            missionsDone = 0;
+            missionsActive = 0;
             mis.GetComponent<MissionCommonScript>().RestartMetodh();
            
         }

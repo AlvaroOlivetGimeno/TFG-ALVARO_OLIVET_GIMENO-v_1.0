@@ -118,6 +118,7 @@ public class MissionManager : MonoBehaviour
         {
             missionsDone = 0;
             missionsActive = 0;
+            stopMissions = false;
             mis.GetComponent<MissionCommonScript>().RestartMetodh();
            
         }

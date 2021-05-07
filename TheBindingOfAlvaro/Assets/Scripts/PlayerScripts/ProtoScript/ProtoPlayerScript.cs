@@ -629,6 +629,7 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         if(lifeTimer>= 2)
         {
+            StartCoroutine(BlackBoardPlayer.mCamera.GetComponent<CameraShake>().Shake(BlackBoardPlayer.duration, BlackBoardPlayer.magnitude));
             BlackBoardPlayer.characterLife -= 1;
             lifeTimer = 0;
         }

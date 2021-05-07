@@ -13,11 +13,15 @@ public class HacksForTheGame : MonoBehaviour
     public GameObject[] closeRoom;
 
     public GameObject stairs;
+
+    public GameObject cam;
     void Start()
     {
         rBrain = GameObject.FindGameObjectWithTag("RoomBrain");
         closeRoom = GameObject.FindGameObjectsWithTag("ClosetRoom");
         stairs = GameObject.FindGameObjectWithTag("Stairs");
+        cam = GameObject.FindGameObjectWithTag("MainCamera");
+
         //bb_Player.GetComponent<ProtoBLACKBOARD_Player>();
     }
 
@@ -34,6 +38,9 @@ public class HacksForTheGame : MonoBehaviour
 
         //-------------------------------------CHANGE HABILITY---------------------------------------
         ChangeHabilityHack();
+
+        //--------------------------------------CAMERA SHAKE HACK------------------------------------
+        CameraShake();
 
     }
 
@@ -79,10 +86,16 @@ public class HacksForTheGame : MonoBehaviour
         }
     }
 
-    void UpgradeStatistics()
+    //RESTART MAP WITH R
+    void CameraShake()
     {
-
+        if (Input.GetKeyDown(KeyCode.P))
+        {   
+            Debug.Log("EEEEEEEEEO");
+            StartCoroutine(cam.GetComponent<CameraShake>().Shake(0.5f,1));
+        }
     }
+
 
     
 

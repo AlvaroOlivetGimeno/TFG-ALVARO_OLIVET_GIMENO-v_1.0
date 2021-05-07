@@ -1418,6 +1418,8 @@ MonoBehaviour:
   timeEffectSpecialEnemysInvert: 5
   timeEffectSpecialEnemysSquid: 8
   activePause: 0
+  duration: 0.15
+  magnitude: 0.1
   minimumSpeed: 5
   minimumScale: {x: 0.4, y: 0.4, z: 0.4}
   minimumDelayTimeToShoot: 0.3
@@ -1930,6 +1932,7 @@ GameObject:
   - component: {fileID: 268874879}
   - component: {fileID: 268874878}
   - component: {fileID: 268874877}
+  - component: {fileID: 268874880}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1955,7 +1958,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2002,6 +2005,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &268874880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268874876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5332384ccd9cc84abec03bd9ee53d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &272006146
 GameObject:
   m_ObjectHideFlags: 0
@@ -6310,6 +6325,7 @@ MonoBehaviour:
   bb_Player: {fileID: 217317354}
   closeRoom: []
   stairs: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!4 &915829865
 Transform:
   m_ObjectHideFlags: 0

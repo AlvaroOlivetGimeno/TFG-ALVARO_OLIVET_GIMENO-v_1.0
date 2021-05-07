@@ -27,6 +27,11 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public float timeEffectSpecialEnemysSquid;
     public bool activePause = false;
 
+    [Header("CAMARA SHAKE VARIABLES:")]
+
+    public float duration;
+    public float magnitude;
+
     [Header("CHARACTER MINIMUM-STATE VARIABLES:")]
 
     public float minimumSpeed;

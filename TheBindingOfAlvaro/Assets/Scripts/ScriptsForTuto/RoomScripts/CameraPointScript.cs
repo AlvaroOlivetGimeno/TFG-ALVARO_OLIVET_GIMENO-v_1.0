@@ -11,6 +11,7 @@ public class CameraPointScript : MonoBehaviour
 
     [Header("LISTA ENEMIGOS:")]
     public List<GameObject> enemysOnRoom = new List<GameObject>();
+    
 
     [Header("ENEMY ROOM:")]
 
@@ -22,6 +23,13 @@ public class CameraPointScript : MonoBehaviour
     public GameObject enemyRoom;
 
     public float rndVar;
+
+    [Header("NORMAL ROOM MANAGER:")]
+
+    public GameObject normalRoomManager;
+
+    [Header("ENTRY ROOM RUG:")]
+    public GameObject entryRoomRug;
 
     [Header("LIGHT ROOM:")]
 
@@ -35,10 +43,12 @@ public class CameraPointScript : MonoBehaviour
     bool OneTime;
 
     GameObject enemyBrain;
+    GameObject cam;
 
     void Start()
     {
        enemyBrain = GameObject.FindGameObjectWithTag("EnemyBrain");
+       cam = GameObject.FindGameObjectWithTag("MainCamera");
 
 
         rndVar = Random.Range(0,100);
@@ -113,6 +123,22 @@ public class CameraPointScript : MonoBehaviour
                     OneTime = true;
                 }
                 
+            }
+            else
+            {
+                if(!OneTime)
+                {
+                    Instantiate(normalRoomManager, this.transform.position, Quaternion.identity);
+                    OneTime = true;
+                }
+            }
+        }
+        else
+        {
+            if(!OneTime)
+            {
+                Instantiate(entryRoomRug,new Vector3(cam.transform.position.x, cam.transform.position.y, 0)  , Quaternion.identity);
+                OneTime = true;
             }
         }
         

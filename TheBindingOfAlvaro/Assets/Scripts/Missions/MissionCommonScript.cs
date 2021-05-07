@@ -80,8 +80,8 @@ public class MissionCommonScript : MonoBehaviour
         switch(missionType)
         {
             case 1: break;
-            case 2: parrysToDo = Random.Range(8,player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysToDoInTheMission); break;
-            case 3: enemysToKill = Random.Range(15,player.GetComponent<ProtoBLACKBOARD_Player>().numOfEnemysToKillInTheMission); break;
+            case 2: parrysToDo = Random.Range(5,player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysToDoInTheMission); break;
+            case 3: enemysToKill = Random.Range(10,player.GetComponent<ProtoBLACKBOARD_Player>().numOfEnemysToKillInTheMission); break;
             case 4: break;
         }
     }
@@ -163,6 +163,17 @@ public class MissionCommonScript : MonoBehaviour
             }
         }
         
+    }
+
+
+    //RESTART METODH
+    public void RestartMetodh()
+    {
+        StartMetod();
+        missionActive = false;
+        completed = false;
+        oneTime = false;
+        motherKnow = false;
     }
     
     

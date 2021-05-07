@@ -75,15 +75,17 @@ public class RoomTemplates : MonoBehaviour
 
     public GameObject[] lightRoomsOnMap;
     public GameObject[] lightParticlesOnMap;
+    public GameObject[] normalRoomOnMap;
+
+    public GameObject entryRoomRugOnMap;
     
 
 
 
     //ACCESO A OTROS SCRIPTS o OBJETOS
-
-    
-
     GameObject camara;
+
+    GameObject missionManager;
 
     Transform initialPos;
 
@@ -101,7 +103,7 @@ public class RoomTemplates : MonoBehaviour
     void Start()
     {
         camara = GameObject.FindGameObjectWithTag("MainCamera");
-        
+        missionManager = GameObject.FindGameObjectWithTag("MissionManager");
 
         initialPos = camara.transform;
   
@@ -128,6 +130,9 @@ public class RoomTemplates : MonoBehaviour
         obstaclesOnMap = GameObject.FindGameObjectsWithTag("Obstacle");
         lightRoomsOnMap = GameObject.FindGameObjectsWithTag("LightRoomObject");
         lightParticlesOnMap = GameObject.FindGameObjectsWithTag("LightParticles");
+        normalRoomOnMap = GameObject.FindGameObjectsWithTag("NormalRoom");
+        entryRoomRugOnMap = GameObject.FindGameObjectWithTag("EntryRoomRug");
+
 
         //----------------PER SABER QUANS ELEMENTS TINC A LA LLISTA SENSE OBRIR LA LLISTA--------------------------------
         sizeOfList = rooms.Count;
@@ -430,6 +435,30 @@ public class RoomTemplates : MonoBehaviour
         }
     }
 
+    //DESTROY NORMAL ROOM's
+    void DestroyNormalRooms()
+    {
+        if(normalRoomOnMap.Length > 0)
+        {
+            foreach(GameObject x in normalRoomOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+
+    //DESTROY ENTRY ROOM RUG
+    void DestroyEntryRoomRug()
+    {
+        if(entryRoomRugOnMap!=null)
+        {
+            foreach(GameObject x in normalRoomOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+
 
 
     //DESTROY ENTRY ROOM
@@ -463,6 +492,8 @@ public class RoomTemplates : MonoBehaviour
         DestroyObstacles();
         DestroyLightRooms();
         DestroyLightParticles();
+        DestroyNormalRooms();
+        DestroyEntryRoomRug();
 
         DestroyEntryRoom();
         allDeleted = true;
@@ -487,13 +518,21 @@ public class RoomTemplates : MonoBehaviour
          
     }
 
+    //RESTART MISIONS
+    void RestartMissions()
+    {
+        missionManager.GetComponent<MissionManager>().RestartMisions();
+    }
+
 
     //RESTART MAP
     public void RestartMap()
     {
         if(!allDeleted)
         {
+            RestartMissions();
             DeleteMap();
+            
         }
         else
         {

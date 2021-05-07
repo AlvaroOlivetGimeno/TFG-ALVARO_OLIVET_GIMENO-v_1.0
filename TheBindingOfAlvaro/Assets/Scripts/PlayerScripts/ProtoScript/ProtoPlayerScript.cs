@@ -635,6 +635,16 @@ public class ProtoPlayerScript : MonoBehaviour
         }
     }
 
+    //REST LIFE LOGIC
+    public void SumLife()
+    {
+        if(lifeTimer>= 2)
+        {
+            BlackBoardPlayer.characterLife += 1;
+            lifeTimer = 0;
+        }
+    }
+
     //Life counter
 
 
@@ -750,7 +760,7 @@ public class ProtoPlayerScript : MonoBehaviour
             {
                 if(BlackBoardPlayer.characterLife < BlackBoardPlayer.characterSpaceLife)
                 {
-                    BlackBoardPlayer.characterLife++;
+                    SumLife();
                     Destroy(other.gameObject);
                 }
             }

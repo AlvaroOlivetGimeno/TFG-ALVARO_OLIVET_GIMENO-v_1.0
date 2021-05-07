@@ -110,6 +110,16 @@ public class MissionManager : MonoBehaviour
             }
         }
     }
+
+    //REINICIATE MISIONS
+    public void RestartMisions()
+    {
+        foreach(GameObject mis in missions)
+        {
+            mis.GetComponent<MissionCommonScript>().RestartMetodh();
+           
+        }
+    }
     
     
 }

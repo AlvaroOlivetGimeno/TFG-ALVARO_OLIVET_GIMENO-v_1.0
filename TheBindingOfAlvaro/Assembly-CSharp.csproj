@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\Enemys\EnemyRoom\EnemyRoomLogic.cs" />
      <Compile Include="Assets\Scripts\Enemys\SpecialThings\SpecialColliderScript.cs" />
      <Compile Include="Assets\Scripts\Enemys\EnemyShootersScript.cs" />
+     <Compile Include="Assets\Scripts\Camara\CameraShake.cs" />
      <Compile Include="Assets\Scripts\Enemys\BulletsOFEnemys\TorretBullet.cs" />
      <Compile Include="Assets\Scripts\LightForRooms\LightRoomController.cs" />
      <Compile Include="Assets\Scripts\StairsRoom\StairsScript.cs" />
@@ -92,7 +93,8 @@
      <Compile Include="Assets\Scripts\Enemys\followersThings\CheckDirection.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ParryParticlesSpeed.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ParryScript.cs" />
-     <Compile Include="Assets\Scripts\Camara\CameraShake.cs" />
+     <Compile Include="Assets\Scripts\NormalRoom\NormalRoomScript.cs" />
+     <Compile Include="Assets\Scripts\NormalRoom\NormalRoomManager.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

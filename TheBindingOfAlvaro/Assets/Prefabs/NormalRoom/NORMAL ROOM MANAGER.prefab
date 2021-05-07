@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4800018039826409628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4800018039826409619}
+  - component: {fileID: 4800018039826409618}
+  - component: {fileID: 4800018039826409629}
+  m_Layer: 0
+  m_Name: NORMAL ROOM MANAGER
+  m_TagString: NormalRoom
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4800018039826409619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4800018039826409628}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4800018039826409618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4800018039826409628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 555a650a9cb59434fa79a21d108d6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4800018039826409629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4800018039826409628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6525e1ea18761248a2e9bdd965d3a5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalRoom1: {fileID: 2140404383673143016, guid: 3097804a8900de94495832b964d2122d,
+    type: 3}
+  normalRoom2: {fileID: 5677785739304626353, guid: cd256c9011cd72c488ccf8705af46e80,
+    type: 3}
+  normalRoom3: {fileID: 4675895773327183050, guid: 89e1615c287298740ac2f0303058f2fd,
+    type: 3}
+  normalRoom4: {fileID: 7473958375934515560, guid: 46985456027615c49b6d4ddac5cb8ce6,
+    type: 3}
+  normalRoom5: {fileID: 3935225566992352337, guid: 3969cf068b644784c8266372769fa4f6,
+    type: 3}
+  normalRoomRndVar: 0
+  emptyRoom: 0

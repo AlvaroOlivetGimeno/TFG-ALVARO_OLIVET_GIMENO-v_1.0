@@ -9,6 +9,11 @@ public class SpikeScript : MonoBehaviour
     public bool contact;
 
     public bool contactWithLight;
+
+    [Header("DON'T DISAPEAR IN CONTACT WITH A WALL:")]
+
+    public bool dontDisapear;
+
       
     void Start()
     {
@@ -20,7 +25,11 @@ public class SpikeScript : MonoBehaviour
     {
         if(!contact || contactWithLight)
         {
-            Destroy(this.gameObject);
+            if(!dontDisapear)
+            {
+                Destroy(this.gameObject);
+            }
+            
         }
     }
 

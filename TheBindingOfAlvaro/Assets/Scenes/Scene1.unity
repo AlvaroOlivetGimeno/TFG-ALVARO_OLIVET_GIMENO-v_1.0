@@ -645,6 +645,7 @@ MonoBehaviour:
   choosenEnemyToKill: 0
   player: {fileID: 0}
   roomBrain: {fileID: 0}
+  missionFeedback: {fileID: 0}
 --- !u!1 &114502819
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,6 +980,75 @@ Transform:
   m_Father: {fileID: 1601742342}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &154737434
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 217317353}
+    m_Modifications:
+    - target: {fileID: 4808802485442214080, guid: ed512e661e3cb1a4787aee7483f42a1d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808802485442214080, guid: ed512e661e3cb1a4787aee7483f42a1d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808802485442214080, guid: ed512e661e3cb1a4787aee7483f42a1d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808802485442214080, guid: ed512e661e3cb1a4787aee7483f42a1d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808802485442214080, guid: ed512e661e3cb1a4787aee7483f42a1d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808802485442214080, guid: ed512e661e3cb1a4787aee7483f42a1d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808802485442214080, guid: ed512e661e3cb1a4787aee7483f42a1d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808802485442214080, guid: ed512e661e3cb1a4787aee7483f42a1d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808802485442214080, guid: ed512e661e3cb1a4787aee7483f42a1d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808802485442214080, guid: ed512e661e3cb1a4787aee7483f42a1d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808802485442214080, guid: ed512e661e3cb1a4787aee7483f42a1d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808802485442214083, guid: ed512e661e3cb1a4787aee7483f42a1d,
+        type: 3}
+      propertyPath: m_Name
+      value: ParryParticles
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ed512e661e3cb1a4787aee7483f42a1d, type: 3}
 --- !u!1 &161031638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1312,6 +1382,7 @@ Transform:
   m_Children:
   - {fileID: 745494783}
   - {fileID: 1629373645}
+  - {fileID: 1142438799}
   m_Father: {fileID: 1040545782}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1375,8 +1446,9 @@ MonoBehaviour:
   Left1: {fileID: 1279465202}
   Left2: {fileID: 2077015373}
   p_Collider: {fileID: 1629373644}
+  p_Particles: {fileID: 1142438795}
   sK_Collider: {fileID: 1989242275}
-  mCamera: {fileID: 0}
+  mCamera: {fileID: 1142438795}
   invertControls: 0
   blackScreen: 0
   numOfParrysToDoInTheMission: 10
@@ -5102,6 +5174,7 @@ MonoBehaviour:
   choosenEnemyToKill: 0
   player: {fileID: 0}
   roomBrain: {fileID: 0}
+  missionFeedback: {fileID: 0}
 --- !u!1 &776263077
 GameObject:
   m_ObjectHideFlags: 0
@@ -7937,6 +8010,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129534365}
   m_CullTransparentMesh: 1
+--- !u!1 &1142438795 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4808802485442214083, guid: ed512e661e3cb1a4787aee7483f42a1d,
+    type: 3}
+  m_PrefabInstance: {fileID: 154737434}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1142438799 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4808802485442214080, guid: ed512e661e3cb1a4787aee7483f42a1d,
+    type: 3}
+  m_PrefabInstance: {fileID: 154737434}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1146673114
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12427,6 +12512,7 @@ MonoBehaviour:
   choosenEnemyToKill: 0
   player: {fileID: 0}
   roomBrain: {fileID: 0}
+  missionFeedback: {fileID: 0}
 --- !u!1 &1885990533
 GameObject:
   m_ObjectHideFlags: 0

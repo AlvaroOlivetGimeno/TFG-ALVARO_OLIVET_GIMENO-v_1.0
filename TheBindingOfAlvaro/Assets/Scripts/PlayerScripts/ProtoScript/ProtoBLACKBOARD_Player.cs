@@ -63,9 +63,10 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public GameObject Left1;
     public GameObject Left2;
 
-    [Header("PARRY COLLIDER:")]
+    [Header("PARRY COLLIDER & PARTICLES:")]
 
     public GameObject p_Collider;
+    public GameObject p_Particles;
 
     [Header("SUPER KILL COLLIDER:")]
 

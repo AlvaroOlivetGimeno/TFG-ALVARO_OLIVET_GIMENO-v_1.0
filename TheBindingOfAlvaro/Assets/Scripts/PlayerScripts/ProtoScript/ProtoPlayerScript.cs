@@ -131,6 +131,7 @@ public class ProtoPlayerScript : MonoBehaviour
 
         if (p_timer <= BlackBoardPlayer.timeOfParry)
         {
+            BlackBoardPlayer.p_Particles.GetComponent<ParryParticlesSpeed>().play = true;
             BlackBoardPlayer.p_Collider.gameObject.SetActive(true);
         }
         else

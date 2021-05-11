@@ -107,7 +107,7 @@ public class TorretBullet : MonoBehaviour
         if(!impact)
         {
             target = GameObject.FindObjectOfType<ProtoPlayerScript>();
-            moveDirection = (this.transform.position - target.transform.position).normalized * speed;
+            moveDirection = (this.transform.position - target.transform.position).normalized * (speed*2);
             rb2d.velocity = new Vector2(moveDirection.x, moveDirection.y);
 
             if(!sumOne)

@@ -96,7 +96,12 @@ public class BLACKBOARD_ENEMYS : MonoBehaviour
     public GameObject superRoom;
 
 
+    [Header("ENEMY's -PICABLE OBJECT's- PREFABS:")]
 
+    public float spawnObjectPct;
+    public GameObject coin;
+
+    public GameObject life;
     void Start()
     {
         

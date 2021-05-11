@@ -47,6 +47,12 @@ public class RoomTemplates : MonoBehaviour
 
     public bool specialRoomSpawned;
 
+    [Header("CRISTAL THINGS")]
+
+    public GameObject cristal;
+
+    public bool cristalSpawned;
+
     [Header("THINGS FOR DESTROY:")]
 
     public GameObject entryRoom;
@@ -78,7 +84,9 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] normalRoomOnMap;
 
     public GameObject entryRoomRugOnMap;
-    
+
+    public GameObject[] coinsOnMap;
+    public GameObject[] cristalOnMap;
 
 
 
@@ -132,6 +140,8 @@ public class RoomTemplates : MonoBehaviour
         lightParticlesOnMap = GameObject.FindGameObjectsWithTag("LightParticles");
         normalRoomOnMap = GameObject.FindGameObjectsWithTag("NormalRoom");
         entryRoomRugOnMap = GameObject.FindGameObjectWithTag("EntryRoomRug");
+        coinsOnMap = GameObject.FindGameObjectsWithTag("Coin");
+        cristalOnMap = GameObject.FindGameObjectsWithTag("Cristal");
 
 
         //----------------PER SABER QUANS ELEMENTS TINC A LA LLISTA SENSE OBRIR LA LLISTA--------------------------------
@@ -146,6 +156,8 @@ public class RoomTemplates : MonoBehaviour
         //---------------------------------------INSTANCIAR SPECIAL ROOM--------------------------------------------------
         InstantateSpecialRoom();
 
+        //---------------------------------------INSTANCIAR CRISTAL--------------------------------------------------
+        InstantateCristal();
 
         //----------------------------------------MAP IS READY??--------------------------------------------------------
         MapIsReady();
@@ -208,6 +220,17 @@ public class RoomTemplates : MonoBehaviour
             roomChoosed = Random.Range(rooms.Count/2,rooms.Count-2);
             Instantiate(specialRoom, rooms[roomChoosed].transform.position, Quaternion.identity);
             specialRoomSpawned = true;
+        }
+       
+    }
+
+     public void InstantateCristal()
+    {
+        if(cristalSpawned == false && MapIsReady())
+        {
+            roomChoosed = Random.Range(rooms.Count/2,rooms.Count-3);
+            Instantiate(cristal, rooms[roomChoosed].transform.position, cristal.transform.rotation);
+            cristalSpawned = true;
         }
        
     }
@@ -459,6 +482,30 @@ public class RoomTemplates : MonoBehaviour
         }
     }
 
+    //DESTROY COINS 
+    void DestroyCoins()
+    {
+        if(coinsOnMap.Length > 0)
+        {
+            foreach(GameObject x in coinsOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+
+    //DESTROY CRISTAL 
+    void DestroyCristals()
+    {
+        if(cristalOnMap.Length > 0)
+        {
+            foreach(GameObject x in cristalOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+
 
 
     //DESTROY ENTRY ROOM
@@ -470,7 +517,7 @@ public class RoomTemplates : MonoBehaviour
            Destroy(entryRoom);
         }
     }
-    //DELETE ALL
+    
 
 
     //DELETE MAP
@@ -494,6 +541,8 @@ public class RoomTemplates : MonoBehaviour
         DestroyLightParticles();
         DestroyNormalRooms();
         DestroyEntryRoomRug();
+        DestroyCoins();
+        DestroyCristals();
 
         DestroyEntryRoom();
         allDeleted = true;

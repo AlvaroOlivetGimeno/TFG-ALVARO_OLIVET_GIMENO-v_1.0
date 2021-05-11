@@ -42,6 +42,13 @@ public class EnemyShootersScript : MonoBehaviour
 
     GameObject player;
     bool sumOneKill;
+
+    //FOR SPAWN
+
+    bool spawnOneTime;
+    int spawnPct;
+    int wichObj;
+
     void Start()
     {
         BlackBoardEnemy = GameObject.FindGameObjectWithTag("EnemyBrain");
@@ -56,7 +63,9 @@ public class EnemyShootersScript : MonoBehaviour
         //RANDOM
         rndVarDelay =  Random.Range(0.0f, 2.0f);
 
-
+        //FOR SPAWN VARIABLES:
+        wichObj = Random.Range(1,3);
+        spawnPct = Random.Range(0,100);
        
     }
 
@@ -263,6 +272,7 @@ public class EnemyShootersScript : MonoBehaviour
                   
                 sumOneKill = true;
             }
+            SpawnObj();
             Destroy(this.gameObject);
         }
     }
@@ -283,7 +293,30 @@ public class EnemyShootersScript : MonoBehaviour
         }
     }
 
-   
+    //SPAWN OBJ IF I DIE
+    void SpawnObj()
+    {
+        if(spawnPct<= BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().spawnObjectPct)
+        {
+            switch(wichObj)
+            {
+                case 1:
+                if(!spawnOneTime)
+                {
+                    Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().coin,this.transform.position, BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().coin.transform.rotation);
+                    spawnOneTime = true;
+                }
+                break;
+                case 2:
+                if(!spawnOneTime)
+                {
+                    Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().life,this.transform.position, BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().life.transform.rotation);
+                    spawnOneTime = true;
+                }
+                break;
+            }
+        }
+    }
 
     //COLLISIONS
     private void OnTriggerEnter2D(Collider2D collision)

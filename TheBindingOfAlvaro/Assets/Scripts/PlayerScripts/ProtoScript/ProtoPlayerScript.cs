@@ -49,6 +49,8 @@ public class ProtoPlayerScript : MonoBehaviour
     //VARIABLES PER LA VIDA
 
     float lifeTimer = 1.5f;
+    float coinTimer = 1.5f;
+    float cristalTimer = 1.5f;
 
     void Start()
     {
@@ -101,6 +103,8 @@ public class ProtoPlayerScript : MonoBehaviour
         //-----------------------------------------------LIFE CONTROLLER---------------------------------------------
         LifeController();
         lifeTimer += 1*Time.deltaTime;
+        coinTimer += 1*Time.deltaTime; //FOR MONEY
+        cristalTimer += 1*Time.deltaTime; //FOR CRISTALS
 
         //-----------------------------------------------
 
@@ -635,18 +639,35 @@ public class ProtoPlayerScript : MonoBehaviour
         }
     }
 
-    //REST LIFE LOGIC
+    //SUM LIFE LOGIC
     public void SumLife()
     {
-        if(lifeTimer>= 2)
+        if(lifeTimer>= 1.5f)
         {
             BlackBoardPlayer.characterLife += 1;
             lifeTimer = 0;
         }
     }
+    
+    //SUM COIN LOGIC
+    public void SumCoin()
+    {
+        if(coinTimer>= 1.5f)
+        {
+            BlackBoardPlayer.characterMoney += 1;
+            coinTimer = 0;
+        }
+    }
 
-    //Life counter
-
+     //SUM CRISTAL LOGIC
+    public void SumCristal()
+    {
+        if(cristalTimer>= 1.5f)
+        {
+            BlackBoardPlayer.characterCristals += 1;
+            cristalTimer = 0;
+        }
+    }
 
 
     //COLLISIONS TRIGGER
@@ -764,8 +785,22 @@ public class ProtoPlayerScript : MonoBehaviour
                     Destroy(other.gameObject);
                 }
             }
-        
 
+            //--------------------------------COIN--------------------------------------------------------
+        
+            if(other.gameObject.tag =="Coin")
+            {
+                SumCoin();
+                Destroy(other.gameObject);
+            }
+
+            //--------------------------------CRISTAL--------------------------------------------------------
+        
+            if(other.gameObject.tag =="Cristal")
+            {
+                SumCristal();
+                Destroy(other.gameObject);
+            }
     }
 
     void OnCollisionEnter2D(Collision2D other)

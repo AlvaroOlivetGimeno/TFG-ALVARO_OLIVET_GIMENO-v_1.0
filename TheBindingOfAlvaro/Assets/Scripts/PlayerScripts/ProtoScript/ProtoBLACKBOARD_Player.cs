@@ -108,6 +108,9 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public int inverterKilled;
     public int squidKilled;
     public int mothersKilled;
+    public bool contactWithStairs;
+    
+
 
 
     void Start()

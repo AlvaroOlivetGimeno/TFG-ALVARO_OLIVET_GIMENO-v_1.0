@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class PointForMission : MonoBehaviour
 {
+    [Header("TYPE OF POINT")]
+    public float typeOfMissionPoint;  //1.Normal  2.Hard  3.Large
+    
     [Header("MISSIONS LIST")]
     public GameObject[] missions;
+    public GameObject[] hardMissions;
 
     [Header("MISSIONS TEXT")]
     public GameObject[] texts;
+     public GameObject[] hardTexts;
 
     [Header("WICH MISSION IS ACTIVE")]
 
@@ -22,32 +27,32 @@ public class PointForMission : MonoBehaviour
     void Start()
     {
         missions = GameObject.FindGameObjectsWithTag("Mission");
+        hardMissions = GameObject.FindGameObjectsWithTag("HardMission");
+
         texts = GameObject.FindGameObjectsWithTag("MissionTextPause");
+        hardTexts = GameObject.FindGameObjectsWithTag("MissionHardTextPause");
         missionManager = GameObject.FindGameObjectWithTag("MissionManager");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!missionManager.GetComponent<MissionManager>().stopMissions)
-        {
-            //----------------CHECK WICH MISSION IS ACTIVE----------------
-            WichMissionIsActive();
-
-            //-------------------
-
-            //----------------ACTIVE THE TEXT MISSION------------------
-            ActiveTextMission();
-
-            //-----------------
-        }
-        else
-        {
-            DesactivateAll();
-        }
-       
+       //POINT CONTROLLER
+       PointController();
     }
 
+
+    //POINT CONTROLLER
+
+    void PointController()
+    {
+        switch(typeOfMissionPoint)
+        {
+            case 1: PointOneLogic(); break;
+            case 2: PointTwoLogic(); break;
+            case 3: break;
+        }
+    }
     //WICH MISSION IS ACTIVE
     float WichMissionIsActive()
     {
@@ -87,7 +92,74 @@ public class PointForMission : MonoBehaviour
         }
     }
 
+    void PointOneLogic()
+    {
+        if(!missionManager.GetComponent<MissionManager>().stopMissions)
+        {
+            //----------------CHECK WICH MISSION IS ACTIVE----------------
+            WichMissionIsActive();
 
+            //-------------------
+
+            //----------------ACTIVE THE TEXT MISSION------------------
+            ActiveTextMission();
+
+            //-----------------
+        }
+        else
+        {
+            DesactivateAll();
+        }
+    }
+
+    //WICH HARD MISSION IS ACTIVE
+    float WichHardMissionIsActive()
+    {
+        foreach(GameObject mis in hardMissions)
+        {
+            if(mis.GetComponent<MissionCommonScript>().missionActive && !mis.GetComponent<MissionCommonScript>().completed && !mis.GetComponent<MissionCommonScript>().fail)
+            {
+                wichMissionIsActive = mis.GetComponent<MissionCommonScript>().missionType;
+            }
+        }
+
+        return wichMissionIsActive;
+    }
+
+    //ACTIVATE ONLY THE HARD MISSION I WANT
+    void ActiveTextHardMission()
+    {
+        foreach(GameObject txt in hardTexts)
+        {
+            if(txt.GetComponent<HUD_MissionsScipt>().missionNum == wichMissionIsActive)
+            {
+                txt.gameObject.SetActive(true);
+            }
+            else
+            {
+                txt.gameObject.SetActive(false);
+            }
+        }
+    }
+    void PointTwoLogic()
+    {
+        if(!missionManager.GetComponent<MissionManager>().stopMissions)
+        {
+            //----------------CHECK WICH MISSION IS ACTIVE----------------
+            WichHardMissionIsActive();
+
+            //-------------------
+
+            //----------------ACTIVE THE TEXT MISSION------------------
+            ActiveTextHardMission();
+
+            //-----------------
+        }
+        else
+        {
+            //DesactivateAll();
+        }
+    }
 
     
     

@@ -5,7 +5,8 @@ using UnityEngine;
 public class MissionCommonScript : MonoBehaviour
 {
     [Header("NUM. OF MISSION:")]
-    public float missionType; //1.Salas  2.Parrys  2.Enemys
+    public float missionType; //1.Salas  2.Parrys  3.Enemys  4.No pierdas vida  5.Pasar nivell en x temps  6.matar x enemics en x temps
+                              //7.Vida al max      8.Velocitat al maxim   9.speed al max 
 
     [Header("REWARD OF THE MISSION:")]
     public float reward;
@@ -14,11 +15,14 @@ public class MissionCommonScript : MonoBehaviour
     [Header("IS THIS MISION ACTIVE?")]
     public bool missionActive;
 
-    [Header("RECICLABLE MISSION??")]
-    public bool recicle;
+    //[Header("RECICLABLE MISSION??")]
+    // public bool recicle;
     
     [Header("MISSION COMPLETED?")]
     public bool completed = false;
+
+    [Header("MISSION FAILED?")]
+    public bool fail = false;
 
     [Header("DOES YOUR MOTHER KNOW THAT YOUR OUT?")]
     public bool motherKnow = false;
@@ -37,6 +41,11 @@ public class MissionCommonScript : MonoBehaviour
 
     public int enemyChossen;
     public int choosenEnemyToKill;
+
+    [Header("AUTOMATIC VARIABLES (MIISON 4):")]
+
+    public float lifesAtMoment;
+    public bool failDontLoosingLife;
 
     [Header("AUTOMATIC VARIABLES (OTHER OBJECTS):")]
     public GameObject player;
@@ -82,7 +91,7 @@ public class MissionCommonScript : MonoBehaviour
             case 1: break;
             case 2: parrysToDo = Random.Range(5,player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysToDoInTheMission); break;
             case 3: enemysToKill = Random.Range(10,player.GetComponent<ProtoBLACKBOARD_Player>().numOfEnemysToKillInTheMission); break;
-            case 4: break;
+            case 4: lifesAtMoment = player.GetComponent<ProtoBLACKBOARD_Player>().characterLife; break;
         }
     }
     
@@ -91,7 +100,7 @@ public class MissionCommonScript : MonoBehaviour
     {
         if(completed)
         {
-            if(!recicle)
+            if(!fail)
             {
                 if(!oneTime)
                 {
@@ -99,9 +108,13 @@ public class MissionCommonScript : MonoBehaviour
                     missionFeedback.GetComponent<MissionFeedback>().MissionCompleted();
                     oneTime = true;
                 }
-    
             }
-            
+            else
+            {
+                //player.GetComponent<ProtoBLACKBOARD_Player>().characterMoney += reward;
+                //missionFeedback.GetComponent<MissionFeedback>().MissionCompleted();
+                oneTime = true;
+            }  
         }
     }
     
@@ -113,7 +126,7 @@ public class MissionCommonScript : MonoBehaviour
             case 1: Mission1(); break;
             case 2: Mission2(); break;
             case 3: Mission3(); break;
-            case 4: break;
+            case 4: Mission4(); break;
         }
     }
 
@@ -164,12 +177,29 @@ public class MissionCommonScript : MonoBehaviour
         }
         
     }
+    void Mission4()
+    {
+        if(missionActive)
+        {
+            if(player.GetComponent<ProtoBLACKBOARD_Player>().contactWithStairs && player.GetComponent<ProtoBLACKBOARD_Player>().characterLife >= lifesAtMoment)
+            {
+                completed = true;
+            }
+            else if(player.GetComponent<ProtoBLACKBOARD_Player>().characterLife < lifesAtMoment)
+            {
+                fail = true;
+                completed = true;
+            }
+        }
+        
+    }
 
 
     //RESTART METODH
     public void RestartMetodh()
     {
         StartMetod();
+        fail = false;
         missionActive = false;
         completed = false;
         oneTime = false;

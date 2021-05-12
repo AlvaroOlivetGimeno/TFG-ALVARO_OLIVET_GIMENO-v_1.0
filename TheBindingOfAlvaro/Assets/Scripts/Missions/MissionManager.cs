@@ -8,17 +8,26 @@ public class MissionManager : MonoBehaviour
     [Header("NUM. OF MISSIONS IN TOTAL:")]
     public float numTotalMissionsActive;
 
-    [Header("MISSION's")]
+    public float numTotalHardMissionsActive;
+
+    [Header("MISSION's -NORMAL-")]
 
     public GameObject[] missions;
+
+    [Header("MISSION's -HARD-")]
+
+    public GameObject[] hardMissions;
 
     int rndVar;
 
     int missionsActive;
+    int hardMissionsActive;
 
     [Header("MISSION's COMPLETED")]  
     public int missionsDone;
+    public int hardMissionsDone;
     public bool stopMissions;
+    public bool stopHardMissions;
     
     
     GameObject player;
@@ -28,6 +37,7 @@ public class MissionManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         missions = GameObject.FindGameObjectsWithTag("Mission");
+        hardMissions = GameObject.FindGameObjectsWithTag("HardMission");
         
     }
 
@@ -36,6 +46,7 @@ public class MissionManager : MonoBehaviour
     {
         //--------------------------CHOOSE RANDOM MISSION----------------------------  
         ChooseRandomMision();
+        ChooseRandomHardMision();
 
         //------------------
 
@@ -81,11 +92,47 @@ public class MissionManager : MonoBehaviour
         else
         {
             stopMissions = true;      
+        }  
+    }
+
+    void ChooseRandomHardMision()
+    {
+        if(hardMissionsDone != hardMissions.Length)
+        {
+            if(numTotalHardMissionsActive > hardMissions.Length)
+            {
+                Debug.LogWarning("CUIDADO! NO TIENES TANTAS MISIONES!");
+            }
+            else
+            {
+                if(hardMissionsActive < numTotalHardMissionsActive)
+                {
+                    rndVar = Random.Range(0,hardMissions.Length);
+
+                    if(!hardMissions[rndVar].GetComponent<MissionCommonScript>().missionActive && !hardMissions[rndVar].GetComponent<MissionCommonScript>().completed)
+                    {
+                        hardMissions[rndVar].GetComponent<MissionCommonScript>().missionActive = true;
+                        ActiveMissionInPlayerBlackBoard(hardMissions[rndVar].GetComponent<MissionCommonScript>().missionType);
+                        hardMissionsActive++;
+                    }
+                    else
+                    {
+                        ChooseRandomHardMision();
+                    }
+                }
+                else
+                {
+                    //Debug.Log("SE ACABO");
+                }
+            }
+        }
+        else
+        {
+            stopMissions = true;      
         }
         
         
     }
-
     //ACTIVE MISSION IN BLACBOARD
     void ActiveMissionInPlayerBlackBoard(float x)
     {
@@ -114,11 +161,19 @@ public class MissionManager : MonoBehaviour
     //REINICIATE MISIONS
     public void RestartMisions()
     {
+        player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDoneForMission = 0;
+        player.GetComponent<ProtoBLACKBOARD_Player>().numOfRoomsSeenInTheLevel = 0;
+        player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDoneForMission = 0;
+        player.GetComponent<ProtoBLACKBOARD_Player>().contactWithStairs = false;
+
         foreach(GameObject mis in missions)
         {
             missionsDone = 0;
             missionsActive = 0;
             stopMissions = false;
+
+            //RESET BLACBOARD PLAYER VARIABLES
+           
             mis.GetComponent<MissionCommonScript>().RestartMetodh();
            
         }

@@ -24,7 +24,7 @@ public class StairsScript : MonoBehaviour
         {
             other.gameObject.GetComponent<ProtoBLACKBOARD_Player>().actualLevel +=1;
             roomBrain.GetComponent<RoomTemplates>().nextLevel = true;
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
     }
 }

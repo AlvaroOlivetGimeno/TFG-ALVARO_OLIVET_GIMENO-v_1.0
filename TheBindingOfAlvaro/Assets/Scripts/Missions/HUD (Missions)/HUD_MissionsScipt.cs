@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +7,7 @@ public class HUD_MissionsScipt : MonoBehaviour
 {
     // Start is called before the first frame update
     [Header("NUM. OF MISSION:")]
-    public float missionNum;
+    public float missionNum; 
 
     [Header("TYPE OF TEXT:")]
     public float textType;
@@ -22,6 +22,7 @@ public class HUD_MissionsScipt : MonoBehaviour
     [Header("LIST OF MISION:")]
 
     public GameObject[] mission;
+    public GameObject[] hardMission;
 
     [Header("AUTOMATIC VARIABLES:")]
 
@@ -39,6 +40,7 @@ public class HUD_MissionsScipt : MonoBehaviour
         text = GetComponent<Text>();
         player = GameObject.FindGameObjectWithTag("Player");
         mission = GameObject.FindGameObjectsWithTag("Mission");
+        hardMission = GameObject.FindGameObjectsWithTag("Mission");
         roomBrain = GameObject.FindGameObjectWithTag("RoomBrain");
         
     }
@@ -63,12 +65,12 @@ public class HUD_MissionsScipt : MonoBehaviour
         switch(textType)
         {
             case 1: 
-            switch(missionNum)
-            {
-                case 1: numOfXYouHaveToDo = (roomBrain.GetComponent<RoomTemplates>().sizeOfList +1).ToString();
-                        numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().numOfRoomsSeenInTheLevel.ToString();
-                break;
-            }
+                switch(missionNum)
+                {
+                    case 1: numOfXYouHaveToDo = (roomBrain.GetComponent<RoomTemplates>().sizeOfList +1).ToString();
+                            numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().numOfRoomsSeenInTheLevel.ToString();
+                    break;
+                }
             break;
 
             case 2:
@@ -77,14 +79,13 @@ public class HUD_MissionsScipt : MonoBehaviour
                 {
                     case 2:
                     foreach(GameObject x in mission)
-                    {
-                        if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
                         {
-                            numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().parrysToDo.ToString();
-                        }   
-                    }
-                    numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDoneForMission.ToString();
-
+                            if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
+                            {
+                                numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().parrysToDo.ToString();
+                            }   
+                        }
+                        numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDoneForMission.ToString();
                     break;
 
                     case 3:
@@ -95,11 +96,12 @@ public class HUD_MissionsScipt : MonoBehaviour
                                 numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().enemysToKill.ToString();
                             }   
                         }
-                    numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission.ToString();
-            break;
+                        numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission.ToString();
+                    break;
                 }
                 
             break;
+            
 
            
         }
@@ -114,7 +116,7 @@ public class HUD_MissionsScipt : MonoBehaviour
             case 1: text.text = txt + " ("+ numOfXYouHaveDone +"/"+ numOfXYouHaveToDo +")"; break;
             case 2: text.text = txt1 + " " + numOfXYouHaveToDo + " " + txt2 +" (" + 
                     numOfXYouHaveDone + "/" + numOfXYouHaveToDo + ")"; break;
-            case 3: break;
+            case 3: text.text = txt1 + " " + numOfXYouHaveToDo + " " + txt2; break;
         }
     }
 

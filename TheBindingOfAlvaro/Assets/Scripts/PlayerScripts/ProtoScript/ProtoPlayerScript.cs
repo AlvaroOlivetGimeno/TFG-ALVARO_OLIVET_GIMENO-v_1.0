@@ -801,6 +801,13 @@ public class ProtoPlayerScript : MonoBehaviour
                 SumCristal();
                 Destroy(other.gameObject);
             }
+
+            //-------------------------------STAIRS MISSION COL-------------------------------------------------------
+        
+            if(other.gameObject.tag =="StairsMissionCollider")
+            {
+                BlackBoardPlayer.contactWithStairs = true;
+            }
     }
 
     void OnCollisionEnter2D(Collision2D other)

@@ -561,7 +561,7 @@ public class RoomTemplates : MonoBehaviour
             nextLevel = false;
             allDeleted = false;
             MapIsFinished = false;
-            Instantiate(startRoom, initialPos.position, Quaternion.identity);
+            Instantiate(startRoom, new Vector3(initialPos.position.x, initialPos.position.y, 0), Quaternion.identity);
             entryRoomSpawned = true;
         }
          

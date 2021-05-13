@@ -109,6 +109,9 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public int squidKilled;
     public int mothersKilled;
     public bool contactWithStairs;
+
+    public float minutsForMision5;
+    public float secondsForMision5;
     
 
 

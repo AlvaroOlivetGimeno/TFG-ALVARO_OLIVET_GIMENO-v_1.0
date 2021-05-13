@@ -33,6 +33,9 @@ public class HUD_MissionsScipt : MonoBehaviour
 
     public string numOfXYouHaveToDo;
     public string numOfXYouHaveDone;
+    public float minuts;
+    public float seconds;
+
     GameObject player;
     GameObject roomBrain;
     void Start()
@@ -40,7 +43,7 @@ public class HUD_MissionsScipt : MonoBehaviour
         text = GetComponent<Text>();
         player = GameObject.FindGameObjectWithTag("Player");
         mission = GameObject.FindGameObjectsWithTag("Mission");
-        hardMission = GameObject.FindGameObjectsWithTag("Mission");
+        hardMission = GameObject.FindGameObjectsWithTag("HardMission");
         roomBrain = GameObject.FindGameObjectWithTag("RoomBrain");
         
     }
@@ -62,48 +65,56 @@ public class HUD_MissionsScipt : MonoBehaviour
     //START METOD
     void StartMetod()
     {
-        switch(textType)
+        switch(missionNum)
         {
-            case 1: 
-                switch(missionNum)
-                {
-                    case 1: numOfXYouHaveToDo = (roomBrain.GetComponent<RoomTemplates>().sizeOfList +1).ToString();
-                            numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().numOfRoomsSeenInTheLevel.ToString();
-                    break;
-                }
+            case 1:
+                numOfXYouHaveToDo = (roomBrain.GetComponent<RoomTemplates>().sizeOfList +1).ToString();
+                numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().numOfRoomsSeenInTheLevel.ToString();
             break;
 
             case 2:
+                foreach(GameObject x in mission)
+                    {
+                        if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
+                        {
+                            numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().parrysToDo.ToString();
+                        }   
+                    }
+                numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDoneForMission.ToString();
+            break;
 
-                switch(missionNum)
+            case 3:
+                foreach(GameObject x in mission)
+                    {
+                        if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
+                        {
+                            numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().enemysToKill.ToString();
+                        }   
+                    }
+                    numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission.ToString();
+            break;
+
+            case 4:
+                foreach(GameObject x in hardMission)
                 {
-                    case 2:
-                    foreach(GameObject x in mission)
-                        {
-                            if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
-                            {
-                                numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().parrysToDo.ToString();
-                            }   
-                        }
-                        numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDoneForMission.ToString();
-                    break;
-
-                    case 3:
-                        foreach(GameObject x in mission)
-                        {
-                            if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
-                            {
-                                numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().enemysToKill.ToString();
-                            }   
-                        }
-                        numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission.ToString();
-                    break;
+                    if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
+                    {
+                        numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().lifesAtMoment.ToString();
+                    }
                 }
-                
+            break;
+            case 5:
+                foreach(GameObject x in hardMission)
+                {
+                    if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
+                    {
+                        minuts = x.GetComponent<MissionCommonScript>().missioinFiveTimerMinuts;
+                        seconds = x.GetComponent<MissionCommonScript>().missioinFiveTimerSeconds;
+                    }
+                    
+                }
             break;
             
-
-           
         }
     }
 
@@ -117,8 +128,11 @@ public class HUD_MissionsScipt : MonoBehaviour
             case 2: text.text = txt1 + " " + numOfXYouHaveToDo + " " + txt2 +" (" + 
                     numOfXYouHaveDone + "/" + numOfXYouHaveToDo + ")"; break;
             case 3: text.text = txt1 + " " + numOfXYouHaveToDo + " " + txt2; break;
+            case 4: text.text = txt + " " + minuts + ":" + seconds; break;
         }
     }
+    
+   
 
 
 

@@ -84,9 +84,17 @@ public class PointForMission : MonoBehaviour
     }
 
     //DESACTIVATE ALL MISSIONS
-    void DesactivateAll()
+    void DesactivateAllNormal()
     {
         foreach(GameObject txt in texts)
+        {
+            txt.gameObject.SetActive(false);
+        }
+    }
+    //DESACTIVATE ALL MISSIONS
+    void DesactivateAllHard()
+    {
+        foreach(GameObject txt in hardTexts)
         {
             txt.gameObject.SetActive(false);
         }
@@ -108,7 +116,7 @@ public class PointForMission : MonoBehaviour
         }
         else
         {
-            DesactivateAll();
+            DesactivateAllNormal();
         }
     }
 
@@ -143,7 +151,7 @@ public class PointForMission : MonoBehaviour
     }
     void PointTwoLogic()
     {
-        if(!missionManager.GetComponent<MissionManager>().stopMissions)
+        if(!missionManager.GetComponent<MissionManager>().stopHardMissions)
         {
             //----------------CHECK WICH MISSION IS ACTIVE----------------
             WichHardMissionIsActive();
@@ -157,7 +165,7 @@ public class PointForMission : MonoBehaviour
         }
         else
         {
-            //DesactivateAll();
+            DesactivateAllHard();
         }
     }
 

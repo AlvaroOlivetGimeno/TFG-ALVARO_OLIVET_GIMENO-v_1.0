@@ -128,7 +128,7 @@ public class MissionManager : MonoBehaviour
         }
         else
         {
-            stopMissions = true;      
+            stopHardMissions = true;      
         }
         
         
@@ -152,10 +152,27 @@ public class MissionManager : MonoBehaviour
             {
                 missionsActive = missionsActive -1;
                 missionsDone += 1;
-                //Destroy(mis.gameObject);
                 mis.GetComponent<MissionCommonScript>().motherKnow = true;
             }
         }
+        
+        foreach(GameObject mis in hardMissions)
+        {
+            if(mis.GetComponent<MissionCommonScript>().completed && mis.GetComponent<MissionCommonScript>().missionActive && !mis.GetComponent<MissionCommonScript>().motherKnow)
+            {
+                hardMissionsActive = hardMissionsActive -1;
+                hardMissionsDone += 1;
+                mis.GetComponent<MissionCommonScript>().motherKnow = true;
+                
+                foreach(GameObject ms in hardMissions)
+                {
+                    ms.GetComponent<MissionCommonScript>().anuled = true;
+                }
+                
+                stopHardMissions = true;
+            }
+        }
+        
     }
 
     //REINICIATE MISIONS
@@ -171,12 +188,21 @@ public class MissionManager : MonoBehaviour
             missionsDone = 0;
             missionsActive = 0;
             stopMissions = false;
-
             //RESET BLACBOARD PLAYER VARIABLES
            
             mis.GetComponent<MissionCommonScript>().RestartMetodh();
            
         }
+        foreach(GameObject mis in hardMissions)
+        {
+            hardMissionsDone = 0;
+            hardMissionsActive =  0;
+            stopHardMissions = false;
+           
+            mis.GetComponent<MissionCommonScript>().RestartMetodh();
+           
+        }
+        
     }
     
     

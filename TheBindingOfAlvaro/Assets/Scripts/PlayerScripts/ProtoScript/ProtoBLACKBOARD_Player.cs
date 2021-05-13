@@ -112,6 +112,9 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
 
     public float minutsForMision5;
     public float secondsForMision5;
+    public float minutsForMision6;
+    public float secondsForMision6;
+    public bool contactWithShopOrSpecialRoom;
     
 
 

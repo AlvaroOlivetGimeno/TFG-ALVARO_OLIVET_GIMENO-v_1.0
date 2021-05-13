@@ -808,6 +808,10 @@ public class ProtoPlayerScript : MonoBehaviour
             {
                 BlackBoardPlayer.contactWithStairs = true;
             }
+             if(other.gameObject.tag =="StrangeRoomMissionCollider")
+            {
+                BlackBoardPlayer.contactWithShopOrSpecialRoom = true;
+            }
     }
 
     void OnCollisionEnter2D(Collision2D other)

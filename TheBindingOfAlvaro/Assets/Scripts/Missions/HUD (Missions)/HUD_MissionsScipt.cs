@@ -108,8 +108,19 @@ public class HUD_MissionsScipt : MonoBehaviour
                 {
                     if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
                     {
-                        minuts = x.GetComponent<MissionCommonScript>().missioinFiveTimerMinuts;
-                        seconds = x.GetComponent<MissionCommonScript>().missioinFiveTimerSeconds;
+                        minuts = x.GetComponent<MissionCommonScript>().minuts;
+                        seconds = x.GetComponent<MissionCommonScript>().seconds;
+                    }
+                    
+                }
+            break;
+            case 6:
+                foreach(GameObject x in hardMission)
+                {
+                    if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
+                    {
+                        minuts = x.GetComponent<MissionCommonScript>().minuts;
+                        seconds = x.GetComponent<MissionCommonScript>().seconds;
                     }
                     
                 }

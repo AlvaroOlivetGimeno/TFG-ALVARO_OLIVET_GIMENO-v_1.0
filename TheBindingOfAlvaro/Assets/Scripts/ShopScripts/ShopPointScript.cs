@@ -217,7 +217,7 @@ public class ShopPointScript : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("NO SE PUEDE LOKO");
+                   
                 }
             }
             else

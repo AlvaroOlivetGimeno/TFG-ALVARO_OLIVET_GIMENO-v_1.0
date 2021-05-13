@@ -44,9 +44,11 @@ public class MissionCommonScript : MonoBehaviour
     public float lifesAtMoment;
     public bool failDontLoosingLife;
 
-    [Header("AUTOMATIC VARIABLES (MIISON 5):")]
-    public float missioinFiveTimerSeconds;
-    public float missioinFiveTimerMinuts;
+    [Header("AUTOMATIC VARIABLES (MIISON 5 + 6):")]
+    public float seconds;
+    public float minuts;
+
+    public float enemysToKillMissionSix;
     
 
     [Header("AUTOMATIC VARIABLES (OTHER OBJECTS):")]
@@ -100,8 +102,11 @@ public class MissionCommonScript : MonoBehaviour
             case 4: player.GetComponent<ProtoBLACKBOARD_Player>().contactWithStairs = false;
                     lifesAtMoment = player.GetComponent<ProtoBLACKBOARD_Player>().characterLife; break;
             case 5: player.GetComponent<ProtoBLACKBOARD_Player>().contactWithStairs = false; 
-                    missioinFiveTimerMinuts = player.GetComponent<ProtoBLACKBOARD_Player>().minutsForMision5;    
-                    missioinFiveTimerSeconds = player.GetComponent<ProtoBLACKBOARD_Player>().secondsForMision5;break;
+                    minuts = player.GetComponent<ProtoBLACKBOARD_Player>().minutsForMision5;    
+                    seconds = player.GetComponent<ProtoBLACKBOARD_Player>().secondsForMision5;break;
+            case 6: player.GetComponent<ProtoBLACKBOARD_Player>().contactWithShopOrSpecialRoom = false; 
+                    minuts = player.GetComponent<ProtoBLACKBOARD_Player>().minutsForMision6;    
+                    seconds = player.GetComponent<ProtoBLACKBOARD_Player>().secondsForMision6;break;
             
         }
     }
@@ -140,6 +145,7 @@ public class MissionCommonScript : MonoBehaviour
             case 3: Mission3(); break;
             case 4: Mission4(); break;
             case 5: Mission5(); break;
+            case 6: Mission6(); break;
         }
     }
 
@@ -209,34 +215,48 @@ public class MissionCommonScript : MonoBehaviour
     {
         if(missionActive)
         {
-            ClockMission5();
-            if(player.GetComponent<ProtoBLACKBOARD_Player>().contactWithStairs && missioinFiveTimerMinuts >= 0 && missioinFiveTimerSeconds >= 0)
+            Clock();
+            if(player.GetComponent<ProtoBLACKBOARD_Player>().contactWithStairs && minuts >= 0 && seconds >= 0)
             {
                 completed = true;
             }
-            else if(missioinFiveTimerMinuts <= 0 && missioinFiveTimerSeconds <= 0)
+            else if(minuts <= 0 && seconds <= 0)
             {
                 fail = true;
                 completed = true;
             }
         }
-        
     }
-
-    //Final contdown
-   void ClockMission5()
+    void Mission6()
     {
-       missioinFiveTimerSeconds -= 1 * Time.deltaTime;
-       if(missioinFiveTimerSeconds <= 0)
+        if(missionActive)
+        {
+            Clock();
+            if(player.GetComponent<ProtoBLACKBOARD_Player>().contactWithShopOrSpecialRoom && minuts >= 0 && seconds >= 0)
+            {
+                completed = true;
+            }
+            else if(minuts <= 0 && seconds <= 0)
+            {
+                fail = true;
+                completed = true;
+            }
+        }   
+    }
+    //Final contdown
+   void Clock()
+    {
+       seconds -= 1 * Time.deltaTime;
+       if(seconds <= 0)
        {
-           if(missioinFiveTimerMinuts <= 0)
+           if(minuts <= 0)
            {
                
            }
            else
            {
-               missioinFiveTimerMinuts -= 1;
-               missioinFiveTimerSeconds = 60;
+               minuts -= 1;
+               seconds = 60;
            }
        }
     }

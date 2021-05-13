@@ -180,7 +180,7 @@ public class MissionManager : MonoBehaviour
     {
         player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDoneForMission = 0;
         player.GetComponent<ProtoBLACKBOARD_Player>().numOfRoomsSeenInTheLevel = 0;
-        player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDoneForMission = 0;
+        player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission = 0;
         player.GetComponent<ProtoBLACKBOARD_Player>().contactWithStairs = false;
 
         foreach(GameObject mis in missions)

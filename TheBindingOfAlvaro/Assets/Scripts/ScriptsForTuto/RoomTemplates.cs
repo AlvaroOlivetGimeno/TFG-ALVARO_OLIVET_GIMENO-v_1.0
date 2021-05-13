@@ -205,7 +205,8 @@ public class RoomTemplates : MonoBehaviour
     {
         if(shopSpawned == false && MapIsReady())
         {
-            roomChoosed = Random.Range(5,rooms.Count/2);
+            
+            roomChoosed = Random.Range(rooms.Count/2,rooms.Count-2);
             Instantiate(shop, rooms[roomChoosed].transform.position, Quaternion.identity);
             shopSpawned = true;
         }
@@ -217,7 +218,7 @@ public class RoomTemplates : MonoBehaviour
     {
         if(specialRoomSpawned == false && MapIsReady())
         {
-            roomChoosed = Random.Range(rooms.Count/2,rooms.Count-2);
+            roomChoosed = Random.Range(5,rooms.Count/2);
             Instantiate(specialRoom, rooms[roomChoosed].transform.position, Quaternion.identity);
             specialRoomSpawned = true;
         }
@@ -228,7 +229,7 @@ public class RoomTemplates : MonoBehaviour
     {
         if(cristalSpawned == false && MapIsReady())
         {
-            roomChoosed = Random.Range(rooms.Count/2,rooms.Count-3);
+            roomChoosed = Random.Range(rooms.Count-2,rooms.Count-1);
             Instantiate(cristal, rooms[roomChoosed].transform.position, cristal.transform.rotation);
             cristalSpawned = true;
         }
@@ -558,6 +559,7 @@ public class RoomTemplates : MonoBehaviour
             specialRoomSpawned = false;
             MapIsFinished = false;
             spawnStairs = false;
+            cristalSpawned=false;
             nextLevel = false;
             allDeleted = false;
             MapIsFinished = false;
@@ -594,9 +596,9 @@ public class RoomTemplates : MonoBehaviour
     //READY TO SE THE MAP
     public bool ReadyToSeTheMap()
     {
-        waiteTime += 0.5f * Time.deltaTime;
+        waiteTime += 1f * Time.deltaTime;
 
-        if(waiteTime >= 8)
+        if(waiteTime >= 8   )
         {
             return true;
         }

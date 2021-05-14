@@ -10,6 +10,8 @@ public class MissionManager : MonoBehaviour
 
     public float numTotalHardMissionsActive;
 
+    public float numTotalLargeMissionsActive;
+
     [Header("MISSION's -NORMAL-")]
 
     public GameObject[] missions;
@@ -18,16 +20,23 @@ public class MissionManager : MonoBehaviour
 
     public GameObject[] hardMissions;
 
+    [Header("MISSION's -LARGE-")]
+
+    public GameObject[] largeMissions;
+
     int rndVar;
 
     int missionsActive;
     int hardMissionsActive;
+    int largeMissionsActive;
 
     [Header("MISSION's COMPLETED")]  
     public int missionsDone;
     public int hardMissionsDone;
+    public int largeMissionsDone;
     public bool stopMissions;
     public bool stopHardMissions;
+    public bool stopLargeMissions;
     
     
     GameObject player;
@@ -38,6 +47,7 @@ public class MissionManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         missions = GameObject.FindGameObjectsWithTag("Mission");
         hardMissions = GameObject.FindGameObjectsWithTag("HardMission");
+        largeMissions = GameObject.FindGameObjectsWithTag("LargeMission");
         
     }
 
@@ -45,8 +55,9 @@ public class MissionManager : MonoBehaviour
     void Update()
     {
         //--------------------------CHOOSE RANDOM MISSION----------------------------  
-        ChooseRandomMision();
-        ChooseRandomHardMision();
+        ChooseRandomMision(); // -> NORMAL
+        ChooseRandomHardMision(); // -> HARD
+        ChooseRandomLargeMision(); // -> LARGE
 
         //------------------
 
@@ -95,6 +106,7 @@ public class MissionManager : MonoBehaviour
         }  
     }
 
+    //CHOOSE RANDOM HARD MISION
     void ChooseRandomHardMision()
     {
         if(hardMissionsDone != hardMissions.Length)
@@ -133,6 +145,46 @@ public class MissionManager : MonoBehaviour
         
         
     }
+
+    //Choose Large Mision Randomly
+    void ChooseRandomLargeMision()
+    {
+        if(largeMissionsDone != largeMissions.Length)
+        {
+            if(numTotalLargeMissionsActive > largeMissions.Length)
+            {
+                Debug.LogWarning("CUIDADO! NO TIENES TANTAS MISIONES!");
+            }
+            else
+            {
+                if(largeMissionsActive < numTotalLargeMissionsActive)
+                {
+                    rndVar = Random.Range(0,missions.Length);
+
+                    if(!largeMissions[rndVar].GetComponent<MissionCommonScript>().missionActive && !largeMissions[rndVar].GetComponent<MissionCommonScript>().completed)
+                    {
+                        largeMissions[rndVar].GetComponent<MissionCommonScript>().missionActive = true;
+                        //ActiveMissionInPlayerBlackBoard(missions[rndVar].GetComponent<MissionCommonScript>().missionType);
+                        largeMissionsActive++;
+                    }
+                    else
+                    {
+                        ChooseRandomLargeMision();
+                    }
+                }
+                else
+                {
+                    //Debug.Log("SE ACABO");
+                }
+            }
+        }
+        else
+        {
+            stopLargeMissions = true;      
+        }  
+    }
+
+
     //ACTIVE MISSION IN BLACBOARD
     void ActiveMissionInPlayerBlackBoard(float x)
     {
@@ -170,6 +222,16 @@ public class MissionManager : MonoBehaviour
                 }
                 
                 stopHardMissions = true;
+            }
+        }
+
+        foreach(GameObject mis in largeMissions)
+        {
+            if(mis.GetComponent<MissionCommonScript>().completed && mis.GetComponent<MissionCommonScript>().missionActive && !mis.GetComponent<MissionCommonScript>().motherKnow)
+            {
+                largeMissionsActive = largeMissionsActive -1;
+                largeMissionsDone += 1;
+                mis.GetComponent<MissionCommonScript>().motherKnow = true;
             }
         }
         

@@ -47,8 +47,19 @@ public class MissionCommonScript : MonoBehaviour
     [Header("AUTOMATIC VARIABLES (MIISON 5 + 6):")]
     public float seconds;
     public float minuts;
-
     public float enemysToKillMissionSix;
+
+    [Header("AUTOMATIC VARIABLES (MIISON 7):")]
+    public float speed;
+    public float MAXSpeed;
+
+    [Header("AUTOMATIC VARIABLES (MIISON 8):")]
+    public float life;
+    public float MAXLife;
+
+    [Header("AUTOMATIC VARIABLES (MIISON 9):")]
+    public float delayToShoot;
+    public float MINDelayToShoot;
     
 
     [Header("AUTOMATIC VARIABLES (OTHER OBJECTS):")]
@@ -107,6 +118,12 @@ public class MissionCommonScript : MonoBehaviour
             case 6: player.GetComponent<ProtoBLACKBOARD_Player>().contactWithShopOrSpecialRoom = false; 
                     minuts = player.GetComponent<ProtoBLACKBOARD_Player>().minutsForMision6;    
                     seconds = player.GetComponent<ProtoBLACKBOARD_Player>().secondsForMision6;break;
+            case 7: speed = player.GetComponent<ProtoBLACKBOARD_Player>().characterSpeed;
+                    MAXSpeed = player.GetComponent<ProtoBLACKBOARD_Player>().MAXSpeed; break;
+            case 8: life = player.GetComponent<ProtoBLACKBOARD_Player>().characterLife;
+                    MAXLife = player.GetComponent<ProtoBLACKBOARD_Player>().MAXLife; break;
+            case 9: delayToShoot = player.GetComponent<ProtoBLACKBOARD_Player>().delayTimeToShoot;
+                    MINDelayToShoot = player.GetComponent<ProtoBLACKBOARD_Player>().MINIMDelay; break;
             
         }
     }
@@ -127,10 +144,11 @@ public class MissionCommonScript : MonoBehaviour
             }
             else
             {
-                //player.GetComponent<ProtoBLACKBOARD_Player>().characterMoney += reward;
-               
-                missionFeedback.GetComponent<MissionFeedback>().MissionFailed();
-                oneTime = true;
+                if(!oneTime)
+                {
+                    missionFeedback.GetComponent<MissionFeedback>().MissionFailed();
+                    oneTime = true;
+                }
             }  
         }
     }
@@ -146,6 +164,9 @@ public class MissionCommonScript : MonoBehaviour
             case 4: Mission4(); break;
             case 5: Mission5(); break;
             case 6: Mission6(); break;
+            case 7: Mission7(); break;
+            case 8: Mission8(); break;
+            case 9: Mission9(); break;
         }
     }
 
@@ -243,6 +264,41 @@ public class MissionCommonScript : MonoBehaviour
             }
         }   
     }
+
+    void Mission7()
+    {
+        if(missionActive)
+        {
+            if(speed>= MAXSpeed)
+            {
+                completed = true;
+            }
+        }
+    }
+
+     void Mission8()
+    {
+        if(missionActive)
+        {
+            if(life>= MAXLife)
+            {
+                completed = true;
+            }
+        }
+    }
+
+     void Mission9()
+    {
+        if(missionActive)
+        {
+            if(delayToShoot <= MINDelayToShoot)
+            {
+                completed = true;
+            }
+        }
+    }
+
+
     //Final contdown
    void Clock()
     {

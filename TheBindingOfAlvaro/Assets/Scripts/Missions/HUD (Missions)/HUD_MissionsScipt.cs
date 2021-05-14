@@ -12,6 +12,10 @@ public class HUD_MissionsScipt : MonoBehaviour
     [Header("TYPE OF TEXT:")]
     public float textType;
 
+    [Header("ITS A REWARD TEXT??")]
+    public bool rewardText;
+    public float reward;
+
     [Header("TEXT OF THE MISION (TYPE 1):")]
     public string txt;
 
@@ -23,6 +27,8 @@ public class HUD_MissionsScipt : MonoBehaviour
 
     public GameObject[] mission;
     public GameObject[] hardMission;
+
+    public GameObject[] largeMission;
 
     [Header("AUTOMATIC VARIABLES:")]
 
@@ -44,6 +50,7 @@ public class HUD_MissionsScipt : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         mission = GameObject.FindGameObjectsWithTag("Mission");
         hardMission = GameObject.FindGameObjectsWithTag("HardMission");
+        largeMission= GameObject.FindGameObjectsWithTag("LargeMission");
         roomBrain = GameObject.FindGameObjectWithTag("RoomBrain");
         
     }
@@ -68,30 +75,40 @@ public class HUD_MissionsScipt : MonoBehaviour
         switch(missionNum)
         {
             case 1:
+                foreach(GameObject x in mission)
+                {
+                    if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
+                    {
+                        reward = x.GetComponent<MissionCommonScript>().reward;
+                    }   
+                }   
                 numOfXYouHaveToDo = (roomBrain.GetComponent<RoomTemplates>().sizeOfList +1).ToString();
                 numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().numOfRoomsSeenInTheLevel.ToString();
+
             break;
 
             case 2:
                 foreach(GameObject x in mission)
+                {
+                    if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
                     {
-                        if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
-                        {
-                            numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().parrysToDo.ToString();
-                        }   
-                    }
+                        numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().parrysToDo.ToString();
+                        reward = x.GetComponent<MissionCommonScript>().reward;
+                    }   
+                }
                 numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDoneForMission.ToString();
             break;
 
             case 3:
                 foreach(GameObject x in mission)
+                {
+                    if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
                     {
-                        if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
-                        {
-                            numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().enemysToKill.ToString();
-                        }   
-                    }
-                    numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission.ToString();
+                        numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().enemysToKill.ToString();
+                        reward = x.GetComponent<MissionCommonScript>().reward;
+                    }   
+                }
+                numOfXYouHaveDone = player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission.ToString();
             break;
 
             case 4:
@@ -100,6 +117,7 @@ public class HUD_MissionsScipt : MonoBehaviour
                     if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
                     {
                         numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().lifesAtMoment.ToString();
+                        reward = x.GetComponent<MissionCommonScript>().reward;
                     }
                 }
             break;
@@ -110,6 +128,7 @@ public class HUD_MissionsScipt : MonoBehaviour
                     {
                         minuts = x.GetComponent<MissionCommonScript>().minuts;
                         seconds = x.GetComponent<MissionCommonScript>().seconds;
+                        reward = x.GetComponent<MissionCommonScript>().reward;
                     }
                     
                 }
@@ -121,6 +140,43 @@ public class HUD_MissionsScipt : MonoBehaviour
                     {
                         minuts = x.GetComponent<MissionCommonScript>().minuts;
                         seconds = x.GetComponent<MissionCommonScript>().seconds;
+                        reward = x.GetComponent<MissionCommonScript>().reward;
+                    }
+                    
+                }
+            break;
+            case 7:
+                foreach(GameObject x in largeMission)
+                {
+                    if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
+                    {
+                        numOfXYouHaveDone = x.GetComponent<MissionCommonScript>().speed.ToString();
+                        numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().MAXSpeed.ToString();
+                        reward = x.GetComponent<MissionCommonScript>().reward;
+                    }
+                    
+                }
+            break;
+            case 8:
+                foreach(GameObject x in largeMission)
+                {
+                    if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
+                    {
+                        numOfXYouHaveDone = x.GetComponent<MissionCommonScript>().life.ToString();
+                        numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().MAXLife.ToString();
+                        reward = x.GetComponent<MissionCommonScript>().reward;
+                    }
+                    
+                }
+            break;
+            case 9:
+                foreach(GameObject x in largeMission)
+                {
+                    if(x.GetComponent<MissionCommonScript>().missionType == missionNum)
+                    {
+                        numOfXYouHaveDone = x.GetComponent<MissionCommonScript>().delayToShoot.ToString();
+                        numOfXYouHaveToDo = x.GetComponent<MissionCommonScript>().MINDelayToShoot.ToString();
+                        reward = x.GetComponent<MissionCommonScript>().reward;
                     }
                     
                 }
@@ -133,14 +189,23 @@ public class HUD_MissionsScipt : MonoBehaviour
 
     void WriteText()
     {
-        switch(textType)
+        if(!rewardText)
         {
-            case 1: text.text = txt + " ("+ numOfXYouHaveDone +"/"+ numOfXYouHaveToDo +")"; break;
-            case 2: text.text = txt1 + " " + numOfXYouHaveToDo + " " + txt2 +" (" + 
-                    numOfXYouHaveDone + "/" + numOfXYouHaveToDo + ")"; break;
-            case 3: text.text = txt1 + " " + numOfXYouHaveToDo + " " + txt2; break;
-            case 4: text.text = txt + " " + minuts + ":" + seconds; break;
+            switch(textType)
+            {
+                case 1: text.text = txt + " ("+ numOfXYouHaveDone +"/"+ numOfXYouHaveToDo +")"; break;
+                case 2: text.text = txt1 + " " + numOfXYouHaveToDo + " " + txt2 +" (" + 
+                        numOfXYouHaveDone + "/" + numOfXYouHaveToDo + ")"; break;
+                case 3: text.text = txt1 + " " + numOfXYouHaveToDo + " " + txt2; break;
+                case 4: text.text = txt + " " + minuts + ":" + seconds; break;
+                case 5: text.text = txt + " (OBJECTIVE: " + numOfXYouHaveToDo + ")"; break;
+            }
         }
+        else
+        {
+            text.text = "REWARD: "+ reward;
+        }
+        
     }
     
    

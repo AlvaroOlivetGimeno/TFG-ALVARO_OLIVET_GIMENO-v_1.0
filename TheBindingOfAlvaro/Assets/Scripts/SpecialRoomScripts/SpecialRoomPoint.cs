@@ -9,18 +9,24 @@ public class SpecialRoomPoint : MonoBehaviour
     
     [Header("VARIABLE RANDOM:")]
     public float rndVar;
+    public float rndVarSpecial;
+
 
     [Header("STUPID DESTROYER LIST:")]
 
     public List<GameObject> activeHability;
+    public List<GameObject> passiveHability;
 
-    [Header("ACTIVE HABILITY:")]
+    [Header("ACTIVE + PASSIVE HABILITY:")]
     public GameObject ah1;
     public GameObject ah2;
     public GameObject ah3;
     public GameObject ah4;
     public GameObject ah5;
     public GameObject ah6;
+    public GameObject ph1;
+    public GameObject ph2;
+    public GameObject ph3;
 
     [Header("SPECIAL HABILITY:")]
     public GameObject sh1;
@@ -34,11 +40,12 @@ public class SpecialRoomPoint : MonoBehaviour
     public GameObject objSpawned;
 
     bool oneTime;
-    bool oneTimeSpecial;
+    public bool oneTimeSpecial;
     
     void Start()
     {
-        rndVar = Random.Range(1,6);
+        rndVar = Random.Range(1,9);
+        rndVarSpecial = Random.Range(1,6);
     }
 
     // Update is called once per frame
@@ -94,6 +101,18 @@ public class SpecialRoomPoint : MonoBehaviour
                         objSpawned = ah6;
                         oneTime = true;
                         break;
+                case 7: Instantiate(ph1, this.transform.position, Quaternion.identity);
+                        objSpawned = ph1;
+                        oneTime = true;
+                        break;
+                case 8: Instantiate(ph2, this.transform.position, Quaternion.identity);
+                        objSpawned = ph2;
+                        oneTime = true;
+                        break;
+                case 9: Instantiate(ph3, this.transform.position, Quaternion.identity);
+                        objSpawned = ph3;
+                        oneTime = true;
+                        break;
             }
         }
     }
@@ -103,7 +122,7 @@ public class SpecialRoomPoint : MonoBehaviour
     {
         if(!oneTimeSpecial)
         {
-            switch(rndVar)
+            switch(rndVarSpecial)
             {
                 case 1: Instantiate(sh1, this.transform.position, Quaternion.identity);
                         oneTimeSpecial = true;
@@ -132,9 +151,22 @@ public class SpecialRoomPoint : MonoBehaviour
     {
         if(pointType == 2)
         {
-            foreach(GameObject x in activeHability)
+            if(activeHability.Count != 0)
             {
-                Destroy(x.gameObject);
+                foreach(GameObject x in activeHability)
+                {
+                    
+                    Destroy(x.gameObject);
+                }
+            }
+            
+            if(passiveHability.Count != 0)
+            {
+                foreach(GameObject x in passiveHability)
+                {
+                    
+                    Destroy(x.gameObject);
+                }
             }
         }
         
@@ -146,6 +178,12 @@ public class SpecialRoomPoint : MonoBehaviour
         if(other.gameObject.tag == "ActiveHability")
         {
            activeHability.Add(other.gameObject);
+           
+            
+        }
+        if(other.gameObject.tag == "PassiveHability")
+        {
+           passiveHability.Add(other.gameObject);
            
             
         }

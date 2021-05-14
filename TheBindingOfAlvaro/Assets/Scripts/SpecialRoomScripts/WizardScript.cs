@@ -68,7 +68,6 @@ public class WizardScript : MonoBehaviour
         {
             if(other.gameObject.GetComponent<ProtoBLACKBOARD_Player>().characterCristals >= 2)
             {
-                Debug.Log("EP");
                 other.gameObject.GetComponent<ProtoBLACKBOARD_Player>().characterCristals-=2;
                 habilityPoint.GetComponent<SpecialRoomPoint>().pointType = 2;
                 Instantiate(particles, this.transform.position, Quaternion.identity);

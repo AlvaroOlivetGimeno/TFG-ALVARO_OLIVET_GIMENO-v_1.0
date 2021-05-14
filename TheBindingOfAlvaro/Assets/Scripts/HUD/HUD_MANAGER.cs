@@ -118,15 +118,33 @@ public class HUD_MANAGER : MonoBehaviour
 
     void habilityController()
     {
-        switch (BlackBoardPlayer.specialHabilityCatcth)
+        if(BlackBoardPlayer.loadingSpecialHability)
         {
-            case 0: sh0.SetActive(false); sh1.SetActive(false); sh2.SetActive(false); sh3.SetActive(false); sh4.SetActive(false); sh5.SetActive(false); break;
-            case 1: sh0.SetActive(true); sh1.SetActive(true); sh2.SetActive(false); sh3.SetActive(false); sh4.SetActive(false); sh5.SetActive(false); break;
-            case 2: sh0.SetActive(true); sh1.SetActive(false); sh2.SetActive(true); sh3.SetActive(false); sh4.SetActive(false); sh5.SetActive(false); break;
-            case 3: sh0.SetActive(true); sh1.SetActive(false); sh2.SetActive(false); sh3.SetActive(true); sh4.SetActive(false); sh5.SetActive(false); break;
-            case 4: sh0.SetActive(true); sh1.SetActive(false); sh2.SetActive(false); sh3.SetActive(false); sh4.SetActive(true); sh5.SetActive(false); break;
-            case 5: sh0.SetActive(true); sh1.SetActive(false); sh2.SetActive(false); sh3.SetActive(false); sh4.SetActive(false); sh5.SetActive(true); break;
+            switch (BlackBoardPlayer.specialHabilityCatcth)
+            {
+                case 0: sh0.SetActive(false); sh1.SetActive(false); sh2.SetActive(false); sh3.SetActive(false); sh4.SetActive(false); sh5.SetActive(false); break;
+                case 1: sh0.SetActive(true); sh0.GetComponent<FillAmountImage>().image.fillAmount = 1;
+                        sh1.SetActive(true); sh2.SetActive(false); sh3.SetActive(false); sh4.SetActive(false); sh5.SetActive(false); break;
+                case 2: sh0.SetActive(true); sh0.GetComponent<FillAmountImage>().image.fillAmount = 1;
+                        sh1.SetActive(false); sh2.SetActive(true); sh3.SetActive(false); sh4.SetActive(false); sh5.SetActive(false); break;
+                case 3: sh0.SetActive(true); sh0.GetComponent<FillAmountImage>().image.fillAmount = 1;
+                        sh1.SetActive(false); sh2.SetActive(false); sh3.SetActive(true); sh4.SetActive(false); sh5.SetActive(false); break;
+                case 4: sh0.SetActive(true); sh0.GetComponent<FillAmountImage>().image.fillAmount = 1;
+                        sh1.SetActive(false); sh2.SetActive(false); sh3.SetActive(false); sh4.SetActive(true); sh5.SetActive(false); break;
+                case 5: sh0.SetActive(true); sh0.GetComponent<FillAmountImage>().image.fillAmount = 1;
+                        sh1.SetActive(false); sh2.SetActive(false); sh3.SetActive(false); sh4.SetActive(false); sh5.SetActive(true); break;
+            }
         }
+        else
+        {
+            sh0.GetComponent<FillAmountImage>().image.fillAmount = (BlackBoardPlayer.enemysKillToReloadSpecialHability)/10;
+            sh1.SetActive(false); 
+            sh2.SetActive(false); 
+            sh3.SetActive(false); 
+            sh4.SetActive(false); 
+            sh5.SetActive(false);
+        }
+       
     }
 
     void LoadingScreenController()

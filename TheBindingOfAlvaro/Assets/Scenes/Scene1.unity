@@ -1498,6 +1498,8 @@ MonoBehaviour:
   timeEffectSpecialEnemysInvert: 5
   timeEffectSpecialEnemysSquid: 8
   activePause: 0
+  loadingSpecialHability: 1
+  enemysKillToReloadSpecialHability: 0
   duration: 0.2
   magnitude: 0.4
   minimumSpeed: 5
@@ -9244,6 +9246,7 @@ GameObject:
   - component: {fileID: 1270319482}
   - component: {fileID: 1270319484}
   - component: {fileID: 1270319483}
+  - component: {fileID: 1270319485}
   m_Layer: 5
   m_Name: SpecialHabilityFONDO
   m_TagString: Untagged
@@ -9283,7 +9286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9291,7 +9294,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 3749fdd19cd90264f9e634b65fe69b38, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -9299,7 +9302,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.01
 --- !u!222 &1270319484
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9308,6 +9311,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270319481}
   m_CullTransparentMesh: 1
+--- !u!114 &1270319485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270319481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b4178a5c656f14ca98581f14351c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 0}
 --- !u!1 &1274215287
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,6 +38,9 @@ public class ProtoPlayerScript : MonoBehaviour
     bool quadShoot = false;
     bool hunterState = false;
 
+    
+    
+
     //VARIABLES PER MOLESTAR (SPECIAL ENEMYS)
     float invertTimer;
     bool oneTimeInvert;
@@ -363,6 +366,11 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         specialHabilityTimer = 0;
         oneTime = false;
+
+        if(BlackBoardPlayer.enemysKillToReloadSpecialHability >= 10)
+        {
+            BlackBoardPlayer.loadingSpecialHability = true;
+        }
     }
 
     //INVULNERABILITAT SPECIAL STATE
@@ -375,6 +383,8 @@ public class ProtoPlayerScript : MonoBehaviour
         {
             invencible = false;
             BlackBoardPlayer.specialStateType = 0;
+            BlackBoardPlayer.enemysKillToReloadSpecialHability = 0;
+            BlackBoardPlayer.loadingSpecialHability = false;
         }
     }
 
@@ -388,6 +398,8 @@ public class ProtoPlayerScript : MonoBehaviour
         {
             superParry = false;
             BlackBoardPlayer.specialStateType = 0;
+            BlackBoardPlayer.enemysKillToReloadSpecialHability = 0;
+            BlackBoardPlayer.loadingSpecialHability = false;
         }
     }
 
@@ -406,6 +418,8 @@ public class ProtoPlayerScript : MonoBehaviour
         {
             quadShoot = false;
             BlackBoardPlayer.specialStateType = 0;
+            BlackBoardPlayer.enemysKillToReloadSpecialHability = 0;
+            BlackBoardPlayer.loadingSpecialHability = false;
         }
 
     }
@@ -420,7 +434,7 @@ public class ProtoPlayerScript : MonoBehaviour
 
             if(!oneTime)
             {
-                BlackBoardPlayer.characterLife -= 1;
+                RestLife();
                 oneTime = true;
             }
 
@@ -428,6 +442,8 @@ public class ProtoPlayerScript : MonoBehaviour
             {
                 hunterState = false;
                 BlackBoardPlayer.specialStateType = 0;
+                BlackBoardPlayer.enemysKillToReloadSpecialHability = 0;
+                BlackBoardPlayer.loadingSpecialHability = false;
             }
         } 
     }
@@ -437,6 +453,7 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         
         specialHabilityTimer += 1 * Time.deltaTime;
+
         if(BlackBoardPlayer.characterLife >= 3)
         {
             
@@ -446,7 +463,7 @@ public class ProtoPlayerScript : MonoBehaviour
 
         if (!oneTime)
         {
-            BlackBoardPlayer.characterLife -= 2;
+            RestLife();
             oneTime = true;
         }
 
@@ -454,6 +471,8 @@ public class ProtoPlayerScript : MonoBehaviour
         {      
             BlackBoardPlayer.sK_Collider.gameObject.SetActive(false);
             BlackBoardPlayer.specialStateType = 0;
+            BlackBoardPlayer.enemysKillToReloadSpecialHability = 0;
+            BlackBoardPlayer.loadingSpecialHability = false;
         }
          
     }
@@ -523,7 +542,7 @@ public class ProtoPlayerScript : MonoBehaviour
     //SPECIAL HABILITY CONTROLS
     void SpecialHabilityControls()
     {
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.E) && BlackBoardPlayer.loadingSpecialHability)
         {
             BlackBoardPlayer.specialStateType = BlackBoardPlayer.specialHabilityCatcth;
         }

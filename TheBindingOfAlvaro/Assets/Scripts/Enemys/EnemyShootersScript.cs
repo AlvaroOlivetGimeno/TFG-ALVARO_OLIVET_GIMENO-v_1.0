@@ -255,19 +255,39 @@ public class EnemyShootersScript : MonoBehaviour
                 if(enemyType == 1)
                 {
                     player.GetComponent<ProtoBLACKBOARD_Player>().basicTorretKilled += 1;
+
+                    if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
+                    {
+                        player.GetComponent<ProtoBLACKBOARD_Player>().enemysKillToReloadSpecialHability+=1;
+                    }
                 }
                 else if(enemyType == 2)
                 {
-                     player.GetComponent<ProtoBLACKBOARD_Player>().bounceTorretKilled += 1;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().bounceTorretKilled += 1;
+                     
+                    if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
+                    {
+                        player.GetComponent<ProtoBLACKBOARD_Player>().enemysKillToReloadSpecialHability+=1;
+                    }
                 }
                 else if(enemyType == 3)
                 {
-                     player.GetComponent<ProtoBLACKBOARD_Player>().intelligentTorretKilled += 1;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().intelligentTorretKilled += 1;
+                     
+                    if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
+                    {
+                        player.GetComponent<ProtoBLACKBOARD_Player>().enemysKillToReloadSpecialHability+=1;
+                    }
                 }
                 
                 if(player.GetComponent<ProtoBLACKBOARD_Player>().killEnemysMissionActive)  
                 {
                     player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission+=1;
+                    
+                    if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
+                    {
+                        player.GetComponent<ProtoBLACKBOARD_Player>().enemysKillToReloadSpecialHability+=1;
+                    }
                 }
                   
                 sumOneKill = true;

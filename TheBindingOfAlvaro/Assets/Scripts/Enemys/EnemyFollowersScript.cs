@@ -282,6 +282,11 @@ public class EnemyFollowersScript : MonoBehaviour
             if(!sumOneKill)
             {
                 player.GetComponent<ProtoBLACKBOARD_Player>().basicFollowerKilled += 1;
+                
+                if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
+                {
+                    player.GetComponent<ProtoBLACKBOARD_Player>().enemysKillToReloadSpecialHability+=1;
+                }
 
                 if(player.GetComponent<ProtoBLACKBOARD_Player>().killEnemysMissionActive)  
                 {
@@ -300,6 +305,11 @@ public class EnemyFollowersScript : MonoBehaviour
             {
                 player.GetComponent<ProtoBLACKBOARD_Player>().unityFollowerKilled += 1;
                 
+                if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
+                {
+                    player.GetComponent<ProtoBLACKBOARD_Player>().enemysKillToReloadSpecialHability+=1;
+                }
+
                 if(player.GetComponent<ProtoBLACKBOARD_Player>().killEnemysMissionActive)  
                 {
                     player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission+=1;
@@ -318,6 +328,11 @@ public class EnemyFollowersScript : MonoBehaviour
                 if(player.GetComponent<ProtoBLACKBOARD_Player>().killEnemysMissionActive)  
                 {
                     player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission+=1;
+                }
+                
+                if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
+                {
+                    player.GetComponent<ProtoBLACKBOARD_Player>().enemysKillToReloadSpecialHability+=1;
                 }
                     
                 sumOneKill = true;

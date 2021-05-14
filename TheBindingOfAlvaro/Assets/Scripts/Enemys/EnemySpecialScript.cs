@@ -142,14 +142,29 @@ public class EnemySpecialScript : MonoBehaviour
                 if(enemyType == 1)
                 {
                     player.GetComponent<ProtoBLACKBOARD_Player>().inverterKilled += 1;
+                    
+                    if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
+                    {
+                        player.GetComponent<ProtoBLACKBOARD_Player>().enemysKillToReloadSpecialHability+=1;
+                    }
                 }
                 else if( enemyType == 2)
                 {
                     player.GetComponent<ProtoBLACKBOARD_Player>().squidKilled += 1;
+                    
+                    if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
+                    {
+                        player.GetComponent<ProtoBLACKBOARD_Player>().enemysKillToReloadSpecialHability+=1;
+                    }
                 }
                 else if(enemyType == 3)
                 {
                     player.GetComponent<ProtoBLACKBOARD_Player>().mothersKilled += 1;
+                    
+                    if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
+                    {
+                        player.GetComponent<ProtoBLACKBOARD_Player>().enemysKillToReloadSpecialHability+=1;
+                    }
                 }
                 
                 if(player.GetComponent<ProtoBLACKBOARD_Player>().killEnemysMissionActive)  

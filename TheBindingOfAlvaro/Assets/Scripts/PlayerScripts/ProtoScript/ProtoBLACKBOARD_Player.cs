@@ -27,6 +27,10 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public float timeEffectSpecialEnemysSquid;
     public bool activePause = false;
 
+    [Header("LOADING SPECIAL HABILITY THINGS:")]
+    public bool loadingSpecialHability = true;
+    public float enemysKillToReloadSpecialHability;
+
     [Header("CAMARA SHAKE VARIABLES:")]
 
     public float duration;

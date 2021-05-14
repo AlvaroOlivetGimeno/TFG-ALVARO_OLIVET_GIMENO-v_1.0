@@ -80,6 +80,7 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
 
     [Header("AUTOMATIC OBJECTS:")]
     public GameObject mCamera;
+    public GameObject feedback;
 
     [Header("AUTOMATIC BOOLS:")]
     public bool invertControls;
@@ -122,6 +123,7 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     void Start()
     {
         mCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        feedback= GameObject.FindGameObjectWithTag("Feedback");
 
         sK_Collider.gameObject.SetActive(false);
 

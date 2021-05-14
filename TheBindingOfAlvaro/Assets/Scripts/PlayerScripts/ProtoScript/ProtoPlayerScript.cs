@@ -52,11 +52,15 @@ public class ProtoPlayerScript : MonoBehaviour
     float coinTimer = 1.5f;
     float cristalTimer = 1.5f;
 
+    //FEEDBACK 
+  
+
     void Start()
     {
         BlackBoardPlayer = GetComponent<ProtoBLACKBOARD_Player>();
         hudManager = GetComponent<HUD_MANAGER>();
         rb2d = GetComponent<Rigidbody2D>();
+        
 
         //Desactivar el Parry
         BlackBoardPlayer.p_Collider.gameObject.SetActive(false);
@@ -799,6 +803,7 @@ public class ProtoPlayerScript : MonoBehaviour
             if(other.gameObject.tag =="Cristal")
             {
                 SumCristal();
+                BlackBoardPlayer.feedback.GetComponent<FeedbackHUD>().CristalFounfFeedback();
                 Destroy(other.gameObject);
             }
 

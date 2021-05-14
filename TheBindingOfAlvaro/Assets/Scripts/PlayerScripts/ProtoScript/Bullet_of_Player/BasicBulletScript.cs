@@ -15,6 +15,11 @@ public class BasicBulletScript : MonoBehaviour
     [Header("BULLEY DAMAGE:")]
     public float damage;
 
+    [Header("TIME TO DIE:")]
+    public float timeToDie;
+
+    float timer;
+
 
 
 
@@ -33,6 +38,10 @@ public class BasicBulletScript : MonoBehaviour
        
         //-----------
 
+        //--------------------------DIE BY TIME--------------------------
+        CountdownToDeath();
+
+        //-----------------
 
     }
 
@@ -59,6 +68,16 @@ public class BasicBulletScript : MonoBehaviour
 
     //SUPER BULLET CONTROLER
     
+    //TIME TO DIE
+    void CountdownToDeath()
+    {
+        timer+=1*Time.deltaTime;
+
+        if(timer>= timeToDie)
+        {
+            DestroyMe();
+        }
+    }
 
     //DESTROY FUNCTION
     public void DestroyMe()

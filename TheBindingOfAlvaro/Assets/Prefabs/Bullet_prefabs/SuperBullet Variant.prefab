@@ -65,12 +65,17 @@ PrefabInstance:
     - target: {fileID: 1693177405859411495, guid: 4969163066c97134c9265271bd4a88db,
         type: 3}
       propertyPath: m_Name
-      value: SuperBullet
+      value: SuperBullet Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6870473048569327437, guid: 4969163066c97134c9265271bd4a88db,
         type: 3}
       propertyPath: maxDamage
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6870473048569327437, guid: 4969163066c97134c9265271bd4a88db,
+        type: 3}
+      propertyPath: timeToDie
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6870473048569327437, guid: 4969163066c97134c9265271bd4a88db,
         type: 3}

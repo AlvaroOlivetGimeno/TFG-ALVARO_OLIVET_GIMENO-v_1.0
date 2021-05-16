@@ -24,6 +24,7 @@ public class PointForMission : MonoBehaviour
     [Header("AUTOMATIC ELEMENT")]
     
     public GameObject  missionManager;
+    public GameObject player;
 
     //public bool empty;
     void Start()
@@ -40,6 +41,7 @@ public class PointForMission : MonoBehaviour
 
         //MISSION MANAGER
         missionManager = GameObject.FindGameObjectWithTag("MissionManager");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -124,14 +126,16 @@ public class PointForMission : MonoBehaviour
     //WICH HARD MISSION IS ACTIVE
     float WichHardMissionIsActive()
     {
+        
         foreach(GameObject mis in hardMissions)
         {
             if(mis.GetComponent<MissionCommonScript>().missionActive && !mis.GetComponent<MissionCommonScript>().completed && !mis.GetComponent<MissionCommonScript>().fail)
             {
                 wichMissionIsActive = mis.GetComponent<MissionCommonScript>().missionType;
+
             }
         }
-
+      
         return wichMissionIsActive;
     }
 
@@ -164,7 +168,9 @@ public class PointForMission : MonoBehaviour
         if(!missionManager.GetComponent<MissionManager>().stopHardMissions)
         {
             //----------------CHECK WICH MISSION IS ACTIVE----------------
+               
             WichHardMissionIsActive();
+            
 
             //-------------------
 

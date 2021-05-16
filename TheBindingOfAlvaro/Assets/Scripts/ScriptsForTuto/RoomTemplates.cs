@@ -88,6 +88,10 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] coinsOnMap;
     public GameObject[] cristalOnMap;
 
+    public GameObject[] colorSkinsOnMap;
+
+    public GameObject[] colorDrawsOnMap;
+
 
 
     //ACCESO A OTROS SCRIPTS o OBJETOS
@@ -121,28 +125,7 @@ public class RoomTemplates : MonoBehaviour
     void Update()
     {
         //--------------------------------------------Elements en arrays---------------------------------------------------
-        entryRoom = GameObject.FindGameObjectWithTag("EntryRooms");
-        enemysOnMap = GameObject.FindGameObjectsWithTag("Enemy");
-        shopOnMap = GameObject.FindGameObjectsWithTag("Shop");
-        enemyRoomsOnMap = GameObject.FindGameObjectsWithTag("EnemyRoom");
-        passiveHabilitysOnMap = GameObject.FindGameObjectsWithTag("PassiveHability"); 
-        activeHabilitysOnMap = GameObject.FindGameObjectsWithTag("ActiveHability");
-        specialHabilitysOnMap = GameObject.FindGameObjectsWithTag("SpecialHability");
-        heartsOnMap = GameObject.FindGameObjectsWithTag("Life");
-        specialRoomOnMap = GameObject.FindGameObjectsWithTag("SpecialRoom");
-        closedRoomsOnMap = GameObject.FindGameObjectsWithTag("ClosetRoom");
-        stairsOnMap = GameObject.FindGameObjectWithTag("Stairs");
-        shooterRoomOnMap = GameObject.FindGameObjectsWithTag("ShooterRoom");
-        followerRoomOnMap = GameObject.FindGameObjectsWithTag("FollowerRoom");
-        superRoomOnMap = GameObject.FindGameObjectsWithTag("SuperRoom");
-        obstaclesOnMap = GameObject.FindGameObjectsWithTag("Obstacle");
-        lightRoomsOnMap = GameObject.FindGameObjectsWithTag("LightRoomObject");
-        lightParticlesOnMap = GameObject.FindGameObjectsWithTag("LightParticles");
-        normalRoomOnMap = GameObject.FindGameObjectsWithTag("NormalRoom");
-        entryRoomRugOnMap = GameObject.FindGameObjectWithTag("EntryRoomRug");
-        coinsOnMap = GameObject.FindGameObjectsWithTag("Coin");
-        cristalOnMap = GameObject.FindGameObjectsWithTag("Cristal");
-
+        ElementsOnMap();
 
         //----------------PER SABER QUANS ELEMENTS TINC A LA LLISTA SENSE OBRIR LA LLISTA--------------------------------
         sizeOfList = rooms.Count;
@@ -182,6 +165,37 @@ public class RoomTemplates : MonoBehaviour
 
         
       
+    }
+
+    //ELEMENTS A TENIR EN COMPTE PER BUSCAR
+    void ElementsOnMap()
+    {
+        entryRoom = GameObject.FindGameObjectWithTag("EntryRooms");
+        enemysOnMap = GameObject.FindGameObjectsWithTag("Enemy");
+        shopOnMap = GameObject.FindGameObjectsWithTag("Shop");
+        enemyRoomsOnMap = GameObject.FindGameObjectsWithTag("EnemyRoom");
+        passiveHabilitysOnMap = GameObject.FindGameObjectsWithTag("PassiveHability"); 
+        activeHabilitysOnMap = GameObject.FindGameObjectsWithTag("ActiveHability");
+        specialHabilitysOnMap = GameObject.FindGameObjectsWithTag("SpecialHability");
+        heartsOnMap = GameObject.FindGameObjectsWithTag("Life");
+        specialRoomOnMap = GameObject.FindGameObjectsWithTag("SpecialRoom");
+        closedRoomsOnMap = GameObject.FindGameObjectsWithTag("ClosetRoom");
+        stairsOnMap = GameObject.FindGameObjectWithTag("Stairs");
+        shooterRoomOnMap = GameObject.FindGameObjectsWithTag("ShooterRoom");
+        followerRoomOnMap = GameObject.FindGameObjectsWithTag("FollowerRoom");
+        superRoomOnMap = GameObject.FindGameObjectsWithTag("SuperRoom");
+        obstaclesOnMap = GameObject.FindGameObjectsWithTag("Obstacle");
+        lightRoomsOnMap = GameObject.FindGameObjectsWithTag("LightRoomObject");
+        lightParticlesOnMap = GameObject.FindGameObjectsWithTag("LightParticles");
+        normalRoomOnMap = GameObject.FindGameObjectsWithTag("NormalRoom");
+        entryRoomRugOnMap = GameObject.FindGameObjectWithTag("EntryRoomRug");
+        coinsOnMap = GameObject.FindGameObjectsWithTag("Coin");
+        cristalOnMap = GameObject.FindGameObjectsWithTag("Cristal");
+        colorSkinsOnMap = GameObject.FindGameObjectsWithTag("SkinColor");
+        colorDrawsOnMap = GameObject.FindGameObjectsWithTag("SkinDraw");
+
+
+
     }
 
     public void AddToList(GameObject x)
@@ -507,6 +521,30 @@ public class RoomTemplates : MonoBehaviour
         }
     }
 
+    //DESTROY SKIN COLORS 
+    void DestroySkinColor()
+    {
+        if(colorSkinsOnMap.Length > 0)
+        {
+            foreach(GameObject x in colorSkinsOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+
+    //DESTROY SKIN DRAW
+    void DestroySkinDraw()
+    {
+        if(colorDrawsOnMap.Length > 0)
+        {
+            foreach(GameObject x in colorDrawsOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+
 
 
     //DESTROY ENTRY ROOM
@@ -544,6 +582,8 @@ public class RoomTemplates : MonoBehaviour
         DestroyEntryRoomRug();
         DestroyCoins();
         DestroyCristals();
+        DestroySkinColor();
+        DestroySkinDraw();
 
         DestroyEntryRoom();
         allDeleted = true;

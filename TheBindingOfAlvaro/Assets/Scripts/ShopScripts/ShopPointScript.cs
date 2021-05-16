@@ -7,7 +7,7 @@ public class ShopPointScript : MonoBehaviour
 {
     // Start is called before the first frame update
     [Header("POINT TYPE:")]
-    public float pointType; //1. Special Hability  2. Passive Hability 3.Life
+    public float pointType; //1. Special Hability  2. Passive Hability 3.Life  4.Skin Color
     
     [Header("PREFAB's OF SPECIAL HABILITYS:")]
     public GameObject invulnerabilitat;
@@ -23,6 +23,18 @@ public class ShopPointScript : MonoBehaviour
 
     [Header("PREFAB's OF HEART:")]
     public GameObject heart;
+
+    [Header("PREFAB's OF SKIN COLOR's:")]
+    public GameObject blueColor;
+    public GameObject yellowColor;
+    public GameObject purpleColor;
+    public GameObject whiteColor;
+
+    [Header("PREFAB's OF SKIN DRAW's:")]
+    public GameObject draw1;
+    public GameObject draw2;
+    public GameObject draw3;
+    public GameObject draw4;
 
     [Header("RANDOM NUM:")]
     public int rndVar;
@@ -83,6 +95,12 @@ public class ShopPointScript : MonoBehaviour
             case 3: prize = 5;
                     
             break;
+            case 4: rndVar = Random.Range(1,4); 
+                    prize = 8;
+            break; 
+            case 5: rndVar = Random.Range(1,4); 
+                    prize = 8;
+            break; 
               
         }
     }
@@ -142,6 +160,7 @@ public class ShopPointScript : MonoBehaviour
             break;
 
             case 2: 
+                
                 switch(rndVar)
                 {
                     case 1: if(!oneTime)
@@ -171,6 +190,71 @@ public class ShopPointScript : MonoBehaviour
                         oneTime = true;
                     }
             break;
+            case 4: 
+                if(player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins)
+                {
+                    switch(rndVar)
+                    {   
+                        case 1: if(!oneTime)
+                                {
+                                    Instantiate(blueColor, this.transform.position, Quaternion.identity);
+                                    oneTime = true;
+                                }
+                        break;
+                        case 2: if(!oneTime)
+                                {
+                                    Instantiate(yellowColor, this.transform.position, Quaternion.identity);
+                                    oneTime = true;
+                                }
+                        break;
+                        case 3: if(!oneTime)
+                                {
+                                    Instantiate(whiteColor, this.transform.position, Quaternion.identity);
+                                    oneTime = true;
+                                }
+                        break;
+                        case 4: if(!oneTime)
+                                {
+                                    Instantiate(purpleColor, this.transform.position, Quaternion.identity);
+                                    oneTime = true;
+                                }
+                        break;   
+                    }
+                } 
+            break;
+
+            case 5: 
+                if(player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins)
+                {
+                    switch(rndVar)
+                    {   
+                        case 1: if(!oneTime)
+                                {
+                                    Instantiate(draw1, this.transform.position, Quaternion.identity);
+                                    oneTime = true;
+                                }
+                        break;
+                        case 2: if(!oneTime)
+                                {
+                                    Instantiate(draw2, this.transform.position, Quaternion.identity);
+                                    oneTime = true;
+                                }
+                        break;
+                        case 3: if(!oneTime)
+                                {
+                                    Instantiate(draw3, this.transform.position, Quaternion.identity);
+                                    oneTime = true;
+                                }
+                        break;
+                        case 4: if(!oneTime)
+                                {
+                                    Instantiate(draw4, this.transform.position, Quaternion.identity);
+                                    oneTime = true;
+                                }
+                        break;   
+                    }
+                }
+            break;
         }
     }
 
@@ -179,23 +263,49 @@ public class ShopPointScript : MonoBehaviour
     {
         if(cameraPoint != null)
         {
-            if(cameraPoint.GetComponent<CameraPointScript>().isPlayerHere)
+            if(pointType != 4 && pointType != 5)
             {
-                if(player.GetComponent<ProtoBLACKBOARD_Player>().activePause)
-                {
-                    this.transform.GetChild(0).gameObject.SetActive(false);
-                }
-                else
-                {
-                    this.transform.GetChild(0).gameObject.SetActive(true);
-                }
+                CanvasLogic();
             }
             else
             {
-                this.transform.GetChild(0).gameObject.SetActive(false);
+                if(player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins && pointType == 4)
+                {
+                    CanvasLogic();
+                }
+                else if(player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins && pointType == 5)
+                {
+                    CanvasLogic();
+                }
+                else
+                {
+                    this.transform.GetChild(0).gameObject.SetActive(false);
+                }
             }
+            
         }
 
+        
+    }
+
+    //CANVAS LOGIC
+    void CanvasLogic()
+    {
+        if(cameraPoint.GetComponent<CameraPointScript>().isPlayerHere)
+        {
+            if(player.GetComponent<ProtoBLACKBOARD_Player>().activePause)
+            {
+                this.transform.GetChild(0).gameObject.SetActive(false);
+            }
+            else
+            {
+                this.transform.GetChild(0).gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            this.transform.GetChild(0).gameObject.SetActive(false);
+        }  
         
     }
     

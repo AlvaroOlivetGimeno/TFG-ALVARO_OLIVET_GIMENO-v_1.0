@@ -8,6 +8,8 @@ public class ProtoPlayerScript : MonoBehaviour
     ProtoBLACKBOARD_Player BlackBoardPlayer;
     HUD_MANAGER hudManager;
     Rigidbody2D rb2d;
+
+    SpriteRenderer spriteRenderer;
     
    
    
@@ -63,7 +65,7 @@ public class ProtoPlayerScript : MonoBehaviour
         BlackBoardPlayer = GetComponent<ProtoBLACKBOARD_Player>();
         hudManager = GetComponent<HUD_MANAGER>();
         rb2d = GetComponent<Rigidbody2D>();
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         //Desactivar el Parry
         BlackBoardPlayer.p_Collider.gameObject.SetActive(false);
@@ -125,8 +127,15 @@ public class ProtoPlayerScript : MonoBehaviour
 
         //---------------------------------------------
 
+        //----------------------------------------------SKIN CONTROLLER------------------------------------------------
+        SkinColorController();
+        SkinDrawController();
+
+        //------------------------------------------------
+
         //Debug.Log(BlackBoardPlayer.totalEnemysKilled);
     }
+
     //MOVMENT
     void Movment()
     {
@@ -650,6 +659,33 @@ public class ProtoPlayerScript : MonoBehaviour
         BlackBoardPlayer.numOfRoomsSeenInTheLevel += 1;
     }
 
+    //SKIN COLOR CONTROLLER
+    public void SkinColorController()
+    {
+        switch(BlackBoardPlayer.skinColorState)
+        {
+            case 0: spriteRenderer.color = BlackBoardPlayer.green; break;
+            case 1: spriteRenderer.color = BlackBoardPlayer.blue; break;
+            case 2: spriteRenderer.color = BlackBoardPlayer.yellow; break;
+            case 3: spriteRenderer.color = BlackBoardPlayer.white; break;
+            case 4: spriteRenderer.color = BlackBoardPlayer.purple; break;
+            
+        }
+    }
+
+     //SKIN DRAW CONTROLLER
+    public void SkinDrawController()
+    {
+        switch(BlackBoardPlayer.skinDrawState)
+        {
+            case 0: this.transform.GetChild(3).GetComponent<SkinDrawScript>().spriteRenderer.sprite = BlackBoardPlayer.ojoChungo; break;
+            case 1: this.transform.GetChild(3).GetComponent<SkinDrawScript>().spriteRenderer.sprite = BlackBoardPlayer.tattuEye1; break;
+            case 2: this.transform.GetChild(3).GetComponent<SkinDrawScript>().spriteRenderer.sprite = BlackBoardPlayer.tattuEye2; break;
+            case 3: this.transform.GetChild(3).GetComponent<SkinDrawScript>().spriteRenderer.sprite = BlackBoardPlayer.tattuEye3; break;
+            case 4: this.transform.GetChild(3).GetComponent<SkinDrawScript>().spriteRenderer.sprite = BlackBoardPlayer.tattuEye4; break;
+            
+        }
+    }
 
     //REST LIFE LOGIC
     public void RestLife()
@@ -825,6 +861,23 @@ public class ProtoPlayerScript : MonoBehaviour
                 BlackBoardPlayer.feedback.GetComponent<FeedbackHUD>().CristalFounfFeedback();
                 Destroy(other.gameObject);
             }
+
+            //--------------------------------SKIN COLOR--------------------------------------------------------
+
+            if(other.gameObject.tag == "SkinColor")
+            {
+                BlackBoardPlayer.skinColorState = other.GetComponent<SkinColorScript>().typeOfColor;
+                Destroy(other.gameObject);
+            }
+
+            //--------------------------------SKIN DRAW--------------------------------------------------------
+
+            if(other.gameObject.tag == "SkinDraw")
+            {
+                BlackBoardPlayer.skinDrawState = other.GetComponent<SkinTattooSccript>().typeOfTattoo;
+                Destroy(other.gameObject);
+            }
+
 
             //-------------------------------STAIRS MISSION COL-------------------------------------------------------
         

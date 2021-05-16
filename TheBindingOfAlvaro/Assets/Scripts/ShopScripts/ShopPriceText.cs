@@ -47,6 +47,7 @@ public class ShopPriceText : MonoBehaviour
             case 1:prize = 30; break;
             case 2:prize = 15; break;
             case 3:prize = 5; break;
+            case 4:prize = 8; break;
         }
     }
 

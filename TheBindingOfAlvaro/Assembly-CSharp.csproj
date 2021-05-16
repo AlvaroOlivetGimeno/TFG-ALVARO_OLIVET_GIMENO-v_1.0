@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\PicableObjects\Habilitys\PassiveH\PassiveHabilityScript.cs" />
      <Compile Include="Assets\Scripts\ScriptsForTuto\RoomScript.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ProtoPlayerScript.cs" />
+     <Compile Include="Assets\Scripts\HUD\FillAmount\FillAmountImage.cs" />
      <Compile Include="Assets\Scripts\HUD\StatisticsMenuScript.cs" />
      <Compile Include="Assets\Scripts\ScriptsForTuto\HacksForTheGame.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\SuperKillScript.cs" />
@@ -96,7 +97,9 @@
      <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ParryParticlesSpeed.cs" />
      <Compile Include="Assets\Scripts\HUD\Feedback\FeedbackHUD.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ParryScript.cs" />
-     <Compile Include="Assets\Scripts\HUD\FillAmount\FillAmountImage.cs" />
+     <Compile Include="Assets\Scripts\PicableObjects\SkinColor\SkinColorScript.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\TattuScripts\SkinDrawScript.cs" />
+     <Compile Include="Assets\Scripts\PicableObjects\SkinDraw\SkinTattooSccript.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

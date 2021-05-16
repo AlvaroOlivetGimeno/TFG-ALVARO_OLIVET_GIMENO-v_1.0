@@ -81,6 +81,26 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
 
     public GameObject sK_Collider;
 
+    [Header("SKIN COLORS:")]
+    
+    public float skinColorState = 0;
+    public Color green;
+    public Color blue;
+    public Color yellow;
+    public Color white;
+    public Color purple;
+
+    [Header("SKIN TATTO SPRITE's:")]
+
+    public float skinDrawState = 0;
+    public Sprite ojoChungo;
+    public Sprite tattuEye1;
+    public Sprite tattuEye2;
+    public Sprite tattuEye3;
+    public Sprite tattuEye4;
+
+
+
 
     [Header("AUTOMATIC OBJECTS:")]
     public GameObject mCamera;
@@ -120,6 +140,21 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public float minutsForMision6;
     public float secondsForMision6;
     public bool contactWithShopOrSpecialRoom;
+
+    [Header("-MISSION's-")]
+
+    [Header("CHARACTER BOOL FOR ACTIVATE CERTAIN THINGS:")]
+
+    public bool activeHardMissions;
+
+    public bool activeLargeMissions;
+
+    [Header("-SKIN's-")]
+    public bool activeShopColorSkins;
+    public bool activeShopDrawSkins;
+
+
+    
     
 
 

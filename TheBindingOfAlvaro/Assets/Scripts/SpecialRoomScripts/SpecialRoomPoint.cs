@@ -10,6 +10,7 @@ public class SpecialRoomPoint : MonoBehaviour
     [Header("VARIABLE RANDOM:")]
     public float rndVar;
     public float rndVarSpecial;
+    public float rndVarSkin;
 
 
     [Header("STUPID DESTROYER LIST:")]
@@ -35,17 +36,30 @@ public class SpecialRoomPoint : MonoBehaviour
     public GameObject sh4;
     public GameObject sh5;
 
+    [Header("SKIN's -COLOR + DRAW-:")]
+    public GameObject color1;
+    public GameObject color2;
+    public GameObject color3;
+    public GameObject color4;
+    public GameObject draw1;
+    public GameObject draw2;
+    public GameObject draw3;
+    public GameObject draw4;
+
+
     //OTHER
 
     public GameObject objSpawned;
 
     bool oneTime;
     public bool oneTimeSpecial;
+    public bool oneTimeSkin;
     
     void Start()
     {
         rndVar = Random.Range(1,9);
         rndVarSpecial = Random.Range(1,6);
+        rndVarSkin = Random.Range(1,8);
     }
 
     // Update is called once per frame
@@ -65,8 +79,9 @@ public class SpecialRoomPoint : MonoBehaviour
     {
         switch(pointType)
         {
-            case 1:ActiveState(); break;
+            case 1: ActiveState(); break;
             case 2: SpecialState();  break;
+            case 3: ActiveSkinState(); break;
         }
     }
 
@@ -146,10 +161,53 @@ public class SpecialRoomPoint : MonoBehaviour
         }
     }
 
+    //ACTIVE SKIN's
+    void ActiveSkinState()
+    {
+        if(!oneTimeSkin)
+        {
+            switch(rndVarSkin)
+            {
+                case 1: Instantiate(color1, this.transform.position, Quaternion.identity);
+                        objSpawned = color1;
+                        oneTimeSkin = true;
+                        break;
+                case 2: Instantiate(color2, this.transform.position, Quaternion.identity);
+                        objSpawned = color2;
+                        oneTimeSkin = true;
+                        break;
+                case 3: Instantiate(color3, this.transform.position, Quaternion.identity);
+                        objSpawned = color3;
+                        oneTimeSkin = true;
+                        break;
+                case 4: Instantiate(color4, this.transform.position, Quaternion.identity);
+                        objSpawned = color4;
+                        oneTimeSkin = true;
+                        break;
+                case 5: Instantiate(draw1, this.transform.position, Quaternion.identity);
+                        objSpawned = draw1;
+                        oneTimeSkin = true;
+                        break;
+                case 6: Instantiate(draw2, this.transform.position, Quaternion.identity);
+                        objSpawned = draw2;
+                        oneTimeSkin = true;
+                        break;
+                case 7: Instantiate(draw3, this.transform.position, Quaternion.identity);
+                        objSpawned = draw3;
+                        oneTimeSkin = true;
+                        break;
+                case 8: Instantiate(draw4, this.transform.position, Quaternion.identity);
+                        objSpawned = draw4;
+                        oneTimeSkin = true;
+                        break;
+            }
+        }
+    }
+
     //DESTROY LAST HABILITY
     void DestroyActiveHability()
     {
-        if(pointType == 2)
+        if(pointType != 1)
         {
             if(activeHability.Count != 0)
             {

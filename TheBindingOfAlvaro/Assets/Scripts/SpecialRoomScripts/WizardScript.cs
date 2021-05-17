@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WizardScript : MonoBehaviour
 {
+    [Header("TYPE OF WIZARD:")]
+    public float typeOfWizard; //1.Normal  2.Skin's
+    
     [Header("AUTOMATIC OBJECT:")]
     public GameObject habilityPoint;
 
@@ -28,6 +31,8 @@ public class WizardScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //CANVAS CONTROLLER
         CanvasController();  
     }
 
@@ -68,10 +73,22 @@ public class WizardScript : MonoBehaviour
         {
             if(other.gameObject.GetComponent<ProtoBLACKBOARD_Player>().characterCristals >= 2)
             {
-                other.gameObject.GetComponent<ProtoBLACKBOARD_Player>().characterCristals-=2;
-                habilityPoint.GetComponent<SpecialRoomPoint>().pointType = 2;
-                Instantiate(particles, this.transform.position, Quaternion.identity);
-                Destroy(this.transform.parent.gameObject);
+                if(typeOfWizard == 1)
+                {
+                    other.gameObject.GetComponent<ProtoBLACKBOARD_Player>().characterCristals-=2;
+                    habilityPoint.GetComponent<SpecialRoomPoint>().pointType = 2;
+                    Instantiate(particles, this.transform.position, Quaternion.identity);
+                    Destroy(this.transform.parent.gameObject);
+                }
+                else if(typeOfWizard == 2)
+                {
+                    other.gameObject.GetComponent<ProtoBLACKBOARD_Player>().characterCristals-=2;
+                    habilityPoint.GetComponent<SpecialRoomPoint>().pointType = 3;
+                    Instantiate(particles, this.transform.position, Quaternion.identity);
+                    Destroy(this.transform.parent.gameObject);
+                    
+                }
+                
                
             } 
         }

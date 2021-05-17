@@ -149,10 +149,13 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
 
     public bool activeLargeMissions;
 
-    [Header("-SKIN's-")]
+    [Header("-SKIN's (SHOP)-")]
     public bool activeShopColorSkins;
     public bool activeShopDrawSkins;
 
+    [Header("-SKIN's (SPECIAL ROOM)-")]
+
+    public bool activeSpecialRoomSkins;
 
     
     

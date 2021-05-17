@@ -31,6 +31,11 @@ public class HUD_MANAGER : MonoBehaviour
     public GameObject sh4;
     public GameObject sh5;
     public GameObject sh0;
+
+    [Header("SPECIAL HABILITY's -Color-")]
+    public Color specialHabilityActiveColor;
+    public Color specialHabilityReadyColor;
+    public Color specialHabilityLoadingColor;
     
     [Header("LIFE's GAME OBJECTS (HUD)")]
 
@@ -74,7 +79,8 @@ public class HUD_MANAGER : MonoBehaviour
 
         //-------------------HABILITYS-------------------------
         habilityController();
-
+        ColorOfHabilityHUD();
+        
         //-------------------
 
         //-------------------LOADING SCREEN--------------------
@@ -145,6 +151,23 @@ public class HUD_MANAGER : MonoBehaviour
             sh5.SetActive(false);
         }
        
+    }
+
+    //HABILITY COLOR
+    void ColorOfHabilityHUD()
+    {
+        if(BlackBoardPlayer.SpecialHabilityIsActive)
+        {
+            sh0.GetComponent<FillAmountImage>().image.color = specialHabilityActiveColor;
+        }
+        else if(sh0.GetComponent<FillAmountImage>().image.fillAmount == 1 && !BlackBoardPlayer.SpecialHabilityIsActive)
+        {
+            sh0.GetComponent<FillAmountImage>().image.color = specialHabilityReadyColor;
+        }
+        else
+        {
+            sh0.GetComponent<FillAmountImage>().image.color = specialHabilityLoadingColor;
+        }
     }
 
     void LoadingScreenController()

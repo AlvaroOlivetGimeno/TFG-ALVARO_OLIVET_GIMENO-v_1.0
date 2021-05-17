@@ -27,10 +27,13 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public float timeEffectSpecialEnemysSquid;
     public bool activePause = false;
 
+    public bool SpecialHabilityIsActive;
+
     [Header("LOADING SPECIAL HABILITY THINGS:")]
     public bool loadingSpecialHability = true;
     public float enemysKillToReloadSpecialHability;
 
+    
     [Header("CAMARA SHAKE VARIABLES:")]
 
     public float duration;
@@ -80,10 +83,18 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
 
     public GameObject p_Collider;
     public GameObject p_Particles;
+    public GameObject superKill_Particles;
+
 
     [Header("SUPER KILL COLLIDER:")]
 
     public GameObject sK_Collider;
+
+    [Header("SPECIAL HABILITY FEEDBACK:")]
+
+    public Color superParryColor;
+    public Color inbulnerabilityColor;
+    public Color hunterColor;
 
     [Header("SKIN COLORS:")]
     
@@ -166,6 +177,9 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
 
     [Header("-PARRY SHIELD-")]
     public bool activeParryShield;
+
+    [Header("-ENEMY TRAIL-")]
+    public bool activeEnemyTrail;
 
     
     

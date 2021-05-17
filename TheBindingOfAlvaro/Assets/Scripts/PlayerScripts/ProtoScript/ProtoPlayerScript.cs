@@ -40,7 +40,9 @@ public class ProtoPlayerScript : MonoBehaviour
     bool quadShoot = false;
     bool hunterState = false;
 
-    
+    Color actualColor;
+    bool saveColorOneTime;
+    bool reloadColorOneTime = true;
     
 
     //VARIABLES PER MOLESTAR (SPECIAL ENEMYS)
@@ -56,6 +58,11 @@ public class ProtoPlayerScript : MonoBehaviour
     float lifeTimer = 1.5f;
     float coinTimer = 1.5f;
     float cristalTimer = 1.5f;
+
+    //ENEMY TRAIL
+
+    float actualSpeed;
+    bool saveSpeedOneTime;
 
     //FEEDBACK 
   
@@ -378,8 +385,10 @@ public class ProtoPlayerScript : MonoBehaviour
     //DEFAULT FOR SPECIAL
     void WaitingForNextSpecialHability()
     {
+        BlackBoardPlayer.SpecialHabilityIsActive = false;
         specialHabilityTimer = 0;
         oneTime = false;
+        
 
         if(BlackBoardPlayer.enemysKillToReloadSpecialHability >= 10)
         {
@@ -390,8 +399,14 @@ public class ProtoPlayerScript : MonoBehaviour
     //INVULNERABILITAT SPECIAL STATE
     void InvencibleState()
     {
-        specialHabilityTimer += 1 * Time.deltaTime;
+        BlackBoardPlayer.SpecialHabilityIsActive = true;
         invencible = true;
+
+        
+
+        spriteRenderer.color = BlackBoardPlayer.inbulnerabilityColor;
+        specialHabilityTimer += 1 * Time.deltaTime;
+        
 
         if( specialHabilityTimer >= BlackBoardPlayer.timeSpecialHability)
         {
@@ -405,8 +420,14 @@ public class ProtoPlayerScript : MonoBehaviour
     //SUPER PARRY SPECIAL STATE
     void SuperParry()
     {
-        specialHabilityTimer += 1 * Time.deltaTime;
+        BlackBoardPlayer.SpecialHabilityIsActive = true;
         superParry = true;
+        
+       
+        spriteRenderer.color = BlackBoardPlayer.superParryColor;
+
+        specialHabilityTimer += 1 * Time.deltaTime;
+        
 
         if (specialHabilityTimer >= BlackBoardPlayer.timeSpecialHability)
         {
@@ -420,6 +441,8 @@ public class ProtoPlayerScript : MonoBehaviour
     //QUADRUPLE TIR
     void QuadShoot()
     {
+        BlackBoardPlayer.SpecialHabilityIsActive = true;
+    
         specialHabilityTimer += 1 * Time.deltaTime;
         quadShoot = true;
 
@@ -441,10 +464,16 @@ public class ProtoPlayerScript : MonoBehaviour
     //DEPREDADOR
     void HunterState()
     {
-        if(BlackBoardPlayer.characterLife >= 2)
+        if(BlackBoardPlayer.characterLife != 1)
         {
-            specialHabilityTimer += 1 * Time.deltaTime;
+            BlackBoardPlayer.SpecialHabilityIsActive = true;
             hunterState = true;
+
+            
+            spriteRenderer.color = BlackBoardPlayer.hunterColor;
+
+            specialHabilityTimer += 1 * Time.deltaTime;
+            
 
             if(!oneTime)
             {
@@ -465,28 +494,29 @@ public class ProtoPlayerScript : MonoBehaviour
     //SUPER KILL
     void SuperKill()
     {
-        
-        specialHabilityTimer += 1 * Time.deltaTime;
-
-        if(BlackBoardPlayer.characterLife >= 3)
+        if(BlackBoardPlayer.characterLife != 1)
         {
-            
+            BlackBoardPlayer.SpecialHabilityIsActive = true;
+
+            specialHabilityTimer += 1 * Time.deltaTime;
+           
             BlackBoardPlayer.sK_Collider.transform.position = this.gameObject.transform.position;
             BlackBoardPlayer.sK_Collider.gameObject.SetActive(true);  
-        }
 
-        if (!oneTime)
-        {
-            RestLife();
-            oneTime = true;
-        }
+            if (!oneTime)
+            {
+                RestLife();
+                Instantiate(BlackBoardPlayer.superKill_Particles, this.transform.position, Quaternion.identity);
+                oneTime = true;
+            }
 
-        if (specialHabilityTimer >= 1)
-        {      
-            BlackBoardPlayer.sK_Collider.gameObject.SetActive(false);
-            BlackBoardPlayer.specialStateType = 0;
-            BlackBoardPlayer.enemysKillToReloadSpecialHability = 0;
-            BlackBoardPlayer.loadingSpecialHability = false;
+            if (specialHabilityTimer >= 0.5)
+            {      
+                BlackBoardPlayer.sK_Collider.gameObject.SetActive(false);
+                BlackBoardPlayer.specialStateType = 0;
+                BlackBoardPlayer.enemysKillToReloadSpecialHability = 0;
+                BlackBoardPlayer.loadingSpecialHability = false;
+            }
         }
          
     }
@@ -667,15 +697,19 @@ public class ProtoPlayerScript : MonoBehaviour
     //SKIN COLOR CONTROLLER
     public void SkinColorController()
     {
-        switch(BlackBoardPlayer.skinColorState)
+        if(!BlackBoardPlayer.SpecialHabilityIsActive)
         {
-            case 0: spriteRenderer.color = BlackBoardPlayer.green; break;
-            case 1: spriteRenderer.color = BlackBoardPlayer.blue; break;
-            case 2: spriteRenderer.color = BlackBoardPlayer.yellow; break;
-            case 3: spriteRenderer.color = BlackBoardPlayer.white; break;
-            case 4: spriteRenderer.color = BlackBoardPlayer.purple; break;
+            switch(BlackBoardPlayer.skinColorState)
+            {
+                case 0: spriteRenderer.color = BlackBoardPlayer.green; break;
+                case 1: spriteRenderer.color = BlackBoardPlayer.blue; break;
+                case 2: spriteRenderer.color = BlackBoardPlayer.yellow; break;
+                case 3: spriteRenderer.color = BlackBoardPlayer.white; break;
+                case 4: spriteRenderer.color = BlackBoardPlayer.purple; break;
             
+            }
         }
+        
     }
 
      //SKIN DRAW CONTROLLER
@@ -848,10 +882,17 @@ public class ProtoPlayerScript : MonoBehaviour
                 }
             }
 
-            //SPECIAL ENEMYS
-            if (other.gameObject.tag == "SpecialCollider")
+            //ENEMY TRAIL
+            if (other.gameObject.tag == "EnemyTrail")
             {
-                //invertControls = true;
+               
+                if(!saveSpeedOneTime)
+                {
+                    actualSpeed = BlackBoardPlayer.characterSpeed;
+                    saveSpeedOneTime = true;
+                }
+                
+                BlackBoardPlayer.characterSpeed = 2;
             }
             
             //--------------------------------------------------------------------------------------------
@@ -908,6 +949,8 @@ public class ProtoPlayerScript : MonoBehaviour
                 Destroy(other.gameObject);
             }
 
+            
+
 
             //-------------------------------STAIRS MISSION COL-------------------------------------------------------
         
@@ -921,20 +964,34 @@ public class ProtoPlayerScript : MonoBehaviour
             }
     }
 
+    void OnTriggerExit2D(Collider2D other) 
+    {
+        //ENEMY TRAIL
+            if (other.gameObject.tag == "EnemyTrail")
+            {
+               BlackBoardPlayer.characterSpeed = actualSpeed;
+               saveSpeedOneTime = false;
+            }
+    }
+
     void OnCollisionEnter2D(Collision2D other)
     {
         
         //--------------------------------------ENEMYS-----------------------------------------------
-        if(other.gameObject.tag == "Enemy")
+        if(!invencible)
         {
-            if (!hunterState) 
+            if(other.gameObject.tag == "Enemy")
             {
-                RestLife();
-            }
-            else
-            {
-                other.gameObject.GetComponent<EnemyShootersScript>().life = 0;
-            }
+                if (!hunterState) 
+                {
+                    RestLife();
+                }
+                else
+                {
+                    
+                    Destroy(other.gameObject);
+                }
+            }   
         }
     }
 }

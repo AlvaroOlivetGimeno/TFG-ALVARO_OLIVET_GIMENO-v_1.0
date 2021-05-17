@@ -48,9 +48,11 @@ public class EnemyFollowersScript : MonoBehaviour
 
     bool spawnOneTime;
     int spawnPct;
-
     int wichObj;
+
+    //ENEMY TRAIL VARIABLES
     
+    float enemyTrailTimer;
 
     void Start()
     {
@@ -76,13 +78,14 @@ public class EnemyFollowersScript : MonoBehaviour
         //------------------CONTROLLER---------------------
         FollowController();
 
-
         //------------------LIFE LOGIC------------------------
         LifeController();
 
         //--------------------------FREEZE----------------------------
         Freeze();
 
+        //------------------ENEMY TRAIL-------------------------------
+        EnemyTrail();
 
 
         
@@ -371,6 +374,35 @@ public class EnemyFollowersScript : MonoBehaviour
             }
         }
     }
+
+    //CREATE TRAIL
+    void EnemyTrail()
+    {
+        if(enemyType == 1 || enemyType == 2 || enemyType == 3)
+        {
+            if(sizeType == 3)
+            {
+                if(player.GetComponent<ProtoBLACKBOARD_Player>().activeEnemyTrail)
+                {
+                    enemyTrailTimer +=1*Time.deltaTime;
+
+                    if(enemyTrailTimer>= BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().timeToSpawnTrail)
+                    {
+                        switch(enemyType)
+                        {
+                            case 1: Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().f_BasicTrail, this.transform.position, Quaternion.identity); 
+                                    enemyTrailTimer = 0; break;
+                            case 2: Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().f_UnityTrail, this.transform.position, Quaternion.identity); 
+                                    enemyTrailTimer = 0; break;
+                            case 3: Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().f_SpawnerTrail, this.transform.position, Quaternion.identity); 
+                                    enemyTrailTimer = 0; break;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
    
 
     //COLLISIONS
@@ -410,11 +442,10 @@ public class EnemyFollowersScript : MonoBehaviour
         }
         if (collision.gameObject.tag == "Wall")
         {
-            
             rndVarStop = Random.Range(0.15f, 0.2f);
             enemyType = 0;
         }
-        
+
 
     }
    

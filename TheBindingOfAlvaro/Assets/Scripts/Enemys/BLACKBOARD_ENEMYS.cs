@@ -100,8 +100,14 @@ public class BLACKBOARD_ENEMYS : MonoBehaviour
 
     public float spawnObjectPct;
     public GameObject coin;
-
     public GameObject life;
+
+    [Header("ENEMY's -TRAIL- PREFABS:")]
+    
+    public float timeToSpawnTrail;
+    public GameObject f_BasicTrail;
+    public GameObject f_UnityTrail;
+    public GameObject f_SpawnerTrail;
     void Start()
     {
         

@@ -34,24 +34,25 @@ public class SuperKillScript : MonoBehaviour
     {
         foreach(GameObject enemy in enemysAroundMe)
         {
-            enemy.GetComponent<EnemyShootersScript>().life = 0;
+            Destroy(enemy.gameObject);
         }
     }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("+");
             AddEnemysToList(other.gameObject);
         }
     }
     void OnTriggerExit2D(Collider2D other)
     {
+        /*
         if (other.gameObject.tag == "Enemy")
         {
             Debug.Log("-");
             DeleteEnemysOfList(other.gameObject);
         }
+        */
     }
     
 }

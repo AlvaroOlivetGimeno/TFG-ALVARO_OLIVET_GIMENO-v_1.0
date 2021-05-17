@@ -87,6 +87,9 @@ public class EnemyShootersScript : MonoBehaviour
         //--------------------------FREEZE----------------------------
         Freeze(); 
 
+        //------------------------PARRY SHIELD--------------------------
+        ParryShieldController();
+
        // Debug.Log(this.transform.GetChild(2).gameObject);
         
     }
@@ -334,6 +337,29 @@ public class EnemyShootersScript : MonoBehaviour
                     spawnOneTime = true;
                 }
                 break;
+            }
+        }
+    }
+
+    //PARRY SHIELD
+    void ParryShieldController()
+    {
+        if(enemyType == 2 || enemyType == 3)
+        {
+            if(player.GetComponent<ProtoBLACKBOARD_Player>().activeParryShield)
+            {
+                if(!this.transform.GetChild(3).GetComponent<ParryShieldScript>().defeated)
+                {
+                    this.transform.GetChild(3).gameObject.SetActive(true);
+                }
+                else
+                {
+                    this.transform.GetChild(3).gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                this.transform.GetChild(3).gameObject.SetActive(false);
             }
         }
     }

@@ -159,12 +159,13 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public bool activeShopDrawSkins;
 
     [Header("-SKIN's (SPECIAL ROOM)-")]
-
     public bool activeSpecialRoomSkins;
 
     [Header("-MAP-")]
-
     public bool activeMapMecanic;
+
+    [Header("-PARRY SHIELD-")]
+    public bool activeParryShield;
 
     
     

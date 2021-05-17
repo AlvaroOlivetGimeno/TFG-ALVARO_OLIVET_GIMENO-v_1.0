@@ -1492,7 +1492,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208134551}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.1482896}
+  m_LocalPosition: {x: -0.8, y: 0, z: -1.1482896}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1539804738}
@@ -1737,12 +1737,13 @@ MonoBehaviour:
   minutsForMision6: 0
   secondsForMision6: 60
   contactWithShopOrSpecialRoom: 0
-  activeHardMissions: 1
-  activeLargeMissions: 1
-  activeShopColorSkins: 1
-  activeShopDrawSkins: 1
+  activeHardMissions: 0
+  activeLargeMissions: 0
+  activeShopColorSkins: 0
+  activeShopDrawSkins: 0
   activeSpecialRoomSkins: 0
   activeMapMecanic: 0
+  activeParryShield: 0
 --- !u!114 &217317355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4679,12 +4680,12 @@ PrefabInstance:
     - target: {fileID: 8620100863448234777, guid: eeead7d335009ba4fb4a6f3e3cb52a6c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.09
+      value: -6.73
       objectReference: {fileID: 0}
     - target: {fileID: 8620100863448234777, guid: eeead7d335009ba4fb4a6f3e3cb52a6c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.19
+      value: 3.54
       objectReference: {fileID: 0}
     - target: {fileID: 8620100863448234777, guid: eeead7d335009ba4fb4a6f3e3cb52a6c,
         type: 3}
@@ -16739,7 +16740,7 @@ PrefabInstance:
     - target: {fileID: 4706982069600407172, guid: cce0505f26136c244a478bf6f59bfc0d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4706982069600407291, guid: cce0505f26136c244a478bf6f59bfc0d,
         type: 3}
@@ -16749,7 +16750,7 @@ PrefabInstance:
     - target: {fileID: 4706982069600407291, guid: cce0505f26136c244a478bf6f59bfc0d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.33
+      value: -6.92
       objectReference: {fileID: 0}
     - target: {fileID: 4706982069600407291, guid: cce0505f26136c244a478bf6f59bfc0d,
         type: 3}

@@ -220,7 +220,7 @@ public class RoomTemplates : MonoBehaviour
         if(shopSpawned == false && MapIsReady())
         {
             
-            roomChoosed = Random.Range(rooms.Count/2,rooms.Count-2);
+            roomChoosed = Random.Range(rooms.Count/2,rooms.Count-5);
             Instantiate(shop, rooms[roomChoosed].transform.position, Quaternion.identity);
             shopSpawned = true;
         }
@@ -243,7 +243,7 @@ public class RoomTemplates : MonoBehaviour
     {
         if(cristalSpawned == false && MapIsReady())
         {
-            roomChoosed = Random.Range(rooms.Count-2,rooms.Count-1);
+            roomChoosed = Random.Range(rooms.Count-4,rooms.Count-3);
             Instantiate(cristal, rooms[roomChoosed].transform.position, cristal.transform.rotation);
             cristalSpawned = true;
         }

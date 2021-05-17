@@ -133,6 +133,11 @@ public class ProtoPlayerScript : MonoBehaviour
 
         //------------------------------------------------
 
+        //---------------------------------------------------MAP--------------------------------------------------------
+        MapControlls();
+
+        //----------------------------------------------
+
         //Debug.Log(BlackBoardPlayer.totalEnemysKilled);
     }
 
@@ -725,6 +730,31 @@ public class ProtoPlayerScript : MonoBehaviour
         {
             BlackBoardPlayer.characterCristals += 1;
             cristalTimer = 0;
+        }
+    }
+
+    //MAP CONTROLLS
+    void MapControlls()
+    {
+        if (Input.GetKeyDown(KeyCode.M) && BlackBoardPlayer.activeMapMecanic)
+        {
+            Map();
+        }
+
+    }
+
+    //MAP LOGIC
+    void Map()
+    {
+        if(!BlackBoardPlayer.cameraMapIsActive)
+        {
+            BlackBoardPlayer.cameraMapIsActive = true;
+            BlackBoardPlayer.cameraMap.SetActive(true);
+        }
+        else
+        {
+            BlackBoardPlayer.cameraMapIsActive = false;
+            BlackBoardPlayer.cameraMap.SetActive(false);
         }
     }
 

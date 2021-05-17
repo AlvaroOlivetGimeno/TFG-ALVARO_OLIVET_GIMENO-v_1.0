@@ -92,6 +92,7 @@
      <Compile Include="Assets\Scripts\Enemys\EnemyRoom\EnemyRoomManager.cs" />
      <Compile Include="Assets\Scripts\Enemys\PlayerIsOnRoom.cs" />
      <Compile Include="Assets\Scripts\ScriptsForTuto\RoomScripts\PointBrain.cs" />
+     <Compile Include="Assets\Scripts\SpecialRoomScripts\WizardBoxScript.cs" />
      <Compile Include="Assets\Scripts\Enemys\EnemyFollowersScript.cs" />
      <Compile Include="Assets\Scripts\LightForRooms\LightRoomManager.cs" />
      <Compile Include="Assets\Scripts\Enemys\EnemyRoom\EnemyRoomChildScript.cs" />
@@ -100,7 +101,8 @@
      <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ParryParticlesSpeed.cs" />
      <Compile Include="Assets\Scripts\HUD\Feedback\FeedbackHUD.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ParryScript.cs" />
-     <Compile Include="Assets\Scripts\SpecialRoomScripts\WizardBoxScript.cs" />
+     <Compile Include="Assets\Scripts\Camara\CameraMapScript.cs" />
+     <Compile Include="Assets\Scripts\HUD\Pause\MapButtonPause.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

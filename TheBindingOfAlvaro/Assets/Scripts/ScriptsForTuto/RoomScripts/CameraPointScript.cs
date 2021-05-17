@@ -37,6 +37,9 @@ public class CameraPointScript : MonoBehaviour
 
     public bool oneTimeLightRoom;
 
+    [Header("MAP OBJECT -AUTOMATIC-:")]
+    public GameObject myCameraMapObj;
+
 
     //OTHER VARIABLES
 
@@ -44,11 +47,13 @@ public class CameraPointScript : MonoBehaviour
 
     GameObject enemyBrain;
     GameObject cam;
+    GameObject player;
 
     void Start()
     {
        enemyBrain = GameObject.FindGameObjectWithTag("EnemyBrain");
        cam = GameObject.FindGameObjectWithTag("MainCamera");
+       player = GameObject.FindGameObjectWithTag("Player");
 
 
         rndVar = Random.Range(0,100);
@@ -71,6 +76,11 @@ public class CameraPointScript : MonoBehaviour
         LightRoomSpawner();
 
         //-----------------
+
+        //------------------MAP OBJ LOGIC------------------------
+        MapObjectLogic();
+
+        //----------------
        
         
     }
@@ -167,6 +177,37 @@ public class CameraPointScript : MonoBehaviour
         }
     }
 
+    //MAP OBJECT LOGIC
+    void MapObjectLogic()
+    {
+        if(myCameraMapObj != null)
+        {
+            if(player.GetComponent<ProtoBLACKBOARD_Player>().activeMapMecanic )
+            {
+                if(player.GetComponent<ProtoBLACKBOARD_Player>().cameraMapIsActive)
+                {
+                    if(firstTime)
+                    {
+                        myCameraMapObj.SetActive(false);
+                    }
+                    else
+                    {
+                        myCameraMapObj.SetActive(true);
+                    }
+                }
+                else
+                {
+                    myCameraMapObj.SetActive(false);
+                }
+            }
+            else
+            {
+                myCameraMapObj.SetActive(false);
+            }
+        }
+        
+    }
+
     //COLLISIONS
    void OnTriggerEnter2D(Collider2D collision)
     {
@@ -186,6 +227,10 @@ public class CameraPointScript : MonoBehaviour
             
             enemysOnRoom.Add(collision.gameObject);
 
+        }
+        if(collision.gameObject.tag == "MapObject")
+        {
+            myCameraMapObj = collision.gameObject;
         }
       
     }

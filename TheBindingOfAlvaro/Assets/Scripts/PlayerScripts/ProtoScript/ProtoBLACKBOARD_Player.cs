@@ -36,6 +36,10 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public float duration;
     public float magnitude;
 
+    [Header("CAMARA MAP VARIABLES:")]
+
+    public bool cameraMapIsActive;
+
     [Header("CHARACTER MINIMUM-STATE VARIABLES:")]
 
     public float minimumSpeed;
@@ -104,6 +108,7 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
 
     [Header("AUTOMATIC OBJECTS:")]
     public GameObject mCamera;
+    public GameObject cameraMap;
     public GameObject feedback;
 
     [Header("AUTOMATIC BOOLS:")]
@@ -157,6 +162,10 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
 
     public bool activeSpecialRoomSkins;
 
+    [Header("-MAP-")]
+
+    public bool activeMapMecanic;
+
     
     
 
@@ -166,8 +175,10 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     {
         mCamera = GameObject.FindGameObjectWithTag("MainCamera");
         feedback= GameObject.FindGameObjectWithTag("Feedback");
+        cameraMap = GameObject.FindGameObjectWithTag("CameraMap");
 
         sK_Collider.gameObject.SetActive(false);
+        cameraMap.gameObject.SetActive(false);
 
         actualLevel = 1;
     }

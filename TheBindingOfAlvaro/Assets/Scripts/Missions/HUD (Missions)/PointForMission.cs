@@ -144,7 +144,7 @@ public class PointForMission : MonoBehaviour
     {
         foreach(GameObject txt in hardTexts)
         {
-            if(txt.GetComponent<HUD_MissionsScipt>().missionNum == wichMissionIsActive)
+            if(txt.GetComponent<HUD_MissionsScipt>().missionNum == wichMissionIsActive && player.GetComponent<ProtoBLACKBOARD_Player>().activeHardMissions)
             {
                 txt.gameObject.SetActive(true);
             }
@@ -204,7 +204,7 @@ public class PointForMission : MonoBehaviour
     {
         foreach(GameObject txt in largeTexts)
         {
-            if(txt.GetComponent<HUD_MissionsScipt>().missionNum == wichMissionIsActive)
+            if(txt.GetComponent<HUD_MissionsScipt>().missionNum == wichMissionIsActive && player.GetComponent<ProtoBLACKBOARD_Player>().activeLargeMissions)
             {
                 txt.gameObject.SetActive(true);
             }

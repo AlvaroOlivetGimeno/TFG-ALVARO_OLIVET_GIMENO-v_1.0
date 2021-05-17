@@ -219,7 +219,7 @@ public class MissionCommonScript : MonoBehaviour
     }
     void Mission4()
     {
-        if(missionActive)
+        if(missionActive && player.GetComponent<ProtoBLACKBOARD_Player>().activeHardMissions)
         {
             if(player.GetComponent<ProtoBLACKBOARD_Player>().contactWithStairs && player.GetComponent<ProtoBLACKBOARD_Player>().characterLife >= lifesAtMoment)
             {
@@ -234,7 +234,7 @@ public class MissionCommonScript : MonoBehaviour
     }
     void Mission5()
     {
-        if(missionActive)
+        if(missionActive && player.GetComponent<ProtoBLACKBOARD_Player>().activeHardMissions)
         {
             Clock();
             if(player.GetComponent<ProtoBLACKBOARD_Player>().contactWithStairs && minuts >= 0 && seconds >= 0)
@@ -250,7 +250,7 @@ public class MissionCommonScript : MonoBehaviour
     }
     void Mission6()
     {
-        if(missionActive)
+        if(missionActive && player.GetComponent<ProtoBLACKBOARD_Player>().activeHardMissions)
         {
             Clock();
             if(player.GetComponent<ProtoBLACKBOARD_Player>().contactWithShopOrSpecialRoom && minuts >= 0 && seconds >= 0)
@@ -267,7 +267,7 @@ public class MissionCommonScript : MonoBehaviour
 
     void Mission7()
     {
-        if(missionActive)
+        if(missionActive && player.GetComponent<ProtoBLACKBOARD_Player>().activeLargeMissions)
         {
             if(speed>= MAXSpeed)
             {
@@ -278,7 +278,7 @@ public class MissionCommonScript : MonoBehaviour
 
      void Mission8()
     {
-        if(missionActive)
+        if(missionActive && player.GetComponent<ProtoBLACKBOARD_Player>().activeLargeMissions)
         {
             if(life>= MAXLife)
             {
@@ -289,7 +289,7 @@ public class MissionCommonScript : MonoBehaviour
 
      void Mission9()
     {
-        if(missionActive)
+        if(missionActive && player.GetComponent<ProtoBLACKBOARD_Player>().activeLargeMissions)
         {
             if(delayToShoot <= MINDelayToShoot)
             {

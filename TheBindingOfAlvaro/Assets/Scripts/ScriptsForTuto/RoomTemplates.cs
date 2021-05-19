@@ -638,7 +638,7 @@ public class RoomTemplates : MonoBehaviour
     {
         waiteTime += 1f * Time.deltaTime;
 
-        if(waiteTime >= 8   )
+        if(waiteTime >= 10)
         {
             return true;
         }

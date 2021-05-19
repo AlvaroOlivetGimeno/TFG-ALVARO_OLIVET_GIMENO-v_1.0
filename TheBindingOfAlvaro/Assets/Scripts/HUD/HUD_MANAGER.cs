@@ -98,14 +98,48 @@ public class HUD_MANAGER : MonoBehaviour
     {
         switch (BlackBoardPlayer.characterLife)
         {
-            case 0: l1.gameObject.SetActive(false); l2.gameObject.SetActive(false); l3.gameObject.SetActive(false); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); 
-                    gameOverScreen.SetActive(true);
-            break;
-            case 1: l1.gameObject.SetActive(true); l2.gameObject.SetActive(false); l3.gameObject.SetActive(false); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); break;
-            case 2: l1.gameObject.SetActive(true); l2.gameObject.SetActive(true); l3.gameObject.SetActive(false); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); break;
-            case 3: l1.gameObject.SetActive(true); l2.gameObject.SetActive(true); l3.gameObject.SetActive(true); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); break;
-            case 4: l1.gameObject.SetActive(true); l2.gameObject.SetActive(true); l3.gameObject.SetActive(true); l4.gameObject.SetActive(true); l5.gameObject.SetActive(false); break;
-            case 5: l1.gameObject.SetActive(true); l2.gameObject.SetActive(true); l3.gameObject.SetActive(true); l4.gameObject.SetActive(true); l5.gameObject.SetActive(true); break;
+            case 0:     l1.gameObject.SetActive(false); l2.gameObject.SetActive(false); l3.gameObject.SetActive(false); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); 
+                        gameOverScreen.SetActive(true);break;    
+            case 0.5f:  l1.GetComponent<FillAmountImage>().image.fillAmount = 0.5f;
+                        l2.gameObject.SetActive(false); l3.gameObject.SetActive(false); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false);break;
+            case 1:     l1.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        l1.gameObject.SetActive(true); l2.gameObject.SetActive(false); l3.gameObject.SetActive(false); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); break;
+            case 1.5f:  l1.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        l2.GetComponent<FillAmountImage>().image.fillAmount = 0.5f;
+                        l1.gameObject.SetActive(true); l2.gameObject.SetActive(true); l3.gameObject.SetActive(false); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); break;
+            case 2:     l1.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        l2.GetComponent<FillAmountImage>().image.fillAmount = 1f; 
+                        l1.gameObject.SetActive(true); l2.gameObject.SetActive(true); l3.gameObject.SetActive(false); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); break;
+            case 2.5f:  l1.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        l2.GetComponent<FillAmountImage>().image.fillAmount = 1f; 
+                        l3.GetComponent<FillAmountImage>().image.fillAmount = 0.5f;
+                        l1.gameObject.SetActive(true); l2.gameObject.SetActive(true); l3.gameObject.SetActive(true); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); break;
+            case 3:     l1.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        l2.GetComponent<FillAmountImage>().image.fillAmount = 1f; 
+                        l3.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        l1.gameObject.SetActive(true); l2.gameObject.SetActive(true); l3.gameObject.SetActive(true); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); break;
+            case 3.5f:  l1.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        l2.GetComponent<FillAmountImage>().image.fillAmount = 1f; 
+                        l3.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        l4.GetComponent<FillAmountImage>().image.fillAmount = 0.5f;
+                        l1.gameObject.SetActive(true); l2.gameObject.SetActive(true); l3.gameObject.SetActive(true); l4.gameObject.SetActive(true); l5.gameObject.SetActive(false); break;
+            case 4:     l1.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        l2.GetComponent<FillAmountImage>().image.fillAmount = 1f; 
+                        l3.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        l4.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        l1.gameObject.SetActive(true); l2.gameObject.SetActive(true); l3.gameObject.SetActive(true); l4.gameObject.SetActive(true); l5.gameObject.SetActive(false); break;
+            case 4.5f:  l1.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        l2.GetComponent<FillAmountImage>().image.fillAmount = 1f; 
+                        l3.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        l4.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        l5.GetComponent<FillAmountImage>().image.fillAmount = 0.5f;
+                        l1.gameObject.SetActive(true); l2.gameObject.SetActive(true); l3.gameObject.SetActive(true); l4.gameObject.SetActive(true); l5.gameObject.SetActive(true); break;
+            case 5:     l1.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        l2.GetComponent<FillAmountImage>().image.fillAmount = 1f; 
+                        l3.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        l4.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        l5.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        l1.gameObject.SetActive(true); l2.gameObject.SetActive(true); l3.gameObject.SetActive(true); l4.gameObject.SetActive(true); l5.gameObject.SetActive(true); break;
         }
     }
 
@@ -175,10 +209,12 @@ public class HUD_MANAGER : MonoBehaviour
         if(roomBrain.GetComponent<RoomTemplates>().ReadyToSeTheMap())
         {
             loadingScreen.SetActive(false);
+            BlackBoardPlayer.activeLoading = false;
         }
         else
         {
             loadingScreen.SetActive(true);
+            BlackBoardPlayer.activeLoading = true;
         }
     }
 

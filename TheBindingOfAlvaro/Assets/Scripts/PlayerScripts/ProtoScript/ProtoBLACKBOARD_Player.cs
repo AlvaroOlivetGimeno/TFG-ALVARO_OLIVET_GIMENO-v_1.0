@@ -26,7 +26,7 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public float timeEffectSpecialEnemysInvert;
     public float timeEffectSpecialEnemysSquid;
     public bool activePause = false;
-
+    public bool activeLoading = false;
     public bool SpecialHabilityIsActive;
 
     [Header("LOADING SPECIAL HABILITY THINGS:")]
@@ -180,6 +180,10 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
 
     [Header("-ENEMY TRAIL-")]
     public bool activeEnemyTrail;
+
+    [Header("-ENEMY SUPER DAMAGE-")]
+    
+    public bool activeSuperDamage;
 
     
     

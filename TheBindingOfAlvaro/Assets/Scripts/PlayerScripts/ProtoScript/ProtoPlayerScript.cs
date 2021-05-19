@@ -681,7 +681,11 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Pause();
+            if(!BlackBoardPlayer.activeLoading)
+            {
+                Pause();
+            }
+            
 
         }
     }
@@ -729,12 +733,35 @@ public class ProtoPlayerScript : MonoBehaviour
     //REST LIFE LOGIC
     public void RestLife()
     {
-        if(lifeTimer>= 2)
+        if(!BlackBoardPlayer.activeSuperDamage)
         {
-            StartCoroutine(BlackBoardPlayer.mCamera.GetComponent<CameraShake>().Shake(BlackBoardPlayer.duration, BlackBoardPlayer.magnitude));
-            BlackBoardPlayer.characterLife -= 1;
-            lifeTimer = 0;
+            if(lifeTimer>= 2)
+            {
+                StartCoroutine(BlackBoardPlayer.mCamera.GetComponent<CameraShake>().Shake(BlackBoardPlayer.duration, BlackBoardPlayer.magnitude));
+                BlackBoardPlayer.characterLife -= 0.5f;
+                lifeTimer = 0;
+            }
         }
+        else
+        {
+            if(lifeTimer>= 2)
+            {
+                if(BlackBoardPlayer.characterLife != 0.5f)
+                {
+                    StartCoroutine(BlackBoardPlayer.mCamera.GetComponent<CameraShake>().Shake(BlackBoardPlayer.duration, BlackBoardPlayer.magnitude));
+                    BlackBoardPlayer.characterLife -= 1f;
+                    lifeTimer = 0;
+                }
+                else
+                {
+                    StartCoroutine(BlackBoardPlayer.mCamera.GetComponent<CameraShake>().Shake(BlackBoardPlayer.duration, BlackBoardPlayer.magnitude));
+                    BlackBoardPlayer.characterLife -= 0.5f;
+                    lifeTimer = 0;
+                }
+                
+            }
+        }
+        
     }
 
     //SUM LIFE LOGIC
@@ -742,7 +769,7 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         if(lifeTimer>= 1.5f)
         {
-            BlackBoardPlayer.characterLife += 1;
+            BlackBoardPlayer.characterLife += 0.5f;
             lifeTimer = 0;
         }
     }
@@ -827,8 +854,11 @@ public class ProtoPlayerScript : MonoBehaviour
                 {
                     case 1: speedSum = speedSum + 0.3f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
                     case 2: delaySum = delaySum - 0.05f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
-                    case 3: BlackBoardPlayer.characterLife = BlackBoardPlayer.characterLife + 1f; 
-                            BlackBoardPlayer.characterSpaceLife = BlackBoardPlayer.characterSpaceLife + 1f; 
+                    case 3: SumLife();
+                            if(BlackBoardPlayer.characterSpaceLife>= 5)
+                            {
+                                BlackBoardPlayer.characterSpaceLife = BlackBoardPlayer.characterSpaceLife + 1f; 
+                            }  
                             loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
                     case 4: damageSum = damageSum + 0.3f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
                 }

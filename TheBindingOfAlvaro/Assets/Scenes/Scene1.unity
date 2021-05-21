@@ -1650,8 +1650,8 @@ MonoBehaviour:
   actualLevel: 1
   characterSpeed: 4
   delayTimeToShoot: 0.4
-  characterMoney: 20
-  characterCristals: 4
+  characterMoney: 0
+  characterCristals: 0
   timeOfParry: 0.1
   habilityType: 0
   stateType: 0
@@ -1663,8 +1663,8 @@ MonoBehaviour:
   MAXSpeed: 8
   MAXDamage: 2
   MAXLife: 5
-  timeSpecialHability: 8
-  timeEffectSpecialEnemysInvert: 5
+  timeSpecialHability: 10
+  timeEffectSpecialEnemysInvert: 8
   timeEffectSpecialEnemysSquid: 8
   activePause: 0
   activeLoading: 0
@@ -1758,6 +1758,7 @@ MonoBehaviour:
   activeMapMecanic: 0
   activeParryShield: 0
   activeEnemyTrail: 0
+  activeSuperDamage: 0
 --- !u!114 &217317355
 MonoBehaviour:
   m_ObjectHideFlags: 0

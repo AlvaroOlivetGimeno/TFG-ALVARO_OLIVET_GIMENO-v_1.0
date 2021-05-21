@@ -78,7 +78,7 @@ public class ShopPointScript : MonoBehaviour
         //--------------
 
         //Debug.Log(this.transform.GetChild(0).name);
-
+        
     }
 
     //START METOD
@@ -104,6 +104,9 @@ public class ShopPointScript : MonoBehaviour
               
         }
     }
+
+    //I HAVE TO BE ACTIVE??
+    
 
     //CAN I BUY IT?
     public void CanIBuyIt()

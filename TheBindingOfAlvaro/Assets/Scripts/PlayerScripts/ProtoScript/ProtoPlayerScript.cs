@@ -852,7 +852,7 @@ public class ProtoPlayerScript : MonoBehaviour
             {
                 switch (other.GetComponent<PassiveHabilityScript>().estadisticType)
                 {
-                    case 1: speedSum = speedSum + 0.3f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
+                    case 1: speedSum = speedSum + 0.5f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
                     case 2: delaySum = delaySum - 0.05f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
                     case 3: SumLife();
                             if(BlackBoardPlayer.characterSpaceLife>= 5)

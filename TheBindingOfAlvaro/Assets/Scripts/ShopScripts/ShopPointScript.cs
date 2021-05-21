@@ -105,9 +105,6 @@ public class ShopPointScript : MonoBehaviour
         }
     }
 
-    //I HAVE TO BE ACTIVE??
-    
-
     //CAN I BUY IT?
     public void CanIBuyIt()
     {

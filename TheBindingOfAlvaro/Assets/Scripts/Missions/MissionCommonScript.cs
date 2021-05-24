@@ -71,6 +71,11 @@ public class MissionCommonScript : MonoBehaviour
 
     bool oneTime;
 
+    //REWARD VARIABLES
+
+    bool sumMoneyOneTime;
+
+
 
 
     void Start()
@@ -94,6 +99,11 @@ public class MissionCommonScript : MonoBehaviour
 
             //--------------------------MISSION COMPLETED-----------------------
             MissionCompleted();
+
+            //-------------
+
+            //---------------------------SUM REWARD----------------------------
+           
 
             //-------------
         }
@@ -138,6 +148,7 @@ public class MissionCommonScript : MonoBehaviour
                 if(!oneTime)
                 {
                     player.GetComponent<ProtoBLACKBOARD_Player>().characterMoney += reward;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().characterMoneyThatPlayerWin += reward;
                     missionFeedback.GetComponent<MissionFeedback>().MissionCompleted();
                     oneTime = true;
                 }
@@ -176,6 +187,8 @@ public class MissionCommonScript : MonoBehaviour
         //INVESTIGA TOTES LES SALES DE UN PIS.
         if(missionActive)
         {
+            SumRewardIfMissionIsActive();
+
             if(roomBrain.GetComponent<RoomTemplates>().MapIsFinished)
             {
                 if(player.GetComponent<ProtoBLACKBOARD_Player>().numOfRoomsSeenInTheLevel  == (roomBrain.GetComponent<RoomTemplates>().sizeOfList +1))
@@ -193,6 +206,8 @@ public class MissionCommonScript : MonoBehaviour
         
         if(missionActive)
         {
+            SumRewardIfMissionIsActive();
+
             //REBOTA 'x' cops una bala amb parry
             if(player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDoneForMission >= parrysToDo)
             {
@@ -208,6 +223,8 @@ public class MissionCommonScript : MonoBehaviour
     {
         if(missionActive)
         {
+            SumRewardIfMissionIsActive();
+
             //MATAR 'x' ENEMICS EN UN PIS
 
             if(enemysToKill <= player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission)
@@ -221,6 +238,8 @@ public class MissionCommonScript : MonoBehaviour
     {
         if(missionActive && player.GetComponent<ProtoBLACKBOARD_Player>().activeHardMissions)
         {
+            SumRewardIfMissionIsActive();
+
             if(player.GetComponent<ProtoBLACKBOARD_Player>().contactWithStairs && player.GetComponent<ProtoBLACKBOARD_Player>().characterLife >= lifesAtMoment)
             {
                 completed = true;
@@ -236,6 +255,8 @@ public class MissionCommonScript : MonoBehaviour
     {
         if(missionActive && player.GetComponent<ProtoBLACKBOARD_Player>().activeHardMissions)
         {
+            SumRewardIfMissionIsActive();
+
             Clock();
             if(player.GetComponent<ProtoBLACKBOARD_Player>().contactWithStairs && minuts >= 0 && seconds >= 0)
             {
@@ -252,6 +273,8 @@ public class MissionCommonScript : MonoBehaviour
     {
         if(missionActive && player.GetComponent<ProtoBLACKBOARD_Player>().activeHardMissions)
         {
+            SumRewardIfMissionIsActive();
+
             Clock();
             if(player.GetComponent<ProtoBLACKBOARD_Player>().contactWithShopOrSpecialRoom && minuts >= 0 && seconds >= 0)
             {
@@ -269,6 +292,8 @@ public class MissionCommonScript : MonoBehaviour
     {
         if(missionActive && player.GetComponent<ProtoBLACKBOARD_Player>().activeLargeMissions)
         {
+            SumRewardIfMissionIsActive();
+
             if(speed>= MAXSpeed)
             {
                 completed = true;
@@ -280,6 +305,8 @@ public class MissionCommonScript : MonoBehaviour
     {
         if(missionActive && player.GetComponent<ProtoBLACKBOARD_Player>().activeLargeMissions)
         {
+            SumRewardIfMissionIsActive();
+
             if(life>= MAXLife)
             {
                 completed = true;
@@ -291,6 +318,8 @@ public class MissionCommonScript : MonoBehaviour
     {
         if(missionActive && player.GetComponent<ProtoBLACKBOARD_Player>().activeLargeMissions)
         {
+            SumRewardIfMissionIsActive();
+
             if(delayToShoot <= MINDelayToShoot)
             {
                 completed = true;
@@ -315,6 +344,16 @@ public class MissionCommonScript : MonoBehaviour
                seconds = 60;
            }
        }
+    }
+
+    //SUM REWARD
+    void SumRewardIfMissionIsActive()
+    {
+        if(!sumMoneyOneTime)
+        {
+            player.GetComponent<ProtoBLACKBOARD_Player>().totalMoneyOnTheGameThatPlayerCanWin += reward;
+            sumMoneyOneTime = true;
+        }
     }
 
 

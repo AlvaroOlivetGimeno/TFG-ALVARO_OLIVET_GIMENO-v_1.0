@@ -90,7 +90,7 @@ public class ShopPointScript : MonoBehaviour
                     prize = 30;
             break;
             case 2: rndVar = Random.Range(1,3); 
-                    prize = 15;
+                    prize = 10;
             break; 
             case 3: prize = 5;
                     
@@ -323,7 +323,9 @@ public class ShopPointScript : MonoBehaviour
                 if(player.GetComponent<ProtoBLACKBOARD_Player>().characterLife < player.GetComponent<ProtoBLACKBOARD_Player>().characterSpaceLife)
                 {
                    player.GetComponent<ProtoBLACKBOARD_Player>().characterMoney -= prize;
-                   Destroy(this.gameObject); 
+                   player.GetComponent<ProtoBLACKBOARD_Player>().moneyWastedInShop += prize;
+                   //Destroy(this.gameObject); 
+                   this.gameObject.SetActive(false);
                 }
                 else
                 {
@@ -333,7 +335,9 @@ public class ShopPointScript : MonoBehaviour
             else
             {
                 player.GetComponent<ProtoBLACKBOARD_Player>().characterMoney -= prize;
-                Destroy(this.gameObject);
+                player.GetComponent<ProtoBLACKBOARD_Player>().moneyWastedInShop += prize;
+                //Destroy(this.gameObject);
+                this.gameObject.SetActive(false);
             }
         }
 

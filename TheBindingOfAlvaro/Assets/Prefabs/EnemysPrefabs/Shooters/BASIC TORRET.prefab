@@ -187,6 +187,7 @@ MonoBehaviour:
   playerContact: 0
   relativePos: 3
   addedToFathersList: 0
+  expulsed: 0
 --- !u!61 &6755124845148314663
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -283,6 +284,7 @@ MonoBehaviour:
   playerContact: 0
   relativePos: 4
   addedToFathersList: 0
+  expulsed: 0
 --- !u!61 &4884256903227480518
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -323,6 +325,7 @@ GameObject:
   - component: {fileID: 5274268693756902848}
   - component: {fileID: 4310316654192327160}
   - component: {fileID: 3846181476363927723}
+  - component: {fileID: 6554451289999545724}
   m_Layer: 0
   m_Name: BASIC TORRET
   m_TagString: Enemy
@@ -470,6 +473,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 1
   enemyFollowScript: {fileID: 0}
+--- !u!114 &6554451289999545724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5274268693756902850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f0c149dbe6f604d82f1eb9ce0aef18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sumEnemyOneTime: 0
+  player: {fileID: 0}
 --- !u!1 &5879926898802336315
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,6 +626,7 @@ MonoBehaviour:
   playerContact: 0
   relativePos: 1
   addedToFathersList: 0
+  expulsed: 0
 --- !u!61 &1709702364937880887
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -705,6 +723,7 @@ MonoBehaviour:
   playerContact: 0
   relativePos: 2
   addedToFathersList: 0
+  expulsed: 0
 --- !u!61 &3583945434306128953
 BoxCollider2D:
   m_ObjectHideFlags: 0

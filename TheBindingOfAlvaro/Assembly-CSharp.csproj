@@ -40,6 +40,7 @@
      <Compile Include="Assets\Scripts\Spikes\SpikeScript.cs" />
      <Compile Include="Assets\Scripts\ScriptsForTuto\RoomSpawner.cs" />
      <Compile Include="Assets\Scripts\NormalRoom\NormalRoomScript.cs" />
+     <Compile Include="Assets\Scripts\ShopScripts\SellPointManager.cs" />
      <Compile Include="Assets\Scripts\ScriptsForTuto\RoomScripts\PointRandomGenerator.cs" />
      <Compile Include="Assets\Scripts\Enemys\ShooterThings\CheckWallPosition.cs" />
      <Compile Include="Assets\Scripts\HUD\HabilitysHudPauseScript.cs" />
@@ -105,7 +106,10 @@
      <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ParryParticlesSpeed.cs" />
      <Compile Include="Assets\Scripts\HUD\Feedback\FeedbackHUD.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\ParryScript.cs" />
-     <Compile Include="Assets\Scripts\ShopScripts\SellPointManager.cs" />
+     <Compile Include="Assets\Scripts\MasterBrain\MasterBrainScript.cs" />
+     <Compile Include="Assets\Scripts\PicableObjects\Coin\SumCoinToIndicators.cs" />
+     <Compile Include="Assets\Scripts\Enemys\EnemyIndicator\EnemySumIndicator.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\ProtoScript\Bullet_of_Player\SumBulletIndicator.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

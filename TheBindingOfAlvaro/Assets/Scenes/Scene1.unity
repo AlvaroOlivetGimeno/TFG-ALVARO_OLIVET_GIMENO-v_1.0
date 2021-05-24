@@ -1750,15 +1750,20 @@ MonoBehaviour:
   minutsForMision6: 0
   secondsForMision6: 60
   contactWithShopOrSpecialRoom: 0
-  activeHardMissions: 1
-  activeLargeMissions: 1
-  activeShopColorSkins: 1
-  activeShopDrawSkins: 1
-  activeSpecialRoomSkins: 1
-  activeMapMecanic: 1
-  activeParryShield: 1
-  activeEnemyTrail: 1
-  activeSuperDamage: 1
+  cristalsFound: 0
+  totalMoneyOnTheGameThatPlayerCanWin: 0
+  characterMoneyThatPlayerWin: 0
+  moneyWastedInShop: 0
+  iHaveFoundOrBuyAnSpecialHability: 0
+  activeHardMissions: 0
+  activeLargeMissions: 0
+  activeShopColorSkins: 0
+  activeShopDrawSkins: 0
+  activeSpecialRoomSkins: 0
+  activeMapMecanic: 0
+  activeParryShield: 0
+  activeEnemyTrail: 0
+  activeSuperDamage: 0
 --- !u!114 &217317355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1883,7 +1888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4868e8b79d8591c4bbfef2e94050a99d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desactiveLoadingScreen: 0
+  desactiveLoadingScreen: 1
   l1: {fileID: 1943307235}
   l2: {fileID: 816650512}
   l3: {fileID: 652576467}
@@ -5671,8 +5676,8 @@ MonoBehaviour:
   rooms: []
   sizeOfList: 0
   stairs: {fileID: 6154399667337420248, guid: 0e4e194b2b7ca0240a510afed8570dec, type: 3}
-  MaxNumOfRooms: 25
-  MinNumOfRooms: 20
+  MaxNumOfRooms: 15
+  MinNumOfRooms: 10
   MapIsFinished: 0
   waiteTime: 0
   shop: {fileID: 153690888237285895, guid: dd0fd0e71229a9b4aa60d8104d62ecdd, type: 3}
@@ -7685,6 +7690,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 954622221}
+  - component: {fileID: 954622222}
   m_Layer: 0
   m_Name: MASTER BRAIN
   m_TagString: Untagged
@@ -7706,6 +7712,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &954622222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954622220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f47425f6b025c24439473123ddd8ff70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  enemyBrain: {fileID: 0}
+  roomManager: {fileID: 0}
+  roomsSeen: 0
+  totalRooms: 0
+  roomPctMon: 0
+  roomPctGameplay: 0
+  cristalsFound: 0
+  totalCristals: 0
+  cristalPctMon: 0
+  cristalPctGameplay: 0
+  moneyWin: 0
+  totalMoneyYouCanWin: 0
+  moneyPctMon: 0
+  moneyPctGameplay: 0
+  moneyWasted: 0
+  totalMoneyOfThePlayer: 0
+  wastedMoneyPctMon: 0
+  wastedMoneyPctGameplay: 0
+  specialHabilityCatch: 0
+  specialHabilityPctMon: 0
+  specialHabilityPctGameplay: 0
 --- !u!1 &956258702
 GameObject:
   m_ObjectHideFlags: 0

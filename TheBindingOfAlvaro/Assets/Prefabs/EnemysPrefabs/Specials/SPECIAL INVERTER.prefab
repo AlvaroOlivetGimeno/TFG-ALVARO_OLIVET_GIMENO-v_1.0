@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 2496052841368288368}
   - component: {fileID: 2496052841368288369}
   - component: {fileID: 2496052841368288374}
+  - component: {fileID: 1647661279644493168}
   m_Layer: 0
   m_Name: SPECIAL INVERTER
   m_TagString: Enemy
@@ -325,6 +326,20 @@ MonoBehaviour:
   timeFreezed: 0
   specialCol: {fileID: 0}
   BlackBoardEnemy: {fileID: 0}
+--- !u!114 &1647661279644493168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496052841368288380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f0c149dbe6f604d82f1eb9ce0aef18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sumEnemyOneTime: 0
+  player: {fileID: 0}
 --- !u!1 &2496052841913280571
 GameObject:
   m_ObjectHideFlags: 0

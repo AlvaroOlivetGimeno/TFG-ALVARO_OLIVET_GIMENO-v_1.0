@@ -53,11 +53,12 @@ public class ProtoPlayerScript : MonoBehaviour
     //PAUSE BOOL
     //public bool activePause = false;
 
-    //VARIABLES PER LA VIDA
+    //VARIABLES PER LA VIDA/PARRY/OTHERS...
 
     float lifeTimer = 1.5f;
     float coinTimer = 1.5f;
     float cristalTimer = 1.5f;
+    float parryTimer = 1.5f;
 
     //ENEMY TRAIL
 
@@ -118,9 +119,10 @@ public class ProtoPlayerScript : MonoBehaviour
 
         //-----------------------------------------------LIFE CONTROLLER---------------------------------------------
         LifeController();
-        lifeTimer += 1*Time.deltaTime;
+        lifeTimer += 1*Time.deltaTime; //FOR LIFE
         coinTimer += 1*Time.deltaTime; //FOR MONEY
         cristalTimer += 1*Time.deltaTime; //FOR CRISTALS
+        parryTimer += 1*Time.deltaTime; //FOR PARRY
 
         //-----------------------------------------------
 
@@ -160,15 +162,23 @@ public class ProtoPlayerScript : MonoBehaviour
     void Parry()
     {
         p_timer = p_timer + 1 * Time.deltaTime;
+        
+        
 
         if (p_timer <= BlackBoardPlayer.timeOfParry)
         {
             BlackBoardPlayer.p_Particles.GetComponent<ParryParticlesSpeed>().play = true;
+            
             BlackBoardPlayer.p_Collider.gameObject.SetActive(true);
         }
         else
         {
             BlackBoardPlayer.p_Collider.gameObject.SetActive(false);
+            parryTimer = 0;
+            if(parryTimer == 0)
+            {
+                BlackBoardPlayer.numOfParrysTried +=1;
+            }
         }
 
     }
@@ -176,7 +186,7 @@ public class ProtoPlayerScript : MonoBehaviour
     //CONTROLS OF PARRY
     void ParryController()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && parryTimer >= 1.5)
         {
             Parry();
         }
@@ -780,6 +790,7 @@ public class ProtoPlayerScript : MonoBehaviour
         if(coinTimer>= 1.5f)
         {
             BlackBoardPlayer.characterMoney += 1;
+            BlackBoardPlayer.characterMoneyThatPlayerWin +=1;
             coinTimer = 0;
         }
     }
@@ -790,6 +801,7 @@ public class ProtoPlayerScript : MonoBehaviour
         if(cristalTimer>= 1.5f)
         {
             BlackBoardPlayer.characterCristals += 1;
+            BlackBoardPlayer.cristalsFound +=1;
             cristalTimer = 0;
         }
     }
@@ -871,6 +883,7 @@ public class ProtoPlayerScript : MonoBehaviour
         {
             //BlackBoardPlayer.specialStateType = other.GetComponent<SpecialHabilityScript>().speciaStateType;
             BlackBoardPlayer.specialHabilityCatcth = other.GetComponent<SpecialHabilityScript>().speciaStateType;
+            BlackBoardPlayer.iHaveFoundOrBuyAnSpecialHability = true;
             Destroy(other.gameObject);
         }
 

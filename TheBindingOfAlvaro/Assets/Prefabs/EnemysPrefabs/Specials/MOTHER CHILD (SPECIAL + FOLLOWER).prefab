@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4840138584631415010}
   - component: {fileID: 4840138584631415023}
   - component: {fileID: 4840138584631415008}
+  - component: {fileID: 1845094196255414137}
   m_Layer: 0
   m_Name: MOTHER CHILD (SPECIAL + FOLLOWER)
   m_TagString: Enemy
@@ -157,6 +158,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5
+--- !u!114 &1845094196255414137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4840138584631415013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f0c149dbe6f604d82f1eb9ce0aef18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sumEnemyOneTime: 0
+  player: {fileID: 0}
 --- !u!1 &4840138584941823979
 GameObject:
   m_ObjectHideFlags: 0

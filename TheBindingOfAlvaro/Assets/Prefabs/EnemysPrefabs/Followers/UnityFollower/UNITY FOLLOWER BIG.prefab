@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1302093149813267631}
   - component: {fileID: 1302093149813267624}
   - component: {fileID: 1302093149813267625}
+  - component: {fileID: -2509228685358607645}
   m_Layer: 0
   m_Name: UNITY FOLLOWER BIG
   m_TagString: Enemy
@@ -157,6 +158,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 2
   enemyFollowScript: {fileID: 0}
+--- !u!114 &-2509228685358607645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302093149813267626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f0c149dbe6f604d82f1eb9ce0aef18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sumEnemyOneTime: 0
+  player: {fileID: 0}
 --- !u!1 &1302093150038081794
 GameObject:
   m_ObjectHideFlags: 0

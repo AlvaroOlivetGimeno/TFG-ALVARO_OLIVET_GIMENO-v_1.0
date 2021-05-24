@@ -135,7 +135,9 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     
     public bool parryMissionActive;
     public float numOfRoomsSeenInTheLevel; //ES CALCULA A CAMERA POINT
-    public int numOfParrysDone;  //ES CALCULA A ENEMY TORRET, A REVOTE();
+    public float numOfParrysDone;  //ES CALCULA A ENEMY TORRET, A REVOTE();
+
+    public float numOfParrysTried;
     public int numOfParrysDoneForMission;
     public bool killEnemysMissionActive;
     public int totalEnemysKilled;
@@ -156,6 +158,24 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public float minutsForMision6;
     public float secondsForMision6;
     public bool contactWithShopOrSpecialRoom;
+
+    public float cristalsFound;
+
+    public float totalMoneyOnTheGameThatPlayerCanWin;
+
+    public float characterMoneyThatPlayerWin;
+
+    public float moneyWastedInShop;
+
+    public bool iHaveFoundOrBuyAnSpecialHability;
+
+    public float totalEnemys;
+
+    public float totalHittedBullets;
+
+    public float totalBulletsShooted;
+
+
 
     [Header("-MISSION's-")]
 

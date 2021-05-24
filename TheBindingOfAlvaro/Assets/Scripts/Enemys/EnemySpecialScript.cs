@@ -214,11 +214,13 @@ public class EnemySpecialScript : MonoBehaviour
         {
 
             life -= collision.gameObject.GetComponent<BasicBulletScript>().damage;
+            player.GetComponent<ProtoBLACKBOARD_Player>().totalHittedBullets +=1;
             collision.gameObject.GetComponent<BasicBulletScript>().DestroyMe();
         }
         if (collision.gameObject.tag == "FreezeBullet")
         {
             life -= collision.gameObject.GetComponent<BasicBulletScript>().damage;
+            player.GetComponent<ProtoBLACKBOARD_Player>().totalHittedBullets +=1;
             collision.gameObject.GetComponent<BasicBulletScript>().DestroyMe();
            
         }

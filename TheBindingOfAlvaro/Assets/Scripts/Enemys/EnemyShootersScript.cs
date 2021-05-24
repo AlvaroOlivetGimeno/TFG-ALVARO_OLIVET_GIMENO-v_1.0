@@ -372,11 +372,13 @@ public class EnemyShootersScript : MonoBehaviour
         if (collision.gameObject.tag == "PlayerBullet")
         {
             life -= collision.gameObject.GetComponent<BasicBulletScript>().damage;
+            player.GetComponent<ProtoBLACKBOARD_Player>().totalHittedBullets +=1;
             collision.gameObject.GetComponent<BasicBulletScript>().DestroyMe();
         }
         if (collision.gameObject.tag == "FreezeBullet")
         {
             life -= collision.gameObject.GetComponent<BasicBulletScript>().damage;
+            player.GetComponent<ProtoBLACKBOARD_Player>().totalHittedBullets +=1;
             collision.gameObject.GetComponent<BasicBulletScript>().DestroyMe();
             freezeCnt++;
         }
@@ -388,6 +390,7 @@ public class EnemyShootersScript : MonoBehaviour
         if (collision.gameObject.tag == "TorretBullet" && collision.GetComponent<TorretBullet>().rebote)
         {
             life -= (collision.gameObject.GetComponent<TorretBullet>().damage);
+            
             collision.gameObject.GetComponent<TorretBullet>().DestroyMe();
         }
 

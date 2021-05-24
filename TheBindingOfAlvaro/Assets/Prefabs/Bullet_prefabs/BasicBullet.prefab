@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1693177405859411493}
   - component: {fileID: 1693177405859411494}
   - component: {fileID: 6870473048569327437}
+  - component: {fileID: 1285066473479562024}
   m_Layer: 0
   m_Name: BasicBullet
   m_TagString: PlayerBullet
@@ -147,3 +148,17 @@ MonoBehaviour:
   speed: 8
   damage: 1
   timeToDie: 1.5
+--- !u!114 &1285066473479562024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693177405859411495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8563a9ec7220659448f99a43da577963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sumBulletOneTime: 0
+  player: {fileID: 0}

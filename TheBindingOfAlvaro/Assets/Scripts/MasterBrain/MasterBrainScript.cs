@@ -11,6 +11,18 @@ public class MasterBrainScript : MonoBehaviour
 
     public GameObject roomManager;
 
+    [Header("PLAYER PCT:")]
+
+    public float pctMon;
+    public float pctGameplay;
+    public float pctAction;
+    public float pctInteraction;
+
+    [Header("PLAYER TAXONOMY POSITION:")]
+
+    public float xPos;
+    public float yPos;
+
     [Header("1.Num of Room's -INDICATORS-")]
     [Header("GAMEPLAY/MON -INDICATORS-")]
     [Header("INDICATORS VARIABLES")]
@@ -125,6 +137,12 @@ public class MasterBrainScript : MonoBehaviour
     {
         //INDICATORS:
         IndicatorUpdate();
+
+        //GLOBAL PCT:
+        GlobalPctUpdate();
+
+        //POSITION:
+        PositionUpdate();
     }
 
     //INDICATOR UPDATE
@@ -187,6 +205,7 @@ public class MasterBrainScript : MonoBehaviour
 
         wastedMoneyPctGameplay = 100 - wastedMoneyPctMon;
     }
+    
     void Indicator5()
     {
         specialHabilityCatch = player.GetComponent<ProtoBLACKBOARD_Player>().iHaveFoundOrBuyAnSpecialHability;
@@ -255,6 +274,56 @@ public class MasterBrainScript : MonoBehaviour
     }
     
 
+    void GlobalPctMon()
+    {
+        pctMon = (roomPctMon + cristalPctMon + moneyPctMon + wastedMoneyPctMon + specialHabilityPctMon) / 5;
+    }
+
+    void GlobalPctGameplay()
+    {
+        pctGameplay = (roomPctGameplay + cristalPctGameplay + moneyPctGameplay + wastedMoneyPctGameplay + specialHabilityPctGameplay) / 5;
+    }
+
+    void GlobalPctAction()
+    {
+        pctAction = (enemysKilledPctAction + parryPctAction + livePctAction + bulletPctAction + enemyRoomPctAction) / 5;
+    }
+
+    void GlobalPctInteraction()
+    {
+        pctInteraction = (enemysKilledPctInteraction + parryPctInteraction + livePctInteraction + bulletPctInteraction + enemyRoomPctInteraction) / 5;
+    }
+
+    void GlobalPctUpdate()
+    {
+        //MON
+        GlobalPctMon();
+
+        //GAMEPLAY
+        GlobalPctGameplay();
+
+        //ACTION
+        GlobalPctAction();
+
+        //INTERACTION
+        GlobalPctInteraction();
+    }
+
+    void Xpos()
+    {
+        xPos = (pctMon/2) + (-pctGameplay/2);
+    }
+    void Ypos()
+    {
+        yPos = (pctAction/2) + (-pctInteraction/2);
+    }
+
+    void PositionUpdate()
+    {
+        Xpos();
+        Ypos();
+    }
+
     public void DifficultyUprage()
     {
         //RO0M's 
@@ -293,4 +362,6 @@ public class MasterBrainScript : MonoBehaviour
         player.GetComponent<ProtoBLACKBOARD_Player>().timeEffectSpecialEnemysSquid += playerAfectedTimeSumator;
         
     }
+
+
 }

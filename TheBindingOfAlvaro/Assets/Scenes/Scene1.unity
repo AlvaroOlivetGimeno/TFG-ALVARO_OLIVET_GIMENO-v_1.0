@@ -7735,6 +7735,12 @@ MonoBehaviour:
   player: {fileID: 0}
   enemyBrain: {fileID: 0}
   roomManager: {fileID: 0}
+  pctMon: 0
+  pctGameplay: 0
+  pctAction: 0
+  pctInteraction: 0
+  xPos: 0
+  yPos: 0
   roomsSeen: 0
   totalRooms: 0
   roomPctMon: 0
@@ -7777,8 +7783,8 @@ MonoBehaviour:
   numOfRoomsSumator: 2.5
   enemyLifeSumator: 0.5
   enemyShooterDelayToShootRestator: 0.1
-  enemyFollowerSpeedSumator: 0.7
-  enemySpecialTimeMotherSpawnRestator: 0.7
+  enemyFollowerSpeedSumator: 0.07
+  enemySpecialTimeMotherSpawnRestator: 0.07
   playerAfectedTimeSumator: 0.5
 --- !u!1 &956258702
 GameObject:

@@ -31,13 +31,21 @@ public class EnemyRoomManager : MonoBehaviour
 
     GameObject camaraPoint;
 
+    GameObject player;
+
+    //INDICATORS VARIABLES
+
+    bool sumEnemyRoomOneTime;
+    bool sumEnemyRoomCompletedOneTime; 
+
+    float indicatorTimer;
  
 
 
     void Start()
     {
         enemyBrain = GameObject.FindGameObjectWithTag("EnemyBrain");
-        
+        player = GameObject.FindGameObjectWithTag("Player");
 
         closeDoorsRndVar = Random.Range(0,100);
 
@@ -57,6 +65,12 @@ public class EnemyRoomManager : MonoBehaviour
         TypeOfEnemyRoom();
 
         //----------------
+
+
+        //----------------FOR INDICATORS-------------------------
+        SumEnemyRoomToIndicators();
+
+        //--------------
     
     }
 
@@ -81,7 +95,7 @@ public class EnemyRoomManager : MonoBehaviour
         {
            timerForClose += 1 * Time.deltaTime;
            
-           if(timerForClose>= 0.5)
+           if(timerForClose>= 0.25f)
            {
                SetActiveTrue();
            }
@@ -149,6 +163,26 @@ public class EnemyRoomManager : MonoBehaviour
             break;
         }
     }
+
+    //SUM ENEMY ROOM ONE TIME
+    void SumEnemyRoomToIndicators()
+    {
+        indicatorTimer += 1*Time.deltaTime;
+
+        if(!sumEnemyRoomOneTime)
+        {
+            player.GetComponent<ProtoBLACKBOARD_Player>().enemyRoomsOnMap += 1;
+            sumEnemyRoomOneTime = true;
+        }
+
+        if(enemys.Count == 0 && !sumEnemyRoomCompletedOneTime && indicatorTimer>=5)
+        {
+            player.GetComponent<ProtoBLACKBOARD_Player>().enemyRoomsCompleted += 1;
+            sumEnemyRoomCompletedOneTime = true;
+        }
+    }
+
+    
 
     void OnTriggerEnter2D(Collider2D other) 
     {

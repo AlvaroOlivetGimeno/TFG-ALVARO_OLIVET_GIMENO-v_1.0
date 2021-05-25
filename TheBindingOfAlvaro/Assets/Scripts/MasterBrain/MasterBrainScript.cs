@@ -75,6 +75,13 @@ public class MasterBrainScript : MonoBehaviour
     public float bulletPctAction;
     public float bulletPctInteraction;
 
+    [Header("10.Num of Bullet's -INDICATORS-")]
+
+    public float numOfEnemyRoomsCompleted;
+    public float totalenemyRooms;
+    public float enemyRoomPctAction;
+    public float enemyRoomPctInteraction;
+
     
 
 
@@ -112,7 +119,7 @@ public class MasterBrainScript : MonoBehaviour
         Indicator7(); //PARRYS DONE
         Indicator8(); //LIVE 
         Indicator9(); //BULLETS
-
+        Indicator10(); //ENEMY ROOMS
         //--------------------------------------------------------------------------------------------
     }
 
@@ -210,6 +217,16 @@ public class MasterBrainScript : MonoBehaviour
         bulletPctInteraction = (hittedBullet/totalBulletsShooted) * 100;
 
         bulletPctAction = 100 - bulletPctInteraction;
+    }
+
+    void Indicator10()
+    {
+        numOfEnemyRoomsCompleted = player.GetComponent<ProtoBLACKBOARD_Player>().enemyRoomsCompleted;
+        totalenemyRooms = player.GetComponent<ProtoBLACKBOARD_Player>().enemyRoomsOnMap;
+
+        enemyRoomPctAction = (numOfEnemyRoomsCompleted/totalenemyRooms) * 100;
+
+        enemyRoomPctInteraction = 100 - enemyRoomPctAction;
     }
     
 }

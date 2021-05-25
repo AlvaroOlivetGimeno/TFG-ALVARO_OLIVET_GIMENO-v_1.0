@@ -175,6 +175,10 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
 
     public float totalBulletsShooted;
 
+    public float enemyRoomsOnMap;
+
+    public float enemyRoomsCompleted;
+
 
 
     [Header("-MISSION's-")]

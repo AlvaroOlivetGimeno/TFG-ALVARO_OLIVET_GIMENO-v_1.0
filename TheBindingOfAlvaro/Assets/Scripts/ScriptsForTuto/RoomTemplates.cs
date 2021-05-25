@@ -490,10 +490,9 @@ public class RoomTemplates : MonoBehaviour
     {
         if(entryRoomRugOnMap!=null)
         {
-            foreach(GameObject x in normalRoomOnMap)
-            {
-                Destroy(x);
-            }
+            
+            Destroy(entryRoomRugOnMap);
+            
         }
     }
 

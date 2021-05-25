@@ -1647,7 +1647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91543cacebf9ff8478e9b87228d2df32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actualLevel: 1
+  actualLevel: 0
   characterSpeed: 4
   delayTimeToShoot: 0.4
   characterMoney: 0
@@ -1894,7 +1894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4868e8b79d8591c4bbfef2e94050a99d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desactiveLoadingScreen: 1
+  desactiveLoadingScreen: 0
   l1: {fileID: 1943307235}
   l2: {fileID: 816650512}
   l3: {fileID: 652576467}
@@ -5682,8 +5682,8 @@ MonoBehaviour:
   rooms: []
   sizeOfList: 0
   stairs: {fileID: 6154399667337420248, guid: 0e4e194b2b7ca0240a510afed8570dec, type: 3}
-  MaxNumOfRooms: 20
-  MinNumOfRooms: 15
+  MaxNumOfRooms: 15
+  MinNumOfRooms: 10
   MapIsFinished: 0
   waiteTime: 0
   shop: {fileID: 153690888237285895, guid: dd0fd0e71229a9b4aa60d8104d62ecdd, type: 3}
@@ -7786,6 +7786,11 @@ MonoBehaviour:
   enemyFollowerSpeedSumator: 0.07
   enemySpecialTimeMotherSpawnRestator: 0.07
   playerAfectedTimeSumator: 0.5
+  actionProfile: 0
+  maestryProfile: 0
+  creativityProfile: 0
+  achievementProfile: 0
+  counter: 0
 --- !u!1 &956258702
 GameObject:
   m_ObjectHideFlags: 0
@@ -12804,9 +12809,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c30428e3e7e054287c262ee323d890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sh_LifeBasic: 5
-  sh_LifeIntelligent: 5
-  sh_LifeBounce: 5
+  sh_LifeBasic: 3
+  sh_LifeIntelligent: 3
+  sh_LifeBounce: 3
   sh_TimeToShootIntelligent: 2.5
   sh_TimeToShootBounce: 4
   sh_ParryPct: 30
@@ -12823,13 +12828,13 @@ MonoBehaviour:
     type: 3}
   sh_BounceBullet: {fileID: 8512338773837551240, guid: 317fedab213ba264e994f79989d14ac9,
     type: 3}
-  fl_LifeBasic: 5
+  fl_LifeBasic: 3
   fl_BasicSpeed: 2
-  fl_LifeUnity: 4
+  fl_LifeUnity: 2.4
   fl_UnityBigSpeed: 0.8
   fl_UnityMedSpeed: 1.5
   fl_UnitySmallSpeed: 2.2
-  fl_LifeSpawner: 5
+  fl_LifeSpawner: 3
   fl_SpeedSpawner: 2
   fl_TimeFreezed: 5
   fl_ParryPct: 30
@@ -12897,6 +12902,7 @@ MonoBehaviour:
     type: 3}
   f_SpawnerTrail: {fileID: 625834943969826592, guid: a655374eea2f2bc42afc90ffe8587dab,
     type: 3}
+  activeEnemysEveryWhere: 0
 --- !u!4 &1567202886
 Transform:
   m_ObjectHideFlags: 0

@@ -628,6 +628,12 @@ public class RoomTemplates : MonoBehaviour
         masterBrain.GetComponent<MasterBrainScript>().DifficultyUprage();
     }
 
+    //PORFILES CHANGE
+    void PorfileUprage()
+    {
+        masterBrain.GetComponent<MasterBrainScript>().TaxonomyChange();
+    }
+
 
     //RESTART MAP
     public void RestartMap()
@@ -638,6 +644,7 @@ public class RoomTemplates : MonoBehaviour
             if(!onlyOneTime)
             {
                 DificultyUprage();
+                PorfileUprage();
                 onlyOneTime = true;
             }
             

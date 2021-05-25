@@ -108,6 +108,12 @@ public class BLACKBOARD_ENEMYS : MonoBehaviour
     public GameObject f_BasicTrail;
     public GameObject f_UnityTrail;
     public GameObject f_SpawnerTrail;
+
+    [Header("ENEMY's INDICATOR VARIABLES:")]
+
+    public bool activeEnemysEveryWhere;
+
+    
     void Start()
     {
         
@@ -116,6 +122,22 @@ public class BLACKBOARD_ENEMYS : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        EnemysEveryWhere();
+    }
+
+    void EnemysEveryWhere()
+    {
+        if(!activeEnemysEveryWhere)
+        {
+            enemyRoomPct = 50;
+            closeDoorsPct = 50;
+            spawnEnemyPct = 50;
+        }
+        else
+        {
+            enemyRoomPct = 100;
+            closeDoorsPct = 100;
+            spawnEnemyPct = 100;
+        }
     }
 }

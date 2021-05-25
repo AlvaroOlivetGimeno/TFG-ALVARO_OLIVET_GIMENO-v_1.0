@@ -117,8 +117,18 @@ public class MasterBrainScript : MonoBehaviour
 
     public float playerAfectedTimeSumator;
 
+    [Header("TAXONOMY BOOL's:")]
+
+    public bool actionProfile;
+    public bool maestryProfile;
+    public bool creativityProfile;
+    public bool achievementProfile;
 
 
+
+    [Header("DON'T LOOK AT THIS (STUPID VARIABLE)")]
+
+    public float counter = 0;
 
 
 
@@ -143,6 +153,8 @@ public class MasterBrainScript : MonoBehaviour
 
         //POSITION:
         PositionUpdate();
+
+
     }
 
     //INDICATOR UPDATE
@@ -362,6 +374,185 @@ public class MasterBrainScript : MonoBehaviour
         player.GetComponent<ProtoBLACKBOARD_Player>().timeEffectSpecialEnemysSquid += playerAfectedTimeSumator;
         
     }
+
+    void ActionProfile()
+    {
+        if(xPos <= -1 && xPos >= -50 && yPos >= 1 && yPos <= 50)
+        {
+            actionProfile = true;
+            player.GetComponent<ProtoBLACKBOARD_Player>().activeEnemyTrail = true;
+            enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().activeEnemysEveryWhere = true;
+        }
+        else
+        {
+            if(xPos>= 25 || yPos <= -25)
+            {
+                actionProfile = false;
+                player.GetComponent<ProtoBLACKBOARD_Player>().activeEnemyTrail = false;
+                enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().activeEnemysEveryWhere = false;
+            }
+            else
+            {
+                if(xPos <= -25 || yPos >= 25)
+                {
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeEnemyTrail = true; 
+                }
+                else
+                {
+                    actionProfile = false;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeEnemyTrail = false;
+                    enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().activeEnemysEveryWhere = false;
+                }
+            }   
+        }
+    }
+
+    void MaestryProfile()
+    {
+        if(xPos <= -1 && xPos >= -50 && yPos <= -1 && yPos >= -50)
+        {
+            maestryProfile = true;
+            player.GetComponent<ProtoBLACKBOARD_Player>().activeParryShield = true;
+            enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryPct = 60;
+            player.GetComponent<ProtoBLACKBOARD_Player>().activeSuperDamage = true;
+            
+
+        }
+        else
+        {
+            if(xPos>= 25 || yPos >= 25)
+            {
+                maestryProfile = false;
+                player.GetComponent<ProtoBLACKBOARD_Player>().activeParryShield = false;
+                enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryPct = 30;
+                player.GetComponent<ProtoBLACKBOARD_Player>().activeSuperDamage = false;
+            }
+            else
+            {
+                if(xPos <= -25 || yPos <= -25)
+                {
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeParryShield = true;
+                    enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryPct = 60; 
+                }
+                else
+                {
+                    maestryProfile = false;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeParryShield = false;
+                    enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryPct = 30;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeSuperDamage = false;
+                }
+            }   
+        }
+    }
+
+    void CreativityProfile()
+    {
+        if(xPos >= 1 && xPos <= 50 && yPos <= -1 && yPos >= -50)
+        {
+            creativityProfile = true;
+            player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = true;
+            player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = true;
+            player.GetComponent<ProtoBLACKBOARD_Player>().activeSpecialRoomSkins = true;
+            player.GetComponent<ProtoBLACKBOARD_Player>().activeMapMecanic = true;
+            enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().spawnObjectPct = 20;
+            
+        }
+        else
+        {
+            if(xPos <= -25 || yPos >= 25)
+            {
+                creativityProfile = false;
+                player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = false;
+                player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = false;
+                player.GetComponent<ProtoBLACKBOARD_Player>().activeSpecialRoomSkins = false;
+                player.GetComponent<ProtoBLACKBOARD_Player>().activeMapMecanic = false;
+                enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().spawnObjectPct = 10;
+            }
+            else
+            {
+                if(xPos >= 25 || yPos <= -25)
+                {
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = true;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = true;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeSpecialRoomSkins = true; 
+                }
+                else
+                {
+                    creativityProfile = false;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = false;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = false;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeSpecialRoomSkins = false;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeMapMecanic = false;
+                    enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().spawnObjectPct = 10;
+                }
+            }   
+        }
+    }
+
+     void AchievementProfile()
+    {
+        if(xPos >= 1 && xPos <= 50 && yPos >= 1 && yPos <= 50)
+        {
+            achievementProfile = true;
+            player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = true;
+            player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = true;
+            player.GetComponent<ProtoBLACKBOARD_Player>().activeHardMissions = true;
+            player.GetComponent<ProtoBLACKBOARD_Player>().activeLargeMissions = true;
+
+
+        }
+        else
+        {
+            if(xPos <= -25 || yPos <= -25)
+            {
+                achievementProfile = false;
+                player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = false;
+                player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = false;
+                player.GetComponent<ProtoBLACKBOARD_Player>().activeHardMissions = false;
+                player.GetComponent<ProtoBLACKBOARD_Player>().activeLargeMissions = false;
+            }
+            else
+            {
+                if(xPos >= 25 || yPos >= 25)
+                {
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = true;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = true;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeHardMissions = true;
+                }
+                else
+                {
+                    achievementProfile = false;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = false;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = false;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeHardMissions = false;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeLargeMissions = false;
+                }
+            }   
+        }
+    }
+
+
+
+
+
+    public void TaxonomyChange()
+    {
+        
+
+        if(counter == 2)
+        {
+            Debug.Log("CALCULAAAAAAAAAANDO");
+            ActionProfile();
+            MaestryProfile();
+            CreativityProfile();
+            AchievementProfile();
+
+            counter = 0;
+        }
+    }
+
+
+
 
 
 }

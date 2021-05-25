@@ -53,6 +53,10 @@ public class RoomTemplates : MonoBehaviour
 
     public bool cristalSpawned;
 
+    [Header("THE MASTER BRAIN:")]
+
+    public GameObject masterBrain;
+
     [Header("THINGS FOR DESTROY:")]
 
     public GameObject entryRoom;
@@ -111,11 +115,14 @@ public class RoomTemplates : MonoBehaviour
 
     public bool entryRoomSpawned;
 
+    public bool onlyOneTime;
+
 
     void Start()
     {
         camara = GameObject.FindGameObjectWithTag("MainCamera");
         missionManager = GameObject.FindGameObjectWithTag("MissionManager");
+        masterBrain = GameObject.FindGameObjectWithTag("MasterBrain");
 
         initialPos = camara.transform;
   
@@ -602,6 +609,7 @@ public class RoomTemplates : MonoBehaviour
             nextLevel = false;
             allDeleted = false;
             MapIsFinished = false;
+            onlyOneTime = false;
             Instantiate(startRoom, new Vector3(initialPos.position.x, initialPos.position.y, 0), Quaternion.identity);
             entryRoomSpawned = true;
         }
@@ -614,6 +622,12 @@ public class RoomTemplates : MonoBehaviour
         missionManager.GetComponent<MissionManager>().RestartMisions();
     }
 
+    //UPRGADE DIFICULTY
+    void DificultyUprage()
+    {
+        masterBrain.GetComponent<MasterBrainScript>().DifficultyUprage();
+    }
+
 
     //RESTART MAP
     public void RestartMap()
@@ -621,6 +635,12 @@ public class RoomTemplates : MonoBehaviour
         if(!allDeleted)
         {
             RestartMissions();
+            if(!onlyOneTime)
+            {
+                DificultyUprage();
+                onlyOneTime = true;
+            }
+            
             DeleteMap();
             
         }

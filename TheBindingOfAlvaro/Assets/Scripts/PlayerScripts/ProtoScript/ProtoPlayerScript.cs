@@ -867,7 +867,7 @@ public class ProtoPlayerScript : MonoBehaviour
                     case 1: speedSum = speedSum + 0.5f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
                     case 2: delaySum = delaySum - 0.05f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
                     case 3: SumLife();
-                            if(BlackBoardPlayer.characterSpaceLife>= 5)
+                            if(BlackBoardPlayer.characterSpaceLife < 5)
                             {
                                 BlackBoardPlayer.characterSpaceLife = BlackBoardPlayer.characterSpaceLife + 1f; 
                             }  

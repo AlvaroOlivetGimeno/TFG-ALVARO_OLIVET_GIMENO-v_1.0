@@ -83,6 +83,31 @@ public class MasterBrainScript : MonoBehaviour
     public float enemyRoomPctInteraction;
 
     
+    [Header("1.NUM OF ROOM's SUMATOR: ")]
+    [Header("DIFICULTY VARIABLES:")]
+    public float numOfRoomsSumator;
+
+    [Header("2.ENEMY's LIFE SUMATOR: ")]
+
+    public float enemyLifeSumator;
+
+    [Header("3.ENEMY's -SHOOTER's- DELAY TO SHOOT RESTATOR: ")]
+
+    public float enemyShooterDelayToShootRestator;
+
+    [Header("4.ENEMY's -FOLLOWER's- VELOCITY SUMATOR: ")]
+
+    public float enemyFollowerSpeedSumator;
+
+    [Header("5.ENEMY's -SPECIAL- TIMER's: ")]
+
+    public float enemySpecialTimeMotherSpawnRestator;
+
+    public float playerAfectedTimeSumator;
+
+
+
+
 
 
 
@@ -229,4 +254,43 @@ public class MasterBrainScript : MonoBehaviour
         enemyRoomPctInteraction = 100 - enemyRoomPctAction;
     }
     
+
+    public void DifficultyUprage()
+    {
+        //RO0M's 
+        roomManager.GetComponent<RoomTemplates>().MaxNumOfRooms += numOfRoomsSumator;
+        roomManager.GetComponent<RoomTemplates>().MinNumOfRooms += numOfRoomsSumator;
+
+        //EN3MY's LIFE
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_LifeBasic += enemyLifeSumator;
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_LifeBounce +=enemyLifeSumator;
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_LifeIntelligent +=enemyLifeSumator;
+
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().fl_LifeBasic +=enemyLifeSumator;
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().fl_LifeUnity +=enemyLifeSumator;
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().fl_LifeSpawner +=enemyLifeSumator;
+
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sp_InverterLife +=enemyLifeSumator;
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sp_SquidLife +=enemyLifeSumator;
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sp_MotherLife +=enemyLifeSumator;
+
+
+        //SHO0TER's DELAY:
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootBounce -= enemyShooterDelayToShootRestator;
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeToShootIntelligent -= enemyShooterDelayToShootRestator;
+
+        //FOLL0WER's SPEED:
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().fl_BasicSpeed += enemyFollowerSpeedSumator;
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().fl_SpeedSpawner += enemyFollowerSpeedSumator;
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().fl_UnityBigSpeed += enemyFollowerSpeedSumator;
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().fl_UnityMedSpeed += enemyFollowerSpeedSumator;
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().fl_UnitySmallSpeed += enemyFollowerSpeedSumator;
+
+        //SP3CIAL's TIMER's:
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sp_MotherTimeSpawn -= enemySpecialTimeMotherSpawnRestator;
+
+        player.GetComponent<ProtoBLACKBOARD_Player>().timeEffectSpecialEnemysInvert += playerAfectedTimeSumator;
+        player.GetComponent<ProtoBLACKBOARD_Player>().timeEffectSpecialEnemysSquid += playerAfectedTimeSumator;
+        
+    }
 }

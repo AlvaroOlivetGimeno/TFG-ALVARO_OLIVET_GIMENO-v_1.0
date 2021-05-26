@@ -14,6 +14,8 @@ public class EnemyFollowersScript : MonoBehaviour
     public float life;
     public float speed;
     public float timeFreezed;
+
+    public GameObject myCamaraPoint;
     public GameObject BlackBoardEnemy;
 
     Rigidbody2D rb2d;
@@ -382,24 +384,28 @@ public class EnemyFollowersScript : MonoBehaviour
         {
             if(sizeType == 3)
             {
-                if(player.GetComponent<ProtoBLACKBOARD_Player>().activeEnemyTrail)
+                if(myCamaraPoint != null)
                 {
-                    enemyTrailTimer +=1*Time.deltaTime;
-
-                    if(enemyTrailTimer>= BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().timeToSpawnTrail)
+                    if(player.GetComponent<ProtoBLACKBOARD_Player>().activeEnemyTrail && myCamaraPoint.GetComponent<CameraPointScript>().isPlayerHere)
                     {
-                        switch(enemyType)
-                        {
-                            case 1: Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().f_BasicTrail, this.transform.position, Quaternion.identity); 
-                                    enemyTrailTimer = 0; break;
-                            case 2: Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().f_UnityTrail, this.transform.position, Quaternion.identity); 
-                                    enemyTrailTimer = 0; break;
-                            case 3: Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().f_SpawnerTrail, this.transform.position, Quaternion.identity); 
-                                    enemyTrailTimer = 0; break;
-                        }
+                        enemyTrailTimer +=1*Time.deltaTime;
 
+                        if(enemyTrailTimer>= BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().timeToSpawnTrail)
+                        {
+                            switch(enemyType)
+                            {
+                                case 1: Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().f_BasicTrail, this.transform.position, Quaternion.identity); 
+                                        enemyTrailTimer = 0; break;
+                                case 2: Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().f_UnityTrail, this.transform.position, Quaternion.identity); 
+                                        enemyTrailTimer = 0; break;
+                                case 3: Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().f_SpawnerTrail, this.transform.position, Quaternion.identity); 
+                                        enemyTrailTimer = 0; break;
+                            }
+
+                        }
                     }
                 }
+                
             }
         }
     }
@@ -449,6 +455,13 @@ public class EnemyFollowersScript : MonoBehaviour
             enemyType = 0;
         }
 
+        //---------------------------------------CAMERA POINT---------------------------------------------------------------
+
+        if(collision.gameObject.tag =="CamaraPoint")
+        {
+            
+            myCamaraPoint = collision.gameObject;
+        }
 
     }
    

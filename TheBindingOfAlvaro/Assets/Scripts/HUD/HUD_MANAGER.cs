@@ -52,6 +52,48 @@ public class HUD_MANAGER : MonoBehaviour
     [Header("GAME OVER SCREEN (HUD)")]
     public GameObject gameOverScreen;
 
+    [Header("FINAL SCREEN (HUD)")]
+
+    public GameObject finalScreen;
+
+    [Header("1.ACTIVE -Feedback Prefab's-")]
+    [Header("FEEDBACK HABILITYS (HUD)")]
+
+    public GameObject f_dobleShoot;
+    public GameObject f_simultaneousShoot;
+    public GameObject f_superShoot;
+    public GameObject f_freezeShoot;
+    public GameObject f_minimumShoot;
+    public GameObject f_maximumShoot;
+    float f_activeHabilityTimer1 = 5;
+    float f_activeHabilityTimer2 = 5;
+    float f_activeHabilityTimer3 = 5;
+    float f_activeHabilityTimer4 = 5;
+    float f_activeHabilityTimer5 = 5;
+    float f_activeHabilityTimer6 = 5;
+
+    [Header("2.PASSIVE -Feedback Prefab's-")]
+
+    public GameObject f_LivePassive;
+    public GameObject f_SpeedPassive;
+    public GameObject f_DelayPassive;
+    float f_passiveHabilityTimer1 = 5;
+    float f_passiveHabilityTimer2 = 5;
+    float f_passiveHabilityTimer3 = 5;
+
+
+    [Header("1.SPECIAL -Feedback Prefab's-")]
+    
+    public GameObject f_SuperParry;
+    public GameObject f_Invencible;
+    public GameObject f_QuadShoot;
+    public GameObject f_Hunter;
+    public GameObject f_SuperKill;
+    float f_specialHabilityTimer1 = 5;
+    float f_specialHabilityTimer2 = 5;
+    float f_specialHabilityTimer3 = 5;
+    float f_specialHabilityTimer4 = 5;
+    float f_specialHabilityTimer5 = 5;
 
 
     //ANTOHER VARIABLES
@@ -91,6 +133,11 @@ public class HUD_MANAGER : MonoBehaviour
         
 
         //---------------------
+
+        //-------------------------FEEDBACK----------------------
+        FeedbackUpdate();
+
+        //-------------
     }
 
 
@@ -217,5 +264,246 @@ public class HUD_MANAGER : MonoBehaviour
             BlackBoardPlayer.activeLoading = true;
         }
     }
+
+    void FeedbackUpdate()
+    {
+        //ACTIVE HABILITY:
+        ActiveHabilityFeedback();
+
+        //PASSIVE HABILITY:
+        PassiveHabilityFeedback();
+
+        //SPECIAL HABILITY:
+        SpecialHabilityFeedback();
+    }
+
+    void ActiveHabilityFeedback()
+    {
+        //TIMERS
+        f_activeHabilityTimer1 += 1* Time.deltaTime;
+        f_activeHabilityTimer2 += 1* Time.deltaTime;
+        f_activeHabilityTimer3 += 1* Time.deltaTime;
+        f_activeHabilityTimer4 += 1* Time.deltaTime;
+        f_activeHabilityTimer5 += 1* Time.deltaTime;
+        f_activeHabilityTimer6 += 1* Time.deltaTime;
+        //------
+
+        //DOBLE SHOOT
+        if(f_activeHabilityTimer1<= 3)
+        {
+            f_dobleShoot.SetActive(true);
+        }
+        else
+        {
+            f_dobleShoot.SetActive(false);
+        }
+
+        //SIMULTANEOUS SHOOT
+        if(f_activeHabilityTimer2<= 3)
+        {
+            f_simultaneousShoot.SetActive(true);
+        }
+        else
+        {
+            f_simultaneousShoot.SetActive(false);
+        }
+
+        //SUPER SHOOT
+        if(f_activeHabilityTimer3<= 3)
+        {
+            f_superShoot.SetActive(true);
+        }
+        else
+        {
+            f_superShoot.SetActive(false);
+        }
+
+        //FREZZE SHOOT
+        if(f_activeHabilityTimer4<= 3)
+        {
+            f_freezeShoot.SetActive(true);
+        }
+        else
+        {
+            f_freezeShoot.SetActive(false);
+        }
+
+        //MINIMUM SHOOT
+        if(f_activeHabilityTimer5<= 3)
+        {
+            f_minimumShoot.SetActive(true);
+        }
+        else
+        {
+            f_minimumShoot.SetActive(false);
+        }
+
+        //MAXIMUM SHOOT
+        if(f_activeHabilityTimer6<= 3)
+        {
+            f_maximumShoot.SetActive(true);
+        }
+        else
+        {
+            f_maximumShoot.SetActive(false);
+        }
+
+      
+    }
+
+    public void ActiveDobleShootFeedback()
+    {
+        f_activeHabilityTimer1 = 0;
+    }
+    public void ActiveSimultaneousShootFeedback()
+    {
+        f_activeHabilityTimer2 = 0;
+    }
+    public void ActiveSuperShootFeedback()
+    {
+        f_activeHabilityTimer3 = 0;
+    }
+    public void ActiveFreezeShootFeedback()
+    {
+        f_activeHabilityTimer4 = 0;
+    }
+    public void ActiveMinimumShootFeedback()
+    {
+        f_activeHabilityTimer5 = 0;
+    }
+    public void ActiveMaximumShootFeedback()
+    {
+        f_activeHabilityTimer6 = 0;
+    }
+
+    void PassiveHabilityFeedback()
+    {
+        //TIMERS
+        f_passiveHabilityTimer1 += 1 * Time.deltaTime;
+        f_passiveHabilityTimer2 += 1 * Time.deltaTime;
+        f_passiveHabilityTimer3 += 1 * Time.deltaTime;
+        //-----
+
+        if(f_passiveHabilityTimer1 <= 3)
+        {
+            f_LivePassive.SetActive(true);
+        }
+        else
+        {
+            f_LivePassive.SetActive(false);
+        }
+
+        if(f_passiveHabilityTimer2 <= 3)
+        {
+            f_SpeedPassive.SetActive(true);
+        }
+        else
+        {
+            f_SpeedPassive.SetActive(false);
+        }
+
+        if(f_passiveHabilityTimer3 <= 3)
+        {
+            f_DelayPassive.SetActive(true);
+        }
+        else
+        {
+            f_DelayPassive.SetActive(false);
+        }
+
+
+    }
+
+    public void ActiveLivePLusFeedback()
+    {
+        f_passiveHabilityTimer1 = 0;
+    }
+    public void ActiveSpeedPLusFeedback()
+    {
+        f_passiveHabilityTimer2 = 0;
+    }
+    public void ActiveDelayPLusFeedback()
+    {
+        f_passiveHabilityTimer3 = 0;
+    }
+
+    void SpecialHabilityFeedback()
+    {
+        //TIMERS
+        f_specialHabilityTimer1 += 1 * Time.deltaTime;
+        f_specialHabilityTimer2 += 1 * Time.deltaTime;
+        f_specialHabilityTimer3 += 1 * Time.deltaTime;
+        f_specialHabilityTimer4 += 1 * Time.deltaTime;
+        f_specialHabilityTimer5 += 1 * Time.deltaTime;
+        //----
+
+        if(f_specialHabilityTimer1 <= 3)
+        {
+            f_SuperParry.SetActive(true);
+        }
+        else
+        {
+            f_SuperParry.SetActive(false);
+        }
+
+        if(f_specialHabilityTimer2 <= 3)
+        {
+            f_Invencible.SetActive(true);
+        }
+        else
+        {
+            f_Invencible.SetActive(false);
+        }
+
+        if(f_specialHabilityTimer3 <= 3)
+        {
+            f_QuadShoot.SetActive(true);
+        }
+        else
+        {
+            f_QuadShoot.SetActive(false);
+        }
+
+         if(f_specialHabilityTimer4 <= 3)
+        {
+            f_Hunter.SetActive(true);
+        }
+        else
+        {
+            f_Hunter.SetActive(false);
+        }
+
+         if(f_specialHabilityTimer5 <= 3)
+        {
+            f_SuperKill.SetActive(true);
+        }
+        else
+        {
+            f_SuperKill.SetActive(false);
+        }
+    }
+
+    public void ActiveSuperParryFeedback()
+    {
+        f_specialHabilityTimer1 = 0;
+    }
+    public void ActiveInvencibleFeedback()
+    {
+        f_specialHabilityTimer2 = 0;
+    }
+    public void ActiveQuadShootFeedback()
+    {
+        f_specialHabilityTimer3 = 0;
+    }
+    public void ActiveHunterFeedback()
+    {
+        f_specialHabilityTimer4 = 0;
+    }
+    public void ActiveSuperKillFeedback()
+    {
+        f_specialHabilityTimer5 = 0;
+    }
+
+
 
 }

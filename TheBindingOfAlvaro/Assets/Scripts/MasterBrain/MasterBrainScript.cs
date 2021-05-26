@@ -13,86 +13,86 @@ public class MasterBrainScript : MonoBehaviour
 
     [Header("PLAYER PCT:")]
 
-    public float pctMon;
-    public float pctGameplay;
-    public float pctAction;
-    public float pctInteraction;
+    public float pctMon = 0;
+    public float pctGameplay= 0;
+    public float pctAction= 0;
+    public float pctInteraction= 0;
 
     [Header("PLAYER TAXONOMY POSITION:")]
 
-    public float xPos;
-    public float yPos;
+    public float xPos= 0;
+    public float yPos= 0;
 
     [Header("1.Num of Room's -INDICATORS-")]
     [Header("GAMEPLAY/MON -INDICATORS-")]
     [Header("INDICATORS VARIABLES")]
-    public float roomsSeen;
-    public float totalRooms;
-    public float roomPctMon;
-    public float roomPctGameplay;
+    public float roomsSeen= 0;
+    public float totalRooms= 0;
+    public float roomPctMon= 0;
+    public float roomPctGameplay= 0;
 
     [Header("2.Num of Cristal's -INDICATORS-")]
 
-    public float cristalsFound;
-    public float totalCristals;
-    public float cristalPctMon;
-    public float cristalPctGameplay;
+    public float cristalsFound= 0;
+    public float totalCristals= 0;
+    public float cristalPctMon= 0;
+    public float cristalPctGameplay= 0;
 
     [Header("3.Num of Money -INDICATORS-")]
 
-    public float moneyWin;
-    public float totalMoneyYouCanWin;
-    public float moneyPctMon;
-    public float moneyPctGameplay;
+    public float moneyWin= 0;
+    public float totalMoneyYouCanWin= 0;
+    public float moneyPctMon= 0;
+    public float moneyPctGameplay= 0;
 
     [Header("4.Num of Money Wasted -INDICATORS-")]
 
-    public float moneyWasted;
-    public float totalMoneyOfThePlayer;
-    public float wastedMoneyPctMon;
-    public float wastedMoneyPctGameplay;
+    public float moneyWasted= 0;
+    public float totalMoneyOfThePlayer= 0;
+    public float wastedMoneyPctMon= 0;
+    public float wastedMoneyPctGameplay= 0;
 
     [Header("5.Num of SpecialHabilityCatch -INDICATORS-")]
 
     public bool specialHabilityCatch;
-    public float specialHabilityPctMon;
-    public float specialHabilityPctGameplay;
+    public float specialHabilityPctMon= 0;
+    public float specialHabilityPctGameplay= 0;
 
     [Header("6.Num of Enemys's Killed -INDICATORS-")]
     [Header("ACTION/INTERACTION -INDICATORS-")]
     
-    public float totalEnemysKilled;
-    public float totalOfEnemys;
-    public float enemysKilledPctAction;
-    public float enemysKilledPctInteraction;
+    public float totalEnemysKilled= 0;
+    public float totalOfEnemys= 0;
+    public float enemysKilledPctAction= 0;
+    public float enemysKilledPctInteraction= 0;
 
     [Header("7.Num of Parry's Failed -INDICATORS-")]
 
-    public float numOfParrysDoneCorrecly;
-    public float numOfParrysTried;
-    public float parryPctAction;
-    public float parryPctInteraction;
+    public float numOfParrysDoneCorrecly= 0;
+    public float numOfParrysTried= 0;
+    public float parryPctAction= 0;
+    public float parryPctInteraction= 0;
 
     [Header("8.Num of Live Loosed -INDICATORS-")]
 
-    public float actualLive;
-    public float totalLivePlayerCanHave;
-    public float livePctAction;
-    public float livePctInteraction;
+    public float actualLive= 0;
+    public float totalLivePlayerCanHave= 0;
+    public float livePctAction= 0;
+    public float livePctInteraction= 0;
 
     [Header("9.Num of Bullet's -INDICATORS-")]
 
-    public float hittedBullet;
-    public float totalBulletsShooted;
-    public float bulletPctAction;
-    public float bulletPctInteraction;
+    public float hittedBullet= 0;
+    public float totalBulletsShooted= 0;
+    public float bulletPctAction= 0;
+    public float bulletPctInteraction= 0;
 
     [Header("10.Num of Bullet's -INDICATORS-")]
 
-    public float numOfEnemyRoomsCompleted;
-    public float totalenemyRooms;
-    public float enemyRoomPctAction;
-    public float enemyRoomPctInteraction;
+    public float numOfEnemyRoomsCompleted= 0;
+    public float totalenemyRooms= 0;
+    public float enemyRoomPctAction= 0;
+    public float enemyRoomPctInteraction= 0;
 
     
     [Header("1.NUM OF ROOM's SUMATOR: ")]
@@ -385,20 +385,22 @@ public class MasterBrainScript : MonoBehaviour
         }
         else
         {
-            if(xPos>= 25 || yPos <= -25)
+            if(xPos > 25 || yPos < -25)
             {
+                Debug.Log("ACTION -FORA DELS LIMITS-");
                 actionProfile = false;
                 player.GetComponent<ProtoBLACKBOARD_Player>().activeEnemyTrail = false;
                 enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().activeEnemysEveryWhere = false;
             }
             else
             {
-                if(xPos <= -25 || yPos >= 25)
+                if(xPos < -5 && xPos >= -25 || yPos > 5 && yPos <= 25) //xPos entre -5 i -25 i yPos entre 5 i 25
                 {
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeEnemyTrail = true; 
                 }
                 else
                 {
+                    Debug.Log("ACTION -no esta entre -5 i -25 o 5 i 25-");
                     actionProfile = false;
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeEnemyTrail = false;
                     enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().activeEnemysEveryWhere = false;
@@ -420,8 +422,9 @@ public class MasterBrainScript : MonoBehaviour
         }
         else
         {
-            if(xPos>= 25 || yPos >= 25)
+            if(xPos> 25 || yPos > 25)
             {
+                Debug.Log("MAESTRY -FORA DELS LIMITS-");
                 maestryProfile = false;
                 player.GetComponent<ProtoBLACKBOARD_Player>().activeParryShield = false;
                 enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryPct = 30;
@@ -429,13 +432,14 @@ public class MasterBrainScript : MonoBehaviour
             }
             else
             {
-                if(xPos <= -25 || yPos <= -25)
+                if(xPos < -5 && xPos >= -25 || yPos < -5 && yPos >= -25) //xPos entre -5 i -25 i yPos entre -5 i -25
                 {
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeParryShield = true;
                     enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryPct = 60; 
                 }
                 else
                 {
+                    Debug.Log("MAESTRY -no esta entre -5 i -25 o -5 i -25-");
                     maestryProfile = false;
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeParryShield = false;
                     enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryPct = 30;
@@ -459,8 +463,9 @@ public class MasterBrainScript : MonoBehaviour
         }
         else
         {
-            if(xPos <= -25 || yPos >= 25)
+            if(xPos < -25 || yPos > 25)
             {
+                Debug.Log("CREATIVITY -FORA DELS LIMITS-");
                 creativityProfile = false;
                 player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = false;
                 player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = false;
@@ -470,7 +475,7 @@ public class MasterBrainScript : MonoBehaviour
             }
             else
             {
-                if(xPos >= 25 || yPos <= -25)
+                if(xPos > 5 && xPos <= 25 || yPos < -5 && yPos >= -25) //xPos entre 5 i 25 i yPos entre -5 i -25
                 {
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = true;
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = true;
@@ -478,6 +483,7 @@ public class MasterBrainScript : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log("CREATIVITY -no esta entre 5 i 25 o -5 i -25-");
                     creativityProfile = false;
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = false;
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = false;
@@ -503,8 +509,9 @@ public class MasterBrainScript : MonoBehaviour
         }
         else
         {
-            if(xPos <= -25 || yPos <= -25)
+            if(xPos < -25 || yPos < -25)
             {
+                Debug.Log("ACHIEVMENT -FORA DELS LIMITS-");
                 achievementProfile = false;
                 player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = false;
                 player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = false;
@@ -513,7 +520,7 @@ public class MasterBrainScript : MonoBehaviour
             }
             else
             {
-                if(xPos >= 25 || yPos >= 25)
+                if(xPos > 5 && xPos <= 25 || yPos > 5 && yPos <= 25) //xPos entre 5 i 25 i yPos entre 5 i 25
                 {
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = true;
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = true;
@@ -521,6 +528,7 @@ public class MasterBrainScript : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log("ACHIEVEMENT -no esta entre 5 i 25 o 5 i 25-");
                     achievementProfile = false;
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = false;
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = false;

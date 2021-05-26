@@ -851,7 +851,15 @@ public class ProtoPlayerScript : MonoBehaviour
         {
             BlackBoardPlayer.habilityType = other.GetComponent<ActiveHabilityScript>().habilityType;
             BlackBoardPlayer.stateType = other.GetComponent<ActiveHabilityScript>().stateType;
-
+            switch(other.GetComponent<ActiveHabilityScript>().habilityType)
+            {
+                case 1: hudManager.ActiveDobleShootFeedback(); break;
+                case 2: hudManager.ActiveSimultaneousShootFeedback(); break;
+                case 3: hudManager.ActiveSuperShootFeedback(); break;
+                case 4: hudManager.ActiveFreezeShootFeedback(); break;
+                case 5: hudManager.ActiveMinimumShootFeedback(); break;
+                case 6: hudManager.ActiveMaximumShootFeedback(); break;
+            }
 
             Destroy(other.gameObject);
         }
@@ -864,9 +872,12 @@ public class ProtoPlayerScript : MonoBehaviour
             {
                 switch (other.GetComponent<PassiveHabilityScript>().estadisticType)
                 {
-                    case 1: speedSum = speedSum + 0.5f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
-                    case 2: delaySum = delaySum - 0.05f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
+                    case 1: speedSum = speedSum + 0.5f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); 
+                            hudManager.ActiveSpeedPLusFeedback(); break;
+                    case 2: delaySum = delaySum - 0.05f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); 
+                            hudManager.ActiveDelayPLusFeedback(); break;
                     case 3: SumLife();
+                            hudManager.ActiveLivePLusFeedback();
                             if(BlackBoardPlayer.characterSpaceLife < 5)
                             {
                                 BlackBoardPlayer.characterSpaceLife = BlackBoardPlayer.characterSpaceLife + 1f; 
@@ -878,11 +889,20 @@ public class ProtoPlayerScript : MonoBehaviour
         }
 
         //SPECIAL
-        //1.inbulnerabilitat 2.Tir Quadruple 3.TotalParry 4.Depredador 5.SuperKill
+       
         if (other.gameObject.tag == "SpecialHability")
         {
-            //BlackBoardPlayer.specialStateType = other.GetComponent<SpecialHabilityScript>().speciaStateType;
             BlackBoardPlayer.specialHabilityCatcth = other.GetComponent<SpecialHabilityScript>().speciaStateType;
+
+            switch(other.GetComponent<SpecialHabilityScript>().speciaStateType)
+            {
+                case 1: hudManager.ActiveInvencibleFeedback(); break;
+                case 2: hudManager.ActiveSuperParryFeedback(); break;
+                case 3: hudManager.ActiveQuadShootFeedback(); break;
+                case 4: hudManager.ActiveHunterFeedback(); break;
+                case 5: hudManager.ActiveSuperKillFeedback(); break;
+            }
+
             BlackBoardPlayer.iHaveFoundOrBuyAnSpecialHability = true;
             Destroy(other.gameObject);
         }

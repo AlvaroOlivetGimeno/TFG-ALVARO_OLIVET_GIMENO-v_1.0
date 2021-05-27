@@ -690,7 +690,7 @@ public class ProtoPlayerScript : MonoBehaviour
     //PAUSE LOGIC
     void PauseControlls()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !BlackBoardPlayer.activeInfoMenu && !BlackBoardPlayer.activeLoading)
         {
             if(!BlackBoardPlayer.activeLoading)
             {
@@ -720,7 +720,7 @@ public class ProtoPlayerScript : MonoBehaviour
      //INFO LOGIC
     void InfoControlls()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I)&& !BlackBoardPlayer.activePause && !BlackBoardPlayer.activeLoading)
         {
             if(!BlackBoardPlayer.activeLoading)
             {

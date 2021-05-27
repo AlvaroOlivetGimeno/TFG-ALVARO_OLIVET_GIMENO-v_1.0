@@ -27,6 +27,7 @@ public class WritePctInfoMenu : MonoBehaviour
     {
         text = GetComponent<Text>();
         masterBrain = GameObject.FindGameObjectWithTag("MasterBrain");
+        
     }
 
     // Update is called once per frame
@@ -55,17 +56,17 @@ public class WritePctInfoMenu : MonoBehaviour
     {
         switch(typeOfIndicator)
         {
-            case 1: text.text = masterBrain.GetComponent<MasterBrainScript>().roomPctMon.ToString() + "%"; break;
-            case 2: text.text = masterBrain.GetComponent<MasterBrainScript>().cristalPctMon.ToString() + "%"; break;
-            case 3: text.text = masterBrain.GetComponent<MasterBrainScript>().moneyPctMon.ToString() + "%"; break;
-            case 4: text.text = masterBrain.GetComponent<MasterBrainScript>().wastedMoneyPctMon.ToString() + "%"; break;
-            case 5: text.text = masterBrain.GetComponent<MasterBrainScript>().specialHabilityPctMon.ToString() + "%"; break;
+            case 1: text.text = Mathf.Round(masterBrain.GetComponent<MasterBrainScript>().roomPctMon) + "%"; break;
+            case 2: text.text = Mathf.Round(masterBrain.GetComponent<MasterBrainScript>().cristalPctMon) + "%"; break;
+            case 3: text.text =  Mathf.Round(masterBrain.GetComponent<MasterBrainScript>().moneyPctMon) + "%"; break;
+            case 4: text.text =  Mathf.Round(masterBrain.GetComponent<MasterBrainScript>().wastedMoneyPctMon) + "%"; break;
+            case 5: text.text =  Mathf.Round(masterBrain.GetComponent<MasterBrainScript>().specialHabilityPctMon) + "%"; break;
 
-            case 6: text.text = masterBrain.GetComponent<MasterBrainScript>().enemysKilledPctAction.ToString() + "%"; break;
-            case 7: text.text = masterBrain.GetComponent<MasterBrainScript>().parryPctAction.ToString() + "%"; break;
-            case 8: text.text = masterBrain.GetComponent<MasterBrainScript>().livePctAction.ToString() + "%"; break;
-            case 9: text.text = masterBrain.GetComponent<MasterBrainScript>().bulletPctAction.ToString() + "%"; break;
-            case 10: text.text = masterBrain.GetComponent<MasterBrainScript>().enemyRoomPctAction.ToString() + "%"; break;
+            case 6: text.text = Mathf.Round(masterBrain.GetComponent<MasterBrainScript>().enemysKilledPctAction) + "%"; break;
+            case 7: text.text = Mathf.Round(masterBrain.GetComponent<MasterBrainScript>().parryPctAction) + "%"; break;
+            case 8: text.text = Mathf.Round(masterBrain.GetComponent<MasterBrainScript>().livePctAction) + "%"; break;
+            case 9: text.text = Mathf.Round(masterBrain.GetComponent<MasterBrainScript>().bulletPctAction) + "%"; break;
+            case 10: text.text = Mathf.Round(masterBrain.GetComponent<MasterBrainScript>().enemyRoomPctAction) + "%"; break;
         }
     }
 
@@ -73,10 +74,10 @@ public class WritePctInfoMenu : MonoBehaviour
     {
         switch(typeOfGlobalPct)
         {
-            case 1: text.text = masterBrain.GetComponent<MasterBrainScript>().pctProfileAction.ToString() + "%"; break;
-            case 2: text.text = masterBrain.GetComponent<MasterBrainScript>().pctProfileMaestry.ToString() + "%"; break;
-            case 3: text.text = masterBrain.GetComponent<MasterBrainScript>().pctProfileAchievement.ToString() + "%"; break;
-            case 4: text.text = masterBrain.GetComponent<MasterBrainScript>().pctProfileCreativity.ToString() + "%"; break;
+            case 1: text.text = Mathf.Round( masterBrain.GetComponent<MasterBrainScript>().pctProfileAction) + "%"; break;
+            case 2: text.text = Mathf.Round( masterBrain.GetComponent<MasterBrainScript>().pctProfileMaestry) + "%"; break;
+            case 3: text.text = Mathf.Round( masterBrain.GetComponent<MasterBrainScript>().pctProfileAchievement) + "%"; break;
+            case 4: text.text = Mathf.Round( masterBrain.GetComponent<MasterBrainScript>().pctProfileCreativity) + "%"; break;
         }
     }
 
@@ -84,8 +85,8 @@ public class WritePctInfoMenu : MonoBehaviour
     {
         switch(typeOfposition)
         {
-            case 1: text.text = masterBrain.GetComponent<MasterBrainScript>().xPos.ToString(); break;
-            case 2: text.text = masterBrain.GetComponent<MasterBrainScript>().yPos.ToString(); break;
+            case 1: text.text = Mathf.Round( masterBrain.GetComponent<MasterBrainScript>().xPos)+ ""; break;
+            case 2: text.text =Mathf.Round( masterBrain.GetComponent<MasterBrainScript>().yPos)+ ""; break;
         }
     }
     

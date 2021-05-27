@@ -405,7 +405,7 @@ public class MasterBrainScript : MonoBehaviour
 
     void ActionProfile()
     {
-        if(xPos <= -1 && xPos >= -50 && yPos >= 1 && yPos <= 50)
+        if(xPos >= 0 && xPos >= -50 && yPos >= 0 && yPos <= 50)
         {
             actionProfile = true;
             player.GetComponent<ProtoBLACKBOARD_Player>().activeEnemyTrail = true;
@@ -439,7 +439,7 @@ public class MasterBrainScript : MonoBehaviour
 
     void MaestryProfile()
     {
-        if(xPos <= -1 && xPos >= -50 && yPos <= -1 && yPos >= -50)
+        if(xPos >= 0 && xPos >= -50 && yPos >= 0 && yPos >= -50)
         {
             maestryProfile = true;
             player.GetComponent<ProtoBLACKBOARD_Player>().activeParryShield = true;
@@ -479,7 +479,7 @@ public class MasterBrainScript : MonoBehaviour
 
     void CreativityProfile()
     {
-        if(xPos >= 1 && xPos <= 50 && yPos <= -1 && yPos >= -50)
+        if(xPos >= 0 && xPos <= 50 && yPos >= 0 && yPos >= -50)
         {
             creativityProfile = true;
             player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = true;
@@ -525,7 +525,7 @@ public class MasterBrainScript : MonoBehaviour
 
      void AchievementProfile()
     {
-        if(xPos >= 1 && xPos <= 50 && yPos >= 1 && yPos <= 50)
+        if(xPos >= 0 && xPos <= 50 && yPos >= 0 && yPos <= 50)
         {
             achievementProfile = true;
             player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = true;

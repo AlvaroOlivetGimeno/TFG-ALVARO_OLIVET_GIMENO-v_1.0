@@ -142,6 +142,11 @@ public class HUD_MANAGER : MonoBehaviour
         FeedbackUpdate();
 
         //-------------
+
+        //----------------------FINAL SCREEN------------------------
+
+
+        //---------
     }
 
 
@@ -508,6 +513,16 @@ public class HUD_MANAGER : MonoBehaviour
         f_specialHabilityTimer5 = 0;
     }
 
-
+    void FinalScreenLogic()
+    {
+        if(BlackBoardPlayer.actualLevel == 11)
+        {
+            finalScreen.SetActive(true);
+        }
+        else
+        {
+            finalScreen.SetActive(false);
+        }
+    }
 
 }

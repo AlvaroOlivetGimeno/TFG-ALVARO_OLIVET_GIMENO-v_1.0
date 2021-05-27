@@ -90,8 +90,7 @@ public class HacksForTheGame : MonoBehaviour
     void CameraShake()
     {
         if (Input.GetKeyDown(KeyCode.P))
-        {   
-            Debug.Log("EEEEEEEEEO");
+        {       
             StartCoroutine(cam.GetComponent<CameraShake>().Shake(0.5f,1));
         }
     }

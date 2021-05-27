@@ -27,6 +27,7 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
     public float timeEffectSpecialEnemysSquid;
     public bool activePause = false;
     public bool activeLoading = false;
+    public bool activeInfoMenu = false;
     public bool SpecialHabilityIsActive;
 
     [Header("LOADING SPECIAL HABILITY THINGS:")]

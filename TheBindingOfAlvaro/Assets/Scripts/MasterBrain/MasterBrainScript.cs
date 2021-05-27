@@ -11,7 +11,7 @@ public class MasterBrainScript : MonoBehaviour
 
     public GameObject roomManager;
 
-    [Header("PLAYER PCT:")]
+    [Header("PLAYER PCT [EJES]:")]
 
     public float pctMon = 0;
     public float pctGameplay= 0;
@@ -22,6 +22,13 @@ public class MasterBrainScript : MonoBehaviour
 
     public float xPos= 0;
     public float yPos= 0;
+
+    [Header("PLAYER PCT [PROFILES]:")]
+
+    public float pctProfileAction = 0;
+    public float pctProfileMaestry= 0;
+    public float pctProfileAchievement= 0;
+    public float pctProfileCreativity= 0;
 
     [Header("1.Num of Room's -INDICATORS-")]
     [Header("GAMEPLAY/MON -INDICATORS-")]
@@ -124,7 +131,16 @@ public class MasterBrainScript : MonoBehaviour
     public bool creativityProfile;
     public bool achievementProfile;
 
+    [Header("TAXONOMY FLOAT's:")]
 
+    public float actionProfileSumator;
+    public float maestryProfileSumator;
+    public float creativityProfileSumator;
+    public float achievementProfileSumator;
+
+    [Header("PROFILE TYPE [1. Act 2.Maes 3.Achie 4.Creat")]
+
+    public float choosenProfile; 
 
     [Header("DON'T LOOK AT THIS (STUPID VARIABLE)")]
 
@@ -306,6 +322,15 @@ public class MasterBrainScript : MonoBehaviour
         pctInteraction = (enemysKilledPctInteraction + parryPctInteraction + livePctInteraction + bulletPctInteraction + enemyRoomPctInteraction) / 5;
     }
 
+
+    void PctProfiles()
+    {
+        pctProfileAction = (pctAction+ pctGameplay) / 2;
+        pctProfileMaestry = (pctGameplay+ pctInteraction) / 2;
+        pctProfileAchievement = (pctAction+ pctMon) / 2;
+        pctProfileCreativity = (pctMon+ pctInteraction) / 2;
+
+    }
     void GlobalPctUpdate()
     {
         //MON
@@ -319,6 +344,9 @@ public class MasterBrainScript : MonoBehaviour
 
         //INTERACTION
         GlobalPctInteraction();
+
+        //PCT PROFILES
+        PctProfiles();
     }
 
     void Xpos()
@@ -539,24 +567,69 @@ public class MasterBrainScript : MonoBehaviour
         }
     }
 
+    void SumTheChoosenPorfile()
+    {
+        if(actionProfile)
+        {
+            actionProfileSumator += 1;
+        }
+        else if(achievementProfile)
+        {
+            achievementProfileSumator += 1;
+        }
+        else if(creativityProfile)
+        {
+            creativityProfileSumator += 1;
+        }
+        else if(maestryProfile)
+        {
+            maestryProfileSumator += 1;
+        }
+    }
 
-
+    void WhooseTheBiggerProfileSumator()
+    {
+        if(actionProfileSumator > maestryProfileSumator && actionProfileSumator > achievementProfileSumator && actionProfileSumator > creativityProfileSumator)
+        {
+            choosenProfile = 1;
+        }
+        else if(maestryProfileSumator > actionProfileSumator && maestryProfileSumator > achievementProfileSumator && maestryProfileSumator > creativityProfileSumator)
+        {
+            choosenProfile = 2;
+        }
+        else if(achievementProfileSumator > actionProfileSumator && achievementProfileSumator > maestryProfileSumator && achievementProfileSumator > creativityProfileSumator)
+        {
+            choosenProfile = 3;
+        }
+        else if(creativityProfileSumator > actionProfileSumator && creativityProfileSumator > maestryProfileSumator && creativityProfileSumator > achievementProfileSumator)
+        {
+            choosenProfile = 4;
+        }
+    }
 
 
     public void TaxonomyChange()
     {
         
-
-        if(counter == 2)
+        if(player.GetComponent<ProtoBLACKBOARD_Player>().actualLevel == 11)
         {
-            Debug.Log("CALCULAAAAAAAAAANDO");
-            ActionProfile();
-            MaestryProfile();
-            CreativityProfile();
-            AchievementProfile();
-
-            counter = 0;
+            WhooseTheBiggerProfileSumator();
         }
+        else
+        {
+            if(counter == 2)
+            {
+                Debug.Log("CALCULAAAAAAAAAANDO");
+                ActionProfile();
+                MaestryProfile();
+                CreativityProfile();
+                AchievementProfile();
+                SumTheChoosenPorfile();
+
+                counter = 0;
+            }
+        }
+        
     }
 
 

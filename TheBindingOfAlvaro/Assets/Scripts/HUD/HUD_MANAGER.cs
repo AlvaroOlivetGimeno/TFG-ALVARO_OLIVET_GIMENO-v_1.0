@@ -52,6 +52,10 @@ public class HUD_MANAGER : MonoBehaviour
     [Header("GAME OVER SCREEN (HUD)")]
     public GameObject gameOverScreen;
 
+    [Header("INFO SCREEN (HUD)")]
+
+    public GameObject infoScreen;
+
     [Header("FINAL SCREEN (HUD)")]
 
     public GameObject finalScreen;

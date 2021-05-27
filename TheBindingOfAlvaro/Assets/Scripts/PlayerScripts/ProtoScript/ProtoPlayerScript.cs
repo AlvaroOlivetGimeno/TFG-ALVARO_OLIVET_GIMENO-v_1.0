@@ -131,8 +131,9 @@ public class ProtoPlayerScript : MonoBehaviour
 
         //---------------------------------------------
 
-        //-------------------------------------------------PAUSE MENU LOGIC-------------------------------------------
+        //-------------------------------------------------PAUSE/INFO MENU LOGIC-------------------------------------------
         PauseControlls();
+        InfoControlls();
 
         //---------------------------------------------
 
@@ -694,6 +695,36 @@ public class ProtoPlayerScript : MonoBehaviour
             if(!BlackBoardPlayer.activeLoading)
             {
                 Pause();
+            }
+            
+
+        }
+    }
+
+    void Info()
+    {
+        if(!BlackBoardPlayer.activeInfoMenu)
+        {
+            Time.timeScale = 0f;
+            BlackBoardPlayer.activeInfoMenu = true;
+            hudManager.infoScreen.gameObject.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            BlackBoardPlayer.activeInfoMenu = false;
+            hudManager.infoScreen.gameObject.SetActive(false);
+        }
+    }
+
+     //INFO LOGIC
+    void InfoControlls()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if(!BlackBoardPlayer.activeLoading)
+            {
+                Info();
             }
             
 

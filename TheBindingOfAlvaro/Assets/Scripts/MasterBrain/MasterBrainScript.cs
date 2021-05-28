@@ -131,20 +131,31 @@ public class MasterBrainScript : MonoBehaviour
     public bool creativityProfile;
     public bool achievementProfile;
 
-    [Header("TAXONOMY FLOAT's:")]
+    [Header("POSITIONS SAVED")]
 
-    public float actionProfileSumator;
-    public float maestryProfileSumator;
-    public float creativityProfileSumator;
-    public float achievementProfileSumator;
+    public float posXLvl2;
+     public float posYLvl2;
+    public float posXLvl4;
+    public float posYLvl4;
+    public float posXLvl6;
+    public float posYLvl6;
+    public float posXLvl8;
+    public float posYLvl8;
+    public float posXLvl10;
+    public float posYLvl10;
 
-    [Header("PROFILE TYPE [1. Act 2.Maes 3.Achie 4.Creat")]
+    [Header("FINAL POS")]
 
+    public float finalXpos;
+    public float finalYpos;
+
+    [Header("PROFILE CHOOSEN")]
     public float choosenProfile; 
 
     [Header("DON'T LOOK AT THIS (STUPID VARIABLE)")]
 
     public float counter = 0;
+    public float counter2 = 0;
 
 
 
@@ -197,7 +208,7 @@ public class MasterBrainScript : MonoBehaviour
     void Indicator1()
     {
         roomsSeen = player.GetComponent<ProtoBLACKBOARD_Player>().numOfRoomsSeenInTheLevel;
-        totalRooms = roomManager.GetComponent<RoomTemplates>().sizeOfList;
+        totalRooms = roomManager.GetComponent<RoomTemplates>().sizeOfList + 1;
 
         roomPctMon = (roomsSeen/totalRooms) * 100;
 
@@ -405,8 +416,9 @@ public class MasterBrainScript : MonoBehaviour
 
     void ActionProfile()
     {
-        if(xPos >= 0 && xPos >= -50 && yPos >= 0 && yPos <= 50)
+        if(xPos <= 0 && xPos >= -50 && yPos >= 0 && yPos <= 50)
         {
+            Debug.Log("ACTION LV2");
             actionProfile = true;
             player.GetComponent<ProtoBLACKBOARD_Player>().activeEnemyTrail = true;
             enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().activeEnemysEveryWhere = true;
@@ -424,7 +436,9 @@ public class MasterBrainScript : MonoBehaviour
             {
                 if(xPos < -5 && xPos >= -25 || yPos > 5 && yPos <= 25) //xPos entre -5 i -25 i yPos entre 5 i 25
                 {
+                    Debug.Log("ACTION LV1");
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeEnemyTrail = true; 
+                    enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().activeEnemysEveryWhere = false;
                 }
                 else
                 {
@@ -439,8 +453,9 @@ public class MasterBrainScript : MonoBehaviour
 
     void MaestryProfile()
     {
-        if(xPos >= 0 && xPos >= -50 && yPos >= 0 && yPos >= -50)
+        if(xPos <= 0 && xPos >= -50 && yPos <= 0 && yPos >= -50)
         {
+            Debug.Log("MAESTRY LV2");
             maestryProfile = true;
             player.GetComponent<ProtoBLACKBOARD_Player>().activeParryShield = true;
             enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryPct = 60;
@@ -462,8 +477,10 @@ public class MasterBrainScript : MonoBehaviour
             {
                 if(xPos < -5 && xPos >= -25 || yPos < -5 && yPos >= -25) //xPos entre -5 i -25 i yPos entre -5 i -25
                 {
+                    Debug.Log("MAESTRY LV1");
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeParryShield = true;
                     enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryPct = 60; 
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeSuperDamage = false;
                 }
                 else
                 {
@@ -479,8 +496,9 @@ public class MasterBrainScript : MonoBehaviour
 
     void CreativityProfile()
     {
-        if(xPos >= 0 && xPos <= 50 && yPos >= 0 && yPos >= -50)
+        if(xPos >= 0 && xPos <= 50 && yPos <= 0 && yPos >= -50)
         {
+            Debug.Log("CREATIVITY LV2");
             creativityProfile = true;
             player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = true;
             player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = true;
@@ -505,9 +523,12 @@ public class MasterBrainScript : MonoBehaviour
             {
                 if(xPos > 5 && xPos <= 25 || yPos < -5 && yPos >= -25) //xPos entre 5 i 25 i yPos entre -5 i -25
                 {
+                    Debug.Log("CREATIVITY LV1");
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = true;
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = true;
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeSpecialRoomSkins = true; 
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeMapMecanic = false;
+                    enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().spawnObjectPct = 10;
                 }
                 else
                 {
@@ -527,6 +548,8 @@ public class MasterBrainScript : MonoBehaviour
     {
         if(xPos >= 0 && xPos <= 50 && yPos >= 0 && yPos <= 50)
         {
+            
+            Debug.Log("ACHIEVMENT LV2");
             achievementProfile = true;
             player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = true;
             player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = true;
@@ -550,9 +573,11 @@ public class MasterBrainScript : MonoBehaviour
             {
                 if(xPos > 5 && xPos <= 25 || yPos > 5 && yPos <= 25) //xPos entre 5 i 25 i yPos entre 5 i 25
                 {
+                    Debug.Log("ACHIEVMENT LV1");
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = true;
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = true;
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeHardMissions = true;
+                    player.GetComponent<ProtoBLACKBOARD_Player>().activeLargeMissions = false;
                 }
                 else
                 {
@@ -569,42 +594,63 @@ public class MasterBrainScript : MonoBehaviour
 
     void SumTheChoosenPorfile()
     {
-        if(actionProfile)
+        
+
+        if(counter2 == 2)
         {
-            actionProfileSumator += 1;
+            posXLvl2 = xPos;
+            posYLvl2 = yPos;
         }
-        else if(achievementProfile)
+        if(counter2 == 4)
         {
-            achievementProfileSumator += 1;
+            posXLvl4 = xPos;
+            posYLvl4 = yPos;
         }
-        else if(creativityProfile)
+        if(counter2 == 6)
         {
-            creativityProfileSumator += 1;
+            posXLvl6 = xPos;
+            posYLvl6 = yPos;
         }
-        else if(maestryProfile)
+        if(counter2 == 8)
         {
-            maestryProfileSumator += 1;
+            posXLvl8 = xPos;
+            posYLvl8 = yPos;
         }
+        if(counter2 == 10)
+        {
+            posXLvl10 = xPos;
+            posYLvl10 = yPos;
+        }
+    }
+
+    void FinalPos()
+    {
+        finalXpos = (posXLvl2 + posXLvl4 + posXLvl6 + posXLvl8 + posXLvl10) / 5;
+        finalYpos = (posYLvl2+ posYLvl4 + posYLvl8 + posYLvl6 + posYLvl10) / 5;
     }
 
     void WhooseTheBiggerProfileSumator()
     {
-        if(actionProfileSumator > maestryProfileSumator && actionProfileSumator > achievementProfileSumator && actionProfileSumator > creativityProfileSumator)
+        FinalPos();
+
+        if(finalXpos < 0 && finalYpos > 0)
         {
             choosenProfile = 1;
         }
-        else if(maestryProfileSumator > actionProfileSumator && maestryProfileSumator > achievementProfileSumator && maestryProfileSumator > creativityProfileSumator)
+        else if(finalXpos < 0 && finalYpos < 0)
         {
             choosenProfile = 2;
         }
-        else if(achievementProfileSumator > actionProfileSumator && achievementProfileSumator > maestryProfileSumator && achievementProfileSumator > creativityProfileSumator)
+        else if(finalXpos > 0 && finalYpos > 0)
         {
             choosenProfile = 3;
         }
-        else if(creativityProfileSumator > actionProfileSumator && creativityProfileSumator > maestryProfileSumator && creativityProfileSumator > achievementProfileSumator)
+        else if(finalXpos > 0 && finalYpos < 0)
         {
             choosenProfile = 4;
         }
+
+
     }
 
 
@@ -617,8 +663,7 @@ public class MasterBrainScript : MonoBehaviour
         }
         else
         {
-            if(counter == 2)
-            {
+            if(counter == 2)            {
                 Debug.Log("CALCULAAAAAAAAAANDO");
                 ActionProfile();
                 MaestryProfile();

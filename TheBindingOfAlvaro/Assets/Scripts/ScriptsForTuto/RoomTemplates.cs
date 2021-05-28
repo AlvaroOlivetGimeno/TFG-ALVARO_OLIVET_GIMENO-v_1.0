@@ -227,7 +227,7 @@ public class RoomTemplates : MonoBehaviour
         if(shopSpawned == false && MapIsReady())
         {
             
-            roomChoosed = Random.Range(rooms.Count/2,rooms.Count-5);
+            roomChoosed = Random.Range((rooms.Count/2)+1,rooms.Count-4);
             Instantiate(shop, rooms[roomChoosed].transform.position, Quaternion.identity);
             shopSpawned = true;
         }
@@ -261,14 +261,23 @@ public class RoomTemplates : MonoBehaviour
     {
         if(rooms.Count != 0)
         {
-            if(rooms.Count >= MaxNumOfRooms)
+            if(rooms.Count > MaxNumOfRooms)
             {
-                return true;
+                RestartMap();
+                return false;
             }
             else
             {
-                return false;
+                if(rooms.Count <= MaxNumOfRooms && rooms.Count >= MinNumOfRooms)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
+            
         }
         else
         {

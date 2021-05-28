@@ -164,7 +164,7 @@ public class ProtoBLACKBOARD_Player : MonoBehaviour
 
     public float totalMoneyOnTheGameThatPlayerCanWin;
 
-    public float characterMoneyThatPlayerWin;
+    public float characterMoneyThatPlayerWin ;
 
     public float moneyWastedInShop;
 

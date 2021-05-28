@@ -25,6 +25,7 @@ public class StairsScript : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             other.gameObject.GetComponent<ProtoBLACKBOARD_Player>().actualLevel +=1;
+            masterBrain.GetComponent<MasterBrainScript>().counter2 +=1;
             masterBrain.GetComponent<MasterBrainScript>().counter +=1;
             roomBrain.GetComponent<RoomTemplates>().nextLevel = true;
             //Destroy(this.gameObject);

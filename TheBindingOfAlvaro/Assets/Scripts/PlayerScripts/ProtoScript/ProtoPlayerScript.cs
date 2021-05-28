@@ -690,7 +690,7 @@ public class ProtoPlayerScript : MonoBehaviour
     //PAUSE LOGIC
     void PauseControlls()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !BlackBoardPlayer.activeInfoMenu && !BlackBoardPlayer.activeLoading)
+        if (Input.GetKeyDown(KeyCode.Escape) && !BlackBoardPlayer.activeInfoMenu && !BlackBoardPlayer.activeLoading && !BlackBoardPlayer.cameraMapIsActive)
         {
             if(!BlackBoardPlayer.activeLoading)
             {
@@ -720,7 +720,7 @@ public class ProtoPlayerScript : MonoBehaviour
      //INFO LOGIC
     void InfoControlls()
     {
-        if (Input.GetKeyDown(KeyCode.I)&& !BlackBoardPlayer.activePause && !BlackBoardPlayer.activeLoading)
+        if (Input.GetKeyDown(KeyCode.I)&& !BlackBoardPlayer.activePause && !BlackBoardPlayer.activeLoading  && !BlackBoardPlayer.cameraMapIsActive)
         {
             if(!BlackBoardPlayer.activeLoading)
             {
@@ -840,7 +840,7 @@ public class ProtoPlayerScript : MonoBehaviour
     //MAP CONTROLLS
     void MapControlls()
     {
-        if (Input.GetKeyDown(KeyCode.M) && BlackBoardPlayer.activeMapMecanic)
+        if (Input.GetKeyDown(KeyCode.M) && BlackBoardPlayer.activeMapMecanic && !BlackBoardPlayer.activeLoading && !BlackBoardPlayer.activePause && !BlackBoardPlayer.activeInfoMenu)
         {
             Map();
         }
@@ -853,11 +853,13 @@ public class ProtoPlayerScript : MonoBehaviour
         if(!BlackBoardPlayer.cameraMapIsActive)
         {
             BlackBoardPlayer.cameraMapIsActive = true;
+            Time.timeScale = 0f;
             BlackBoardPlayer.cameraMap.SetActive(true);
         }
         else
         {
             BlackBoardPlayer.cameraMapIsActive = false;
+            Time.timeScale = 1f;
             BlackBoardPlayer.cameraMap.SetActive(false);
         }
     }

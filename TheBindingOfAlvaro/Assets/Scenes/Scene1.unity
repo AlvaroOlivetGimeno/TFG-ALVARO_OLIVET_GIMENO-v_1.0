@@ -2309,7 +2309,7 @@ MonoBehaviour:
   actualLevel: 0
   characterSpeed: 4
   delayTimeToShoot: 0.4
-  characterMoney: 0
+  characterMoney: 1
   characterCristals: 0
   timeOfParry: 0.1
   habilityType: 0
@@ -2413,7 +2413,7 @@ MonoBehaviour:
   contactWithShopOrSpecialRoom: 0
   cristalsFound: 0
   totalMoneyOnTheGameThatPlayerCanWin: 0
-  characterMoneyThatPlayerWin: 0
+  characterMoneyThatPlayerWin: 1
   moneyWastedInShop: 0
   iHaveFoundOrBuyAnSpecialHability: 0
   totalEnemys: 0
@@ -9062,8 +9062,8 @@ MonoBehaviour:
   rooms: []
   sizeOfList: 0
   stairs: {fileID: 6154399667337420248, guid: 0e4e194b2b7ca0240a510afed8570dec, type: 3}
-  MaxNumOfRooms: 15
-  MinNumOfRooms: 10
+  MaxNumOfRooms: 20
+  MinNumOfRooms: 15
   MapIsFinished: 0
   waiteTime: 0
   shop: {fileID: 153690888237285895, guid: dd0fd0e71229a9b4aa60d8104d62ecdd, type: 3}
@@ -11659,8 +11659,8 @@ MonoBehaviour:
   totalenemyRooms: 0
   enemyRoomPctAction: 0
   enemyRoomPctInteraction: 0
-  numOfRoomsSumator: 2.5
-  enemyLifeSumator: 0.5
+  numOfRoomsSumator: 2
+  enemyLifeSumator: 0.3
   enemyShooterDelayToShootRestator: 0.1
   enemyFollowerSpeedSumator: 0.07
   enemySpecialTimeMotherSpawnRestator: 0.07
@@ -11669,12 +11669,21 @@ MonoBehaviour:
   maestryProfile: 0
   creativityProfile: 0
   achievementProfile: 0
-  actionProfileSumator: 0
-  maestryProfileSumator: 0
-  creativityProfileSumator: 0
-  achievementProfileSumator: 0
+  posXLvl2: 0
+  posYLvl2: 0
+  posXLvl4: 0
+  posYLvl4: 0
+  posXLvl6: 0
+  posYLvl6: 0
+  posXLvl8: 0
+  posYLvl8: 0
+  posXLvl10: 0
+  posYLvl10: 0
+  finalXpos: 0
+  finalYpos: 0
   choosenProfile: 0
   counter: 0
+  counter2: 0
 --- !u!1 &956258702
 GameObject:
   m_ObjectHideFlags: 0

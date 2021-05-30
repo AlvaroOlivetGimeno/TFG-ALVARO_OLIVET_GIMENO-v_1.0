@@ -808,17 +808,35 @@ public class ProtoPlayerScript : MonoBehaviour
     //SUM LIFE LOGIC
     public void SumLife()
     {
-        if(lifeTimer>= 1.5f)
+        if(lifeTimer>= 0.3f)
         {
             BlackBoardPlayer.characterLife += 0.5f;
             lifeTimer = 0;
+        }
+    }
+
+    public void SumSuperLife()
+    {
+        if(lifeTimer>= 0.3f)
+        {
+            if((BlackBoardPlayer.characterSpaceLife-0.5) == BlackBoardPlayer.characterLife)
+            {
+                BlackBoardPlayer.characterLife += 0.5f;
+                lifeTimer = 0;
+            }
+            else
+            {
+                BlackBoardPlayer.characterLife += 1f;
+                lifeTimer = 0;
+            }
+           
         }
     }
     
     //SUM COIN LOGIC
     public void SumCoin()
     {
-        if(coinTimer>= 1.5f)
+        if(coinTimer>= 0.3f)
         {
             BlackBoardPlayer.characterMoney += 1;
             BlackBoardPlayer.characterMoneyThatPlayerWin +=1;
@@ -829,7 +847,7 @@ public class ProtoPlayerScript : MonoBehaviour
      //SUM CRISTAL LOGIC
     public void SumCristal()
     {
-        if(cristalTimer>= 1.5f)
+        if(cristalTimer>= 0.5f)
         {
             BlackBoardPlayer.characterCristals += 1;
             BlackBoardPlayer.cristalsFound +=1;
@@ -905,9 +923,9 @@ public class ProtoPlayerScript : MonoBehaviour
             {
                 switch (other.GetComponent<PassiveHabilityScript>().estadisticType)
                 {
-                    case 1: speedSum = speedSum + 0.5f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); 
+                    case 1: speedSum = speedSum + 1f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); 
                             hudManager.ActiveSpeedPLusFeedback(); break;
-                    case 2: delaySum = delaySum - 0.05f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); 
+                    case 2: delaySum = delaySum - 0.1f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); 
                             hudManager.ActiveDelayPLusFeedback(); break;
                     case 3: SumLife();
                             hudManager.ActiveLivePLusFeedback();
@@ -926,7 +944,8 @@ public class ProtoPlayerScript : MonoBehaviour
         if (other.gameObject.tag == "SpecialHability")
         {
             BlackBoardPlayer.specialHabilityCatcth = other.GetComponent<SpecialHabilityScript>().speciaStateType;
-
+            BlackBoardPlayer.loadingSpecialHability = false;
+            BlackBoardPlayer.enemysKillToReloadSpecialHability = 10;
             switch(other.GetComponent<SpecialHabilityScript>().speciaStateType)
             {
                 case 1: hudManager.ActiveInvencibleFeedback(); break;
@@ -1008,6 +1027,15 @@ public class ProtoPlayerScript : MonoBehaviour
                 if(BlackBoardPlayer.characterLife < BlackBoardPlayer.characterSpaceLife)
                 {
                     SumLife();
+                    Destroy(other.gameObject);
+                }
+            }
+
+              if(other.gameObject.tag =="SuperLife")
+            {
+                if(BlackBoardPlayer.characterLife < BlackBoardPlayer.characterSpaceLife)
+                {
+                    SumSuperLife();
                     Destroy(other.gameObject);
                 }
             }

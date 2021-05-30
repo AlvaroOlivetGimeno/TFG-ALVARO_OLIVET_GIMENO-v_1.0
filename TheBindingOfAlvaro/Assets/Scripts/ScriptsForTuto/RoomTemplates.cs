@@ -96,6 +96,8 @@ public class RoomTemplates : MonoBehaviour
 
     public GameObject[] colorDrawsOnMap;
 
+    public GameObject[] superHeartOnMap;
+
 
 
     //ACCESO A OTROS SCRIPTS o OBJETOS
@@ -200,7 +202,7 @@ public class RoomTemplates : MonoBehaviour
         cristalOnMap = GameObject.FindGameObjectsWithTag("Cristal");
         colorSkinsOnMap = GameObject.FindGameObjectsWithTag("SkinColor");
         colorDrawsOnMap = GameObject.FindGameObjectsWithTag("SkinDraw");
-
+        superHeartOnMap = GameObject.FindGameObjectsWithTag("SuperLife");
 
 
     }
@@ -560,6 +562,18 @@ public class RoomTemplates : MonoBehaviour
         }
     }
 
+    //DESTROY SUPER LIFE's
+    void DestroySuperLife()
+    {
+        if(superHeartOnMap.Length > 0)
+        {
+            foreach(GameObject x in superHeartOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+
 
 
     //DESTROY ENTRY ROOM
@@ -589,6 +603,7 @@ public class RoomTemplates : MonoBehaviour
         DestroyClosetRooms();
         DestroyStairs();
         DestroyShooterRooms();
+        DestroyFollowerRooms();
         DestroySuperRooms();
         DestroyObstacles();
         DestroyLightRooms();
@@ -599,6 +614,7 @@ public class RoomTemplates : MonoBehaviour
         DestroyCristals();
         DestroySkinColor();
         DestroySkinDraw();
+        DestroySuperLife();
 
         DestroyEntryRoom();
         allDeleted = true;

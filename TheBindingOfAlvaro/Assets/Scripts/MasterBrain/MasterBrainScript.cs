@@ -656,6 +656,7 @@ public class MasterBrainScript : MonoBehaviour
 
     public void TaxonomyChange()
     {
+        Debug.Log("CALCULAAAAAAAAAANDO");
         
         if(player.GetComponent<ProtoBLACKBOARD_Player>().actualLevel == 11)
         {
@@ -663,8 +664,9 @@ public class MasterBrainScript : MonoBehaviour
         }
         else
         {
-            if(counter == 2)            {
-                Debug.Log("CALCULAAAAAAAAAANDO");
+            if(counter == 2)            
+            {
+                
                 ActionProfile();
                 MaestryProfile();
                 CreativityProfile();

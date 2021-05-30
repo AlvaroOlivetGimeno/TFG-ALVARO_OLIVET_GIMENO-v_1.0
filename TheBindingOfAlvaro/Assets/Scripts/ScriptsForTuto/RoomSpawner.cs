@@ -13,6 +13,10 @@ public class RoomSpawner : MonoBehaviour
     [Header("HAVE YOU SPAWN A ROOM?")]
     public bool spawned = false;
 
+    [Header("ENTRY ROOM POINT??")]
+
+    public bool entryRoomPoint;
+
     //REFERENCIES A ALTRES SRIPTS
     GameObject rBrain;
 
@@ -122,22 +126,28 @@ public class RoomSpawner : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other) 
         {
-            if(other.CompareTag("Room"))
+            if(other.gameObject.tag == "Room" && !entryRoomPoint)
             {
                 //Debug.Log("CON LA IGLESIA NOS HEMOS TOPADO");
                 dontSpawn = true;
             }
-            if(other.CompareTag("SpawnPoint") )
+            if(other.gameObject.tag =="SpawnPoint" && !entryRoomPoint)
             {
                 if(other.gameObject.GetComponent<RoomSpawner>().openingDirection> openingDirection)
                 {
+                   if(!entryRoomPoint)
+                   {
+                        Destroy(other.gameObject);
+                   }
                    
-                    Destroy(other.gameObject);
                 }
                 else
                 {
+                    if(!entryRoomPoint)
+                    {
+                        Destroy(this.gameObject);
+                    }
                     
-                    Destroy(this.gameObject);
                 } 
             }   
         }

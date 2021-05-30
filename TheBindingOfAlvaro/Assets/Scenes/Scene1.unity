@@ -2306,7 +2306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91543cacebf9ff8478e9b87228d2df32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actualLevel: 0
+  actualLevel: 10
   characterSpeed: 4
   delayTimeToShoot: 0.4
   characterMoney: 1
@@ -5137,7 +5137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionType: 7
-  reward: 20
+  reward: 15
   missionActive: 0
   completed: 0
   fail: 0
@@ -9098,6 +9098,7 @@ MonoBehaviour:
   cristalOnMap: []
   colorSkinsOnMap: []
   colorDrawsOnMap: []
+  superHeartOnMap: []
   restartIsDone: 0
   nextLevel: 0
   allDeleted: 0
@@ -10406,7 +10407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionType: 8
-  reward: 20
+  reward: 15
   missionActive: 0
   completed: 0
   fail: 0
@@ -11922,7 +11923,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionType: 9
-  reward: 20
+  reward: 15
   missionActive: 0
   completed: 0
   fail: 0
@@ -21687,7 +21688,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: YOU SHOOT 0.05 SECONDS FASTER
+  m_Text: YOU SHOOT 0.1 SECONDS FASTER
 --- !u!222 &1870243976
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21760,8 +21761,8 @@ MonoBehaviour:
   lvl4: {fileID: 990864420}
   lvl5: {fileID: 1796695416}
   lvl6: {fileID: 1981789192}
-  lvl7: {fileID: 452565867}
-  lvl8: {fileID: 77578310}
+  lvl7: {fileID: 77578310}
+  lvl8: {fileID: 452565867}
   lvl9: {fileID: 2120181983}
   lvl10: {fileID: 460025999}
   player: {fileID: 0}
@@ -23842,7 +23843,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2045837065
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24849,7 +24850,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: + 0.5 IN YOUR SPEED
+  m_Text: + 1 IN YOUR SPEED
 --- !u!222 &2081829818
 CanvasRenderer:
   m_ObjectHideFlags: 0

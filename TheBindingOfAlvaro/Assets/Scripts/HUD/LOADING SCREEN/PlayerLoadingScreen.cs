@@ -46,7 +46,7 @@ public class PlayerLoadingScreen : MonoBehaviour
             case 7: Follow(loadingLevels.GetComponent<PlayerAdvanceScript>().lvl7.gameObject); break;
             case 8: Follow(loadingLevels.GetComponent<PlayerAdvanceScript>().lvl8.gameObject); break;
             case 9: Follow(loadingLevels.GetComponent<PlayerAdvanceScript>().lvl9.gameObject); break;
-            case 20: Follow(loadingLevels.GetComponent<PlayerAdvanceScript>().lvl10.gameObject); break;
+            case 10: Follow(loadingLevels.GetComponent<PlayerAdvanceScript>().lvl10.gameObject); break;
         }
     }
 }

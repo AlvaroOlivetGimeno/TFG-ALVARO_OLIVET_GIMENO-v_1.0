@@ -6,6 +6,12 @@ public class SellPointManager : MonoBehaviour
 {
     [Header("AUTOMATIC VARIABLES:")]
     public GameObject player;
+
+    [Header("POINTS FOR ANOTHER ELEMENTS:")]
+
+    public GameObject skinPoint;
+    public GameObject drawPoint;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -22,24 +28,24 @@ public class SellPointManager : MonoBehaviour
     {
         if(player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins && player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins)
         {
-            if( this.transform.GetChild(3).gameObject != null)
+            if(skinPoint != null)
             {
-                this.transform.GetChild(3).gameObject.SetActive(true);
+               skinPoint.gameObject.SetActive(true);
             }
-            if( this.transform.GetChild(4).gameObject != null)
+            if( drawPoint != null)
             {
-                this.transform.GetChild(4).gameObject.SetActive(true);
+               drawPoint.gameObject.SetActive(true);
             }  
         }
         else
         {
-            if( this.transform.GetChild(3).gameObject != null)
+            if(skinPoint != null)
             {
-                this.transform.GetChild(3).gameObject.SetActive(false);
+               skinPoint.gameObject.SetActive(true);
             }
-            if( this.transform.GetChild(4).gameObject != null)
+            if( drawPoint != null)
             {
-                this.transform.GetChild(4).gameObject.SetActive(false);
+               drawPoint.gameObject.SetActive(true);
             }  
         }
     }

@@ -144,7 +144,7 @@ public class HUD_MANAGER : MonoBehaviour
         //-------------
 
         //----------------------FINAL SCREEN------------------------
-
+        FinalScreenLogic();
 
         //---------
     }
@@ -262,7 +262,7 @@ public class HUD_MANAGER : MonoBehaviour
 
     void LoadingScreenController()
     {
-        if(roomBrain.GetComponent<RoomTemplates>().ReadyToSeTheMap())
+        if(roomBrain.GetComponent<RoomTemplates>().ReadyToSeTheMap() && BlackBoardPlayer.actualLevel < 11)
         {
             loadingScreen.SetActive(false);
             BlackBoardPlayer.activeLoading = false;

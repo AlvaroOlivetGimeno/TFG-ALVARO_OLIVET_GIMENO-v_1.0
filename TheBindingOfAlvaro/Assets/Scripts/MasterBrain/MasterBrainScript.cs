@@ -422,6 +422,7 @@ public class MasterBrainScript : MonoBehaviour
             actionProfile = true;
             player.GetComponent<ProtoBLACKBOARD_Player>().activeEnemyTrail = true;
             enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().activeEnemysEveryWhere = true;
+
         }
         else
         {
@@ -657,7 +658,7 @@ public class MasterBrainScript : MonoBehaviour
     public void TaxonomyChange()
     {
         Debug.Log("CALCULAAAAAAAAAANDO");
-        
+
         if(player.GetComponent<ProtoBLACKBOARD_Player>().actualLevel == 11)
         {
             WhooseTheBiggerProfileSumator();

@@ -15,6 +15,8 @@ public class SellPointManager : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        skinPoint.gameObject.SetActive(false);
+        drawPoint.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -41,11 +43,11 @@ public class SellPointManager : MonoBehaviour
         {
             if(skinPoint != null)
             {
-               skinPoint.gameObject.SetActive(true);
+               skinPoint.gameObject.SetActive(false);
             }
             if( drawPoint != null)
             {
-               drawPoint.gameObject.SetActive(true);
+               drawPoint.gameObject.SetActive(false);
             }  
         }
     }

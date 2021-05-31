@@ -32,6 +32,7 @@ public class EnemyRoomManager : MonoBehaviour
     GameObject camaraPoint;
 
     GameObject player;
+    GameObject otherSoundManager;
 
     //INDICATORS VARIABLES
 
@@ -39,6 +40,8 @@ public class EnemyRoomManager : MonoBehaviour
     bool sumEnemyRoomCompletedOneTime; 
 
     float indicatorTimer;
+
+    bool soundPlayed = false;
  
 
 
@@ -46,6 +49,7 @@ public class EnemyRoomManager : MonoBehaviour
     {
         enemyBrain = GameObject.FindGameObjectWithTag("EnemyBrain");
         player = GameObject.FindGameObjectWithTag("Player");
+        otherSoundManager = GameObject.FindGameObjectWithTag("OtherSoundManager");
 
         closeDoorsRndVar = Random.Range(0,100);
 
@@ -84,6 +88,7 @@ public class EnemyRoomManager : MonoBehaviour
         }
         else 
         {
+            
             closeDoors = true;
         }
     }
@@ -93,11 +98,21 @@ public class EnemyRoomManager : MonoBehaviour
     {
         if(closeDoors && playerIsHere && enemys.Count > 0)
         {
+           
            timerForClose += 1 * Time.deltaTime;
            
            if(timerForClose>= 0.25f)
            {
-               SetActiveTrue();
+               if(soundPlayed)
+               {
+                   SetActiveTrue();
+               }
+               else
+               {
+                   otherSoundManager.GetComponent<OtherSoundsManager>().closeRoomSound.GetComponent<SoundScript>().PlaySound();
+                   soundPlayed = true;
+               }
+               
            }
            else
            {
@@ -113,6 +128,7 @@ public class EnemyRoomManager : MonoBehaviour
     //F0R CLOSING DOORS
     public void SetActiveTrue()
     {
+        
         foreach(GameObject child in childs)
         {
             if(child.GetComponent<EnemyRoomChildScript>().childType == 2)

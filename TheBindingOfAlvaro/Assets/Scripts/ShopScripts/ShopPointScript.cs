@@ -48,11 +48,14 @@ public class ShopPointScript : MonoBehaviour
 
     public GameObject cameraPoint;
 
+    public GameObject otherSoundManager;
+
     bool oneTime;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        otherSoundManager = GameObject.FindGameObjectWithTag("OtherSoundManager");
         m_ObjectCollider = GetComponent<Collider2D>();
         //START METOD
         StartMetod();
@@ -324,6 +327,7 @@ public class ShopPointScript : MonoBehaviour
                 {
                    player.GetComponent<ProtoBLACKBOARD_Player>().characterMoney -= prize;
                    player.GetComponent<ProtoBLACKBOARD_Player>().moneyWastedInShop += prize;
+                   otherSoundManager.GetComponent<OtherSoundsManager>().buySound.GetComponent<SoundScript>().PlaySound();
                    Destroy(this.gameObject); 
                    //this.gameObject.SetActive(false);
                 }
@@ -336,6 +340,7 @@ public class ShopPointScript : MonoBehaviour
             {
                 player.GetComponent<ProtoBLACKBOARD_Player>().characterMoney -= prize;
                 player.GetComponent<ProtoBLACKBOARD_Player>().moneyWastedInShop += prize;
+                otherSoundManager.GetComponent<OtherSoundsManager>().buySound.GetComponent<SoundScript>().PlaySound();
                 Destroy(this.gameObject);
                 //this.gameObject.SetActive(false);
             }

@@ -953,7 +953,7 @@ public class ProtoPlayerScript : MonoBehaviour
                 playerSoundManager.catchHability.GetComponent<SoundScript>().PlaySound();
                 switch (other.GetComponent<PassiveHabilityScript>().estadisticType)
                 {
-                    case 1: speedSum = speedSum + 1f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); 
+                    case 1: speedSum = speedSum + 0.5f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); 
                             hudManager.ActiveSpeedPLusFeedback(); break;
                     case 2: delaySum = delaySum - 0.1f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); 
                             hudManager.ActiveDelayPLusFeedback(); break;

@@ -90,33 +90,41 @@ public class CameraPointScript : MonoBehaviour
     {
         if(!isPlayerHere)
         {
-            foreach(GameObject enemy in enemysOnRoom)
+            if(enemysOnRoom.Count != 0)
             {
-                if(enemy.GetComponent<PlayerIsOnRoom>().enemyType == 2 || enemy.GetComponent<PlayerIsOnRoom>().enemyType == 4)
+                foreach(GameObject enemy in enemysOnRoom)
                 {
-                    enemy.gameObject.GetComponent<PlayerIsOnRoom>().DesactiveEnemy();
+                    if(enemy.GetComponent<PlayerIsOnRoom>().enemyType == 2 || enemy.GetComponent<PlayerIsOnRoom>().enemyType == 4)
+                    {
+                        enemy.gameObject.GetComponent<PlayerIsOnRoom>().DesactiveEnemy();
+                    }
+                    else if(enemy.GetComponent<PlayerIsOnRoom>().enemyType == 1)
+                    {
+                        enemy.gameObject.GetComponent<EnemyShootersScript>().enemyType = 0;
+                    }
+        
                 }
-                if(enemy.GetComponent<PlayerIsOnRoom>().enemyType == 1)
-                {
-                    enemy.gameObject.GetComponent<EnemyShootersScript>().enemyType = 0;
-                }
-    
             }
+            
         }
         else
         {
-            foreach (GameObject enemy in enemysOnRoom)
+            if(enemysOnRoom.Count != 0)
             {
-                if(enemy.GetComponent<PlayerIsOnRoom>().enemyType == 2 || enemy.GetComponent<PlayerIsOnRoom>().enemyType == 4)
+                foreach (GameObject enemy in enemysOnRoom)
                 {
-                    enemy.gameObject.GetComponent<PlayerIsOnRoom>().ActiveEnemy();
-                }
-                if(enemy.GetComponent<PlayerIsOnRoom>().enemyType == 1)
-                {
-                    enemy.gameObject.GetComponent<EnemyShootersScript>().enemyType = enemy.gameObject.GetComponent<EnemyShootersScript>().enemyTypePuntero;
-                    
+                    if(enemy.GetComponent<PlayerIsOnRoom>().enemyType == 2 || enemy.GetComponent<PlayerIsOnRoom>().enemyType == 4)
+                    {
+                        enemy.gameObject.GetComponent<PlayerIsOnRoom>().ActiveEnemy();
+                    }
+                    else if(enemy.GetComponent<PlayerIsOnRoom>().enemyType == 1)
+                    {
+                        enemy.gameObject.GetComponent<EnemyShootersScript>().enemyType = enemy.gameObject.GetComponent<EnemyShootersScript>().enemyTypePuntero;
+                        
+                    }
                 }
             }
+            
         }
     }
     

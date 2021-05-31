@@ -35,7 +35,7 @@ public class WichPorfileYouHave : MonoBehaviour
 
     void ActiveProfile()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && masterBrain.GetComponent<MasterBrainScript>().choosenProfile != 0)
+        if (Input.GetKeyDown(KeyCode.K) && masterBrain.GetComponent<MasterBrainScript>().choosenProfile != 0)
         {   
             switch(masterBrain.GetComponent<MasterBrainScript>().choosenProfile)
             {

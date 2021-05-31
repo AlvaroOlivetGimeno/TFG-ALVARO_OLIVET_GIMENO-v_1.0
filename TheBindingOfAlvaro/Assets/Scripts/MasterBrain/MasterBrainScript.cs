@@ -141,8 +141,7 @@ public class MasterBrainScript : MonoBehaviour
     public float posYLvl6;
     public float posXLvl8;
     public float posYLvl8;
-    public float posXLvl10;
-    public float posYLvl10;
+    
 
     [Header("FINAL POS")]
 
@@ -595,8 +594,6 @@ public class MasterBrainScript : MonoBehaviour
 
     void SumTheChoosenPorfile()
     {
-        
-
         if(counter2 == 2)
         {
             posXLvl2 = xPos;
@@ -617,17 +614,13 @@ public class MasterBrainScript : MonoBehaviour
             posXLvl8 = xPos;
             posYLvl8 = yPos;
         }
-        if(counter2 == 10)
-        {
-            posXLvl10 = xPos;
-            posYLvl10 = yPos;
-        }
+       
     }
 
     void FinalPos()
     {
-        finalXpos = (posXLvl2 + posXLvl4 + posXLvl6 + posXLvl8 + posXLvl10) / 5;
-        finalYpos = (posYLvl2+ posYLvl4 + posYLvl8 + posYLvl6 + posYLvl10) / 5;
+        finalXpos = (posXLvl2 + posXLvl4 + posXLvl6 + posXLvl8) / 4;
+        finalYpos = (posYLvl2+ posYLvl4 + posYLvl8 + posYLvl6) / 4;
     }
 
     void WhooseTheBiggerProfileSumator()
@@ -649,6 +642,7 @@ public class MasterBrainScript : MonoBehaviour
         else if(finalXpos > 0 && finalYpos < 0)
         {
             choosenProfile = 4;
+            
         }
 
 
@@ -659,25 +653,32 @@ public class MasterBrainScript : MonoBehaviour
     {
         Debug.Log("CALCULAAAAAAAAAANDO");
 
-        if(player.GetComponent<ProtoBLACKBOARD_Player>().actualLevel == 11)
+        if(player.GetComponent<ProtoBLACKBOARD_Player>().actualLevel == 10)
         {
             WhooseTheBiggerProfileSumator();
         }
         else
         {
-            if(counter == 2)            
+            if(counter > 1)            
             {
-                
+                Debug.Log("SUPER CALCULOS:");
+
                 ActionProfile();
                 MaestryProfile();
                 CreativityProfile();
                 AchievementProfile();
                 SumTheChoosenPorfile();
-
+                player.GetComponent<ProtoBLACKBOARD_Player>().iHaveFoundOrBuyAnSpecialHability = false;
+                specialHabilityCatch = false;
                 counter = 0;
             }
         }
         
+    }
+
+    public void RestartIndicators()
+    {
+
     }
 
 

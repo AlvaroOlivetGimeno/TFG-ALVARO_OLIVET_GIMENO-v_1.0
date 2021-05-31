@@ -39,8 +39,8 @@ public class EnemyFollowersScript : MonoBehaviour
     bool chilling; // estado de pitipausa
     GameObject enemyTorret; //donde se guarda el enemigo
     float randomEnemy; //random enemy
-    float timerdelay = 0; //For death in state 3
-    bool oneTime = false;
+    //float timerdelay = 0; //For death in state 3
+    //bool oneTime = false;
     bool playerOnRoom; //For check if player is on room
 
     GameObject player;
@@ -177,7 +177,7 @@ public class EnemyFollowersScript : MonoBehaviour
     //FREEZE
     void Freeze()
     {
-        if (freezeCnt >= 5)
+        if (freezeCnt >= 3)
         {
            
             freezeTimer = freezeTimer + 1 * Time.deltaTime;

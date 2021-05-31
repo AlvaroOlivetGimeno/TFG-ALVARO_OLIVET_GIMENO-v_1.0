@@ -44,7 +44,7 @@ public class ProtoPlayerScript : MonoBehaviour
 
     Color actualColor;
     bool saveColorOneTime;
-    bool reloadColorOneTime = true;
+    //bool reloadColorOneTime = true;
     
 
     //VARIABLES PER MOLESTAR (SPECIAL ENEMYS)
@@ -181,7 +181,7 @@ public class ProtoPlayerScript : MonoBehaviour
             parryTimer = 0;
             if(parryTimer == 0)
             {
-                BlackBoardPlayer.numOfParrysTried +=1;
+                BlackBoardPlayer.numOfParrysTried += 1;
             }
         }
 
@@ -955,7 +955,7 @@ public class ProtoPlayerScript : MonoBehaviour
                 {
                     case 1: speedSum = speedSum + 0.5f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); 
                             hudManager.ActiveSpeedPLusFeedback(); break;
-                    case 2: delaySum = delaySum - 0.1f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); 
+                    case 2: delaySum = delaySum - 0.05f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); 
                             hudManager.ActiveDelayPLusFeedback(); break;
                     case 3: SumLife();
                             hudManager.ActiveLivePLusFeedback();

@@ -98,6 +98,8 @@ public class RoomTemplates : MonoBehaviour
 
     public GameObject[] superHeartOnMap;
 
+    public GameObject[] spawnPointsOnMap;
+
 
 
     //ACCESO A OTROS SCRIPTS o OBJETOS
@@ -118,6 +120,12 @@ public class RoomTemplates : MonoBehaviour
     public bool entryRoomSpawned;
 
     public bool onlyOneTime;
+
+    public float timerForRestart;
+
+    public float timeToRestart;
+
+
 
 
     void Start()
@@ -203,7 +211,7 @@ public class RoomTemplates : MonoBehaviour
         colorSkinsOnMap = GameObject.FindGameObjectsWithTag("SkinColor");
         colorDrawsOnMap = GameObject.FindGameObjectsWithTag("SkinDraw");
         superHeartOnMap = GameObject.FindGameObjectsWithTag("SuperLife");
-
+        spawnPointsOnMap = GameObject.FindGameObjectsWithTag("SpawnPoint");
 
     }
 
@@ -574,6 +582,18 @@ public class RoomTemplates : MonoBehaviour
         }
     }
 
+    //DESTROY SPAWN POINTS
+    void DestroySpawnPoints()
+    {
+        if(spawnPointsOnMap.Length > 0)
+        {
+            foreach(GameObject x in spawnPointsOnMap)
+            {
+                Destroy(x);
+            }
+        }
+    }
+
 
 
     //DESTROY ENTRY ROOM
@@ -588,9 +608,11 @@ public class RoomTemplates : MonoBehaviour
     
 
 
+
     //DELETE MAP
     public void DeleteMap()
     {
+        timerForRestart += 1 * Time.deltaTime;
         DestroyEnemyRooms();
         DestroyEnemys();
         DestroyShop();
@@ -615,6 +637,7 @@ public class RoomTemplates : MonoBehaviour
         DestroySkinColor();
         DestroySkinDraw();
         DestroySuperLife();
+        DestroySpawnPoints();
 
         DestroyEntryRoom();
         allDeleted = true;
@@ -637,6 +660,7 @@ public class RoomTemplates : MonoBehaviour
             onlyOneTime = false;
             Instantiate(startRoom, new Vector3(initialPos.position.x, initialPos.position.y, 0), Quaternion.identity);
             entryRoomSpawned = true;
+            timerForRestart = 0;
         }
          
     }
@@ -644,26 +668,38 @@ public class RoomTemplates : MonoBehaviour
     //RESTART MISIONS
     void RestartMissions()
     {
-        missionManager.GetComponent<MissionManager>().RestartMisions();
+        if(missionManager != null)
+        {
+            missionManager.GetComponent<MissionManager>().RestartMisions();
+        }
+       
     }
 
     //UPRGADE DIFICULTY
     void DificultyUprage()
     {
-        masterBrain.GetComponent<MasterBrainScript>().DifficultyUprage();
+        if(masterBrain != null)
+        {
+            masterBrain.GetComponent<MasterBrainScript>().DifficultyUprage();
+        }
+        
     }
 
     //PORFILES CHANGE
     void PorfileUprage()
     {
-        masterBrain.GetComponent<MasterBrainScript>().TaxonomyChange();
+        if(masterBrain != null)
+        {
+            masterBrain.GetComponent<MasterBrainScript>().TaxonomyChange();
+        }
+        
     }
 
 
     //RESTART MAP
     public void RestartMap()
     {
-        if(!allDeleted)
+        if(!allDeleted )
         {
             RestartMissions();
             if(!onlyOneTime)
@@ -676,7 +712,7 @@ public class RoomTemplates : MonoBehaviour
             DeleteMap();
             
         }
-        else
+        else if(allDeleted && timerForRestart >= timeToRestart)
         {
             CreateMap();
         }   

@@ -143,44 +143,50 @@ public class EnemyShootersScript : MonoBehaviour
     //CheckPosition
     void PositionChecker()
     {
-        
-        foreach(GameObject check in wallChekers)
+        if(wallChekers.Count != 0)
         {
-            if(check.gameObject.GetComponent<CheckWallPosition>().wallContact)
+            foreach(GameObject check in wallChekers)
             {
-                wallChekers.Remove(check.gameObject);
-                Destroy(check.gameObject);
+                if(check.gameObject.GetComponent<CheckWallPosition>().wallContact)
+                {
+                    wallChekers.Remove(check.gameObject);
+                    Destroy(check.gameObject);
+                }
             }
-        }
-        if(wallChekers.Count == 4)
-        {
-            rndVarWallChecker = Random.Range(0, wallChekers.Count-1);
-           wallChekers[rndVarWallChecker].gameObject.GetComponent<CheckWallPosition>().expulsed = true;
-            wallChekers.Remove(wallChekers[rndVarWallChecker].gameObject);
-            //Destroy(wallChekers[rndVarWallChecker].gameObject);
+            if(wallChekers.Count != 0)
+            {
+                if(wallChekers.Count == 4)
+                {
+                    rndVarWallChecker = Random.Range(0, wallChekers.Count-1);
+                    wallChekers[rndVarWallChecker].gameObject.GetComponent<CheckWallPosition>().expulsed = true;
+                    wallChekers.Remove(wallChekers[rndVarWallChecker].gameObject);
+                    //Destroy(wallChekers[rndVarWallChecker].gameObject);
 
-        }
-        if(wallChekers.Count == 3)
-        {
-            rndVarWallChecker = Random.Range(0, wallChekers.Count-1);
-           wallChekers[rndVarWallChecker].gameObject.GetComponent<CheckWallPosition>().expulsed = true;
-            wallChekers.Remove(wallChekers[rndVarWallChecker].gameObject);
-            //Destroy(wallChekers[rndVarWallChecker].gameObject);
+                }
+                else if(wallChekers.Count == 3)
+                {
+                    rndVarWallChecker = Random.Range(0, wallChekers.Count-1);
+                    wallChekers[rndVarWallChecker].gameObject.GetComponent<CheckWallPosition>().expulsed = true;
+                    wallChekers.Remove(wallChekers[rndVarWallChecker].gameObject);
+                    //Destroy(wallChekers[rndVarWallChecker].gameObject);
 
-        }
-        if(wallChekers.Count == 2)
-        {
-            rndVarWallChecker = Random.Range(0, wallChekers.Count-1);
-           wallChekers[rndVarWallChecker].gameObject.GetComponent<CheckWallPosition>().expulsed = true;
-            wallChekers.Remove(wallChekers[rndVarWallChecker].gameObject);
-            //Destroy(wallChekers[rndVarWallChecker].gameObject);
+                }
+                else if(wallChekers.Count == 2)
+                {
+                    rndVarWallChecker = Random.Range(0, wallChekers.Count-1);
+                    wallChekers[rndVarWallChecker].gameObject.GetComponent<CheckWallPosition>().expulsed = true;
+                    wallChekers.Remove(wallChekers[rndVarWallChecker].gameObject);
+                    //Destroy(wallChekers[rndVarWallChecker].gameObject);
 
+                }
+                else if(wallChekers.Count == 1)
+                {
+                    ready = true;
+                }
+            }
+           
         }
-        
-        if(wallChekers.Count == 1)
-        {
-            ready = true;
-        }
+       
         
         
        
@@ -303,7 +309,7 @@ public class EnemyShootersScript : MonoBehaviour
     //FREEZE
     void Freeze()
     {
-        if (freezeCnt >= 5)
+        if (freezeCnt >= 3)
         {
             IAmFreeze = true;
             freezeTimer = freezeTimer + 1 * Time.deltaTime;

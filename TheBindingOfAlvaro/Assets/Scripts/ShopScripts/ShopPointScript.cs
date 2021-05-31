@@ -92,7 +92,7 @@ public class ShopPointScript : MonoBehaviour
             case 1: rndVar = Random.Range(1,5);  
                     prize = 20;
             break;
-            case 2: rndVar = Random.Range(1,3); 
+            case 2: rndVar = Random.Range(1,4); 
                     prize = 10;
             break; 
             case 3: prize = 5;
@@ -179,6 +179,12 @@ public class ShopPointScript : MonoBehaviour
                             }
                     break;
                     case 3: if(!oneTime)
+                            {
+                                Instantiate(delayShootPlus, this.transform.position, Quaternion.identity);
+                                oneTime = true;
+                            }
+                    break;
+                    case 4: if(!oneTime)
                             {
                                 Instantiate(delayShootPlus, this.transform.position, Quaternion.identity);
                                 oneTime = true;

@@ -130,7 +130,7 @@ public class MissionCommonScript : MonoBehaviour
                     seconds = player.GetComponent<ProtoBLACKBOARD_Player>().secondsForMision6;break;
             case 7: speed = player.GetComponent<ProtoBLACKBOARD_Player>().characterSpeed;
                     MAXSpeed = player.GetComponent<ProtoBLACKBOARD_Player>().MAXSpeed; break;
-            case 8: life = player.GetComponent<ProtoBLACKBOARD_Player>().characterLife;
+            case 8: life = player.GetComponent<ProtoBLACKBOARD_Player>().characterSpaceLife;
                     MAXLife = player.GetComponent<ProtoBLACKBOARD_Player>().MAXLife; break;
             case 9: delayToShoot = player.GetComponent<ProtoBLACKBOARD_Player>().delayTimeToShoot;
                     MINDelayToShoot = player.GetComponent<ProtoBLACKBOARD_Player>().MINIMDelay; break;

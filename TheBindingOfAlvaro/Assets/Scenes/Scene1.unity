@@ -1261,7 +1261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionType: 4
-  reward: 15
+  reward: 8
   missionActive: 0
   completed: 0
   fail: 0
@@ -2319,7 +2319,7 @@ MonoBehaviour:
   specialHabilityCatcth: 0
   characterLife: 3
   characterSpaceLife: 3
-  MINIMDelay: 0.15
+  MINIMDelay: 0.2
   MAXSpeed: 6
   MAXDamage: 2
   MAXLife: 5
@@ -2410,7 +2410,7 @@ MonoBehaviour:
   minutsForMision5: 2
   secondsForMision5: 0
   minutsForMision6: 0
-  secondsForMision6: 60
+  secondsForMision6: 40
   contactWithShopOrSpecialRoom: 0
   cristalsFound: 0
   totalMoneyOnTheGameThatPlayerCanWin: 0
@@ -5445,7 +5445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionType: 7
-  reward: 15
+  reward: 10
   missionActive: 0
   completed: 0
   fail: 0
@@ -8456,8 +8456,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9.6268, y: 334.41785}
-  m_SizeDelta: {x: 287.4398, y: 13.1643}
+  m_AnchoredPosition: {x: 5.0961, y: 334.41785}
+  m_SizeDelta: {x: 538.7878, y: 13.1643}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &699270806
 MonoBehaviour:
@@ -9548,6 +9548,7 @@ MonoBehaviour:
   colorSkinsOnMap: []
   colorDrawsOnMap: []
   superHeartOnMap: []
+  spawnPointsOnMap: []
   restartIsDone: 0
   nextLevel: 0
   allDeleted: 0
@@ -9784,7 +9785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionType: 1
-  reward: 10
+  reward: 7
   missionActive: 0
   completed: 0
   fail: 0
@@ -10997,7 +10998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionType: 8
-  reward: 15
+  reward: 10
   missionActive: 0
   completed: 0
   fail: 0
@@ -12250,12 +12251,12 @@ MonoBehaviour:
   totalenemyRooms: 0
   enemyRoomPctAction: 0
   enemyRoomPctInteraction: 0
-  numOfRoomsSumator: 2
-  enemyLifeSumator: 0.3
-  enemyShooterDelayToShootRestator: 0.1
-  enemyFollowerSpeedSumator: 0.07
-  enemySpecialTimeMotherSpawnRestator: 0.07
-  playerAfectedTimeSumator: 0.5
+  numOfRoomsSumator: 1
+  enemyLifeSumator: 0.2
+  enemyShooterDelayToShootRestator: 0.07
+  enemyFollowerSpeedSumator: 0.05
+  enemySpecialTimeMotherSpawnRestator: 0.05
+  playerAfectedTimeSumator: 0.3
   actionProfile: 0
   maestryProfile: 0
   creativityProfile: 0
@@ -12275,6 +12276,7 @@ MonoBehaviour:
   choosenProfile: 0
   counter: 0
   counter2: 0
+  AndNowAllEnds: 0
 --- !u!1 &956258702
 GameObject:
   m_ObjectHideFlags: 0
@@ -12513,7 +12515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionType: 9
-  reward: 15
+  reward: 10
   missionActive: 0
   completed: 0
   fail: 0
@@ -13502,7 +13504,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040545781}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.07, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 217317353}
@@ -13902,7 +13904,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "\rYou have passed The EYE.\nNow it's time to know what player profile
     you are, and according to your playing patterns, I have determined that it is
-    ...\n- Press \"Space\" to know -"
+    ...\n- Press \"K\" to know -"
 --- !u!222 &1070090781
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16839,7 +16841,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f5fe4a487e607e54d9289a76cab1b67b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.01
+  m_Volume: 0.04
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -17542,6 +17544,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542924006503656651, guid: 7dbfb0b2ff984234aa1b4466b95ba6b1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Room
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6394958539164601742, guid: 7dbfb0b2ff984234aa1b4466b95ba6b1, type: 3}
@@ -24139,7 +24146,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: YOU SHOOT 0.1 SECONDS FASTER
+  m_Text: YOU SHOOT 0.05 SECONDS FASTER
 --- !u!222 &1870243976
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25298,7 +25305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionType: 5
-  reward: 10
+  reward: 7
   missionActive: 0
   completed: 0
   fail: 0

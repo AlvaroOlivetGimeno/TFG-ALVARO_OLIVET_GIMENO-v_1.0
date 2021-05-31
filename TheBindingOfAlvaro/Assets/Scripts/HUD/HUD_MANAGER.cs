@@ -515,7 +515,7 @@ public class HUD_MANAGER : MonoBehaviour
 
     void FinalScreenLogic()
     {
-        if(BlackBoardPlayer.actualLevel == 11)
+        if(BlackBoardPlayer.actualLevel == 10)
         {
             finalScreen.SetActive(true);
         }

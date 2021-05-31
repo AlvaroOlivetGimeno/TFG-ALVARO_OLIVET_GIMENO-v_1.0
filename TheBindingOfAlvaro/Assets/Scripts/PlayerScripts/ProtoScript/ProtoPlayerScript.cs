@@ -7,6 +7,8 @@ public class ProtoPlayerScript : MonoBehaviour
     //COMPONENTES QUE NECESITA PLAYER
     ProtoBLACKBOARD_Player BlackBoardPlayer;
     HUD_MANAGER hudManager;
+
+    PlayerSoundManager playerSoundManager;
     Rigidbody2D rb2d;
 
     SpriteRenderer spriteRenderer;
@@ -72,6 +74,7 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         BlackBoardPlayer = GetComponent<ProtoBLACKBOARD_Player>();
         hudManager = GetComponent<HUD_MANAGER>();
+        playerSoundManager = GetComponent<PlayerSoundManager>();
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -169,7 +172,7 @@ public class ProtoPlayerScript : MonoBehaviour
         if (p_timer <= BlackBoardPlayer.timeOfParry)
         {
             BlackBoardPlayer.p_Particles.GetComponent<ParryParticlesSpeed>().play = true;
-            
+            playerSoundManager.parrySound.GetComponent<SoundScript>().PlaySound();
             BlackBoardPlayer.p_Collider.gameObject.SetActive(true);
         }
         else
@@ -207,6 +210,7 @@ public class ProtoPlayerScript : MonoBehaviour
         {
             if (shootInXAxe)
             {
+                playerSoundManager.shootSound.GetComponent<SoundScript>().PlaySound();
                 if (isVelocityPositive)
                 {
                     Instantiate(typeOfBullet, BlackBoardPlayer.Up.transform.position, Quaternion.identity);
@@ -218,6 +222,7 @@ public class ProtoPlayerScript : MonoBehaviour
             }
             else
             {
+                playerSoundManager.shootSound.GetComponent<SoundScript>().PlaySound();
                 if (isVelocityPositive)
                 {
                     Instantiate(typeOfBullet, BlackBoardPlayer.Right.transform.position, Quaternion.identity);
@@ -241,6 +246,7 @@ public class ProtoPlayerScript : MonoBehaviour
         {
             if (shootInXAxe)
             {
+                playerSoundManager.shootSound.GetComponent<SoundScript>().PlaySound();
                 if (isVelocityPositive)
                 {
                     Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Up1.transform.position, Quaternion.identity);
@@ -254,6 +260,7 @@ public class ProtoPlayerScript : MonoBehaviour
             }
             else
             {
+                playerSoundManager.shootSound.GetComponent<SoundScript>().PlaySound();
                 if (isVelocityPositive)
                 {
                     Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Right1.transform.position, Quaternion.identity);
@@ -278,6 +285,7 @@ public class ProtoPlayerScript : MonoBehaviour
         {
             if (shootInXAxe)
             {
+                playerSoundManager.shootSound.GetComponent<SoundScript>().PlaySound();
                 if (isVelocityPositive)
                 {
                     Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Up.transform.position, Quaternion.identity);
@@ -291,6 +299,7 @@ public class ProtoPlayerScript : MonoBehaviour
             }
             else
             {
+                playerSoundManager.shootSound.GetComponent<SoundScript>().PlaySound();
                 if (isVelocityPositive)
                 {
                     Instantiate(BlackBoardPlayer.Bullet, BlackBoardPlayer.Right.transform.position, Quaternion.identity);
@@ -311,6 +320,7 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.UpArrow) && !quadShoot)
         {
+            
             switch (BlackBoardPlayer.habilityType)
             {
                 case 0: BasicShoot(true, true, BlackBoardPlayer.Bullet); break;
@@ -325,6 +335,7 @@ public class ProtoPlayerScript : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.DownArrow) && !quadShoot)
         {
+            
             switch (BlackBoardPlayer.habilityType)
             {
                 case 0: BasicShoot(true, false, BlackBoardPlayer.Bullet); break;
@@ -339,6 +350,7 @@ public class ProtoPlayerScript : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.RightArrow) && !quadShoot)
         {
+            
             switch (BlackBoardPlayer.habilityType)
             {
                 case 0: BasicShoot(false, true, BlackBoardPlayer.Bullet); break;
@@ -353,6 +365,7 @@ public class ProtoPlayerScript : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.LeftArrow) && !quadShoot)
         {
+            
             switch (BlackBoardPlayer.habilityType)
             {
                 case 0: BasicShoot(false, false, BlackBoardPlayer.Bullet); break;
@@ -412,7 +425,7 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         BlackBoardPlayer.SpecialHabilityIsActive = true;
         invencible = true;
-
+       
         
 
         spriteRenderer.color = BlackBoardPlayer.inbulnerabilityColor;
@@ -453,7 +466,7 @@ public class ProtoPlayerScript : MonoBehaviour
     void QuadShoot()
     {
         BlackBoardPlayer.SpecialHabilityIsActive = true;
-    
+       
         specialHabilityTimer += 1 * Time.deltaTime;
         quadShoot = true;
 
@@ -475,11 +488,11 @@ public class ProtoPlayerScript : MonoBehaviour
     //DEPREDADOR
     void HunterState()
     {
-        if(BlackBoardPlayer.characterLife != 1)
+        if(BlackBoardPlayer.characterLife != 0.5f)
         {
             BlackBoardPlayer.SpecialHabilityIsActive = true;
             hunterState = true;
-
+           
             
             spriteRenderer.color = BlackBoardPlayer.hunterColor;
 
@@ -505,10 +518,10 @@ public class ProtoPlayerScript : MonoBehaviour
     //SUPER KILL
     void SuperKill()
     {
-        if(BlackBoardPlayer.characterLife != 1)
+        if(BlackBoardPlayer.characterLife != 0.5f)
         {
             BlackBoardPlayer.SpecialHabilityIsActive = true;
-
+           
             specialHabilityTimer += 1 * Time.deltaTime;
            
             BlackBoardPlayer.sK_Collider.transform.position = this.gameObject.transform.position;
@@ -546,8 +559,8 @@ public class ProtoPlayerScript : MonoBehaviour
         {
             case 0: WaitingForNextSpecialHability(); break;
             case 1: InvencibleState(); break;
-            case 2: SuperParry(); break;
-            case 3: QuadShoot(); break;
+            case 2:  SuperParry(); break;
+            case 3:  QuadShoot(); break;
             case 4: HunterState(); break;
             case 5: SuperKill(); break;
         }
@@ -600,6 +613,14 @@ public class ProtoPlayerScript : MonoBehaviour
         if (Input.GetKey(KeyCode.E) && BlackBoardPlayer.loadingSpecialHability)
         {
             BlackBoardPlayer.specialStateType = BlackBoardPlayer.specialHabilityCatcth;
+            switch(BlackBoardPlayer.specialHabilityCatcth)
+            {
+                case 1: playerSoundManager.specialGhost.GetComponent<SoundScript>().PlaySound();  break;
+                case 2: playerSoundManager.specialBounce.GetComponent<SoundScript>().PlaySound(); break;
+                case 3: playerSoundManager.specialQuadShoot.GetComponent<SoundScript>().PlaySound(); break;
+                case 4: playerSoundManager.specialHunter.GetComponent<SoundScript>().PlaySound(); break;
+                case 5: playerSoundManager.specialSuperKill.GetComponent<SoundScript>().PlaySound();break;
+            }
         }
     }
 
@@ -776,15 +797,18 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         if(!BlackBoardPlayer.activeSuperDamage)
         {
+            
             if(lifeTimer>= 2)
             {
                 StartCoroutine(BlackBoardPlayer.mCamera.GetComponent<CameraShake>().Shake(BlackBoardPlayer.duration, BlackBoardPlayer.magnitude));
                 BlackBoardPlayer.characterLife -= 0.5f;
+                playerSoundManager.damage.GetComponent<SoundScript>().PlaySound();
                 lifeTimer = 0;
             }
         }
         else
         {
+            playerSoundManager.damage.GetComponent<SoundScript>().PlaySound();
             if(lifeTimer>= 2)
             {
                 if(BlackBoardPlayer.characterLife != 0.5f)
@@ -810,6 +834,7 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         if(lifeTimer>= 0.3f)
         {
+            playerSoundManager.heart.GetComponent<SoundScript>().PlaySound();
             BlackBoardPlayer.characterLife += 0.5f;
             lifeTimer = 0;
         }
@@ -819,6 +844,7 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         if(lifeTimer>= 0.3f)
         {
+            playerSoundManager.heart.GetComponent<SoundScript>().PlaySound();
             if((BlackBoardPlayer.characterSpaceLife-0.5) == BlackBoardPlayer.characterLife)
             {
                 BlackBoardPlayer.characterLife += 0.5f;
@@ -838,6 +864,7 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         if(coinTimer>= 0.3f)
         {
+            playerSoundManager.coin.GetComponent<SoundScript>().PlaySound();
             BlackBoardPlayer.characterMoney += 1;
             BlackBoardPlayer.characterMoneyThatPlayerWin +=1;
             coinTimer = 0;
@@ -849,6 +876,7 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         if(cristalTimer>= 0.5f)
         {
+
             BlackBoardPlayer.characterCristals += 1;
             BlackBoardPlayer.cristalsFound +=1;
             cristalTimer = 0;
@@ -902,6 +930,7 @@ public class ProtoPlayerScript : MonoBehaviour
         {
             BlackBoardPlayer.habilityType = other.GetComponent<ActiveHabilityScript>().habilityType;
             BlackBoardPlayer.stateType = other.GetComponent<ActiveHabilityScript>().stateType;
+            playerSoundManager.catchHability.GetComponent<SoundScript>().PlaySound();
             switch(other.GetComponent<ActiveHabilityScript>().habilityType)
             {
                 case 1: hudManager.ActiveDobleShootFeedback(); break;
@@ -921,6 +950,7 @@ public class ProtoPlayerScript : MonoBehaviour
         {
             if(!loadingHability)
             {
+                playerSoundManager.catchHability.GetComponent<SoundScript>().PlaySound();
                 switch (other.GetComponent<PassiveHabilityScript>().estadisticType)
                 {
                     case 1: speedSum = speedSum + 1f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); 
@@ -946,6 +976,8 @@ public class ProtoPlayerScript : MonoBehaviour
             BlackBoardPlayer.specialHabilityCatcth = other.GetComponent<SpecialHabilityScript>().speciaStateType;
             BlackBoardPlayer.loadingSpecialHability = false;
             BlackBoardPlayer.enemysKillToReloadSpecialHability = 10;
+            playerSoundManager.catchHability.GetComponent<SoundScript>().PlaySound();
+
             switch(other.GetComponent<SpecialHabilityScript>().speciaStateType)
             {
                 case 1: hudManager.ActiveInvencibleFeedback(); break;
@@ -1054,6 +1086,7 @@ public class ProtoPlayerScript : MonoBehaviour
             {
                 SumCristal();
                 BlackBoardPlayer.feedback.GetComponent<FeedbackHUD>().CristalFounfFeedback();
+                playerSoundManager.cristal.GetComponent<SoundScript>().PlaySound();
                 Destroy(other.gameObject);
             }
 
@@ -1062,6 +1095,7 @@ public class ProtoPlayerScript : MonoBehaviour
             if(other.gameObject.tag == "SkinColor")
             {
                 BlackBoardPlayer.skinColorState = other.GetComponent<SkinColorScript>().typeOfColor;
+                playerSoundManager.catchHability.GetComponent<SoundScript>().PlaySound();
                 Destroy(other.gameObject);
             }
 
@@ -1070,6 +1104,7 @@ public class ProtoPlayerScript : MonoBehaviour
             if(other.gameObject.tag == "SkinDraw")
             {
                 BlackBoardPlayer.skinDrawState = other.GetComponent<SkinTattooSccript>().typeOfTattoo;
+                playerSoundManager.catchHability.GetComponent<SoundScript>().PlaySound();
                 Destroy(other.gameObject);
             }
 

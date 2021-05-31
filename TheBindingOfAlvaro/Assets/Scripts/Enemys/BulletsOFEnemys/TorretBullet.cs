@@ -35,15 +35,19 @@ public class TorretBullet : MonoBehaviour
 
     GameObject player;
 
+    GameObject enemyBrain;
+
     bool sumOne;
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        enemyBrain = GameObject.FindGameObjectWithTag("EnemyBrain");
         target = GameObject.FindObjectOfType<ProtoPlayerScript>();
         moveDirection = (target.transform.position - this.transform.position).normalized * speed;
         
+        enemyBrain.GetComponent<EnemySoundManager>().shoot.GetComponent<SoundScript>().PlaySound();
     }
 
     // Update is called once per frame
@@ -106,6 +110,7 @@ public class TorretBullet : MonoBehaviour
     {
         if(!impact)
         {
+            enemyBrain.GetComponent<EnemySoundManager>().parryDoneSound.GetComponent<SoundScript>().PlaySound();
             target = GameObject.FindObjectOfType<ProtoPlayerScript>();
             moveDirection = (this.transform.position - target.transform.position).normalized * (speed*2);
             rb2d.velocity = new Vector2(moveDirection.x, moveDirection.y);

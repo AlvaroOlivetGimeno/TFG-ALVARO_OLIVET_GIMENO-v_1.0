@@ -9,6 +9,7 @@ public class WizardScript : MonoBehaviour
     
     [Header("AUTOMATIC OBJECT:")]
     public GameObject habilityPoint;
+    public GameObject otherSoundManager;
 
     [Header("PARTICLES:")]
 
@@ -21,10 +22,13 @@ public class WizardScript : MonoBehaviour
     public List<GameObject> cameraPointList;
 
     GameObject player;
+
+
     void Start()
     {
         habilityPoint = GameObject.FindGameObjectWithTag("HabilityPoint");  
         player = GameObject.FindGameObjectWithTag("Player");
+        otherSoundManager = GameObject.FindGameObjectWithTag("OtherSoundManager");
         childList.Add(this.transform.GetChild(0).gameObject); 
     }
 
@@ -85,6 +89,7 @@ public class WizardScript : MonoBehaviour
                     other.gameObject.GetComponent<ProtoBLACKBOARD_Player>().characterCristals-=2;
                     habilityPoint.GetComponent<SpecialRoomPoint>().pointType = 3;
                     Instantiate(particles, this.transform.position, Quaternion.identity);
+                    
                     Destroy(this.transform.parent.gameObject);
                     
                 }

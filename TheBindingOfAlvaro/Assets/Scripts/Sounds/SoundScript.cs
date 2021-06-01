@@ -7,6 +7,12 @@ public class SoundScript : MonoBehaviour
     [Header("AUTOMATIC VARIABLES:")]
 
     public AudioSource audioSource;
+
+    [Header("BOOL FOR BSO:")]
+
+    public bool iHaveApeear;
+
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();  

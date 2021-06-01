@@ -11,6 +11,8 @@ public class MasterBrainScript : MonoBehaviour
 
     public GameObject roomManager;
 
+    public GameObject bsoSoundManager;
+
     [Header("PLAYER PCT [EJES]:")]
 
     public float pctMon = 0;
@@ -124,6 +126,10 @@ public class MasterBrainScript : MonoBehaviour
 
     public float playerAfectedTimeSumator;
 
+    [Header("6.ENEMY's -FREEZE- TIMER's: ")]
+
+    public float enemyFreezeRestator;
+
     [Header("TAXONOMY BOOL's:")]
 
     public bool actionProfile;
@@ -165,6 +171,7 @@ public class MasterBrainScript : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         enemyBrain = GameObject.FindGameObjectWithTag("EnemyBrain");
         roomManager = GameObject.FindGameObjectWithTag("RoomBrain");
+        bsoSoundManager = GameObject.FindGameObjectWithTag("BSOSoundManager");
 
     }
 
@@ -410,6 +417,10 @@ public class MasterBrainScript : MonoBehaviour
 
         player.GetComponent<ProtoBLACKBOARD_Player>().timeEffectSpecialEnemysInvert += playerAfectedTimeSumator;
         player.GetComponent<ProtoBLACKBOARD_Player>().timeEffectSpecialEnemysSquid += playerAfectedTimeSumator;
+
+        //FR33ZE TIME
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_TimeFreezed -= enemyFreezeRestator;
+        enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().fl_TimeFreezed += enemyFreezeRestator;
         
     }
 
@@ -652,7 +663,8 @@ public class MasterBrainScript : MonoBehaviour
     public void TaxonomyChange()
     {
         Debug.Log("CALCULAAAAAAAAAANDO");
-
+            
+        
         if(player.GetComponent<ProtoBLACKBOARD_Player>().actualLevel == 10)
         {
             WhooseTheBiggerProfileSumator();

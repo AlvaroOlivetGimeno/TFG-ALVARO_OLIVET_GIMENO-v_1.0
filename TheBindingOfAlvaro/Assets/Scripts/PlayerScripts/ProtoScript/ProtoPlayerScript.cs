@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ProtoPlayerScript : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class ProtoPlayerScript : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
     
+    GameObject bsoSoundManager;
    
    
     //VARIABLE PEL MOVIMENT
@@ -50,6 +52,8 @@ public class ProtoPlayerScript : MonoBehaviour
     //VARIABLES PER MOLESTAR (SPECIAL ENEMYS)
     float invertTimer;
     bool oneTimeInvert;
+
+    bool oneTimeBlackScreen;
     float screenTimer;
 
     //PAUSE BOOL
@@ -77,6 +81,7 @@ public class ProtoPlayerScript : MonoBehaviour
         playerSoundManager = GetComponent<PlayerSoundManager>();
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        bsoSoundManager = GameObject.FindGameObjectWithTag("BSOSoundManager");
 
         //Desactivar el Parry
         BlackBoardPlayer.p_Collider.gameObject.SetActive(false);
@@ -89,6 +94,9 @@ public class ProtoPlayerScript : MonoBehaviour
 
         //DesactivatePause
         hudManager.pauseMenu.SetActive(false);
+
+        //DESACTIVAR MUSICA
+        bsoSoundManager.SetActive(false);
     }
 
     // Update is called once per frame
@@ -151,6 +159,15 @@ public class ProtoPlayerScript : MonoBehaviour
 
         //----------------------------------------------
 
+        //---------------------------------------------------RESTART--------------------------------------------------------
+        RestartLogic();
+
+        //------------------------------------------
+
+        //-----------------------------------------------------MUSIC-------------------------------------------------------
+        MusicControlls();
+
+        //---------------------------------------
         //Debug.Log(BlackBoardPlayer.totalEnemysKilled);
     }
 
@@ -640,6 +657,7 @@ public class ProtoPlayerScript : MonoBehaviour
         {
             if(!oneTimeInvert)
             {
+                playerSoundManager.specialEffects.GetComponent<SoundScript>().PlaySound();
                 BlackBoardPlayer.characterSpeed *= -1;
                 oneTimeInvert = true;
             }
@@ -662,6 +680,12 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         if (BlackBoardPlayer.blackScreen)
         {
+            if(!oneTimeBlackScreen)
+            {
+                playerSoundManager.specialEffects.GetComponent<SoundScript>().PlaySound();
+                oneTimeBlackScreen = true;
+            }
+           
             hudManager.BlackScreen.gameObject.SetActive(true);
 
             screenTimer += 1 * Time.deltaTime;
@@ -671,6 +695,7 @@ public class ProtoPlayerScript : MonoBehaviour
                 hudManager.BlackScreen.gameObject.SetActive(false);
                 screenTimer = 0;
                 BlackBoardPlayer.blackScreen = false;
+                oneTimeBlackScreen = false;
 
             }
         }
@@ -753,6 +778,44 @@ public class ProtoPlayerScript : MonoBehaviour
 
         }
     }
+
+
+    void RestartLogic()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            SceneManager.LoadScene("Scene1");
+        }
+    }
+
+    void Music()
+    {
+        if(!BlackBoardPlayer.activeMusic)
+        {
+            bsoSoundManager.SetActive(true);
+            BlackBoardPlayer.activeMusic = true;
+        }
+        else
+        {
+            bsoSoundManager.SetActive(false);
+            BlackBoardPlayer.activeMusic = false;
+        }
+    }
+
+    void MusicControlls()
+    {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            if(!BlackBoardPlayer.activeLoading)
+            {
+                playerSoundManager.click.GetComponent<SoundScript>().PlaySound();
+                Music();
+            }
+            
+
+        }
+    }
+
 
     //SUM ROOMS I WATCHED
     public void NewRoomSeen()

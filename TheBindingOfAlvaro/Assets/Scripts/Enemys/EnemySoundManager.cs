@@ -9,6 +9,10 @@ public class EnemySoundManager : MonoBehaviour
     public GameObject parryDoneSound;
     public GameObject shoot;
     public GameObject death;
+
+     public GameObject freeze;
+
+     public GameObject freezeBreak;
     
 
     void Start()

@@ -12,6 +12,8 @@ public class PlayerSoundManager : MonoBehaviour
     public GameObject cristal;
     public GameObject damage;
     public GameObject catchHability;
+
+    public GameObject specialEffects;
     public GameObject specialBounce;
     public GameObject specialGhost;
     public GameObject specialQuadShoot;

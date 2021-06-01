@@ -15,6 +15,8 @@ public class EnemySpecialScript : MonoBehaviour
     
     public GameObject BlackBoardEnemy;
     public GameObject enemySoundManager;
+
+    
     Rigidbody2D rb2d;
 
     bool oneTime; //for do something one time
@@ -149,7 +151,7 @@ public class EnemySpecialScript : MonoBehaviour
                 {
                     BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
                     player.GetComponent<ProtoBLACKBOARD_Player>().inverterKilled += 1;
-                    
+                    Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sp_inverterDeathP, this.transform.position, Quaternion.identity);
                     if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
                     {
                         player.GetComponent<ProtoBLACKBOARD_Player>().enemysKillToReloadSpecialHability+=1;
@@ -157,9 +159,9 @@ public class EnemySpecialScript : MonoBehaviour
                 }
                 else if( enemyType == 2)
                 {
-                     BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
+                    BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
                     player.GetComponent<ProtoBLACKBOARD_Player>().squidKilled += 1;
-                    
+                    Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sp_squidDeathP, this.transform.position, Quaternion.identity);
                     if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
                     {
                         player.GetComponent<ProtoBLACKBOARD_Player>().enemysKillToReloadSpecialHability+=1;
@@ -167,9 +169,9 @@ public class EnemySpecialScript : MonoBehaviour
                 }
                 else if(enemyType == 3)
                 {
-                     BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
+                    BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
                     player.GetComponent<ProtoBLACKBOARD_Player>().mothersKilled += 1;
-                    
+                    Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sp_motherDeathP, this.transform.position, Quaternion.identity);
                     if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
                     {
                         player.GetComponent<ProtoBLACKBOARD_Player>().enemysKillToReloadSpecialHability+=1;
@@ -257,8 +259,7 @@ public class EnemySpecialScript : MonoBehaviour
         }
         //---------------------------------------------------------------------------------------------------------------
 
-
-
+        
 
     }
     

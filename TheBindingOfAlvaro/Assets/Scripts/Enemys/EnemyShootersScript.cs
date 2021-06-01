@@ -10,10 +10,12 @@ public class EnemyShootersScript : MonoBehaviour
 
     public float enemyTypePuntero;
     [Header("AUTOMATIC VARIABLES:")]
-     public float life;
-     public float timeToShoot;
-     public float parryPct;
-     public float timeFreezed;
+    public float life;
+    public float timeToShoot;
+    public float parryPct;
+    public float timeFreezed;
+
+    public GameObject freezeFedback;
     GameObject normalBullet;
     GameObject parryBullet;
     GameObject intelligentBullet;
@@ -50,6 +52,8 @@ public class EnemyShootersScript : MonoBehaviour
      //SOUND
 
     bool playSound = false;
+
+    bool playFreezeSound = false;
 
     void Start()
     {
@@ -267,7 +271,7 @@ public class EnemyShootersScript : MonoBehaviour
                 {
                     BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
                     player.GetComponent<ProtoBLACKBOARD_Player>().basicTorretKilled += 1;
-
+                    Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_basicDeathP, this.transform.position, Quaternion.identity);
                     if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
                     {
                         player.GetComponent<ProtoBLACKBOARD_Player>().enemysKillToReloadSpecialHability+=1;
@@ -277,7 +281,7 @@ public class EnemyShootersScript : MonoBehaviour
                 {
                     BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
                     player.GetComponent<ProtoBLACKBOARD_Player>().bounceTorretKilled += 1;
-                     
+                    Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_bounceDeathP, this.transform.position, Quaternion.identity);  
                     if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
                     {
                         player.GetComponent<ProtoBLACKBOARD_Player>().enemysKillToReloadSpecialHability+=1;
@@ -287,7 +291,7 @@ public class EnemyShootersScript : MonoBehaviour
                 {
                     BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
                     player.GetComponent<ProtoBLACKBOARD_Player>().intelligentTorretKilled += 1;
-                     
+                    Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sh_intelligentDeathP, this.transform.position, Quaternion.identity); 
                     if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
                     {
                         player.GetComponent<ProtoBLACKBOARD_Player>().enemysKillToReloadSpecialHability+=1;
@@ -308,7 +312,7 @@ public class EnemyShootersScript : MonoBehaviour
                 sumOneKill = true;
             }
             SpawnObj();
-            if(!playSound)
+             if(!playSound)
             {
                 BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
                 playSound = true;
@@ -324,13 +328,36 @@ public class EnemyShootersScript : MonoBehaviour
     {
         if (freezeCnt >= 3)
         {
-            IAmFreeze = true;
-            freezeTimer = freezeTimer + 1 * Time.deltaTime;
-
-            if (freezeTimer >= timeFreezed)
+            if(!playFreezeSound)
             {
-                IAmFreeze = false;
-                freezeCnt = 0;
+                BlackBoardEnemy.GetComponent<EnemySoundManager>().freeze.GetComponent<SoundScript>().PlaySound();
+                playFreezeSound = true;
+            }
+            else
+            {
+                IAmFreeze = true;
+                freezeTimer = freezeTimer + 1 * Time.deltaTime;
+
+                if(freezeFedback != null)
+                {
+                    freezeFedback.gameObject.SetActive(true);
+                }
+
+                if (freezeTimer >= timeFreezed)
+                {
+                    BlackBoardEnemy.GetComponent<EnemySoundManager>().freezeBreak.GetComponent<SoundScript>().PlaySound();
+                    Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().freezeParticles, this.transform.position, Quaternion.identity);
+                    IAmFreeze = false;
+                    freezeCnt = 0;
+                }
+            }
+            
+        }
+        else
+        {
+            if(freezeFedback != null)
+            {
+                freezeFedback.gameObject.SetActive(false);
             }
         }
     }
@@ -424,6 +451,12 @@ public class EnemyShootersScript : MonoBehaviour
                 collision.gameObject.GetComponent<CheckWallPosition>().addedToFathersList = true;
             }
            
+        }
+
+        //-----------------------------------------------FREEZE------------------------------------------------------------
+        if(collision.gameObject.tag == "Freeze")
+        {
+            freezeFedback = collision.gameObject;
         }
        
 

@@ -50,6 +50,30 @@ public class BLACKBOARD_ENEMYS : MonoBehaviour
     public float sp_MotherChildSpeed;
     public float sp_MotherChildLife;
 
+    [Header("SHOOTER -DEATH- PARTICLES:")]
+    [Header("ENEMY's DEATH PARTICLES:")]
+    public GameObject sh_basicDeathP;
+    public GameObject sh_bounceDeathP;
+    public GameObject sh_intelligentDeathP;
+
+    [Header("FOLLOWER -DEATH- PARTICLES:")]
+    public GameObject fl_basicDeathP;
+    public GameObject fl_spawnDeathP;
+    public GameObject fl_unity1DeathP;
+    public GameObject fl_unity2DeathP;
+    public GameObject fl_unity3DeathP;
+
+    [Header("SPECIAL -DEATH- PARTICLES:")]
+    public GameObject sp_inverterDeathP;
+    public GameObject sp_squidDeathP;
+    public GameObject sp_motherDeathP;
+    public GameObject sp_childDeathP;
+
+    
+
+    [Header("ENEMY's -SPECIAL- PARTICLES:")]
+    public GameObject freezeParticles;
+
     [Header("ENEMY's -SPECIAL- PARTICLES:")]
     public GameObject sp_ParticlesInverter;
     public GameObject sp_ParticlesSquid;

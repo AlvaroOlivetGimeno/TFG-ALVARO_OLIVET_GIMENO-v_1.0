@@ -18,6 +18,8 @@ public class EnemyFollowersScript : MonoBehaviour
     public GameObject myCamaraPoint;
     public GameObject BlackBoardEnemy;
 
+    public GameObject freezeFedback;
+
 
     Rigidbody2D rb2d;
     ProtoPlayerScript target;
@@ -60,6 +62,7 @@ public class EnemyFollowersScript : MonoBehaviour
     //SOUND
 
     bool playSound = false;
+    bool playFreezeSound = false;
 
     void Start()
     {
@@ -131,6 +134,7 @@ public class EnemyFollowersScript : MonoBehaviour
             playSound = true;
         }
         {
+            Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_spawnDeathP, this.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
 
@@ -192,14 +196,37 @@ public class EnemyFollowersScript : MonoBehaviour
     {
         if (freezeCnt >= 3)
         {
-           
-            freezeTimer = freezeTimer + 1 * Time.deltaTime;
-            speed = 0;
-
-            if (freezeTimer >= timeFreezed)
+            if(!playFreezeSound)
             {
-                speed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_BasicSpeed;
-                freezeCnt = 0;
+                BlackBoardEnemy.GetComponent<EnemySoundManager>().freeze.GetComponent<SoundScript>().PlaySound();
+                playFreezeSound = true;
+            }
+            else
+            {
+                freezeTimer = freezeTimer + 1 * Time.deltaTime;
+                speed = 0;
+
+                if(freezeFedback != null)
+                {
+                    freezeFedback.gameObject.SetActive(true);
+                }
+
+                if (freezeTimer >= timeFreezed)
+                {
+                    BlackBoardEnemy.GetComponent<EnemySoundManager>().freezeBreak.GetComponent<SoundScript>().PlaySound();
+                    Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().freezeParticles, this.transform.position, Quaternion.identity);
+                    speed = BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_BasicSpeed;
+                    freezeCnt = 0;
+                    playFreezeSound = false;
+                }
+            }
+            
+        }
+        else
+        {
+            if(freezeFedback != null)
+            {
+                freezeFedback.gameObject.SetActive(false);
             }
         }
     }
@@ -243,6 +270,7 @@ public class EnemyFollowersScript : MonoBehaviour
             BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
             Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().mediumUnityEnemy, new Vector2(this.transform.position.x + 0.5f, this.transform.position.y), Quaternion.identity);
             Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().mediumUnityEnemy, new Vector2(this.transform.position.x - 0.5f, this.transform.position.y), Quaternion.identity);
+            Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_unity1DeathP, this.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
         if (sizeType == 2)
@@ -250,6 +278,7 @@ public class EnemyFollowersScript : MonoBehaviour
             BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
             Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().smallUnityEnemy, new Vector2(this.transform.position.x + 0.5f, this.transform.position.y), Quaternion.identity);
             Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().smallUnityEnemy, new Vector2(this.transform.position.x - 0.5f, this.transform.position.y), Quaternion.identity);
+            Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_unity2DeathP, this.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
         else
@@ -266,6 +295,7 @@ public class EnemyFollowersScript : MonoBehaviour
                 playSound = true;
             }
             {
+                Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_unity3DeathP, this.transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }
         }
@@ -329,6 +359,7 @@ public class EnemyFollowersScript : MonoBehaviour
                 playSound = true;
             }
             {
+                Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().fl_basicDeathP, this.transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }
             
@@ -382,6 +413,7 @@ public class EnemyFollowersScript : MonoBehaviour
                 playSound = true;
             }
             {
+                Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().sp_childDeathP, this.transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }
            
@@ -499,6 +531,13 @@ public class EnemyFollowersScript : MonoBehaviour
             
             myCamaraPoint = collision.gameObject;
         }
+
+        //-----------------------------------------------FREEZE------------------------------------------------------------
+        if(collision.gameObject.tag == "Freeze")
+        {
+            freezeFedback = collision.gameObject;
+        }
+
 
     }
    

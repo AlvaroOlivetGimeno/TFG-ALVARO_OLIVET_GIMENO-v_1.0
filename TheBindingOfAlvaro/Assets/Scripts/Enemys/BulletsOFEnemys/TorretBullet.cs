@@ -115,7 +115,7 @@ public class TorretBullet : MonoBehaviour
             moveDirection = (this.transform.position - target.transform.position).normalized * (speed*2);
             rb2d.velocity = new Vector2(moveDirection.x, moveDirection.y);
 
-            if(!sumOne)
+            if(!sumOne && !player.GetComponent<ProtoBLACKBOARD_Player>().SpecialHabilityIsActive)
             {
                 player.GetComponent<ProtoBLACKBOARD_Player>().numOfParrysDone += 1;
                 if(player.GetComponent<ProtoBLACKBOARD_Player>().parryMissionActive)

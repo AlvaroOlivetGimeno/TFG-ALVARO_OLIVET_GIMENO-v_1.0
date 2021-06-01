@@ -20,7 +20,7 @@ public class MapButtonPause : MonoBehaviour
     //ACTIVE OR DESACTIVE
     void ActiveButtonPause()
     {
-        if(player.GetComponent<ProtoBLACKBOARD_Player>().activeMapMecanic && player.GetComponent<ProtoBLACKBOARD_Player>().activePause)
+        if(player.GetComponent<ProtoBLACKBOARD_Player>().activeMapMecanic)
         {
             this.transform.GetChild(0).gameObject.SetActive(true);
         }

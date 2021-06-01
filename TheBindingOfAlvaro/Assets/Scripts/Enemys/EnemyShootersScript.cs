@@ -20,9 +20,7 @@ public class EnemyShootersScript : MonoBehaviour
     GameObject intelligentParryBullet;
     GameObject bounceBullet;
     GameObject bounceParryBullet;
-
     public GameObject BlackBoardEnemy;
-    GameObject _enemyBlackBoard;
 
     bool ready; //for check if have to shoot 
     int rndVarWallChecker; //for check wich i will destroy
@@ -48,6 +46,10 @@ public class EnemyShootersScript : MonoBehaviour
     bool spawnOneTime;
     int spawnPct;
     int wichObj;
+
+     //SOUND
+
+    bool playSound = false;
 
     void Start()
     {
@@ -263,6 +265,7 @@ public class EnemyShootersScript : MonoBehaviour
             {
                 if(enemyType == 1)
                 {
+                    BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
                     player.GetComponent<ProtoBLACKBOARD_Player>().basicTorretKilled += 1;
 
                     if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
@@ -272,6 +275,7 @@ public class EnemyShootersScript : MonoBehaviour
                 }
                 else if(enemyType == 2)
                 {
+                    BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
                     player.GetComponent<ProtoBLACKBOARD_Player>().bounceTorretKilled += 1;
                      
                     if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
@@ -281,6 +285,7 @@ public class EnemyShootersScript : MonoBehaviour
                 }
                 else if(enemyType == 3)
                 {
+                    BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
                     player.GetComponent<ProtoBLACKBOARD_Player>().intelligentTorretKilled += 1;
                      
                     if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
@@ -291,6 +296,7 @@ public class EnemyShootersScript : MonoBehaviour
                 
                 if(player.GetComponent<ProtoBLACKBOARD_Player>().killEnemysMissionActive)  
                 {
+                    
                     player.GetComponent<ProtoBLACKBOARD_Player>().totalEnemysKilledForMission+=1;
                     
                     if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
@@ -302,7 +308,14 @@ public class EnemyShootersScript : MonoBehaviour
                 sumOneKill = true;
             }
             SpawnObj();
-            Destroy(this.gameObject);
+            if(!playSound)
+            {
+                BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
+                playSound = true;
+            }
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 

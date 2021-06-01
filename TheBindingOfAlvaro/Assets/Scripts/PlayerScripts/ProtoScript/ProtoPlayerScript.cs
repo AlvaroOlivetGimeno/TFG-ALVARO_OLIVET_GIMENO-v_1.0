@@ -706,7 +706,7 @@ public class ProtoPlayerScript : MonoBehaviour
             hudManager.pauseMenu.gameObject.SetActive(false);
         }
     }
-    
+
 
     //PAUSE LOGIC
     void PauseControlls()
@@ -715,6 +715,7 @@ public class ProtoPlayerScript : MonoBehaviour
         {
             if(!BlackBoardPlayer.activeLoading)
             {
+                playerSoundManager.click.GetComponent<SoundScript>().PlaySound();
                 Pause();
             }
             
@@ -745,6 +746,7 @@ public class ProtoPlayerScript : MonoBehaviour
         {
             if(!BlackBoardPlayer.activeLoading)
             {
+                playerSoundManager.click.GetComponent<SoundScript>().PlaySound();
                 Info();
             }
             
@@ -888,6 +890,7 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.M) && BlackBoardPlayer.activeMapMecanic && !BlackBoardPlayer.activeLoading && !BlackBoardPlayer.activePause && !BlackBoardPlayer.activeInfoMenu)
         {
+            playerSoundManager.openMap.GetComponent<SoundScript>().PlaySound();
             Map();
         }
 

@@ -22,4 +22,8 @@ public class SoundScript : MonoBehaviour
     {
         audioSource.Play();
     }
+    public void StopSound()
+    {
+        audioSource.Stop();
+    }
 }

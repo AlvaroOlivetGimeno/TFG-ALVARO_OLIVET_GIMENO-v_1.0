@@ -11,13 +11,17 @@ public class PlayerSoundManager : MonoBehaviour
     public GameObject heart;
     public GameObject cristal;
     public GameObject damage;
-    public GameObject buy;
     public GameObject catchHability;
     public GameObject specialBounce;
     public GameObject specialGhost;
     public GameObject specialQuadShoot;
     public GameObject specialHunter;
     public GameObject specialSuperKill;
+    public GameObject loadingScreen;
+    public GameObject openMap;
+    public GameObject click;
+    public GameObject congrats;
+    public GameObject gameOver;
 
 
 

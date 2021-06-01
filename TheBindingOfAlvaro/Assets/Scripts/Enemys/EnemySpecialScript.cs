@@ -14,6 +14,7 @@ public class EnemySpecialScript : MonoBehaviour
     public GameObject specialCol;
     
     public GameObject BlackBoardEnemy;
+    public GameObject enemySoundManager;
     Rigidbody2D rb2d;
 
     bool oneTime; //for do something one time
@@ -30,11 +31,16 @@ public class EnemySpecialScript : MonoBehaviour
     int spawnPct;
     int wichObj;
 
+     //SOUND
+
+    bool playSound = false;
+
     void Start()
     {
         BlackBoardEnemy = GameObject.FindGameObjectWithTag("EnemyBrain");
         rb2d = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+       
 
         StartMetod();
 
@@ -141,6 +147,7 @@ public class EnemySpecialScript : MonoBehaviour
             {
                 if(enemyType == 1)
                 {
+                    BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
                     player.GetComponent<ProtoBLACKBOARD_Player>().inverterKilled += 1;
                     
                     if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
@@ -150,6 +157,7 @@ public class EnemySpecialScript : MonoBehaviour
                 }
                 else if( enemyType == 2)
                 {
+                     BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
                     player.GetComponent<ProtoBLACKBOARD_Player>().squidKilled += 1;
                     
                     if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
@@ -159,6 +167,7 @@ public class EnemySpecialScript : MonoBehaviour
                 }
                 else if(enemyType == 3)
                 {
+                     BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
                     player.GetComponent<ProtoBLACKBOARD_Player>().mothersKilled += 1;
                     
                     if(!player.GetComponent<ProtoBLACKBOARD_Player>().loadingSpecialHability)
@@ -175,7 +184,14 @@ public class EnemySpecialScript : MonoBehaviour
                 sumOneKill = true;
             }
             SpawnObj();
-            Destroy(this.gameObject);
+            if(!playSound)
+            {
+                BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
+                playSound = true;
+            }
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 

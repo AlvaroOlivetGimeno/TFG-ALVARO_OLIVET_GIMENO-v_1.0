@@ -16,11 +16,18 @@ public class WichPorfileYouHave : MonoBehaviour
     [Header("AUTOMATIC ELEMENTS:")]
 
     public GameObject masterBrain;
+    public GameObject player;
+    public GameObject otherSoundManager;
+
+    //SOUNDSS
+    bool playSound;
 
 
     void Start()
     {
         masterBrain = GameObject.FindGameObjectWithTag("MasterBrain");
+        player = GameObject.FindGameObjectWithTag("Player");
+        otherSoundManager = GameObject.FindGameObjectWithTag("OtherSoundManager");
         action.SetActive(false);
         maestry.SetActive(false);
         achievement.SetActive(false);
@@ -37,13 +44,24 @@ public class WichPorfileYouHave : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K) && masterBrain.GetComponent<MasterBrainScript>().choosenProfile != 0)
         {   
-            switch(masterBrain.GetComponent<MasterBrainScript>().choosenProfile)
+            if(!playSound)
             {
-                case 1: action.SetActive(true); break;
-                case 2: maestry.SetActive(true); break;
-                case 3: achievement.SetActive(true); break;
-                case 4: creativity.SetActive(true); break;
+                player.GetComponent<PlayerSoundManager>().congrats.GetComponent<SoundScript>().StopSound();
+                otherSoundManager.GetComponent<OtherSoundsManager>().badumThiss.GetComponent<SoundScript>().PlaySound();
+                playSound = true;
             }
+            else
+            {
+                switch(masterBrain.GetComponent<MasterBrainScript>().choosenProfile)
+                {
+                    case 1: action.SetActive(true); break;
+                    case 2: maestry.SetActive(true); break;
+                    case 3: achievement.SetActive(true); break;
+                    case 4: creativity.SetActive(true); break;
+                }
+            }
+            
+            
         }
     }
 }

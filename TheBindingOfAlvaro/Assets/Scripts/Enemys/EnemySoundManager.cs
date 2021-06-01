@@ -8,6 +8,7 @@ public class EnemySoundManager : MonoBehaviour
     [Header("DIFERENT ENEMY SOUND's:")]
     public GameObject parryDoneSound;
     public GameObject shoot;
+    public GameObject death;
     
 
     void Start()

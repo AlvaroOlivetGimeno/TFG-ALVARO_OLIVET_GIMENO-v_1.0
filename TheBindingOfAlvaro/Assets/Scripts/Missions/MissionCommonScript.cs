@@ -66,6 +66,7 @@ public class MissionCommonScript : MonoBehaviour
     public GameObject player;
     public GameObject roomBrain;
     public GameObject missionFeedback;
+    public GameObject otherSoundManager;
 
     //ALTRES  VARIABLES
 
@@ -83,6 +84,7 @@ public class MissionCommonScript : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         roomBrain = GameObject.FindGameObjectWithTag("RoomBrain");
         missionFeedback = GameObject.FindGameObjectWithTag("MissionFeedbackManager");
+        otherSoundManager = GameObject.FindGameObjectWithTag("OtherSoundManager");
 
         StartMetod();
     }
@@ -147,6 +149,7 @@ public class MissionCommonScript : MonoBehaviour
             {
                 if(!oneTime)
                 {
+                    otherSoundManager.GetComponent<OtherSoundsManager>().missionCompleted.GetComponent<SoundScript>().PlaySound();
                     player.GetComponent<ProtoBLACKBOARD_Player>().characterMoney += reward;
                     player.GetComponent<ProtoBLACKBOARD_Player>().characterMoneyThatPlayerWin += reward;
                     missionFeedback.GetComponent<MissionFeedback>().MissionCompleted();
@@ -157,6 +160,7 @@ public class MissionCommonScript : MonoBehaviour
             {
                 if(!oneTime)
                 {
+                    otherSoundManager.GetComponent<OtherSoundsManager>().missionFailed.GetComponent<SoundScript>().PlaySound();
                     missionFeedback.GetComponent<MissionFeedback>().MissionFailed();
                     oneTime = true;
                 }

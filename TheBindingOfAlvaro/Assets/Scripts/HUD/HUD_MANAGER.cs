@@ -102,14 +102,24 @@ public class HUD_MANAGER : MonoBehaviour
 
     //ANTOHER VARIABLES
     ProtoBLACKBOARD_Player BlackBoardPlayer;
+    PlayerSoundManager playerSoundManager;
+
+    bool playSound = false;
+    bool playGOSound = false;
+
+    bool playFSSound = false;
+
     GameObject roomBrain;
    
 
     void Start()
     {
         BlackBoardPlayer = GetComponent<ProtoBLACKBOARD_Player>();
+        playerSoundManager = GetComponent<PlayerSoundManager>();
         roomBrain = GameObject.FindGameObjectWithTag("RoomBrain");
         gameOverScreen.SetActive(false);
+        playGOSound = false;
+        
         //protoPlayerScript = GetComponent<ProtoPlayerScript>();
 
     }
@@ -155,9 +165,21 @@ public class HUD_MANAGER : MonoBehaviour
         switch (BlackBoardPlayer.characterLife)
         {
             case 0:     l1.gameObject.SetActive(false); l2.gameObject.SetActive(false); l3.gameObject.SetActive(false); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); 
-                        gameOverScreen.SetActive(true);break;    
+                        if(!playGOSound)
+                        {
+                            playerSoundManager.gameOver.GetComponent<SoundScript>().PlaySound();
+                            playGOSound = true;
+                             
+                        }
+                        else
+                        {
+                            gameOverScreen.SetActive(true);
+                              
+                        }
+                        break;    
             case 0.5f:  l1.GetComponent<FillAmountImage>().image.fillAmount = 0.5f;
-                        l2.gameObject.SetActive(false); l3.gameObject.SetActive(false); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false);break;
+                        l2.gameObject.SetActive(false); l3.gameObject.SetActive(false); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false);
+                        break;
             case 1:     l1.GetComponent<FillAmountImage>().image.fillAmount = 1f;
                         l1.gameObject.SetActive(true); l2.gameObject.SetActive(false); l3.gameObject.SetActive(false); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); break;
             case 1.5f:  l1.GetComponent<FillAmountImage>().image.fillAmount = 1f;
@@ -173,6 +195,7 @@ public class HUD_MANAGER : MonoBehaviour
             case 3:     l1.GetComponent<FillAmountImage>().image.fillAmount = 1f;
                         l2.GetComponent<FillAmountImage>().image.fillAmount = 1f; 
                         l3.GetComponent<FillAmountImage>().image.fillAmount = 1f;
+                        playGOSound = false;
                         l1.gameObject.SetActive(true); l2.gameObject.SetActive(true); l3.gameObject.SetActive(true); l4.gameObject.SetActive(false); l5.gameObject.SetActive(false); break;
             case 3.5f:  l1.GetComponent<FillAmountImage>().image.fillAmount = 1f;
                         l2.GetComponent<FillAmountImage>().image.fillAmount = 1f; 
@@ -266,9 +289,15 @@ public class HUD_MANAGER : MonoBehaviour
         {
             loadingScreen.SetActive(false);
             BlackBoardPlayer.activeLoading = false;
+            playSound = false;
         }
         else
         {
+            if(!playSound)
+            {
+                playerSoundManager.loadingScreen.GetComponent<SoundScript>().PlaySound();
+                playSound = true;
+            }
             loadingScreen.SetActive(true);
             BlackBoardPlayer.activeLoading = true;
         }
@@ -517,7 +546,16 @@ public class HUD_MANAGER : MonoBehaviour
     {
         if(BlackBoardPlayer.actualLevel == 10)
         {
-            finalScreen.SetActive(true);
+            if(!playFSSound)
+            {
+                playerSoundManager.congrats.GetComponent<SoundScript>().PlaySound();
+                playFSSound = true;
+            }
+            else
+            {
+                finalScreen.SetActive(true);
+            }
+            
         }
         else
         {

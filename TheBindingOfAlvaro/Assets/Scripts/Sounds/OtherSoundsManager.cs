@@ -6,7 +6,13 @@ public class OtherSoundsManager : MonoBehaviour
 {
     [Header("DIFERENT PLAYER SOUND's:")]
     public GameObject buySound;
-     public GameObject closeRoomSound;
+    public GameObject closeRoomSound;
+    public GameObject missionCompleted;
+    public GameObject missionFailed;
+    public GameObject badumThiss;
+    public GameObject magicExplosion;
+
+    
     void Start()
     {
         

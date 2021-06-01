@@ -18,6 +18,7 @@ public class EnemyFollowersScript : MonoBehaviour
     public GameObject myCamaraPoint;
     public GameObject BlackBoardEnemy;
 
+
     Rigidbody2D rb2d;
     ProtoPlayerScript target;
     Vector2 moveDirection;
@@ -55,6 +56,10 @@ public class EnemyFollowersScript : MonoBehaviour
     //ENEMY TRAIL VARIABLES
     
     float enemyTrailTimer;
+
+    //SOUND
+
+    bool playSound = false;
 
     void Start()
     {
@@ -119,7 +124,15 @@ public class EnemyFollowersScript : MonoBehaviour
     void Explosion()
     {
         Instantiate(ChooseEnemy(), this.transform.position, Quaternion.identity);
-        Destroy(this.gameObject);
+
+        if(!playSound)
+        {
+            BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
+            playSound = true;
+        }
+        {
+            Destroy(this.gameObject);
+        }
 
     }
   
@@ -227,12 +240,14 @@ public class EnemyFollowersScript : MonoBehaviour
     {
         if(sizeType == 1)
         {
+            BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
             Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().mediumUnityEnemy, new Vector2(this.transform.position.x + 0.5f, this.transform.position.y), Quaternion.identity);
             Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().mediumUnityEnemy, new Vector2(this.transform.position.x - 0.5f, this.transform.position.y), Quaternion.identity);
             Destroy(this.gameObject);
         }
         if (sizeType == 2)
         {
+            BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
             Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().smallUnityEnemy, new Vector2(this.transform.position.x + 0.5f, this.transform.position.y), Quaternion.identity);
             Instantiate(BlackBoardEnemy.GetComponent<BLACKBOARD_ENEMYS>().smallUnityEnemy, new Vector2(this.transform.position.x - 0.5f, this.transform.position.y), Quaternion.identity);
             Destroy(this.gameObject);
@@ -245,7 +260,14 @@ public class EnemyFollowersScript : MonoBehaviour
                 sumOneKill = true;
             }
             SpawnObj();
-            Destroy(this.gameObject);
+            if(!playSound)
+            {
+                BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
+                playSound = true;
+            }
+            {
+                Destroy(this.gameObject);
+            }
         }
 
     }
@@ -301,7 +323,15 @@ public class EnemyFollowersScript : MonoBehaviour
                 sumOneKill = true;
             }
             SpawnObj();
-            Destroy(this.gameObject);
+            if(!playSound)
+            {
+                BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
+                playSound = true;
+            }
+            {
+                Destroy(this.gameObject);
+            }
+            
 
         }
         else if (life <= 0 && enemyType == 2)
@@ -346,8 +376,15 @@ public class EnemyFollowersScript : MonoBehaviour
         }
         else if(life <= 0 && enemyType == 4)
         {
-
-            Destroy(this.gameObject);
+            if(!playSound)
+            {
+                BlackBoardEnemy.GetComponent<EnemySoundManager>().death.GetComponent<SoundScript>().PlaySound();
+                playSound = true;
+            }
+            {
+                Destroy(this.gameObject);
+            }
+           
         }
     }
 

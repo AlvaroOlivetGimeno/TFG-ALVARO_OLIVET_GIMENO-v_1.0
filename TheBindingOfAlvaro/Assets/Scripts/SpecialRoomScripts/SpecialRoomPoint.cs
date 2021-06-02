@@ -51,6 +51,8 @@ public class SpecialRoomPoint : MonoBehaviour
 
     public GameObject objSpawned;
 
+    GameObject player;
+
     bool oneTime;
     public bool oneTimeSpecial;
     public bool oneTimeSkin;
@@ -60,6 +62,8 @@ public class SpecialRoomPoint : MonoBehaviour
         rndVar = Random.Range(1,9);
         rndVarSpecial = Random.Range(1,6);
         rndVarSkin = Random.Range(1,8);
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -116,17 +120,44 @@ public class SpecialRoomPoint : MonoBehaviour
                         objSpawned = ah6;
                         oneTime = true;
                         break;
-                case 7: Instantiate(ph1, this.transform.position, Quaternion.identity);
-                        objSpawned = ph1;
-                        oneTime = true;
+                case 7: if(player.GetComponent<ProtoBLACKBOARD_Player>().characterSpeed != 6)
+                        {
+                                Instantiate(ph1, this.transform.position, Quaternion.identity);
+                                objSpawned = ph1;
+                                oneTime = true;
+                        }
+                        else
+                        {
+                                Debug.Log("Recalculando");
+                                rndVar = Random.Range(1,9);    
+                        }
+                        
                         break;
-                case 8: Instantiate(ph2, this.transform.position, Quaternion.identity);
-                        objSpawned = ph2;
-                        oneTime = true;
+                case 8: if(player.GetComponent<ProtoBLACKBOARD_Player>().characterSpaceLife != 5)
+                        {
+                                Instantiate(ph2, this.transform.position, Quaternion.identity);
+                                objSpawned = ph2;
+                                oneTime = true;
+                        }
+                        else
+                        {
+                                Debug.Log("Recalculando");
+                                rndVar = Random.Range(1,9);    
+                        }
+                        
                         break;
-                case 9: Instantiate(ph3, this.transform.position, Quaternion.identity);
-                        objSpawned = ph3;
-                        oneTime = true;
+                case 9: if(player.GetComponent<ProtoBLACKBOARD_Player>().delayTimeToShoot != 0.2)
+                        {
+                                Instantiate(ph3, this.transform.position, Quaternion.identity);
+                                objSpawned = ph3;
+                                oneTime = true;
+                        }
+                        else
+                        {
+                                Debug.Log("Recalculando");
+                                rndVar = Random.Range(1,9);    
+                        }
+                        
                         break;
             }
         }

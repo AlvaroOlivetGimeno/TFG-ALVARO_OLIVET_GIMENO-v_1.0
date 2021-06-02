@@ -469,7 +469,7 @@ public class MasterBrainScript : MonoBehaviour
             Debug.Log("MAESTRY LV2");
             maestryProfile = true;
             player.GetComponent<ProtoBLACKBOARD_Player>().activeParryShield = true;
-            enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryPct = 60;
+            enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryPct = 75;
             player.GetComponent<ProtoBLACKBOARD_Player>().activeSuperDamage = true;
             
 
@@ -490,7 +490,7 @@ public class MasterBrainScript : MonoBehaviour
                 {
                     Debug.Log("MAESTRY LV1");
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeParryShield = true;
-                    enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryPct = 60; 
+                    enemyBrain.GetComponent<BLACKBOARD_ENEMYS>().sh_ParryPct = 75; 
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeSuperDamage = false;
                 }
                 else

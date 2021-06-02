@@ -159,9 +159,9 @@ public class BLACKBOARD_ENEMYS : MonoBehaviour
         }
         else
         {
-            enemyRoomPct = 75;
-            closeDoorsPct = 75;
-            spawnEnemyPct = 75;
+            enemyRoomPct = 85;
+            closeDoorsPct = 85;
+            spawnEnemyPct = 100;
         }
     }
 }

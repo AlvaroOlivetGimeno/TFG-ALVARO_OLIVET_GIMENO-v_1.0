@@ -95,8 +95,7 @@ public class ProtoPlayerScript : MonoBehaviour
         //DesactivatePause
         hudManager.pauseMenu.SetActive(false);
 
-        //DESACTIVAR MUSICA
-        bsoSoundManager.SetActive(false);
+       
     }
 
     // Update is called once per frame
@@ -792,12 +791,12 @@ public class ProtoPlayerScript : MonoBehaviour
     {
         if(!BlackBoardPlayer.activeMusic)
         {
-            bsoSoundManager.SetActive(true);
+            bsoSoundManager.GetComponent<BSOSoundManager>().NormalVolumen();
             BlackBoardPlayer.activeMusic = true;
         }
         else
         {
-            bsoSoundManager.SetActive(false);
+            bsoSoundManager.GetComponent<BSOSoundManager>().NullVolumen();
             BlackBoardPlayer.activeMusic = false;
         }
     }

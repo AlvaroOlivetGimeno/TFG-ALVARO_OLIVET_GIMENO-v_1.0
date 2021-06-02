@@ -141,7 +141,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 61e612bee31af9b44b4085c556dd2112, type: 3}
   m_Color: {r: 0.49056602, g: 0.08098966, b: 0.08098966, a: 1}
   m_FlipX: 0
@@ -213,3 +213,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contact: 0
+  contactWithLight: 0
+  dontDisapear: 0

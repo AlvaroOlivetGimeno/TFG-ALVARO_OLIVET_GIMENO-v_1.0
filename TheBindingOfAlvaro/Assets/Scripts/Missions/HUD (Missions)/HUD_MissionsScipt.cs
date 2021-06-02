@@ -197,7 +197,7 @@ public class HUD_MissionsScipt : MonoBehaviour
                 case 2: text.text = txt1 + " " + numOfXYouHaveToDo + " " + txt2 +" (" + 
                         numOfXYouHaveDone + "/" + numOfXYouHaveToDo + ")"; break;
                 case 3: text.text = txt1 + " " + numOfXYouHaveToDo + " " + txt2; break;
-                case 4: text.text = txt + " " + minuts + ":" + seconds; break;
+                case 4: text.text = txt + " " + minuts + ":" + Mathf.Round(seconds); break;
                 case 5: text.text = txt + " (OBJECTIVE: " + numOfXYouHaveToDo + ")"; break;
             }
         }

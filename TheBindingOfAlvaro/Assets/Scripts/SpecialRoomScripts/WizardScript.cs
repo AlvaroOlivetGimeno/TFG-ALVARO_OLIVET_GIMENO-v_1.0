@@ -45,7 +45,7 @@ public class WizardScript : MonoBehaviour
     {
         if(cameraPointList[0].GetComponent<CameraPointScript>().isPlayerHere)
         {
-            if(player.GetComponent<ProtoBLACKBOARD_Player>().activePause)
+            if(player.GetComponent<ProtoBLACKBOARD_Player>().activePause || player.GetComponent<ProtoBLACKBOARD_Player>().activeInfoMenu || player.GetComponent<ProtoBLACKBOARD_Player>().cameraMapIsActive )
             {
                 foreach(GameObject x in childList)
                 {

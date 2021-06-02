@@ -133,8 +133,8 @@ public class BSOSoundManager : MonoBehaviour
                 {
                        
                         song7.GetComponent<SoundScript>().StopSound();  
-                        song9.GetComponent<SoundScript>().PlaySound();  
-                        song9OneTime = true; 
+                        song8.GetComponent<SoundScript>().PlaySound();  
+                        song8OneTime = true; 
                 } 
                
             break;
@@ -172,7 +172,6 @@ public class BSOSoundManager : MonoBehaviour
         song6.GetComponent<SoundScript>().NullVolumen();
         song7.GetComponent<SoundScript>().NullVolumen();
         song8.GetComponent<SoundScript>().NullVolumen();
-        song8.GetComponent<SoundScript>().NullVolumen();
         song9.GetComponent<SoundScript>().NullVolumen();
     }
 
@@ -186,7 +185,6 @@ public class BSOSoundManager : MonoBehaviour
         song5.GetComponent<SoundScript>().normalVolumen(volumen);
         song6.GetComponent<SoundScript>().normalVolumen(volumen);
         song7.GetComponent<SoundScript>().normalVolumen(volumen);
-        song8.GetComponent<SoundScript>().normalVolumen(volumen);
         song8.GetComponent<SoundScript>().normalVolumen(volumen);
         song9.GetComponent<SoundScript>().normalVolumen(volumen);
     }

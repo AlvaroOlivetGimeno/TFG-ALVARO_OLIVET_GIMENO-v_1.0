@@ -166,28 +166,57 @@ public class ShopPointScript : MonoBehaviour
                 
                 switch(rndVar)
                 {
-                    case 1: if(!oneTime)
+                    case 1: if(player.GetComponent<ProtoBLACKBOARD_Player>().characterSpaceLife != 5)
                             {
-                                Instantiate(lifePlus, this.transform.position, Quaternion.identity);
-                                oneTime = true;
+                                if(!oneTime)
+                                {
+                                    Instantiate(lifePlus, this.transform.position, Quaternion.identity);
+                                    oneTime = true;
+                                }
+                                
+                            }
+                            else
+                            {
+                                Destroy(this.gameObject);
                             }
                     break;
-                    case 2: if(!oneTime)
+                    case 2: if(player.GetComponent<ProtoBLACKBOARD_Player>().characterSpeed != 6)
                             {
-                                Instantiate(speedPlus, this.transform.position, Quaternion.identity);
-                                oneTime = true;
+                               if(!oneTime)
+                                {
+                                    Instantiate(speedPlus, this.transform.position, Quaternion.identity);
+                                    oneTime = true;
+                                }
+                            }
+                            else
+                            {
+                                Destroy(this.gameObject);
                             }
                     break;
-                    case 3: if(!oneTime)
+                    case 3: if(player.GetComponent<ProtoBLACKBOARD_Player>().delayTimeToShoot != 0.2 )
                             {
-                                Instantiate(delayShootPlus, this.transform.position, Quaternion.identity);
-                                oneTime = true;
+                                if(!oneTime)
+                                {
+                                    Instantiate(delayShootPlus, this.transform.position, Quaternion.identity);
+                                    oneTime = true;
+                                }
+                            }
+                            else
+                            {
+                                Destroy(this.gameObject);
                             }
                     break;
-                    case 4: if(!oneTime)
+                    case 4:if(player.GetComponent<ProtoBLACKBOARD_Player>().characterSpaceLife != 5)
                             {
-                                Instantiate(delayShootPlus, this.transform.position, Quaternion.identity);
-                                oneTime = true;
+                               if(!oneTime)
+                                {
+                                    Instantiate(lifePlus, this.transform.position, Quaternion.identity);
+                                    oneTime = true;
+                                }
+                            }
+                            else
+                            {
+                                Destroy(this.gameObject);
                             }
                     break;
                 }
@@ -302,7 +331,7 @@ public class ShopPointScript : MonoBehaviour
     {
         if(cameraPoint.GetComponent<CameraPointScript>().isPlayerHere)
         {
-            if(player.GetComponent<ProtoBLACKBOARD_Player>().activePause)
+            if(player.GetComponent<ProtoBLACKBOARD_Player>().activePause || player.GetComponent<ProtoBLACKBOARD_Player>().activeInfoMenu || player.GetComponent<ProtoBLACKBOARD_Player>().cameraMapIsActive)
             {
                 this.transform.GetChild(0).gameObject.SetActive(false);
             }

@@ -32,7 +32,6 @@ public class BasicBulletScript : MonoBehaviour
    
     void Update()
     {
-
         //-------------------------MOVE------------------------------------
         Move();
        

@@ -34,7 +34,7 @@ public class ProtoPlayerScript : MonoBehaviour
     //VARIABLES PER HABILITATS
     float speedSum = 0;
     float delaySum = 0;
-    float damageSum = 0;
+    //float damageSum = 0;
     bool loadingHability = false;
     float loadingHabilityTimer;
     float specialHabilityTimer;
@@ -173,8 +173,8 @@ public class ProtoPlayerScript : MonoBehaviour
     //MOVMENT
     void Movment()
     {
-        movment.x = Input.GetAxisRaw("Horizontal");
-        movment.y = Input.GetAxisRaw("Vertical");
+        movment.x = Input.GetAxisRaw("Horizontal"); // A o D
+        movment.y = Input.GetAxisRaw("Vertical");// W o S
         rb2d.MovePosition(rb2d.position + movment * speed * Time.fixedDeltaTime);
     }
 
@@ -206,11 +206,11 @@ public class ProtoPlayerScript : MonoBehaviour
     //CONTROLS OF PARRY
     void ParryController()
     {
-        if (Input.GetKey(KeyCode.Space) && parryTimer >= 1.5)
+        if (Input.GetKey(KeyCode.Space) && parryTimer >= 0.5)
         {
             Parry();
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+        else
         {
             BlackBoardPlayer.p_Collider.gameObject.SetActive(false);
             p_timer = 0;
@@ -575,8 +575,8 @@ public class ProtoPlayerScript : MonoBehaviour
         {
             case 0: WaitingForNextSpecialHability(); break;
             case 1: InvencibleState(); break;
-            case 2:  SuperParry(); break;
-            case 3:  QuadShoot(); break;
+            case 2: SuperParry(); break;
+            case 3: QuadShoot(); break;
             case 4: HunterState(); break;
             case 5: SuperKill(); break;
         }
@@ -1010,7 +1010,7 @@ public class ProtoPlayerScript : MonoBehaviour
         }
 
         //PASIVES
-        //1.Velocitat 2.Delay 3.Armadura 4.Dolor Inflingit
+        //1.Velocitat 2.Delay 3.Vida 
         if (other.gameObject.tag == "PassiveHability")
         {
             if(!loadingHability)
@@ -1018,18 +1018,11 @@ public class ProtoPlayerScript : MonoBehaviour
                 playerSoundManager.catchHability.GetComponent<SoundScript>().PlaySound();
                 switch (other.GetComponent<PassiveHabilityScript>().estadisticType)
                 {
-                    case 1: speedSum = speedSum + 0.5f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); 
-                            hudManager.ActiveSpeedPLusFeedback(); break;
-                    case 2: delaySum = delaySum - 0.05f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); 
-                            hudManager.ActiveDelayPLusFeedback(); break;
-                    case 3: SumLife();
-                            hudManager.ActiveLivePLusFeedback();
-                            if(BlackBoardPlayer.characterSpaceLife < 5)
-                            {
-                                BlackBoardPlayer.characterSpaceLife = BlackBoardPlayer.characterSpaceLife + 1f; 
-                            }  
+                    case 1: speedSum = speedSum + 0.5f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); hudManager.ActiveSpeedPLusFeedback(); break;
+                    case 2: delaySum = delaySum - 0.05f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); hudManager.ActiveDelayPLusFeedback(); break;
+                    case 3: SumLife();  hudManager.ActiveLivePLusFeedback();
+                            if(BlackBoardPlayer.characterSpaceLife < 5) { BlackBoardPlayer.characterSpaceLife = BlackBoardPlayer.characterSpaceLife + 1f; }  
                             loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
-                    case 4: damageSum = damageSum + 0.3f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
                 }
             } 
         }

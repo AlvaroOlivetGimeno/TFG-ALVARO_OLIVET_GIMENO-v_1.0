@@ -2877,6 +2877,7 @@ Transform:
   - {fileID: 1629373645}
   - {fileID: 1142438799}
   - {fileID: 637913010}
+  - {fileID: 1989242276}
   m_Father: {fileID: 1040545782}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6693,7 +6694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionType: 7
-  reward: 10
+  reward: 7
   missionActive: 0
   completed: 0
   fail: 0
@@ -8899,7 +8900,7 @@ GameObject:
   - component: {fileID: 637913011}
   - component: {fileID: 637913012}
   m_Layer: 0
-  m_Name: OJO_PLAYER (CHILD 3!!!!!)
+  m_Name: Player Draw Skin (child 3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15486,7 +15487,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 217317353}
-  - {fileID: 1989242276}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29370,7 +29370,7 @@ GameObject:
   - component: {fileID: 1989242277}
   - component: {fileID: 1989242279}
   m_Layer: 0
-  m_Name: SUPER KILL COLLIDER
+  m_Name: SUPER KILL COLLIDER (child 4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29385,10 +29385,10 @@ Transform:
   m_GameObject: {fileID: 1989242275}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children: []
-  m_Father: {fileID: 1040545782}
-  m_RootOrder: 1
+  m_Father: {fileID: 217317353}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1989242277
 MonoBehaviour:

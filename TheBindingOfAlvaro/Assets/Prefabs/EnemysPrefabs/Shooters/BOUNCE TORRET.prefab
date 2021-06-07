@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 2483315951352222905}
   - component: {fileID: 3946089881311444499}
   m_Layer: 0
-  m_Name: Collider
+  m_Name: EnemyCollider
   m_TagString: FollowerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -394,6 +394,7 @@ MonoBehaviour:
   timeToShoot: 0
   parryPct: 0
   timeFreezed: 0
+  freezeFedback: {fileID: 0}
   BlackBoardEnemy: {fileID: 0}
   timer: 0
   wallChekers: []

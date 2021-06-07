@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 734035782673661997}
   - component: {fileID: 734035782673661994}
   m_Layer: 0
-  m_Name: SIMBOL
+  m_Name: Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -298,6 +298,7 @@ MonoBehaviour:
   timeFreezed: 0
   myCamaraPoint: {fileID: 0}
   BlackBoardEnemy: {fileID: 0}
+  freezeFedback: {fileID: 0}
 --- !u!114 &2245938011144621119
 MonoBehaviour:
   m_ObjectHideFlags: 0

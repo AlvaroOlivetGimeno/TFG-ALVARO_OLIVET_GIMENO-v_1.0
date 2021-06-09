@@ -96,12 +96,13 @@ public class EnemyRoomManager : MonoBehaviour
     //DOORS CONTROLLER
     void DoorsController()
     {
+        Debug.Log(closeDoors + " " + playerIsHere + " " + enemys.Count);
         if(closeDoors && playerIsHere && enemys.Count > 0)
         {
            
            timerForClose += 1 * Time.deltaTime;
            
-           if(timerForClose>= 0.25f)
+           if(timerForClose>= 0.2f)
            {
                if(soundPlayed)
                {
@@ -231,9 +232,15 @@ public class EnemyRoomManager : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other) 
     {
+         if(other.gameObject.tag == "Player")
+        {
+            playerIsHere = false;
+        }
+        
         if(other.gameObject.tag == "Enemy")
         {
             enemys.Remove(other.gameObject);
         }
+       
     }
 }

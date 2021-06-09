@@ -22,6 +22,8 @@ public class WichPorfileYouHave : MonoBehaviour
     //SOUNDSS
     bool playSound;
 
+    float profileTimer;
+
 
     void Start()
     {
@@ -37,21 +39,19 @@ public class WichPorfileYouHave : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        profileTimer += 1*Time.deltaTime;
+
         ActiveProfile();
     }
 
     void ActiveProfile()
     {
-        if (Input.GetKeyDown(KeyCode.K) && masterBrain.GetComponent<MasterBrainScript>().choosenProfile != 0)
+        if ( profileTimer >= 4 && masterBrain.GetComponent<MasterBrainScript>().choosenProfile != 0)
         {   
-            //if(!playSound)
-            //{
+            
                 player.GetComponent<PlayerSoundManager>().congrats.GetComponent<SoundScript>().StopSound();
                 otherSoundManager.GetComponent<OtherSoundsManager>().badumThiss.GetComponent<SoundScript>().PlaySound();
-                //playSound = true;
-            //}
-            //else
-            //{
+            
                 switch(masterBrain.GetComponent<MasterBrainScript>().choosenProfile)
                 {
                     case 1: action.SetActive(true); break;
@@ -59,7 +59,7 @@ public class WichPorfileYouHave : MonoBehaviour
                     case 3: achievement.SetActive(true); break;
                     case 4: creativity.SetActive(true); break;
                 }
-            //}
+            
             
             
         }

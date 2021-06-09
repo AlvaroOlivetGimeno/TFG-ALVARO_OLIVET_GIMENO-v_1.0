@@ -15,6 +15,10 @@ public class ProtoPlayerScript : MonoBehaviour
     SpriteRenderer spriteRenderer;
     
     GameObject bsoSoundManager;
+
+    GameObject rBrain;
+
+    
    
    
     //VARIABLE PEL MOVIMENT
@@ -71,7 +75,13 @@ public class ProtoPlayerScript : MonoBehaviour
     float actualSpeed;
     bool saveSpeedOneTime;
 
-    //FEEDBACK 
+    //OUTSIDE COLL
+    Vector3 startPos;
+
+    bool contactWithCameraPoint;
+
+    float timerNoContactWithCameraPoint;
+    
   
 
     void Start()
@@ -82,6 +92,7 @@ public class ProtoPlayerScript : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         bsoSoundManager = GameObject.FindGameObjectWithTag("BSOSoundManager");
+        rBrain = GameObject.FindGameObjectWithTag("RoomBrain");
 
         //Desactivar el Parry
         BlackBoardPlayer.p_Collider.gameObject.SetActive(false);
@@ -95,6 +106,8 @@ public class ProtoPlayerScript : MonoBehaviour
         //DesactivatePause
         hudManager.pauseMenu.SetActive(false);
 
+        //START POS
+        startPos = this.transform.position;
        
     }
 
@@ -167,7 +180,12 @@ public class ProtoPlayerScript : MonoBehaviour
         MusicControlls();
 
         //---------------------------------------
-        //Debug.Log(BlackBoardPlayer.totalEnemysKilled);
+
+        //----------------------------------------------RETURN TO INITIAL POS----------------------------------------
+        ReturnToYourInitalPos();
+
+        //----------------------
+        //Debug.Log(timerNoContactWithCameraPoint);
     }
 
     //MOVMENT
@@ -975,6 +993,28 @@ public class ProtoPlayerScript : MonoBehaviour
         }
     }
 
+    //OUT OF MAP
+
+    void ReturnToYourInitalPos()
+    {
+        if(timerNoContactWithCameraPoint < 3)
+        {
+            if(!contactWithCameraPoint)
+            {
+                timerNoContactWithCameraPoint += 1*Time.deltaTime;
+            }
+            else
+            {
+                timerNoContactWithCameraPoint = 0;   
+            }    
+        }
+        else
+        {
+            this.transform.position = rBrain.GetComponent<RoomTemplates>().entryRoom.transform.position;
+            timerNoContactWithCameraPoint = 0; 
+        }   
+    }
+
 
     //COLLISIONS TRIGGER
     void OnTriggerEnter2D(Collider2D other)
@@ -1166,9 +1206,6 @@ public class ProtoPlayerScript : MonoBehaviour
                 Destroy(other.gameObject);
             }
 
-            
-
-
             //-------------------------------STAIRS MISSION COL-------------------------------------------------------
         
             if(other.gameObject.tag =="StairsMissionCollider")
@@ -1179,6 +1216,15 @@ public class ProtoPlayerScript : MonoBehaviour
             {
                 BlackBoardPlayer.contactWithShopOrSpecialRoom = true;
             }
+
+            //-----------------------OUTSIDE COLL--------------------------------------
+            
+            if(other.gameObject.tag == "CamaraPoint")
+            {
+                contactWithCameraPoint = true;
+                //timerNoContactWithCameraPoint = 0;
+            }
+
     }
 
     void OnTriggerExit2D(Collider2D other) 
@@ -1188,6 +1234,11 @@ public class ProtoPlayerScript : MonoBehaviour
             {
                BlackBoardPlayer.characterSpeed = actualSpeed;
                saveSpeedOneTime = false;
+            }
+            if(other.gameObject.tag == "CamaraPoint")
+            {
+                contactWithCameraPoint = false;
+               
             }
     }
 

@@ -96,7 +96,7 @@ public class EnemyRoomManager : MonoBehaviour
     //DOORS CONTROLLER
     void DoorsController()
     {
-        Debug.Log(closeDoors + " " + playerIsHere + " " + enemys.Count);
+        
         if(closeDoors && playerIsHere && enemys.Count > 0)
         {
            
@@ -232,7 +232,7 @@ public class EnemyRoomManager : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other) 
     {
-         if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Player")
         {
             playerIsHere = false;
         }

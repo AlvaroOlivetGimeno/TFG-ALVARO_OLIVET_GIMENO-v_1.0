@@ -45,6 +45,8 @@ public class TorretBullet : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         enemyBrain = GameObject.FindGameObjectWithTag("EnemyBrain");
         target = GameObject.FindObjectOfType<ProtoPlayerScript>();
+
+        
         moveDirection = (target.transform.position - this.transform.position).normalized * speed;
         
         enemyBrain.GetComponent<EnemySoundManager>().shoot.GetComponent<SoundScript>().PlaySound();

@@ -558,15 +558,13 @@ public class MasterBrainScript : MonoBehaviour
      void AchievementProfile()
     {
         if(xPos >= 0 && xPos <= 50 && yPos >= 0 && yPos <= 50)
-        {
-            
+        { 
             Debug.Log("ACHIEVMENT LV2");
             achievementProfile = true;
             player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = true;
             player.GetComponent<ProtoBLACKBOARD_Player>().activeShopDrawSkins = true;
             player.GetComponent<ProtoBLACKBOARD_Player>().activeHardMissions = true;
             player.GetComponent<ProtoBLACKBOARD_Player>().activeLargeMissions = true;
-
 
         }
         else
@@ -662,9 +660,6 @@ public class MasterBrainScript : MonoBehaviour
 
     public void TaxonomyChange()
     {
-        Debug.Log("CALCULAAAAAAAAAANDO");
-            
-        
         if(player.GetComponent<ProtoBLACKBOARD_Player>().actualLevel == 10)
         {
             WhooseTheBiggerProfileSumator();
@@ -673,9 +668,6 @@ public class MasterBrainScript : MonoBehaviour
         {
             if(counter > 1)            
             {
-                Debug.Log("SUPER CALCULOS:");
-
-                ActionProfile();
                 MaestryProfile();
                 CreativityProfile();
                 AchievementProfile();
@@ -688,10 +680,7 @@ public class MasterBrainScript : MonoBehaviour
         
     }
 
-    public void RestartIndicators()
-    {
-
-    }
+ 
 
 
 

@@ -707,16 +707,13 @@ public class RoomTemplates : MonoBehaviour
                 DificultyUprage();
                 PorfileUprage();
                 onlyOneTime = true;
-            }
-            
-            DeleteMap();
-            
+            }   
+            DeleteMap();   
         }
         else if(allDeleted && timerForRestart >= timeToRestart)
         {
             CreateMap();
         }   
-
     }
      
     

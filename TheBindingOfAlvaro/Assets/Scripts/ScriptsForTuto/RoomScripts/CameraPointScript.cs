@@ -49,6 +49,7 @@ public class CameraPointScript : MonoBehaviour
     GameObject cam;
     GameObject player;
 
+    float timerForLights;
     void Start()
     {
        enemyBrain = GameObject.FindGameObjectWithTag("EnemyBrain");
@@ -178,7 +179,9 @@ public class CameraPointScript : MonoBehaviour
     //LIGHT ROOM SPAWNER
     void LightRoomSpawner()
     {
-        if(!oneTimeLightRoom)
+        timerForLights += 1 * Time.deltaTime;
+
+        if(!oneTimeLightRoom && timerForLights >= 1.5f)
         {
             Instantiate(lightRoom, this.transform.position, Quaternion.identity);
             oneTimeLightRoom = true;

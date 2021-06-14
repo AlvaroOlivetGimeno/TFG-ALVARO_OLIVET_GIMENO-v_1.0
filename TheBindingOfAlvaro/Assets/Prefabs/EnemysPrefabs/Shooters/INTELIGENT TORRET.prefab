@@ -658,6 +658,7 @@ MonoBehaviour:
   timeToShoot: 0
   parryPct: 0
   timeFreezed: 0
+  freezeFedback: {fileID: 0}
   BlackBoardEnemy: {fileID: 0}
   timer: 0
   wallChekers: []
@@ -915,6 +916,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PARRY_SHIELD
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874587882186168938, guid: ff97023d516c93349aaa6df67680903f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2874587882186168941, guid: ff97023d516c93349aaa6df67680903f,
         type: 3}

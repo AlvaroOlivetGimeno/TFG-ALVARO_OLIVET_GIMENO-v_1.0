@@ -445,7 +445,7 @@ public class MasterBrainScript : MonoBehaviour
             }
             else
             {
-                if(xPos < -5 && xPos >= -25 || yPos > 5 && yPos <= 25) //xPos entre -5 i -25 i yPos entre 5 i 25
+                if(xPos < -0.5 && xPos >= -25 || yPos > 0.5 && yPos <= 25) //xPos entre -5 i -25 i yPos entre 5 i 25
                 {
                     Debug.Log("ACTION LV1");
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeEnemyTrail = true; 
@@ -486,7 +486,7 @@ public class MasterBrainScript : MonoBehaviour
             }
             else
             {
-                if(xPos < -5 && xPos >= -25 || yPos < -5 && yPos >= -25) //xPos entre -5 i -25 i yPos entre -5 i -25
+                if(xPos < -0.5 && xPos >= -25 || yPos < -0.5 && yPos >= -25) //xPos entre -5 i -25 i yPos entre -5 i -25
                 {
                     Debug.Log("MAESTRY LV1");
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeParryShield = true;
@@ -532,7 +532,7 @@ public class MasterBrainScript : MonoBehaviour
             }
             else
             {
-                if(xPos > 5 && xPos <= 25 || yPos < -5 && yPos >= -25) //xPos entre 5 i 25 i yPos entre -5 i -25
+                if(xPos > 0.5 && xPos <= 25 || yPos < -0.5 && yPos >= -25) //xPos entre 5 i 25 i yPos entre -5 i -25
                 {
                     Debug.Log("CREATIVITY LV1");
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = true;
@@ -580,7 +580,7 @@ public class MasterBrainScript : MonoBehaviour
             }
             else
             {
-                if(xPos > 5 && xPos <= 25 || yPos > 5 && yPos <= 25) //xPos entre 5 i 25 i yPos entre 5 i 25
+                if(xPos > 0.5 && xPos <= 25 || yPos > 0.5 && yPos <= 25) //xPos entre 5 i 25 i yPos entre 5 i 25
                 {
                     Debug.Log("ACHIEVMENT LV1");
                     player.GetComponent<ProtoBLACKBOARD_Player>().activeShopColorSkins = true;

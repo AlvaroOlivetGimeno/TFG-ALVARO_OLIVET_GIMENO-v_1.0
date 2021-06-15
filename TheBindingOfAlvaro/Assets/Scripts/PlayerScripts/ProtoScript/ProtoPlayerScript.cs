@@ -1056,13 +1056,18 @@ public class ProtoPlayerScript : MonoBehaviour
             if(!loadingHability)
             {
                 playerSoundManager.catchHability.GetComponent<SoundScript>().PlaySound();
+
                 switch (other.GetComponent<PassiveHabilityScript>().estadisticType)
                 {
-                    case 1: speedSum = speedSum + 0.5f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); hudManager.ActiveSpeedPLusFeedback(); break;
-                    case 2: delaySum = delaySum - 0.05f; loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); hudManager.ActiveDelayPLusFeedback(); break;
+                    case 1: speedSum = speedSum + 0.5f; loadingHability = true; loadingHabilityTimer = 0; 
+                            Destroy(other.gameObject); hudManager.ActiveSpeedPLusFeedback(); break;
+                    case 2: delaySum = delaySum - 0.05f; loadingHability = true; loadingHabilityTimer = 0; 
+                            Destroy(other.gameObject); hudManager.ActiveDelayPLusFeedback(); break;
                     case 3: SumLife();  hudManager.ActiveLivePLusFeedback();
-                            if(BlackBoardPlayer.characterSpaceLife < 5) { BlackBoardPlayer.characterSpaceLife = BlackBoardPlayer.characterSpaceLife + 1f; }  
-                            loadingHability = true; loadingHabilityTimer = 0; Destroy(other.gameObject); break;
+                            if(BlackBoardPlayer.characterSpaceLife < 5) 
+                            { BlackBoardPlayer.characterSpaceLife = BlackBoardPlayer.characterSpaceLife + 1f; }  
+                            loadingHability = true; loadingHabilityTimer = 0; 
+                            Destroy(other.gameObject); break;
                 }
             } 
         }

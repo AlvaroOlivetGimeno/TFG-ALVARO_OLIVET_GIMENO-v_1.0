@@ -671,6 +671,7 @@ public class MasterBrainScript : MonoBehaviour
                 MaestryProfile();
                 CreativityProfile();
                 AchievementProfile();
+                ActionProfile();
                 SumTheChoosenPorfile();
                 player.GetComponent<ProtoBLACKBOARD_Player>().iHaveFoundOrBuyAnSpecialHability = false;
                 specialHabilityCatch = false;
